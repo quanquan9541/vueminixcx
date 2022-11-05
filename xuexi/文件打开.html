@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>excel</title>
+  </head>
+  <body>
+    <p>测试打开文件</p>
+    <input type="file" id="file" style="display: none" />
+    <!-- accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 限制文件格式 -->
+    <!-- <a href="javascript:selectFile()">打开本地excel文件</a> -->
+    <!-- 超链接打开文件 -->
+    <button onclick="javascript:selectFile()">选择文件</button>
+    <!-- 路径选择按钮，按钮打开文件 -->
+    <p></p>
+  </body>
+  <script>
+    function selectFile() {
+      document.getElementById("file").click();
+    }
+    // 打开文件的模块;file 文件 click 点击选择
+  </script>
+</html>

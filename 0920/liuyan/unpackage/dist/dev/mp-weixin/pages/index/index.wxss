@@ -1,0 +1,26 @@
+
+.content {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    margin: rpx;
+}
+.input {
+    border-bottom: 1px solid #ccc;
+    padding: 6px;
+    flex: 1;
+}
+.button {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    font-size: 36rpx;
+    color: #8f8f94;
+}
+.box {
+    margin: 40rpx;
+    border-bottom: 1px solid #ccc;
+    padding: 20rpx, 0;
+}

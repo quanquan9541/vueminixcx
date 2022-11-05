@@ -1,0 +1,160 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "money": {
+      "title": "月薪",
+      "bsonType": "int",
+      "description": "请输入你的工资",
+      "trim": "both"
+    },
+    "date": {
+      "title": "月工作",
+      "description": "请输入月工作天数",
+      "bsonType": "int",
+      "trim": "both"
+    },
+    "time": {
+      "title": "工时",
+      "description": "请输入日工作时长",
+      "bsonType": "int",
+      "trim": "both"
+    },
+    "gowork": {
+      "title": "摸鱼时长",
+      "description": "摸鱼时长=吃饭+午休+偷懒",
+      "bsonType": "int",
+      "trim": "both"
+    },
+    "education": {
+      "bsonType": "string",
+      "title": "学历",
+      "defaultValue": 1.0,
+      "enum": [{
+          "text": "专科及以下",
+          "value": 0.8
+        },
+        {
+          "text": "本科",
+          "value": 1
+        }, {
+          "text": "211/985本科",
+          "value": 1.2
+        }, {
+          "text": "硕士研究生",
+          "value": 1.4
+        }, {
+          "text": "211/985硕士",
+          "value": 1.6
+        }, {
+          "text": "博士研究生",
+          "value": 1.8
+        }, {
+          "text": "211/985研究生",
+          "value": 2.0
+        }
+      ]
+    },
+    "environment": {
+      "bsonType": "string",
+      "title": "工作环境",
+
+      "defaultValue": 1.0,
+      "enum": [{
+          "text": "偏僻地区",
+          "value": 0.8
+        },
+        {
+          "text": "工厂/户外",
+          "value": 0.9
+        }, {
+          "text": "普通办公室",
+          "value": 1.0
+        }, {
+          "text": "体制",
+          "value": 1.1
+        }
+      ]
+    },
+    "sex": {
+      "title": "异性",
+      "description": "好看的异性数量",
+      "bsonType": "int",
+      "trim": "both"
+    },
+    "ssex": {
+      "title": "同性",
+      "description": "所有同性",
+      "bsonType": "int",
+      "trim": "both"
+    },
+    "colleague": {
+      "bsonType": "string",
+      "title": "同事质量",
+
+      "defaultValue": 1.0,
+      "enum": [{
+          "text": "SB占多数",
+          "value": 0.9
+        },
+        {
+          "text": "普通占多数",
+          "value": 1.0
+        }, {
+          "text": "优秀占多数",
+          "value": 1.1
+        }
+      ]
+    },
+    "occupation": {
+      "bsonType": "string",
+      "title": "职业资格",
+
+      "defaultValue": 1.0,
+      "enum": [{
+          "text": "无要求",
+          "value": 1.0
+        },
+        {
+          "text": "门槛水平",
+          "value": 1.05
+        }, {
+          "text": "优秀水平",
+          "value": 1.1
+        },
+        {
+          "text": "资深水平",
+          "value": 1.15
+        }
+      ]
+    },
+    "special": {
+      "bsonType": "string",
+      "title": "工作特殊",
+
+      "defaultValue": 1.0,
+      "enum": [{
+          "text": "正常",
+          "value": 1.0
+        },
+        {
+          "text": "8：30前上班",
+          "value": 0.95
+        }, {
+          "text": "夜班",
+          "value": 0.9
+        }
+      ]
+    }
+  }
+}

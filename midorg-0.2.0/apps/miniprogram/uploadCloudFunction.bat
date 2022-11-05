@@ -1,0 +1,1 @@
+"D:\Program Files (x86)\Tencent\΢��web�����߹���\cli.bat" cloud functions deploy --e mid-2gnw71li1e1341f3 --n quickstartFunctions --r --project "D:\app\apps\miniprogram" --report_first --report

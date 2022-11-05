@@ -1,0 +1,1 @@
+<view class="content"><input type="text" class="input" placeholder="留言板" value="{{a}}" bindinput="{{b}}"></input><button type="primary" bindtap="{{c}}" size="mini">提交</button></view><view wx:for="{{d}}" wx:for-item="item" wx:key="b"><view class="box">{{item.a}}</view></view>

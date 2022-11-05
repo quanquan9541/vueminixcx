@@ -1,0 +1,74 @@
+{
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    }, {
+      "path": "pages/list/list",
+      "style": {
+        "navigationBarTitleText": "列表",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/abount/abount",
+      "style": {
+        "navigationBarTitleText": "关于我",
+        "enablePullDownRefresh": false
+      }
+
+    }
+      ,{
+            "path" : "pages/qusu/qusu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/bagua/bagua",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {},
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tar/home.png",
+        "selectedIconPath": "static/tar/home1.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "列表",
+        "iconPath": "static/tar/list.png",
+        "selectedIconPath": "static/tar/list1.png"
+      },
+      {
+        "pagePath": "pages/abount/abount",
+        "text": "列表",
+        "iconPath": "static/tar/me.png",
+        "selectedIconPath": "static/tar/me1.png"
+      }
+    ]
+  }
+}

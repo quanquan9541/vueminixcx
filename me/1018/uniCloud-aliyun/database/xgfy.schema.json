@@ -1,0 +1,115 @@
+{
+  "bsonType": "object",
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "required": [
+    "username",
+    "mobile"
+  ],
+  "properties": {
+    "_id": {
+      "description": "存储文档 ID（用户 ID），系统自动生成"
+    },
+    "username": {
+      "bsonType": "string",
+      "title": "姓名",
+      "description": "姓名",
+      "order": 1,
+      "trim": "both"
+    },
+    "gender": {
+      "bsonType": "int",
+      "title": "性别",
+      "description": "用户性别：0 未知 1 男性 2 女性",
+      "order": 2,
+      "defaultValue": 0,
+      "enum": [{
+          "text": "未知",
+          "value": 0
+        },
+        {
+          "text": "男",
+          "value": 1
+        },
+        {
+          "text": "女",
+          "value": 2
+        }
+      ]
+    },
+    "statu": {
+      "bsonType": "bool",
+      "title": "审核状态",
+      "order": 8,
+      "forceDefaultValue": false
+    },
+
+
+    "photo": {
+      "bsonType": "file",
+      "order": 7,
+      "title": "健康码",
+      "fileMediaType": "image", // 可选值 all|image|video 默认值为all,表示所有文件，image表示图片类型文件，video表示视频类型文件
+      "fileExtName": "jpg,png" // 扩展名过滤，多个用 , 分割
+    },
+
+    "fdate": {
+      "bsonType": "timestamp", //原本为date(日期格式)
+      "title": "返回日期",
+      "description": "返回日期",
+      "order": 5,
+      "trim": "both"
+    },
+    "city_code": {
+      "bsonType": "string",
+      "title": "城市"
+    },
+    "add": {
+      "bsonType": "string",
+      "title": "地址",
+      "order": 6,
+      "foreignKey": "opendb-city-china.code",
+      "enumType": "tree",
+      "enum": {
+        "collection": "opendb-city-china",
+        "orderby": "value asc",
+        "field": "code as value, name as text, eq(type, 2) as isleaf"
+      }
+
+    },
+    "mobile": {
+      "bsonType": "string",
+      "title": "电话",
+      "order": 3,
+      "description": "电话",
+      "pattern": "^\\+?[0-9-]{3,20}$",
+      "trim": "both"
+    },
+    "idcord": {
+      "bsonType": "string",
+      "title": "身份证",
+      "order": 4,
+      "description": "身份证号码",
+      "pattern": "^\\+?[0-9-X-x]{18}$",
+      "trim": "both",
+      "errorMessage": {
+        "required": "{title}不能为空",
+        "format": "{title}格式无效"
+      }
+
+
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  },
+  "version": "0.0.1"
+}
