@@ -16,6 +16,7 @@
         </view>
       </view>
     </view>
+    <view class="goadd" @click="goadd">+</view>
   </view>
 </template>
 
@@ -30,7 +31,11 @@
 
     },
     methods: {
-
+      goadd() {
+        uni.navigateTo({
+          url: "/pages/add/add"
+        })
+      }
     }
   }
 </script>
@@ -86,6 +91,22 @@
           }
         }
       }
+    }
+
+    .goadd {
+      width: 100rpx;
+      height: 100rpx;
+      background: #00ff7f;
+      color: #ff0000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 60rpx;
+      position: fixed;
+      right: 60rpx;
+      bottom: 100rpx;
+      box-shadow: 0 0 20rpx rgb(50, 230, 37);
     }
   }
 </style>
