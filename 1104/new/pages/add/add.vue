@@ -1,6 +1,6 @@
 <template>
   <view class="add">
-    <form action="">
+    <form @submit="onsubmit">
       <view class="item">
         <input type="text" name="title" placeholder="请输入标题">
       </view>
@@ -11,7 +11,8 @@
         <textarea name="content" cols="30" rows="10" placeholder="请输入内容"></textarea>
       </view>
       <view class="item">
-        <button>提交</button>
+        <button form-type="submit" type="primary">提交</button>
+        <button form-type="reset" type="warn">重置</button>
       </view>
     </form>
   </view>
@@ -23,7 +24,23 @@
       return {
 
       };
+    },
+    methods: {
+      //点击提交表单
+      onsubmit(e) {
+        let adddata = e.detail.value
+        uniCloud.callFunction({
+          name: "art_add_row",
+          data: {
+            adddata
+          }
+        }).then(res => {
+          console.log(res)
+        })
+
+      }
     }
+
   }
 </script>
 
@@ -45,6 +62,10 @@
         height: 300rpx;
         width: 100%;
         box-sizing: border-box;
+      }
+
+      button {
+        margin-bottom: 20rpx;
       }
     }
   }
