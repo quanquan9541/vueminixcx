@@ -3,7 +3,8 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "文章页面"
+        "navigationBarTitleText": "文章页面",
+        "enablePullDownRefresh": true
       }
     }, {
       "path": "pages/add/add",
@@ -16,6 +17,13 @@
       "path": "pages/edit/edit",
       "style": {
         "navigationBarTitleText": "修改文章",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/detail/detail",
+      "style": {
+        "navigationBarTitleText": "详情页",
         "enablePullDownRefresh": false
       }
 

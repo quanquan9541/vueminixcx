@@ -1,13 +1,15 @@
 <template>
   <view class="home">
     <view class="centent">
-      <view class="item" v-for="item in listArr" :key="item_id">
+      <view class="item" @click="godetail(item._id)" v-for="item in listArr" :key="item._id">
         <view class="text">
           <view class="title">{{item.title}}</view>
           <view class="info">
             <text>{{item.author}}</text>
-            <text>{{item.posttime}}</text>
-            <text>删除</text>
+            <text>
+              <uni-dateformat :date="item.posttime" format="MM-dd" :threshold="[60000, 3600000]"></uni-dateformat>
+            </text>
+
           </view>
         </view>
         <view class="pic">
@@ -16,7 +18,9 @@
         </view>
       </view>
     </view>
-    <view class="goadd" @click="goadd">+</view>
+    <view class="goadd" @click="goadd">
+      <uni-icons type="plus-filled" size="75" color="#5555ff"></uni-icons>
+    </view>
   </view>
 </template>
 
@@ -27,17 +31,46 @@
         listArr: [] //云端数据来源
       }
     },
-    onLoad() {
+    //启动时加载
+    onLoad: function() {
+      this.getdata()
+      onPullDownRefresh()
+    },
+    //进入页面刷新 上下两种写法格式都可以
+    onShow() {
+      this.getdata()
+      onPullDownRefresh()
+    },
+    //下拉刷新
+    onPullDownRefresh() {
+      this.listArr = []
+      this.getdata()
+    },
+    //触底
+    onReachBottom() {
       this.getdata()
     },
     methods: {
+      //跳转到详情页
+      godetail(e) {
+        console.log(e)
+        uni.navigateTo({
+          url: "/pages/detail/detail?id=" + e
+        })
+      },
       //获取云端数据
       getdata() {
         uniCloud.callFunction({
-          name: "art_get_all"
+          name: "art_get_all",
+          data: {
+            skip: this.listArr.length
+          }
         }).then(res => {
           console.log(res)
-          this.listArr = res.result.data //赋值
+          let oldlistArr = this.listArr
+          let alllistArr = [...oldlistArr, ...res.result.data]
+          this.listArr = alllistArr //赋值
+          uni.stopPullDownRefresh() //关闭下拉刷新
         })
       },
       //跳转页面
@@ -106,8 +139,8 @@
     .goadd {
       width: 100rpx;
       height: 100rpx;
-      background: #00ff7f;
-      color: #ff0000;
+      // background: #00ff7f;
+      // color: #ff0000;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -116,7 +149,7 @@
       position: fixed;
       right: 60rpx;
       bottom: 100rpx;
-      box-shadow: 0 0 20rpx rgb(50, 230, 37);
+      box-shadow: 0 0 20rpx rgb(157, 157, 157);
     }
   }
 </style>
