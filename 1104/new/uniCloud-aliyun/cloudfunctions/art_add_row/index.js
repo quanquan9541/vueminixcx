@@ -2,10 +2,12 @@
 const db = uniCloud.database()
 exports.main = async (event, context) => {
   let {
-    adddata
+    adddata,
+    picurls
   } = event;
   return await db.collection("article").add({
     posttime: Date.now(),
-    ...adddata
+    ...adddata,
+    picurls
   })
 };

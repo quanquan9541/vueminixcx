@@ -14,7 +14,8 @@
         </view>
         <view class="pic">
           <!-- 图片区域 -->
-          <image mode="aspectFill" src="../../static/logo.png"></image>
+          <image v-if="item.picurls && item.picurls.length" mode="aspectFill" :src="item.picurls[0]"></image>
+          <image v-else mode="aspectFill" src="../../static/logo.png"></image>
         </view>
       </view>
     </view>
@@ -34,12 +35,12 @@
     //启动时加载
     onLoad: function() {
       this.getdata()
-      onPullDownRefresh()
+      this.onPullDownRefresh()
     },
     //进入页面刷新 上下两种写法格式都可以
     onShow() {
       this.getdata()
-      onPullDownRefresh()
+      this.onPullDownRefresh()
     },
     //下拉刷新
     onPullDownRefresh() {

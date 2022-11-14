@@ -78,6 +78,8 @@
     justify-content: center;
     padding: 10px 0;
     background-color: #f0f0f0;
+    width: 750rpx;
+    height: 1334rpx;
 
     .bigbox {
       width: 750rpx;
@@ -87,6 +89,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 0; // position: relative;
+      position: relative;
 
       .top {
         width: 100%;
@@ -184,7 +187,7 @@
       }
 
       .buttom {
-        position: absolute; // relative相对定位 absolute 绝对定位
+        position: absolute; // relative相对定位 absolute 绝对定位 需要配合父的相对定位使用
         bottom: 20rpx;
         padding: 0px;
         margin: 0px;

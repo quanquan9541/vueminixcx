@@ -1,8 +1,5 @@
 <template>
   <view class="add">
-    <!-- {{formvalue.title}}
-    {{formvalue.author}}
-    {{formvalue.content}} -->
     <form @submit="onsubmit">
       <view class="item">
         <input type="text" v-model="formvalue.title" name="title" placeholder="请输入标题">
@@ -12,6 +9,9 @@
       </view>
       <view class="item">
         <textarea v-model="formvalue.content" name="content" cols="30" rows="10" placeholder="请输入内容"></textarea>
+      </view>
+      <view class="item">
+        <uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @success="uploadSuccess" />
       </view>
       <view class="item">
         <button form-type="submit" type="primary" :disabled="inDisabled(formvalue)">提交</button>
@@ -26,11 +26,13 @@
   export default {
     data() {
       return {
+        imageValue: [],
         formvalue: {
           title: "",
           author: "",
           content: ""
-        }
+        },
+        picurls: []
       };
     },
     onLoad(e) {
@@ -39,6 +41,11 @@
       this.getData()
     },
     methods: {
+      //图片上传成功
+      uploadSuccess(e) {
+        console.log(e)
+        this.picurls = e.tempFilePaths
+      },
       //获取详情
       getData() {
         uniCloud.callFunction({
@@ -49,6 +56,13 @@
         }).then(res => {
           console.log(res);
           this.formvalue = res.result.data[0]
+          if (!this.formvalue.picurls) return //判断
+          let urls = this.formvalue.picurls.map(item => { //map 循环 暂时不会用先抄着
+            return {
+              url: item
+            }
+          })
+          this.imageValue = urls
         })
       },
       //判断按钮禁用
@@ -62,10 +76,14 @@
       },
       //点击提交表单
       onsubmit(e) {
-        let adddata = e.detail.value
+        let _picurls = this.imageValue.map(item => {
+          return (item.url)
+        })
+        // let adddata = e.detail.value
         uniCloud.callFunction({
           name: "art_updata_row",
           data: {
+            picurls: _picurls,
             adddata: this.formvalue
           }
         }).then(res => {

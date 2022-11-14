@@ -14,6 +14,9 @@
         <textarea v-model="formvalue.content" name="content" cols="30" rows="10" placeholder="请输入内容"></textarea>
       </view>
       <view class="item">
+        <uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @success="uploadSuccess" />
+      </view>
+      <view class="item">
         <button form-type="submit" type="primary" :disabled="inDisabled(formvalue)">提交</button>
         <button form-type="reset" type="warn">重置</button>
       </view>
@@ -25,14 +28,21 @@
   export default {
     data() {
       return {
+        imageValue: [],
         formvalue: {
           title: "",
           author: "",
-          content: ""
-        }
+          content: "",
+        },
+        picurls: []
       };
     },
     methods: {
+      //图片上传成功
+      uploadSuccess(e) {
+        console.log(e)
+        this.picurls = e.tempFilePaths
+      },
       //判断按钮禁用
       inDisabled(formvalue) {
         // let formvalue = formvalue
@@ -44,16 +54,21 @@
       },
       //点击提交表单
       onsubmit(e) {
+
         let adddata = e.detail.value
+
+        //上传数据
         uniCloud.callFunction({
           name: "art_add_row",
           data: {
-            adddata
+            adddata,
+            picurls: this.picurls
           }
         }).then(res => {
           uni.showToast({
             title: "发布成功"
           })
+          //定时跳转
           setTimeout(() => {
             uni.reLaunch({
               url: "/pages/index/index"
@@ -61,9 +76,9 @@
           }, 2000)
           // console.log(res)
         })
+
       }
     }
-
   }
 </script>
 

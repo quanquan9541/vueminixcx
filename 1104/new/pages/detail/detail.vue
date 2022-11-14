@@ -9,6 +9,9 @@
         </text>
       </view>
       <view class="content">{{detail.content}}</view>
+      <view class="pic" v-if="detail.picurls && detail.picurls.length">
+        <image v-for="item in detail.picurls" :src="item" mode="widthFix"></image>
+      </view>
       <view class="gbutton">
         <button size="mini" @click="goedit">修改</button>
         <button size="mini" type="warn" @click="onremove">删除</button>
@@ -132,6 +135,16 @@
     .content {
       font-size: 28rpx;
       line-height: 1.5em;
+    }
+
+    .pic {
+      padding-top: 50rpx;
+
+      image {
+        width: 100%;
+        display: block;
+        margin-bottom: 30rpx;
+      }
     }
 
     .gbutton {
