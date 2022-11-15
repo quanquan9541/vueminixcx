@@ -16,7 +16,12 @@
       <u-skeleton rows="3" avatar title loading></u-skeleton>
     </view>
     <!-- //主体内容 -->
-    <view class="content">主体</view>
+    <view class="content">
+      <!-- //每一项 -->
+      <view class="item" v-for="item in dataList">
+        <blog-item></blog-item>
+      </view>
+    </view>
     <!-- //新增按钮 -->
     <view class="edit">
       <text class="iconfont icon-a-21-xiugai"></text>
@@ -28,6 +33,7 @@
   export default {
     data() {
       return {
+        dataList: [1, 2, 3], //主体内容数据
         loadState: false, //骨架瓶显示状态
         navlist: [{ //顶部标签数组
             name: "最新"
@@ -57,6 +63,13 @@
 
     .loadingState {
       padding: 30rpx;
+    }
+
+    .content {
+      .item {
+        padding: 30rpx;
+        border-bottom: 10rpx #e6e6e6 solid;
+      }
     }
 
     .edit {
