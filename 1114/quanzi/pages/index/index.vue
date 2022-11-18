@@ -68,7 +68,7 @@
     .content {
       .item {
         padding: 30rpx;
-        border-bottom: 10rpx #e6e6e6 solid;
+        border-bottom: 10rpx #e6e6e6 solid; //分割线
       }
     }
 
