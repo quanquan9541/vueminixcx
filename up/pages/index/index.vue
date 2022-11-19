@@ -74,7 +74,7 @@
           </uni-forms-item>
 
 
-          <uni-forms-item class="item" label="同事水平" label-width="75px" name="ability">
+          <uni-forms-item class="item" label="同事水平" label-width="75px" name="abilitydata">
             <uni-rate v-model="abilitydata" max="10" @change="changeability" />
           </uni-forms-item>
 
@@ -207,23 +207,28 @@
           }
         ],
         //工作环境值
-        environment: 10,
+        environment: 11,
         //环境列表
         environmentlist: [{
             "value": 10,
             "text": "工厂户外"
           },
           {
-            "value": 20,
+            "value": 11,
             "text": "办公室"
           },
           {
-            "value": 30,
+            "value": 12,
             "text": "自由办公"
           }
         ],
         //
-        work: {},
+        work: {}, //rules
+        time: '', //时间
+        Qualifications: '', //资历
+        periphery: '', //工作环境
+        humanity: '', //人文
+        workdata: '', //总数据
         rules: {
           //工资验证
           wages: {
@@ -351,9 +356,20 @@
         let occupation = this.occupation //职业资格
         let company = this.company //单位
         let environment = this.environment //环境
-        let ability = this.ability //水平
+        let abilitydata = this.abilitydata //水平
         let time = weekday * (duration + commute - loaf) * (1 + ((morning + night) / 4)) //时间
-
+        // console.log(time)
+        this.time = time
+        let Qualifications = education * occupation //资历
+        this.Qualifications = Qualifications
+        let periphery = environment * company //工作环境
+        this.periphery = periphery
+        let humanity = Math.floor((sex / compete) * abilitydata * 100) //人文
+        this.humanity = humanity
+        console.log(abilitydata)
+        console.log(humanity)
+        let workdata = Math.floor(((wages * periphery * (1 + humanity)) / (time * Qualifications)) / 10)
+        this.workdata = workdata
       },
       //新增数据
       addlist() {
@@ -370,11 +386,22 @@
             company: this.company,
             environment: this.environment,
             ability: this.ability,
-
+            time: this.time,
+            Qualifications: this.Qualifications,
+            periphery: this.periphery,
+            humanity: this.humanity,
+            workdata: this.workdata
           })
           .then((res) => {
             console.log(res)
             // res 为数据库查询结果
+            //获取id
+            let id = res.result.id
+            console.log(id)
+            //跳转
+            uni.navigateTo({
+              url: '/pages/worklist/worklist?id=' + id
+            });
           }).catch((err) => {
             console.log(err.code); // 打印错误码
             console.log(err.message); // 打印错误内容
@@ -424,6 +451,7 @@
           console.log('表单数据信息：', res);
           this.work = res
           //数据计算
+          this.calculation()
           // 调用上传函数
           this.addlist()
         }).catch(err => {
