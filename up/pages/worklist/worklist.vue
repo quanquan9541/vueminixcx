@@ -51,7 +51,7 @@
           this.workdata1 = res.result.data
           let workdata1 = res.result.data
           this.workdata = workdata1[0].workdata.toString()
-          this.wages = workdata1[0].wages.toString()
+          this.wages = (workdata1[0].wages / 10).toString()
           this.time = workdata1[0].time.toString()
           this.Qualifications = workdata1[0].Qualifications.toString()
           this.humanity = workdata1[0].humanity.toString()

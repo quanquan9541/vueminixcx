@@ -82,7 +82,7 @@
       </uni-forms>
     </view>
     <view class="button">
-      <button @click="submit">提交</button>
+      <button type="primary" @click="submit">提交</button>
     </view>
   </view>
 </template>
@@ -398,10 +398,17 @@
             //获取id
             let id = res.result.id
             console.log(id)
-            //跳转
-            uni.navigateTo({
-              url: '/pages/worklist/worklist?id=' + id
-            });
+            //延时
+            setTimeout(function() {
+              //干掉弹窗
+              uni.hideLoading();
+              //跳转
+              uni.navigateTo({
+                url: '/pages/worklist/worklist?id=' + id
+              });
+            }, 2000);
+
+
           }).catch((err) => {
             console.log(err.code); // 打印错误码
             console.log(err.message); // 打印错误内容
@@ -454,6 +461,11 @@
           this.calculation()
           // 调用上传函数
           this.addlist()
+          //加点动画
+          uni.showLoading({
+            title: '计算中',
+            mask: true
+          });
         }).catch(err => {
           console.log('表单错误信息：', err);
         })
