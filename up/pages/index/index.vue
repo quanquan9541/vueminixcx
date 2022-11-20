@@ -357,7 +357,7 @@
         let company = this.company //单位
         let environment = this.environment //环境
         let abilitydata = this.abilitydata //水平
-        let time = weekday * (duration + commute - loaf) * (1 + ((morning + night) / 4)) //时间
+        let time = weekday * (duration + commute - (loaf / 2)) * (1 + ((morning + night) / 4)) //时间
         // console.log(time)
         this.time = time
         let Qualifications = education * occupation //资历
@@ -368,7 +368,7 @@
         this.humanity = humanity
         console.log(abilitydata)
         console.log(humanity)
-        let workdata = Math.floor(((wages * periphery * (1 + humanity)) / (time * Qualifications)) / 10)
+        let workdata = Math.floor(((wages * periphery * (1 + humanity)) / (time * Qualifications * 35)))
         this.workdata = workdata
       },
       //新增数据
@@ -406,7 +406,7 @@
               uni.navigateTo({
                 url: '/pages/worklist/worklist?id=' + id
               });
-            }, 2000);
+            }, 1000);
 
 
           }).catch((err) => {

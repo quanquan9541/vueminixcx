@@ -4,7 +4,7 @@
     <view class="dev">
       <uni-card title="工作得分" class="box">
         <uni-list>
-          <uni-list-item title="总分" :rightText="workdata" />
+          <uni-list-item title="综合分" :rightText="workdata" />
           <uni-list-item title="金钱分" :rightText="wages" />
           <uni-list-item title="时间分" :rightText="time" />
           <uni-list-item title="资质分" :rightText="Qualifications" />
@@ -32,10 +32,15 @@
       };
     },
     onLoad(e) {
+
       console.log(e)
       this.id = e.id
     },
     onShow() {
+      uni.showLoading({
+        title: '加载中',
+        mask: true
+      });
       this.getdata()
     },
     methods: {
@@ -56,7 +61,7 @@
           this.Qualifications = workdata1[0].Qualifications.toString()
           this.humanity = workdata1[0].humanity.toString()
           this.periphery = workdata1[0].periphery.toString()
-
+          uni.hideLoading();
         }).catch(err => {
           console.log(err.errcode); // 打印错误码
           console.log(err.errMsg); // 打印错误内容
