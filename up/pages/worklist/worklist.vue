@@ -44,11 +44,11 @@
       this.getdata()
     },
     methods: {
-      getdata() {
+      async getdata() {
         let id = this.id
         console.log("拿下id", id)
         const db = uniCloud.database();
-        db.collection("worklist").where({
+        await db.collection("worklist").where({
           _id: id
         }).get().then(res => {
           // res 为数据库查询结果

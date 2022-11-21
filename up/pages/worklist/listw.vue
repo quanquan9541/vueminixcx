@@ -1,10 +1,10 @@
 <template>
   <view class="list">
     <view class="centent">
-      <view class="item" v-for="item in workdatalist" :key="item._id" @click="goworklist(item._id)">
+      <view class="item" v-for="(item,index) in workdatalist" :key="item._id" @click="goworklist(item._id)">
         <view class="text">
-          <text class="title">综合分：</text>
-          <text class="num">{{item.workdata}}</text>
+          <text class="title">综合分：{{item.workdata}}</text>
+          <text class="num">{{index+1}}</text>
         </view>
       </view>
       <view class="goadd" @click="gotowork">
@@ -54,10 +54,10 @@
         })
       },
       //拉取云端数据
-      getwork() {
+      async getwork() {
         let skip = this.workdatalist.length
         const db = uniCloud.database()
-        db.collection('worklist').skip(skip).limit(20).orderBy('workdata desc ,wages desc').get().then(res => {
+        await db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(res => {
           console.log(res)
           let oldworkdatalist = this.workdatalist
           let allworkdatalist = [...res.result.data, ...oldworkdatalist]
@@ -72,62 +72,54 @@
 
 <style lang="scss" scoped>
   .list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     .centent {
-      padding: 30rpx;
-      width: 700rpx;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      padding: 20rpx;
 
       .item {
-        height: 48px;
-        width: 700rpx;
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 5rpx;
-        padding: 20rpx, 0;
-        border: 1rpx solid #d0d0d0;
-        position: relative;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 20rpx;
+        border-radius: 14px;
+        // padding: 20rpx;
+        border: 1rpx solid #aaaaff;
+
 
         .text {
           padding: 20rpx;
           display: flex;
           justify-content: center;
           align-items: center;
-          // position: relative;
-          // border: 1rpx solid #ff5500;
+
 
 
           .title {
-            flex: 5;
+            flex: 1;
             padding: 40rpx;
             font-size: 28rpx;
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            /*垂直居中*/
-            -ms-flex-align: center;
-            /*混合版本*/
-            -webkit-align-items: center;
-            align-items: center;
-            // border: 1rpx solid #ff5500;
-
+            //
+            font-family: '微软雅黑';
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none solid;
+            white-space: normal;
+            text-overflow: clip;
+            word-wrap: normal;
+            text-shadow: 0px 2px 7px #bcbcbc
           }
 
           .num {
-            font-size: 32rpx;
-            // border: 1rpx solid #ff5500;
-            position: absolute;
-            right: 40rpx;
+            font-family: '微软雅黑';
+            font-style: normal;
+            font-weight: 900;
+            font-size: 48px;
+            color: #68949f;
+            text-decoration: none solid;
+            white-space: normal;
+            text-overflow: clip;
+            word-wrap: normal;
+            text-shadow: 2px 5px 10px #adadad // border: 1rpx solid #ff5500; //定位边线
           }
 
         }
@@ -138,17 +130,15 @@
       .goadd {
         width: 100rpx;
         height: 100rpx;
-        // background: #00ff7f;
-        // color: #ff0000;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         font-size: 60rpx;
-        position: absolute;
+        position: fixed;
         right: 60rpx;
-        bottom: 100rpx;
-        box-shadow: 0 0 20rpx rgb(157, 157, 157);
+        bottom: 60rpx;
+        box-shadow: 0 0 20rpx rgb(148, 148, 148);
       }
 
     }

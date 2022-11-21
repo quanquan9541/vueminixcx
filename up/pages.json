@@ -4,6 +4,7 @@
       "path": "pages/worklist/listw",
       "style": {
         "navigationBarTitleText": "工作排行榜",
+        "navigationStyle": "default",
         "enablePullDownRefresh": true
       }
 
@@ -23,7 +24,16 @@
       }
 
     }
-  ],
+      ,{
+            "path" : "pages/worklist/work",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
