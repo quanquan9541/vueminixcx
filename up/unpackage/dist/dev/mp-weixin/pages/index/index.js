@@ -97,26 +97,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniForms: function() {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 34))
-    },
-    uniSection: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 43))
-    },
-    uniFormsItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 50))
-    },
-    uniEasyinput: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 57))
-    },
-    uniDataCheckbox: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */ "uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 64))
-    },
-    uniDataSelect: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */ "uni_modules/uni-data-select/components/uni-data-select/uni-data-select").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 71))
-    },
-    uniRate: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-rate/components/uni-rate/uni-rate */ "uni_modules/uni-rate/components/uni-rate/uni-rate").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-rate/components/uni-rate/uni-rate.vue */ 78))
+    uniIcons: function() {
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 50))
     }
   }
 } catch (e) {
@@ -173,79 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 7));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -266,389 +176,54 @@ var _default =
 {
   data: function data() {
     return {
-      //表单绑定
-      worklist: {
-        wages: '',
-        weekday: "",
-        duration: "",
-        commute: "",
-        loaf: "",
-        compete: '',
-        sex: '' },
-
-      //夜班
-      night: 0,
-      //夜班表
-      judgenight: [{
-        "value": 1,
-        "text": "是" },
-
-      {
-        "value": 0,
-        "text": "否" }],
-
-
-      morning: 0,
-      //判断表
-      judge: [{
-        "value": 0,
-        "text": "是" },
-
-      {
-        "value": 1,
-        "text": "否" }],
-
-
-      //同事水平
-      abilitydata: 0,
-      // 学历值
-      education: 10,
-
-      //学历列表
-      educationlist: [{
-        value: 8,
-        text: "专科及以下" },
-
-      {
-        value: 10,
-        text: "普通本科" },
-
-      {
-        value: 12,
-        text: "985/211本科" },
-
-      {
-        value: 14,
-        text: "普通硕士" },
-      {
-        value: 16,
-        text: "985/211硕士" },
-      {
-        value: 18,
-        text: "普通博士" },
-      {
-        value: 20,
-        text: "985/211博士" }],
-
-
-      //职业值
-      occupation: 10,
-      //职业列表
-      occupationlist: [{
-        value: 10,
-        text: "无要求" },
-
-      {
-        value: 11,
-        text: "基础证书" },
-
-      {
-        value: 12,
-        text: "专业证书" },
-
-      {
-        value: 13,
-        text: "行业专家" }],
-
-
-      //工作单位值
-      company: 10,
-      //工作单位
-      companylist: [{
-        value: 8,
-        text: "小微公司(少于20人)" },
-      {
-        value: 9,
-        text: "小型公司(20-99人)" },
-      {
-        value: 10,
-        text: "正常公司(100人以上)" },
-
-      {
-        value: 11,
-        text: "上市公司(不限规模)" },
-
-      {
-        value: 12,
-        text: "国企(不限规模)" },
-
-      {
-        value: 13,
-        text: "欧美外企(不限规模)" },
-
-      {
-        value: 14,
-        text: "政府单位(不限规模)" }],
-
-
-      //工作环境值
-      environment: 11,
-      //环境列表
-      environmentlist: [{
-        "value": 10,
-        "text": "工厂户外" },
-
-      {
-        "value": 11,
-        "text": "办公室" },
-
-      {
-        "value": 12,
-        "text": "自由办公" }],
-
-
-      //
-      work: {}, //rules
-      time: '', //时间
-      Qualifications: '', //资历
-      periphery: '', //工作环境
-      humanity: '', //人文
-      workdata: '', //总数据
-      rules: {
-        //工资验证
-        wages: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入工资' },
-          {
-            format: "number" },
-          {
-            validateFunction: function validateFunction(rule, value, data, callback) {
-              if (value < 100) {
-                callback('回家睡觉不香吗？');
-              }
-              return true;
-            } }] },
-
-
-        //月工作日验证
-        weekday: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入月工作日' },
-          {
-            format: "number" },
-          {
-            validateFunction: function validateFunction(rule, value, data, callback) {
-              if (value > 30) {
-                callback('时间猎手？');
-              } else if (value < 7) {
-                callback('不要骗自己');
-              }
-              return true;
-            } }] },
-
-
-        //工作时长验证
-        duration: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入工作时长' },
-          {
-            format: "number" },
-          {
-            validateFunction: function validateFunction(rule, value, data, callback) {
-              if (value > 24) {
-                callback('时间猎手？');
-              } else if (value < 2) {
-                callback('不要骗自己');
-              }
-              return true;
-            } }] },
-
-
-        //通勤时长验证
-        commute: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入通勤时长' },
-          {
-            format: "number" },
-          {
-            validateFunction: function validateFunction(rule, value, data, callback) {
-              if (value > 24) {
-                callback('一直在路上');
-              }
-              return true;
-            } }] },
-
-
-        //摸鱼时间
-        loaf: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入摸鱼时长' },
-          {
-            format: "number" },
-          {
-            validateFunction: function validateFunction(rule, value, data, callback) {
-              if (value > 24) {
-                callback('透支时间');
-              }
-              return true;
-            } }] },
-
-
-        //人数判断
-        compete: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入同性人数' },
-          {
-            format: "number" }] },
-
-
-        //sex
-        sex: {
-          rules: [{
-            required: true,
-            errorMessage: '请输入异性人数' },
-          {
-            format: "number" }] }
-
-
-
-        /////
-      } };
+      workdatalist: [] };
 
   },
+  //启动
   onLoad: function onLoad() {
-
+    uni.startPullDownRefresh(); //启动下拉刷新
+  },
+  // 加载时
+  onShow: function onShow() {
+    uni.startPullDownRefresh();
+  },
+  //下拉刷新 生命周期
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.workdatalist = [];
+    this.getwork();
+  },
+  //触底
+  onReachBottom: function onReachBottom() {
+    this.getwork();
   },
   methods: {
-    //计算
-    calculation: function calculation() {
-      var wages = this.work.wages; //工资
-      var weekday = this.work.weekday; //工作日
-      var duration = this.work.duration; //工时
-      var commute = this.work.commute; //通勤
-      var loaf = this.work.loaf; //摸鱼
-      var compete = this.work.compete; //同性
-      var sex = this.work.sex; //异性
-      var morning = this.morning; //早
-      var education = this.education; //学历
-      var night = this.night; //夜班
-      var occupation = this.occupation; //职业资格
-      var company = this.company; //单位
-      var environment = this.environment; //环境
-      var abilitydata = this.abilitydata; //水平
-      var time = weekday * (duration + commute - loaf) * (1 + (morning + night) / 4); //时间
-      // console.log(time)
-      this.time = time;
-      var Qualifications = education * occupation; //资历
-      this.Qualifications = Qualifications;
-      var periphery = environment * company; //工作环境
-      this.periphery = periphery;
-      var humanity = Math.floor(sex / compete * abilitydata * 100); //人文
-      this.humanity = humanity;
-      console.log(abilitydata);
-      console.log(humanity);
-      var workdata = Math.floor(wages * periphery * (1 + humanity) / (time * Qualifications) / 10);
-      this.workdata = workdata;
-    },
-    //新增数据
-    addlist: function addlist() {
-      var work = this.work;
-      // 获取db引用
-      var db = uniCloud.database(); //代码块为cdb
-      db.collection('worklist').
-      add(_objectSpread(_objectSpread({},
-      work), {}, {
-        morning: this.morning,
-        education: this.education,
-        night: this.night,
-        occupation: this.occupation,
-        company: this.company,
-        environment: this.environment,
-        ability: this.ability,
-        time: this.time,
-        Qualifications: this.Qualifications,
-        periphery: this.periphery,
-        humanity: this.humanity,
-        workdata: this.workdata })).
-
-      then(function (res) {
-        console.log(res);
-        // res 为数据库查询结果
-        //获取id
-        var id = res.result.id;
-        console.log(id);
-        //延时
-        setTimeout(function () {
-          //干掉弹窗
-          uni.hideLoading();
-          //跳转
-          uni.navigateTo({
-            url: '/pages/worklist/worklist?id=' + id });
-
-        }, 2000);
-
-
-      }).catch(function (err) {
-        console.log(err.code); // 打印错误码
-        console.log(err.message); // 打印错误内容
-      });
-    },
-    //判断是否需要夜班
-    changenight: function changenight(e) {
-      console.log("上班时间:", e.detail.value);
-      this.night = e.detail.value;
-    },
-    //判断作息时间
-    changemorning: function changemorning(e) {
-      console.log("上班时间:", e.detail.value);
-      this.morning = e.detail.value;
+    //跳转转到表单页
+    gotowork: function gotowork() {
+      uni.navigateTo({
+        url: '/pages/worklist/work' });
 
     },
+    //跳转到详情页
+    goworklist: function goworklist(e) {
+      console.log(e);
+      uni.navigateTo({
+        url: "/pages/worklist/worklist?id=" + e });
 
-    //修改评分
-    changeability: function changeability(e) {
-      console.log('rate发生改变:' + JSON.stringify(e));
-      this.abilitydata = JSON.stringify(e.value);
     },
-    //环境选择
-    changeenvironment: function changeenvironment(e) {
-      // console.log("环境:", e);
-      console.log("环境:", e.detail.value);
-      this.environment = e.detail.value;
-    },
-    //单位选择
-    changecompany: function changecompany(e) {
-      console.log("单位:", e);
-      this.company = e;
-    },
-    //职业选择
-    changeoccupation: function changeoccupation(e) {
-      console.log("职业:", e);
-      this.occupation = e;
-    },
-    //学历选择
-    changeeducation: function changeeducation(e) {
-      console.log("学历:", e);
-      this.education = e;
-    },
-    //提交表单
-    submit: function submit() {var _this = this;
-      this.$refs.work.validate().then(function (res) {
-        console.log('表单数据信息：', res);
-        _this.work = res;
-        //数据计算
-        _this.calculation();
-        // 调用上传函数
-        _this.addlist();
-        //加点动画
-        uni.showLoading({
-          title: '计算中',
-          mask: true });
-
-      }).catch(function (err) {
-        console.log('表单错误信息：', err);
-      });
-
-
-      //
+    //拉取云端数据
+    getwork: function getwork() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var skip, db;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                skip = _this.workdatalist.length;
+                db = uniCloud.database();_context.next = 4;return (
+                  db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(function (res) {
+                    console.log(res);
+                    var oldworkdatalist = _this.workdatalist;
+                    var allworkdatalist = [].concat(_toConsumableArray(oldworkdatalist), _toConsumableArray(res.result.data));
+                    _this.workdatalist = allworkdatalist;
+                    //刷新停止 在这
+                    uni.stopPullDownRefresh();
+                  }));case 4:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6)["default"]))
 
 /***/ }),
 

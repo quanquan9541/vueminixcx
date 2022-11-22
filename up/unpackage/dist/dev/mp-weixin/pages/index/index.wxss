@@ -24,14 +24,61 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-57280228 {
+.list .centent.data-v-57280228 {
   padding: 20rpx;
 }
-.content .form .section.data-v-57280228 {
-  margin-bottom: 10rpx;
-  border-bottom: 1rpx #bdbdbd solid;
+.list .centent .item.data-v-57280228 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20rpx;
+  border-radius: 14px;
+  border: 1rpx solid #aaaaff;
 }
-.content .form .section .item.data-v-57280228 {
-  margin-left: 20rpx;
+.list .centent .item .text.data-v-57280228 {
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list .centent .item .text .title.data-v-57280228 {
+  flex: 1;
+  padding: 40rpx;
+  font-size: 28rpx;
+  font-family: '微软雅黑';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-text-decoration: none solid;
+          text-decoration: none solid;
+  white-space: normal;
+  text-overflow: clip;
+  word-wrap: normal;
+  text-shadow: 0px 2px 7px #bcbcbc;
+}
+.list .centent .item .text .num.data-v-57280228 {
+  font-family: '微软雅黑';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  color: #68949f;
+  -webkit-text-decoration: none solid;
+          text-decoration: none solid;
+  white-space: normal;
+  text-overflow: clip;
+  word-wrap: normal;
+  text-shadow: 2px 5px 10px #adadad;
+}
+.list .centent .goadd.data-v-57280228 {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 60rpx;
+  position: fixed;
+  right: 60rpx;
+  bottom: 60rpx;
+  box-shadow: 0 0 20rpx #949494;
 }
 

@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/worklist/worklist"
+    "pages/worklist/worklist",
+    "pages/worklist/work",
+    "pages/worklist/listw"
   ],
   "subPackages": [],
   "window": {

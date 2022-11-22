@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "工作数据",
+  "navigationBarTitleText": "工作详细数据",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",

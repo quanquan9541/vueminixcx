@@ -60,7 +60,7 @@
         await db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(res => {
           console.log(res)
           let oldworkdatalist = this.workdatalist
-          let allworkdatalist = [...res.result.data, ...oldworkdatalist]
+          let allworkdatalist = [...oldworkdatalist, ...res.result.data]
           this.workdatalist = allworkdatalist
           //刷新停止 在这
           uni.stopPullDownRefresh()

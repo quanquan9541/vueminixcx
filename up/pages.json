@@ -1,18 +1,12 @@
 {
   "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+
     {
-      "path": "pages/worklist/listw",
+      "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "工作排行榜",
         "navigationStyle": "default",
         "enablePullDownRefresh": true
-      }
-
-    },
-    {
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "工作分析器"
       }
     }
 
@@ -23,17 +17,24 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/worklist/work",
+      "style": {
+        "navigationBarTitleText": "工作分析",
+        "enablePullDownRefresh": false
+      }
+
+    },
+    {
+      "path": "pages/worklist/listw",
+      "style": {
+        "navigationBarTitleText": "工作排行榜",
+        "navigationStyle": "default",
+        "enablePullDownRefresh": true
+      }
+
     }
-      ,{
-            "path" : "pages/worklist/work",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

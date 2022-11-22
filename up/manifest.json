@@ -53,8 +53,8 @@
         "appid" : "wx3a7ff2fa29a7d755",
         "setting" : {
             "urlCheck" : false,
-            "postcss" : false,
-            "minified" : false
+            "postcss" : true,
+            "minified" : true
         },
         "usingComponents" : true
     },
@@ -73,6 +73,11 @@
     "vueVersion" : "2",
     "h5" : {
         "template" : "ldlz12.html",
-        "title" : "小站"
+        "title" : "小站",
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        }
     }
 }

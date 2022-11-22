@@ -98,13 +98,13 @@ var components
 try {
   components = {
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 85))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 58))
     },
     uniList: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 92))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 65))
     },
     uniListItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 99))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 72))
     }
   }
 } catch (e) {
@@ -161,7 +161,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 7));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -195,37 +195,42 @@ var id;var _default =
 
   },
   onLoad: function onLoad(e) {
+
     console.log(e);
     this.id = e.id;
   },
   onShow: function onShow() {
+    uni.showLoading({
+      title: '加载中',
+      mask: true });
+
     this.getdata();
   },
   methods: {
-    getdata: function getdata() {var _this = this;
-      var id = this.id;
-      console.log("拿下id", id);
-      var db = uniCloud.database();
-      db.collection("worklist").where({
-        _id: id }).
-      get().then(function (res) {
-        // res 为数据库查询结果
-        console.log("成功:", res);
-        _this.workdata1 = res.result.data;
-        var workdata1 = res.result.data;
-        _this.workdata = workdata1[0].workdata.toString();
-        _this.wages = (workdata1[0].wages / 10).toString();
-        _this.time = workdata1[0].time.toString();
-        _this.Qualifications = workdata1[0].Qualifications.toString();
-        _this.humanity = workdata1[0].humanity.toString();
-        _this.periphery = workdata1[0].periphery.toString();
-
-      }).catch(function (err) {
-        console.log(err.errcode); // 打印错误码
-        console.log(err.errMsg); // 打印错误内容
-      });
+    getdata: function getdata() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var id, db;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                id = _this.id;
+                console.log("拿下id", id);
+                db = uniCloud.database();_context.next = 5;return (
+                  db.collection("worklist").where({
+                    _id: id }).
+                  get().then(function (res) {
+                    // res 为数据库查询结果
+                    console.log("成功:", res);
+                    _this.workdata1 = res.result.data;
+                    var workdata1 = res.result.data;
+                    _this.workdata = workdata1[0].workdata.toString();
+                    _this.wages = (workdata1[0].wages / 10).toString();
+                    _this.time = workdata1[0].time.toString();
+                    _this.Qualifications = workdata1[0].Qualifications.toString();
+                    _this.humanity = workdata1[0].humanity.toString();
+                    _this.periphery = workdata1[0].periphery.toString();
+                    uni.hideLoading();
+                  }).catch(function (err) {
+                    console.log(err.errcode); // 打印错误码
+                    console.log(err.errMsg); // 打印错误内容
+                  }));case 5:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6)["default"]))
 
 /***/ }),
 

@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <view class="form">
-      <uni-forms ref="work" :rules="rules" :modelValue="worklist">
+      <uni-forms ref="work" :modelValue="worklist">
         <!-- 钱 -->
         <uni-section class="section" title="金钱部分" type="line">
           <uni-forms-item class="item" label="工资" label-width="75px" name="wages">
@@ -344,8 +344,11 @@
         }
       }
     },
-    onLoad() {
 
+    onLoad() {},
+    onReady() {
+      // :rules="rules" //小程序必须在这里引入验证规则
+      this.$refs.work.setRules(this.rules)
     },
     methods: {
       //计算
