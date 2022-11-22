@@ -11,9 +11,12 @@
 
 __webpack_require__(/*! @dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6);var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 12));
 
+var _share = _interopRequireDefault(__webpack_require__(/*! @/js/share.js */ 18));
+
+
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;_vue.default.config.productionTip = false;
+wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;_vue.default.mixin(_share.default);_vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
 var app = new _vue.default(_objectSpread({},
 _App.default));
@@ -95,10 +98,68 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 {
   onLaunch: function onLaunch() {
     console.log('App Launch');
+
+    //
+    function VersionUpdate() {
+      // 判断应用的 getUpdateManager 是否在当前版本可用
+      if (uni.canIUse('getUpdateManager')) {
+        var updateManager = uni.getUpdateManager();
+        // 向小程序后台请求完新版本信息
+        updateManager.onCheckForUpdate(function (res) {
+          if (res.hasUpdate) {
+            //小程序有新版本，静默下载新版本，新版本下载完成
+            updateManager.onUpdateReady(function () {
+              //模态弹窗（确认、取消）
+              uni.showModal({
+                title: '更新提示',
+                content: '小程序已发布新版本，是否重启？',
+                success: function success(res) {
+                  //用户点击确定
+                  if (res.confirm) {
+                    //当新版本下载完成，调用该方法会强制当前小程序应用上新版本并重启
+                    updateManager.applyUpdate();
+                  } //用户点击取消<br>　　　　　　　　　　　　　　　　　　　
+                  else if (res.cancel) {
+                      //强制用户更新，弹出第二次弹窗
+                      uni.showModal({
+                        title: '提示',
+                        content: '小程序已发布新版本，是否重启',
+                        showCancel: false, //隐藏取消按钮
+                        success: function success(res) {
+                          //第二次提示后，强制更新          
+                          if (res.confirm) {
+                            // 当新版本下载完成，调用该方法会强制当前小程序应用上新版本并重启
+                            updateManager.applyUpdate();
+                          }
+                        } });
+
+                    }
+                } });
+
+            });
+            // 当新版本下载失败
+            updateManager.onUpdateFailed(function () {
+              uni.showModal({
+                title: '提示',
+                content: '请您删除当前小程序，重新打开小程序' });
+
+            });
+          }
+        });
+      } else {
+        // 提示用户在最新版本的客户端上体验
+        uni.showModal({
+          title: '温馨提示',
+          content: '当前微信版本过低，可能无法使用该功能，请升级到最新版本后重试。' });
+
+      }
+    } //调用定义的更新方法       
+    VersionUpdate();
+    //
   },
   onShow: function onShow() {
     console.log('App Show');
@@ -106,6 +167,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   onHide: function onHide() {
     console.log('App Hide');
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 15 */

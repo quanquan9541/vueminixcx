@@ -26,10 +26,10 @@
     onLoad() {
       uni.startPullDownRefresh(); //启动下拉刷新
     },
-    // 加载时
-    onShow() {
-      uni.startPullDownRefresh();
-    },
+    // // 加载时
+    // onShow() {
+    //   uni.startPullDownRefresh();
+    // },
     //下拉刷新 生命周期
     onPullDownRefresh() {
       this.workdatalist = []

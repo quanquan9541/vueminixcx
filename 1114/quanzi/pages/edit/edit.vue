@@ -41,6 +41,13 @@
 </template>
 
 <script>
+  //引入库
+  import {
+    getImgSrc,
+    getProvince
+  }
+  from "@/utils/tools.js"
+
   export default {
     data() {
       return {
@@ -56,15 +63,22 @@
         }
       };
     },
+    onLoad() {
+      getProvince().then(res => {
+        console.log(res)
+      })
+    },
+
     methods: {
+
       //提交表单
       OnSubmit() {
         this.editorContext.getContents({
           success: res => {
-            console.log(res)
+            console.log(this.artObj)
             this.artObj.description = res.text.slice(0, 55)
             this.artObj.content = res.html
-            this.artObj.picurls = res.url
+            this.artObj.picurls = getImgSrc(res.html)
           }
         })
       },

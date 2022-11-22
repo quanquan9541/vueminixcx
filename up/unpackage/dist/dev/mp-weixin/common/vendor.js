@@ -2564,7 +2564,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 142:
+/***/ 143:
 /*!*********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
   \*********************************************************************************************************/
@@ -2572,9 +2572,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 143));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 144));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 145));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 144));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 145));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 146));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -2582,7 +2582,7 @@ var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 1
 
 /***/ }),
 
-/***/ 143:
+/***/ 144:
 /*!********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
   \********************************************************************************************************/
@@ -2593,7 +2593,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show mo
 
 /***/ }),
 
-/***/ 144:
+/***/ 145:
 /*!*************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
   \*************************************************************************************************************/
@@ -2604,7 +2604,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /*!*************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
   \*************************************************************************************************************/
@@ -2741,6 +2741,58 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 18:
+/*!****************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/js/share.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  data: function data() {
+    return {
+      //设置默认的分享参数
+      share: {
+        title: '小站',
+        path: '/pages/index/index',
+        imageUrl: '',
+        desc: '',
+        content: '' } };
+
+
+  },
+  onShareAppMessage: function onShareAppMessage(res) {
+    return {
+      title: this.share.title,
+      path: this.share.path,
+      imageUrl: this.share.imageUrl,
+      desc: this.share.desc,
+      content: this.share.content,
+      success: function success(res) {
+        uni.showToast({
+          title: '分享成功',
+          icon: 'success',
+          mask: true,
+          duration: 1200 });
+
+      },
+      fail: function fail(res) {
+        uni.showToast({
+          title: '分享失败',
+          icon: 'none',
+          mask: true,
+          duration: 1200 });
+
+      } };
+
+  }
+  //
+};exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9304,7 +9356,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 55:
+/***/ 56:
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \********************************************************************************************/
@@ -10494,9 +10546,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         "127.0.0.1",
         "192.168.31.147"
     ],
-    "debugPort": 9000,
-    "initialLaunchType": "remote",
-    "servePort": 7000,
+    "debugPort": 9001,
+    "initialLaunchType": "local",
+    "servePort": 7001,
     "skipFiles": [
         "<node_internals>/**",
         "C:/yl/HBuilderX/plugins/unicloud/**/*.js"
@@ -10566,7 +10618,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \***********************************************************************************************/
@@ -11063,7 +11115,7 @@ SchemaValidator;exports.default = _default;
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \********************************************************************************************/
