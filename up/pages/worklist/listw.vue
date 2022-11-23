@@ -138,7 +138,7 @@
         position: fixed;
         right: 60rpx;
         bottom: 60rpx;
-        box-shadow: 0 0 20rpx rgb(148, 148, 148);
+        box-shadow: 0 0 20rpx rgb(175, 168, 254);
       }
 
     }

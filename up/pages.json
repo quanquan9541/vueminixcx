@@ -1,12 +1,16 @@
 {
+  // 如果您是通过uni_modules形式引入uView，可以忽略此配置
+  "easycom": {
+    "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+  },
+
   "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 
     {
-      "path": "pages/index/index",
+      "path": "pages/index/index/index",
       "style": {
-        "navigationBarTitleText": "工作排行榜",
-        "navigationStyle": "default",
-        "enablePullDownRefresh": true
+        "navigationBarTitleText": "略懂工具箱",
+        "enablePullDownRefresh": false
       }
     }
 
@@ -31,6 +35,15 @@
         "navigationBarTitleText": "工作排行榜",
         "navigationStyle": "default",
         "enablePullDownRefresh": true
+      }
+
+    }
+
+    , {
+      "path": "pages/taiji/taiji",
+      "style": {
+        "navigationBarTitleText": "太极八卦图",
+        "enablePullDownRefresh": false
       }
 
     }

@@ -5,6 +5,11 @@ Vue.mixin(share)
 
 // #ifndef VUE3
 import Vue from 'vue'
+//uview
+import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
+//uView
+
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
@@ -12,6 +17,7 @@ const app = new Vue({
 })
 app.$mount()
 // #endif
+
 
 // #ifdef VUE3
 import {
