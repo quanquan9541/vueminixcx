@@ -4,10 +4,23 @@
       console.log('App Launch')
 
       //
-      function VersionUpdate() {
+      //调用定义的更新方法       
+      this.VersionUpdate();
+      //
+    },
+    onShow: function() {
+      console.log('App Show')
+    },
+    onHide: function() {
+      console.log('App Hide')
+    },
+    methods: {
+
+      //更新函数
+      VersionUpdate() {
         // 判断应用的 getUpdateManager 是否在当前版本可用
         if (uni.canIUse('getUpdateManager')) {
-          const updateManager = uni.getUpdateManager()
+          let updateManager = uni.getUpdateManager()
           // 向小程序后台请求完新版本信息
           updateManager.onCheckForUpdate(function(res) {
             if (res.hasUpdate) {
@@ -57,15 +70,7 @@
             content: '当前微信版本过低，可能无法使用该功能，请升级到最新版本后重试。'
           })
         }
-      } //调用定义的更新方法       
-      VersionUpdate();
-      //
-    },
-    onShow: function() {
-      console.log('App Show')
-    },
-    onHide: function() {
-      console.log('App Hide')
+      }
     },
   }
 </script>

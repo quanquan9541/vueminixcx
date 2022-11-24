@@ -2,20 +2,20 @@
   <view class="content">
     <view class="bigbox">
       <view class="top">
-        <view class="koujue" v-show="status">
+        <view class="koujue" v-if="status">
           <text>乾三连（☰） 坤六断（☷）</text>
           <text>离中虚（☲） 坎中满（☵）</text>
           <text>震仰孟（☳） 艮覆碗（☶）</text>
           <text>兑上缺（☱） 巽下断（☴）</text>
         </view>
 
-        <view class="guaxiang" v-show="!status">
+        <view class="guaxiang" v-if="!status">
           <image mode="scaleToFill" :src="'../../static/taiji/'+index+'.png'" v-for="(index,item) in  guxiang"></image>
           <text @click="copyText">{{guaming}}</text>
         </view>
       </view>
-      <view class="tishi" v-show="status1">
-        <text v-show="status1">点击下方太极图开启算卦</text>
+      <view class="tishi" v-if="status1">
+        <text v-if="status1">点击下方太极图开启算卦</text>
       </view>
 
       <!-- 下面是太极图 style="animation-play-state: paused;"-->
@@ -137,9 +137,20 @@
             let num = String(Math.floor(Math.random() * 2)) //求0-1
             arr.push(num) //输出
           }
-          // console.log(arr) //日志
-          this.guxiang = arr
+          console.log(arr) //日志
+
+          //逆序
+          let darr = [];
+          for (let i = arr.length - 1; i >= 0; i--) {
+            let j = arr[i]
+            darr.push(j)
+          }
+          //
+          console.log(darr);
+          //
+          this.guxiang = darr
           //arr.join('')
+
           let guatou = arr.join('')
           this.guaming = this.guaObj[guatou]
 
@@ -162,8 +173,10 @@
 <style lang="scss" scoped>
   .content {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 20rpx;
+    height: 100%;
     // background-color: #aaaaff;
     // background-size: 100%;
 
@@ -281,8 +294,6 @@
     }
 
     .buttom {
-      position: absolute;
-      bottom: 10rpx;
 
       text {
         padding: 20rpx 0;

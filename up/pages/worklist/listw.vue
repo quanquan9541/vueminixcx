@@ -26,7 +26,7 @@
     onLoad() {
       uni.startPullDownRefresh(); //启动下拉刷新
     },
-    // // 加载时
+    // 加载时,不启动减少压力
     // onShow() {
     //   uni.startPullDownRefresh();
     // },
@@ -43,7 +43,7 @@
       //跳转转到表单页
       gotowork() {
         uni.navigateTo({
-          url: '/pages/index/index'
+          url: '/pages/worklist/work'
         })
       },
       //跳转到详情页

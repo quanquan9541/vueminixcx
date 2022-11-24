@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "工作排行榜",
-  "navigationStyle": "default",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
-  }
-}

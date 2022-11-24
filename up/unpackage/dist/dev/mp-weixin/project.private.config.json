@@ -9,17 +9,16 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/index/index",
+                    "pathName": "pages/index/index/index",
                     "query": "",
                     "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/index/index",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
+                    "scene": null,
+                    "partialCompile": {
+                        "enabled": false,
+                        "pages": [
+                            "pages/index/index/index"
+                        ]
+                    }
                 }
             ]
         }

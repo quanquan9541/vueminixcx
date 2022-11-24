@@ -8,8 +8,16 @@
       <text>这里略懂少年的工具小程序</text>
     </view>
     <view class="bottom">
-      <u-button @click="gotowork" class="button" type="primary" Color="#B2A6FD" :plain="true" text="工作计算器"></u-button>
-      <u-button @click="gototaiji" class="button" type="primary" Color="#B2A6FD" :plain="true" text="太极八卦图"></u-button>
+      <view class="button">
+        <u-button @click="gotowork" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
+          text="工作计算器">
+        </u-button>
+      </view>
+      <view class="button">
+        <u-button @click="gototaiji" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
+          text="太极八卦图">
+        </u-button>
+      </view>
     </view>
   </view>
 </template>
@@ -58,40 +66,38 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 1px 1px 1px 1px rgba(175, 168, 254, 3);
-      border-radius: 12px;
-      border-width: 1px;
-      border-color: #90a2b5;
-
-
-
+      border-radius: 14px;
+      // padding: 20rpx;
+      border: 1rpx solid #aaaaff;
 
       text {
-        font-family: '华文细黑';
-        text-decoration: none;
-        letter-spacing: 1px;
-        word-spacing: 1px;
-        text-shadow: 1px 1px 1px #c4c4c4
+
+        font-family: '微软雅黑';
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none solid;
+        white-space: normal;
+        text-overflow: clip;
+        word-wrap: normal;
+        text-shadow: 0px 2px 7px #bcbcbc
       }
     }
 
     .bottom {
       flex: 1;
+      // height: 300rpx;
       padding: 20rpx;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      box-shadow: 1px 1px 1px 1px rgba(175, 168, 254, 3);
-      border-radius: 12px;
-      border-width: 1px;
-      border-color: #90a2b5;
+      justify-content: space-between;
+      // align-items: center;
+      border-radius: 14px;
+      // padding: 20rpx;
+      border: 1rpx solid #aaaaff;
+
 
       .button {
         margin: 20rpx 0;
-        box-shadow: 0px 2px 1px 1px rgba(175, 168, 254, 3);
-        border-radius: 12px;
-        border-width: 1px;
-        border-color: #90a2b5;
       }
     }
   }

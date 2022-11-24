@@ -47,7 +47,8 @@
     getProvince
   }
   from "@/utils/tools.js"
-
+  //链接云端数据库
+  const db = uniCloud.database()
   export default {
     data() {
       return {
@@ -59,13 +60,15 @@
           title: '',
           content: '',
           description: "",
-          picurls: ""
+          picurls: "",
+          province: ""
         }
       };
     },
     onLoad() {
       getProvince().then(res => {
         console.log(res)
+        this.artObj.province = res
       })
     },
 
@@ -79,7 +82,34 @@
             this.artObj.description = res.text.slice(0, 55)
             this.artObj.content = res.html
             this.artObj.picurls = getImgSrc(res.html)
+            //搞个提示
+            uni.showLoading({
+              title: "提交中",
+              mask: true
+            })
+            //调用添加数据
+            this.addData()
           }
+        })
+      },
+      //添加数据
+      addData() {
+        db.collection('quanzi_article').add({
+          ...this.artObj
+        }).then(res => {
+          console.log(res);
+          uni.hideLoading()
+          uni.showToast({
+            icon: "success",
+            title: "发布成功"
+          })
+          setTimeout(() => {
+            console.log("定时器");
+            uni.reLaunch({
+              url: "/pages/index/index"
+            })
+          }, 1000)
+
         })
       },
       //初始化

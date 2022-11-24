@@ -12,6 +12,9 @@
           <uni-list-item title="环境分" :rightText="periphery" />
         </uni-list>
       </uni-card>
+      <u-button @click="backnum" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
+        text="排行榜">
+      </u-button>
     </view>
   </view>
 </template>
@@ -44,6 +47,13 @@
       this.getdata()
     },
     methods: {
+      //跳转回排行榜
+      backnum() {
+        uni.reLaunch({
+          url: '/pages/worklist/listw',
+        })
+      },
+      //查询数据
       async getdata() {
         let id = this.id
         console.log("拿下id", id)

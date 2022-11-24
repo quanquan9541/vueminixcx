@@ -79,6 +79,6 @@
   position: fixed;
   right: 60rpx;
   bottom: 60rpx;
-  box-shadow: 0 0 20rpx #949494;
+  box-shadow: 0 0 20rpx #afa8fe;
 }
 

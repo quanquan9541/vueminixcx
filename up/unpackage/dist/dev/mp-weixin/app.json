@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/index/index/index",
     "pages/worklist/worklist",
     "pages/worklist/work",
-    "pages/worklist/listw"
+    "pages/worklist/listw",
+    "pages/taiji/taiji"
   ],
   "subPackages": [],
   "window": {
