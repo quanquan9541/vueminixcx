@@ -35,18 +35,36 @@
       };
     },
     onLoad(e) {
+      //启动时判断参数
+      if (!e.id) {
+        this.errfun()
+        return
+      }
 
       console.log(e)
       this.id = e.id
-    },
-    onShow() {
       uni.showLoading({
         title: '加载中',
         mask: true
       });
       this.getdata()
     },
+    onShow() {
+
+    },
     methods: {
+      //错误判断
+      errfun() {
+        uni.showToast({
+          icon: 'error',
+          title: "参数错误"
+        })
+        setTimeout(() => {
+          uni.reLaunch({
+            url: "/pages/index/index"
+          })
+        }, 1000)
+      },
       //跳转回排行榜
       backnum() {
         uni.reLaunch({
@@ -58,9 +76,9 @@
         let id = this.id
         console.log("拿下id", id)
         const db = uniCloud.database();
-        await db.collection("worklist").where({
-          _id: id
-        }).get().then(res => {
+        await db.collection("worklist").where(`_id == '${id}'`
+          // {_id: id} 常规写法 上面为jql写法 
+        ).get().then(res => {
           // res 为数据库查询结果
           console.log("成功:", res)
           this.workdata1 = res.result.data

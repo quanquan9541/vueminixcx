@@ -19,8 +19,8 @@
     </view>
 
     <view class="body">
-      <view class="title">{{item.title}}</view>
-      <view class="text">
+      <view class="title" @click="godetail">{{item.title}}</view>
+      <view class="text" @click="godetail">
         <view class="t">{{item.description}}</view>
       </view>
       <view class="piclist">
@@ -36,7 +36,7 @@
         <text class="iconfont icon-a-27-liulan"></text> <text>{{item.view_count}}
         </text>
       </view>
-      <view class="box">
+      <view class="box" @click="godetail">
         <text class="iconfont icon-a-5-xinxi"></text> <text>{{item.comment_count ? item.comment_count : "评论"}}</text>
       </view>
       <view class="box">
@@ -70,6 +70,12 @@
     },
 
     methods: {
+      //点击跳转到详情页
+      godetail() {
+        uni.navigateTo({
+          url: '/pages/detail/detail?id=' + this.item._id
+        })
+      },
       //单击图片
       clickpic(index) {
         uni.previewImage({

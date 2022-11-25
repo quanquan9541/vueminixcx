@@ -53,14 +53,18 @@
     },
     methods: {
       //获取数据
-      getData() {
+      async getData() {
         let artTemp = db.collection('quanzi_article').field(
           "title,user_id,description,picurls,comment_count,view_count,like_count,publish_date").getTemp();
         let userTemp = db.collection('uni-id-users').field("_id, username, nickname, avatar_file").getTemp();
-        db.collection(artTemp, userTemp).orderBy(this.navlist[this.navActive].type, "desc").get().then(res => {
+        await db.collection(artTemp, userTemp).orderBy(this.navlist[this.navActive].type, "desc").get().then(res => {
           console.log(res);
-          this.dataList = res.result.data
+          if (!res.result.data) {
+            this.errfun()
+            return
+          }
 
+          this.dataList = res.result.data
           this.loadState = false
         })
       },

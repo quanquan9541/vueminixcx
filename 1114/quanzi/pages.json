@@ -99,7 +99,16 @@
         "navigationBarTitleText": "设置密码"
       }
     }
-  ],
+      ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "详情页",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "交流圈子",
