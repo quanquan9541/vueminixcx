@@ -98,17 +98,15 @@
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "设置密码"
       }
+    }, {
+      "path": "pages/detail/detail",
+      "style": {
+        "navigationBarTitleText": "详情页",
+        "enablePullDownRefresh": false
+      }
+
     }
-      ,{
-            "path" : "pages/detail/detail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "详情页",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "交流圈子",
@@ -132,5 +130,14 @@
       }
     ]
   },
-  "uniIdRouter": {}
+  "uniIdRouter": {
+    "loginPage": "uni_modules/uni-id-pages/pages/login/login-withpwd", //登录页面的路径
+    "needLogin": [
+      "pages/edit/edit", //限制访问页面
+      "uni_modules/uni-id-pages/pages/userinfo/userinfo"
+    ],
+    "resToLogin": true
+    // 自动解析云对象及clientDB的错误码，如果是客户端token不正确或token过期则自动跳转配置的登录页面，配置为false则关闭此行为，默认true
+
+  }
 }
