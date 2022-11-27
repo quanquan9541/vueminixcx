@@ -5,16 +5,11 @@
       <view v-else>
         <view class="title">{{ detailObj.title }}</view>
         <view class="userinfo">
-          <view class="avatar">
-            <image
-              :src="detailObj.user_id[0].avatar_file ? detailObj.user_id[0].avatar_file : '../../static/images/user-default.jpg'"
-              mode="aspectFill"
-            ></image>
-          </view>
+          <view class="avatar"><image :src="giveAvatar(detailObj)" mode="aspectFill"></image></view>
           <view class="text">
-            <view class="name">{{ detailObj.user_id[0].nickname ? detailObj.user_id[0].nickname : detailObj.user_id[0].username }}</view>
+            <view class="name">{{ giveName(detailObj) }}</view>
             <view class="small">
-              <uni-dateformat :date="detailObj.publish_date" format="yyyy年MM月dd hh:mm:ss"></uni-dateformat>
+              <uni-dateformat :date="detailObj.publish_date" format="yyyy年MM月dd日 hh:mm:ss"></uni-dateformat>
               发布于{{ detailObj.province }}
             </view>
           </view>
@@ -42,6 +37,9 @@ const db = uniCloud.database();
 const utils = uniCloud.importObject('utils', {
   customUI: true // 取消自动展示的交互提示界面
 });
+import { giveName, giveAvatar } from '../../utils/tools.js';
+import { store } from '@/uni_modules/uni-id-pages/common/store.js';
+import pagesJson from '@/pages.json';
 export default {
   data() {
     return {
@@ -69,8 +67,27 @@ export default {
     this.readUpdata();
   },
   methods: {
+    giveName,
+    giveAvatar,
     //点击点赞
     clickLike() {
+      //判断登录后才能点赞
+      if (!store.hasLogin) {
+        uni.showModal({
+          title: '您还没有登录？',
+          success: res => {
+            if (res.confirm) {
+              console.log('点击确定');
+              console.log('/' + pagesJson.uniIdRouter.loginPage);
+              uni.navigateTo({
+                url: '/' + pagesJson.uniIdRouter.loginPage
+              });
+            }
+          }
+        });
+        return;
+      }
+      //
       let time = Date.now();
       if (time - this.liketime < 1500) {
         uni.showToast({
@@ -126,7 +143,7 @@ export default {
       }, 1000);
     },
     //云端数据
-    getData() {
+    async getData() {
       let artTemp = db
         .collection('quanzi_article')
         .where(`_id=="${this.artid}"`)
@@ -140,7 +157,10 @@ export default {
         .where(`article_id=="${this.artid}" && user_id==$cloudEnv_uid`)
         .getTemp();
 
-      db.collection(artTemp, userTemp, likeTemp)
+      let tempArr = [artTemp, userTemp];
+      if (store.hasLogin) tempArr.push(likeTemp);
+      await db
+        .collection(...tempArr)
         .get({
           getOne: true
         })
@@ -150,10 +170,13 @@ export default {
             return;
           }
           console.log(res);
-          let islike = res.result.data._id.quanzi_like.length ? true : false;
+          this.loading = false;
+          let islike = false;
+          if (store.hasLogin) islike = res.result.data._id.quanzi_like.length ? true : false;
+
           res.result.data.islike = islike;
           this.detailObj = res.result.data;
-          this.loading = false;
+
           //设置页面标题
           uni.setNavigationBarTitle({
             title: this.detailObj.title

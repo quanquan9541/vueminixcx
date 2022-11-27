@@ -105,6 +105,11 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/quanzi_article/list",
+      "style": {
+        "navigationBarTitleText": "列表"
+      }
     }
   ],
   "globalStyle": {
@@ -137,7 +142,7 @@
       "uni_modules/uni-id-pages/pages/userinfo/userinfo"
     ],
     "resToLogin": true
-    // 自动解析云对象及clientDB的错误码，如果是客户端token不正确或token过期则自动跳转配置的登录页面，配置为false则关闭此行为，默认true
+
 
   }
 }

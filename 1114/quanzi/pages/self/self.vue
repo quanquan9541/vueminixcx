@@ -10,7 +10,7 @@
           <view class="text" v-if="hasLogin">
             <view class="nickname">{{ userInfo.nickname || userInfo.username || userInfo.mobile }}</view>
             <view class="year">
-              <uni-dateformat :date="new Date() - 360000" :threshold="[3600, 99 * 365 * 24 * 60 * 60 * 1000]"></uni-dateformat>
+              <uni-dateformat :date="userInfo.register_date" :threshold="[3600, 99 * 365 * 24 * 60 * 60 * 1000]"></uni-dateformat>
               注册
             </view>
           </view>
@@ -44,7 +44,7 @@
 
       <view class="list">
         <view class="group">
-          <view class="item">
+          <view class="item" @click="gomylist">
             <view class="left">
               <text class="iconfont icon-a-24-bianji"></text>
               <text class="text">我的长文</text>
@@ -113,6 +113,14 @@ export default {
     }
   },
   methods: {
+    //我的列表页面
+    gomylist() {
+      if (this.goLoginpages()) return;
+      console.log('点击我的长文');
+      uni.navigateTo({
+        url: '/pages/quanzi_article/list'
+      });
+    },
     //编辑个人资料
     toUserInfo() {
       uni.navigateTo({
@@ -122,14 +130,9 @@ export default {
 
     //退出登录
     logout() {
-      if (!store.hasLogin) {
-        uni.showToast({
-          title: '未登录',
-          mask: true,
-          icon: 'error'
-        });
-        return;
-      }
+      //调用下方判断
+      if (this.goLoginpages()) return;
+
       uni.showModal({
         title: '是否确认退出？',
         success: res => {
@@ -146,6 +149,19 @@ export default {
         }
       });
       // mutations.logout();
+    },
+
+    //判断是否登录
+    goLoginpages() {
+      if (!store.hasLogin) {
+        uni.showToast({
+          title: '未登录',
+          mask: true,
+          icon: 'error'
+        });
+        return true;
+      }
+      return false;
     }
   }
 };
