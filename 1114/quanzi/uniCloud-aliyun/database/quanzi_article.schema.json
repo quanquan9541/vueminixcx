@@ -8,7 +8,7 @@
   "permission": {
     "read": true,
     "create": "auth.uid != null",
-    "update": "doc.user_id == auth.uid",
+    "update": "doc.user_id == auth.uid || 'webmaster' in auth.role",
     "delete": "doc.user_id == auth.uid"
   },
   "properties": {
@@ -53,7 +53,12 @@
       "label": "文章内容",
       "trim": "right"
     },
-
+    "delstate": {
+      "bsonType": "bool",
+      "title": "删除",
+      "description": "true删除，false or null 没有删除",
+      "defaultValue": false
+    },
     "article_status": {
       "bsonType": "int",
       "title": "文章状态",

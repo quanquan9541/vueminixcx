@@ -4,8 +4,10 @@
     <view class="title"><input type="text" v-model="artObj.title" placeholder="请输入标题" placeholder-class="placeholderClass" /></view>
     <!-- 内容 -->
     <view class="content">
+      {{ artObj.content }}
       <!-- 富文本 -->
       <editor
+        :content="artObj.content"
         class="myEdit"
         placeholder="写点什么吧"
         show-img-size:true
@@ -35,9 +37,12 @@
 import { getImgSrc, getProvince } from '@/utils/tools.js';
 //链接云端数据库
 const db = uniCloud.database();
+
 export default {
   data() {
+    let id;
     return {
+      html: '123',
       toolshow: false,
       HeadShow: false,
       BlodShow: false,
@@ -51,14 +56,35 @@ export default {
       }
     };
   },
-  onLoad() {
+  onLoad(e) {
     getProvince().then(res => {
       console.log(res);
+
       this.artObj.province = res;
+      console.log('跳转来的id', e);
+      if (!e.id) return;
+      let id = e.id;
+      this.getedit(id);
+      s;
     });
   },
 
   methods: {
+    //子组件来的编辑
+    getedit(id) {
+      console.log('第二验证id', id);
+      db.collection('quanzi_article')
+        .doc(id)
+        .field('_id,title,content')
+        .get()
+        .then(res => {
+          console.log(res);
+          this.artObj.title = res.result.data[0].title;
+          //富文本不显示待处理
+          this.artObj.content = res.result.data[0].content;
+        });
+    },
+
     //提交表单
     OnSubmit() {
       this.editorContext.getContents({

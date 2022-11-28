@@ -108,7 +108,34 @@
     }, {
       "path": "pages/quanzi_article/list",
       "style": {
+        "navigationBarTitleText": "我的文章"
+      }
+    }, {
+      "path": "pages/quanzi_like/list",
+      "style": {
+        "navigationBarTitleText": "我的点赞"
+      }
+    }
+
+    , {
+      "path": "uni_modules/uni-feedback/pages/opendb-feedback/opendb-feedback",
+      "style": {
+        "navigationBarTitleText": "意见与反馈"
+      }
+    }, {
+      "path": "uni_modules/uni-feedback/pages/opendb-feedback/edit",
+      "style": {
+        "navigationBarTitleText": "编辑"
+      }
+    }, {
+      "path": "uni_modules/uni-feedback/pages/opendb-feedback/list",
+      "style": {
         "navigationBarTitleText": "列表"
+      }
+    }, {
+      "path": "uni_modules/uni-feedback/pages/opendb-feedback/detail",
+      "style": {
+        "navigationBarTitleText": "详情"
       }
     }
   ],

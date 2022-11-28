@@ -24,7 +24,7 @@
     <!-- //主体内容 -->
     <view class="content">
       <!-- //每一项 -->
-      <view class="item" v-for="item in dataList"><blog-item :item="item"></blog-item></view>
+      <view class="item" v-for="item in dataList"><blog-item :item="item" @delEvent="delEvent"></blog-item></view>
     </view>
     <!-- //新增按钮 -->
     <view class="edit" @click="goedit"><text class="iconfont icon-a-21-xiugai"></text></view>
@@ -56,10 +56,16 @@ export default {
     this.getData();
   },
   methods: {
+    //子组件事件
+    delEvent() {
+      this.dataList = [];
+      this.getData();
+    },
     //获取数据
     async getData() {
       let artTemp = db
         .collection('quanzi_article')
+        .where(`delstate != true`)
         .field('title,user_id,description,picurls,comment_count,view_count,like_count,publish_date')
         .getTemp();
       let userTemp = db

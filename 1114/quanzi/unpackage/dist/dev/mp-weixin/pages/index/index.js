@@ -98,13 +98,13 @@ var components
 try {
   components = {
     uTabs: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 295))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 338))
     },
     uSkeleton: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-skeleton/u-skeleton */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-skeleton/u-skeleton")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-skeleton/u-skeleton.vue */ 303))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-skeleton/u-skeleton */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-skeleton/u-skeleton")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-skeleton/u-skeleton.vue */ 346))
     },
     blogItem: function() {
-      return Promise.all(/*! import() | components/blog-item/blog-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/blog-item/blog-item")]).then(__webpack_require__.bind(null, /*! @/components/blog-item/blog-item.vue */ 311))
+      return Promise.all(/*! import() | components/blog-item/blog-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/blog-item/blog-item")]).then(__webpack_require__.bind(null, /*! @/components/blog-item/blog-item.vue */ 354))
     }
   }
 } catch (e) {

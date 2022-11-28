@@ -8,8 +8,8 @@
           <uni-dateformat :date="item.publish_date" format="MM月dd hh:mm" :threshold="[60000, 3600000 * 24 * 30]"></uni-dateformat>
         </view>
       </view>
-
-      <view class="more"><text class="iconfont icon-ellipsis"></text></view>
+      <!-- 三个点 -->
+      <view class="more" @click="clickMore"><text class="iconfont icon-ellipsis"></text></view>
     </view>
 
     <view class="body">
@@ -38,11 +38,22 @@
         <text>{{ item.like_count ? item.like_count : '点赞' }}</text>
       </view>
     </view>
+    <!-- 点击弹窗 -->
+    <u-action-sheet
+      cancelText="取消"
+      :actions="sheetlist"
+      :show="sheetshow"
+      :closeOnClickOverlay="true"
+      :closeOnClickAction="true"
+      @close="onClose"
+      @select="Selectsheet"
+    ></u-action-sheet>
   </view>
 </template>
 
 <script>
-// import indexVue from '../../pages/index/index.vue';
+const db = uniCloud.database();
+// import indexVue from '../../pages/index/index.vue';这条在小程序必定报错
 import { giveName, giveAvatar } from '@/utils/tools.js';
 export default {
   name: 'blog-item',
@@ -56,13 +67,86 @@ export default {
   },
   data() {
     return {
-      // picarr: [1, 2, 3]
+      sheetlist: [
+        {
+          name: '修改',
+          type: 'edit',
+          disabled: true //禁用
+          // fontSize: '20'
+        },
+        {
+          name: '删除',
+          type: 'del',
+          disabled: true, //禁用
+          // fontSize: '20',
+          color: '#D75D59'
+        }
+      ],
+      sheetshow: false //弹窗控制
     };
   },
 
   methods: {
+    //导入的函数需要放这里 才能调用
     giveName,
     giveAvatar,
+    //点击更多
+    clickMore() {
+      let uid = uniCloud.getCurrentUserInfo().uid;
+      if (uid == this.item.user_id[0]._id || this.uniIDHasRole('webmaster') || this.uniIDHasRole('admin')) {
+        this.sheetlist.forEach(item => {
+          item.disabled = false;
+        });
+      }
+      this.sheetshow = true;
+    },
+    //点击选择弹窗内容
+    Selectsheet(e) {
+      this.sheetshow = false;
+      let type = e.type;
+      console.log(e);
+      if (type == 'del') {
+        this.delfun();
+      } else if (type == 'edit') {
+        this.goedit();
+      }
+    },
+    //跳转到编辑
+    goedit() {
+      let id = this.item._id;
+      uni.navigateTo({
+        url: '/pages/edit/edit?id=' + id
+      });
+    },
+    //选择删除
+    delfun() {
+      uni.showLoading({
+        title: '删除中...'
+      });
+      db.collection('quanzi_article')
+        .doc(this.item._id)
+        .update({
+          delstate: true
+        })
+        .then(res => {
+          console.log(res);
+          uni.hideLoading();
+          uni.showToast({
+            title: '删除成功',
+            icon: 'none'
+          });
+          this.$emit('delEvent', true);
+        })
+        .catch(err => {
+          console.log(err);
+          uni.hideLoading();
+        });
+    },
+    //点击关闭弹窗
+    onClose() {
+      this.sheetshow = false;
+    },
+
     //点击跳转到详情页
     godetail() {
       uni.navigateTo({

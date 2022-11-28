@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uniDateformat: function() {
-      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 318))
+      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 361))
     }
   }
 } catch (e) {
@@ -356,10 +356,15 @@ var _store = __webpack_require__(/*! @/uni_modules/uni-id-pages/common/store.js 
 //
 //
 //
-var _default = { data: function data() {return {};}, computed: { userInfo: function userInfo() {return _store.store.userInfo;}, hasLogin: function hasLogin() {return _store.store.hasLogin;} }, methods: { //编辑个人资料
+var _default = { data: function data() {return {};}, computed: { userInfo: function userInfo() {return _store.store.userInfo;}, hasLogin: function hasLogin() {return _store.store.hasLogin;} }, methods: { //意见反馈
+    gofeedback: function gofeedback() {if (this.goLoginpages()) return;console.log('点击我的点赞');uni.navigateTo({ url: '/uni_modules/uni-feedback/pages/opendb-feedback/opendb-feedback' });}, //我的点赞列表页
+    gomylike: function gomylike() {if (this.goLoginpages()) return;console.log('点击我的点赞');uni.navigateTo({ url: '/pages/quanzi_like/list' });}, //我的列表页面
+    gomylist: function gomylist() {if (this.goLoginpages()) return;console.log('点击我的长文');uni.navigateTo({ url: '/pages/quanzi_article/list' });}, //编辑个人资料
     toUserInfo: function toUserInfo() {uni.navigateTo({ url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo' });}, //退出登录
-    logout: function logout() {if (!_store.store.hasLogin) {uni.showToast({ title: '未登录', mask: true, icon: 'error' });return;}uni.showModal({ title: '是否确认退出？', success: function success(res) {console.log(res);if (res.confirm) {_store.mutations.logout();uni.showToast({ title: '退出中', mask: true, duration: 1000, icon: 'loading' });}} }); // mutations.logout();
-    } } };exports.default = _default;
+    logout: function logout() {//调用下方判断
+      if (this.goLoginpages()) return;uni.showModal({ title: '是否确认退出？', success: function success(res) {console.log(res);if (res.confirm) {_store.mutations.logout();uni.showToast({ title: '退出中', mask: true, duration: 1000, icon: 'loading' });}} }); // mutations.logout();
+    }, //判断是否登录
+    goLoginpages: function goLoginpages() {if (!_store.store.hasLogin) {uni.showToast({ title: '未登录', mask: true, icon: 'error' });return true;}return false;} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

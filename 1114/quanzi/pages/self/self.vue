@@ -51,7 +51,7 @@
             </view>
             <view class="right"><text class="iconfont icon-a-10-you"></text></view>
           </view>
-          <view class="item">
+          <view class="item" @click="gomylike">
             <view class="left">
               <text class="iconfont icon-a-106-xihuan"></text>
               <text class="text">我的点赞</text>
@@ -75,7 +75,7 @@
             </view>
             <view class="right"><text class="iconfont icon-a-10-you"></text></view>
           </view>
-          <view class="item">
+          <view class="item" @click="gofeedback">
             <view class="left">
               <text class="iconfont icon-a-5-xinxi"></text>
               <text class="text">意见反馈</text>
@@ -113,6 +113,22 @@ export default {
     }
   },
   methods: {
+    //意见反馈
+    gofeedback() {
+      if (this.goLoginpages()) return;
+      console.log('点击我的点赞');
+      uni.navigateTo({
+        url: '/uni_modules/uni-feedback/pages/opendb-feedback/opendb-feedback'
+      });
+    },
+    //我的点赞列表页
+    gomylike() {
+      if (this.goLoginpages()) return;
+      console.log('点击我的点赞');
+      uni.navigateTo({
+        url: '/pages/quanzi_like/list'
+      });
+    },
     //我的列表页面
     gomylist() {
       if (this.goLoginpages()) return;
