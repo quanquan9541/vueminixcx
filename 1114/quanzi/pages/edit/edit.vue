@@ -4,7 +4,6 @@
     <view class="title"><input type="text" v-model="artObj.title" placeholder="请输入标题" placeholder-class="placeholderClass" /></view>
     <!-- 内容 -->
     <view class="content">
-      {{ artObj.content }}
       <!-- 富文本 -->
       <editor
         :content="artObj.content"
@@ -37,10 +36,9 @@
 import { getImgSrc, getProvince } from '@/utils/tools.js';
 //链接云端数据库
 const db = uniCloud.database();
-
+let id; //定义全局变量
 export default {
   data() {
-    let id;
     return {
       html: '123',
       toolshow: false,
@@ -63,25 +61,32 @@ export default {
       this.artObj.province = res;
       console.log('跳转来的id', e);
       if (!e.id) return;
-      let id = e.id;
-      this.getedit(id);
-      s;
+      id = e.id; //为全局变量赋值不需要let 这里可以直接传参更方便 故意测试的
+      this.getedit();
     });
   },
 
   methods: {
     //子组件来的编辑
-    getedit(id) {
+    async getedit() {
       console.log('第二验证id', id);
-      db.collection('quanzi_article')
+      await db
+        .collection('quanzi_article')
         .doc(id)
         .field('_id,title,content')
         .get()
         .then(res => {
           console.log(res);
           this.artObj.title = res.result.data[0].title;
-          //富文本不显示待处理
-          this.artObj.content = res.result.data[0].content;
+          //富文本不显示待处理 //解决方法 set
+          // this.artObj.content = res.result.data[0].content;
+          let content = res.result.data[0].content;
+          this.editorContext.setContents({
+            html: content,
+            success: res => {
+              console.log('6666', res);
+            }
+          });
         });
     },
 

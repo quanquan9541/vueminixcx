@@ -33,7 +33,7 @@
         <text class="iconfont icon-a-5-xinxi"></text>
         <text>{{ item.comment_count ? item.comment_count : '评论' }}</text>
       </view>
-      <view class="box">
+      <view class="box" :class="item.islike ? 'active' : ''" @click="clickLike">
         <text class="iconfont icon-a-106-xihuan"></text>
         <text>{{ item.like_count ? item.like_count : '点赞' }}</text>
       </view>
@@ -54,7 +54,8 @@
 <script>
 const db = uniCloud.database();
 // import indexVue from '../../pages/index/index.vue';这条在小程序必定报错
-import { giveName, giveAvatar } from '@/utils/tools.js';
+import { store } from '@/uni_modules/uni-id-pages/common/store.js';
+import { giveName, giveAvatar, likefun } from '@/utils/tools.js';
 export default {
   name: 'blog-item',
   props: {
@@ -88,8 +89,44 @@ export default {
 
   methods: {
     //导入的函数需要放这里 才能调用
+    likefun,
     giveName,
     giveAvatar,
+    //首页点赞
+    clickLike() {
+      //判断登录后才能点赞
+      if (!store.hasLogin) {
+        uni.showModal({
+          title: '您还没有登录？',
+          success: res => {
+            if (res.confirm) {
+              console.log('点击确定');
+              console.log('/' + pagesJson.uniIdRouter.loginPage);
+              uni.navigateTo({
+                url: '/' + pagesJson.uniIdRouter.loginPage
+              });
+            }
+          }
+        });
+        return;
+      }
+
+      //
+      let time = Date.now();
+      if (time - this.liketime < 1500) {
+        uni.showToast({
+          icon: 'loading',
+          title: '操作过于频繁'
+        });
+        return;
+      }
+      //
+      this.item.islike ? this.item.like_count-- : this.item.like_count++;
+      this.item.islike = !this.item.islike;
+      this.liketime = time;
+      //调用方法
+      likefun(this.item._id);
+    },
     //点击更多
     clickMore() {
       let uid = uniCloud.getCurrentUserInfo().uid;
@@ -289,6 +326,9 @@ export default {
         font-size: 40rpx;
         padding-right: 10rpx;
       }
+    }
+    .box.active {
+      color: #55aaff;
     }
   }
 }

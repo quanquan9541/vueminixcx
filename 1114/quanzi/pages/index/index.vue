@@ -32,7 +32,9 @@
 </template>
 
 <script>
+import { store, mutations } from '@/uni_modules/uni-id-pages/common/store.js';
 const db = uniCloud.database(); //链接数据库
+const dbCmd = db.command; //定义方法
 export default {
   data() {
     return {
@@ -62,7 +64,7 @@ export default {
       this.getData();
     },
     //获取数据
-    async getData() {
+    getData() {
       let artTemp = db
         .collection('quanzi_article')
         .where(`delstate != true`)
@@ -72,19 +74,42 @@ export default {
         .collection('uni-id-users')
         .field('_id, username, nickname, avatar_file')
         .getTemp();
-      await db
-        .collection(artTemp, userTemp)
+      db.collection(artTemp, userTemp)
         .orderBy(this.navlist[this.navActive].type, 'desc')
         .get()
-        .then(res => {
-          console.log(res);
-          if (!res.result.data) {
-            this.errfun();
-            return;
+        .then(async res => {
+          let idArr = [];
+          let resDateArr = res.result.data;
+
+          if (store.hasLogin) {
+            //判断登录状态
+            resDateArr.forEach(item => {
+              idArr.push(item._id);
+            });
+            let likeRes = await db
+              .collection('quanzi_like')
+              .where({
+                article_id: dbCmd.in(idArr), //是否在数组中 需要前面定义方法
+                user_id: uniCloud.getCurrentUserInfo().uid //客户端sdk 获取当前用户id
+              })
+              .get();
+
+            console.log('查询是否点赞过', likeRes);
+            likeRes.result.data.forEach(item => {
+              let findIndex = resDateArr.findIndex(find => {
+                return item.article_id == find._id;
+              });
+              console.log('索引值', findIndex);
+              resDateArr[findIndex].islike = true;
+            });
           }
 
-          this.dataList = res.result.data;
+          this.dataList = resDateArr;
           this.loadState = false;
+          // if (!res.result.data) {
+          //   this.errfun();
+          //   return;
+          // }
         });
     },
     clickNav(e) {

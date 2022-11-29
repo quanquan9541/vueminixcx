@@ -37,7 +37,7 @@ const db = uniCloud.database();
 const utils = uniCloud.importObject('utils', {
   customUI: true // 取消自动展示的交互提示界面
 });
-import { giveName, giveAvatar } from '../../utils/tools.js';
+import { giveName, giveAvatar, likefun } from '../../utils/tools.js';
 import { store } from '@/uni_modules/uni-id-pages/common/store.js';
 import pagesJson from '@/pages.json';
 export default {
@@ -67,9 +67,10 @@ export default {
     this.readUpdata();
   },
   methods: {
+    likefun, //导入点赞
     giveName,
     giveAvatar,
-    //点击点赞
+
     clickLike() {
       //判断登录后才能点赞
       if (!store.hasLogin) {
@@ -100,28 +101,9 @@ export default {
       this.detailObj.islike = !this.detailObj.islike;
       this.liketime = time;
       //调用方法
-      this.likefun();
+      likefun(this.artid);
     },
-
-    //点赞操作数据库的方法
-    async likefun() {
-      let count = await db
-        .collection('quanzi_like')
-        .where(`article_id=="${this.artid}" && user_id==$cloudEnv_uid`)
-        .count();
-      console.log(count);
-      if (count.result.total) {
-        db.collection('quanzi_like')
-          .where(`article_id=="${this.artid}" && user_id==$cloudEnv_uid`)
-          .remove();
-        utils.operation('quanzi_article', 'like_count', this.artid, -1);
-      } else {
-        db.collection('quanzi_like').add({
-          article_id: this.artid
-        });
-        utils.operation('quanzi_article', 'like_count', this.artid, 1);
-      }
-    },
+    //点赞
 
     //阅读量更新
     readUpdata() {

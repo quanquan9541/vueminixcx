@@ -77,3 +77,29 @@ export function giveName(item) {
 export function giveAvatar(item) {
   return item.user_id[0]?.avatar_file?.url ?? '../../static/images/user-default.jpg'
 }
+
+const db = uniCloud.database();
+const utils = uniCloud.importObject('utils', {
+  customUI: true // 取消自动展示的交互提示界面
+});
+
+//点赞操作数据库的方法
+
+export async function likefun(artid) {
+  let count = await db
+    .collection('quanzi_like')
+    .where(`article_id=="${artid}" && user_id==$cloudEnv_uid`)
+    .count();
+  console.log(count);
+  if (count.result.total) {
+    db.collection('quanzi_like')
+      .where(`article_id=="${artid}" && user_id==$cloudEnv_uid`)
+      .remove();
+    utils.operation('quanzi_article', 'like_count', artid, -1);
+  } else {
+    db.collection('quanzi_like').add({
+      article_id: artid
+    });
+    utils.operation('quanzi_article', 'like_count', artid, 1);
+  }
+}
