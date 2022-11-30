@@ -29,7 +29,7 @@
     <view class="main">
       <view class="info">
         <view class="item">
-          <text>33</text>
+          <text>{{ TotalObj.likeNum }}</text>
           获赞
         </view>
         <view class="item">
@@ -37,7 +37,7 @@
           评论
         </view>
         <view class="item">
-          <text>5</text>
+          <text>{{ TotalObj.artNum }}</text>
           发文
         </view>
       </view>
@@ -100,9 +100,15 @@
 
 <script>
 import { store, mutations } from '@/uni_modules/uni-id-pages/common/store.js';
+const db = uniCloud.database();
 export default {
   data() {
-    return {};
+    return {
+      TotalObj: {
+        artNum: 0,
+        likeNum: 0
+      }
+    };
   },
   computed: {
     userInfo() {
@@ -112,11 +118,34 @@ export default {
       return store.hasLogin;
     }
   },
+  onLoad() {
+    this.getTotal();
+  },
+
   methods: {
+    //统计数据
+    async getTotal() {
+      if (!store.hasLogin) return; //判断登录
+      let artCount = await db
+        .collection('quanzi_article')
+        .where(`user_id==$cloudEnv_uid`)
+        .count();
+      // console.log(artCount);
+      this.TotalObj.artNum = artCount.result.total;
+      let likeCount = await db
+        .collection('quanzi_article')
+        .where(`user_id==$cloudEnv_uid`)
+        .groupBy('user_id')
+        .groupField('sum(like_count) as totalScore')
+        .get();
+      // console.log(likeCount);
+      this.TotalObj.likeNum = likeCount.result.data[0].totalScore;
+      console.log(this.TotalObj);
+    },
     //意见反馈
     gofeedback() {
       if (this.goLoginpages()) return;
-      console.log('点击我的点赞');
+      // console.log('点击我的点赞');
       uni.navigateTo({
         url: '/uni_modules/uni-feedback/pages/opendb-feedback/opendb-feedback'
       });
@@ -124,7 +153,7 @@ export default {
     //我的点赞列表页
     gomylike() {
       if (this.goLoginpages()) return;
-      console.log('点击我的点赞');
+      // console.log('点击我的点赞');
       uni.navigateTo({
         url: '/pages/quanzi_like/list'
       });
@@ -132,7 +161,7 @@ export default {
     //我的列表页面
     gomylist() {
       if (this.goLoginpages()) return;
-      console.log('点击我的长文');
+      // console.log('点击我的长文');
       uni.navigateTo({
         url: '/pages/quanzi_article/list'
       });
@@ -152,7 +181,7 @@ export default {
       uni.showModal({
         title: '是否确认退出？',
         success: res => {
-          console.log(res);
+          // console.log(res);
           if (res.confirm) {
             mutations.logout();
             uni.showToast({

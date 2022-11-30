@@ -21,7 +21,11 @@
             <text class="iconfont icon-good-fill"></text>
             <text v-if="detailObj.like_count">{{ detailObj.like_count }}</text>
           </view>
-          <view class="users"><image src="../../static/images/user.jpg" mode="aspectFill"></image></view>
+          <view class="users">
+            <template v-for="item in likeUserArr">
+              <image v-if="item.user_id[0].avatar_file.url" :src="giveAvatar(item)" mode="aspectFill"></image>
+            </template>
+          </view>
           <view class="text">
             <text class="num">{{ detailObj.view_count }}</text>
             人看过
@@ -29,6 +33,16 @@
         </view>
       </view>
     </view>
+    <!-- 评论区 -->
+    <view class="comment">
+      <view><u-empty mode="comment" icon="http://cdn.uviewui.com/uview/empty/comment.png"></u-empty></view>
+      <view class="content">
+        <view class="item" v-for="item in 3"><comment-item></comment-item></view>
+      </view>
+    </view>
+    <!-- 评论输入框 -->
+    <comment-frame></comment-frame>
+    >
   </view>
 </template>
 
@@ -40,6 +54,7 @@ const utils = uniCloud.importObject('utils', {
 import { giveName, giveAvatar, likefun } from '../../utils/tools.js';
 import { store } from '@/uni_modules/uni-id-pages/common/store.js';
 import pagesJson from '@/pages.json';
+import { callWithErrorHandling } from 'vue';
 export default {
   data() {
     return {
@@ -51,7 +66,8 @@ export default {
         span: 'font-size: 30rpx',
         img: 'margin:10rpx 0'
       },
-      detailObj: null
+      detailObj: null,
+      likeUserArr: []
     };
   },
   onLoad(e) {
@@ -65,11 +81,33 @@ export default {
     this.artid = e.id;
     this.getData();
     this.readUpdata();
+    this.getLikeuser();
   },
   methods: {
     likefun, //导入点赞
     giveName,
     giveAvatar,
+
+    //获取点赞用户
+    getLikeuser() {
+      let likeTemp = db
+        .collection('quanzi_like')
+        .where(`article_id=="${this.artid}"`)
+        .getTemp();
+      let userTemp = db
+        .collection('uni-id-users')
+        .field('_id,avatar_file')
+        .getTemp();
+
+      db.collection(likeTemp, userTemp)
+        .orderBy('like_date desc')
+        .limit(5)
+        .get()
+        .then(res => {
+          res.result.data = res.result.data.reverse(); //数据翻转
+          this.likeUserArr = res.result.data;
+        });
+    },
 
     clickLike() {
       //判断登录后才能点赞
@@ -274,6 +312,12 @@ export default {
         }
       }
     }
+  }
+
+  .comment {
+    padding: 30rpx;
+    padding-bottom: 120rpx;
+    // border: solid #0199fe 1rpx;
   }
 }
 </style>

@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import pagesJson from '@/pages.json';
 const db = uniCloud.database();
 // import indexVue from '../../pages/index/index.vue';这条在小程序必定报错
 import { store } from '@/uni_modules/uni-id-pages/common/store.js';

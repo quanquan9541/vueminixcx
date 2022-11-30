@@ -26,6 +26,8 @@
       <!-- //每一项 -->
       <view class="item" v-for="item in dataList"><blog-item :item="item" @delEvent="delEvent"></blog-item></view>
     </view>
+    <!-- 加载更多 -->
+    <view><uni-load-more :status="more"></uni-load-more></view>
     <!-- //新增按钮 -->
     <view class="edit" @click="goedit"><text class="iconfont icon-a-21-xiugai"></text></view>
   </view>
@@ -38,6 +40,8 @@ const dbCmd = db.command; //定义方法
 export default {
   data() {
     return {
+      more: 'more', //加载更多的状态
+      nomore: false, //判断是否还有数据的状态
       dataList: [], //主体内容数据
       loadState: true, //骨架瓶显示状态
       navlist: [
@@ -57,6 +61,13 @@ export default {
   onLoad() {
     this.getData();
   },
+  onReachBottom() {
+    console.log('触底');
+    this.more = 'loading';
+    if (this.nomore) return (this.more = 'noMore');
+
+    this.getData();
+  },
   methods: {
     //子组件事件
     delEvent() {
@@ -64,7 +75,7 @@ export default {
       this.getData();
     },
     //获取数据
-    getData() {
+    async getData() {
       let artTemp = db
         .collection('quanzi_article')
         .where(`delstate != true`)
@@ -76,13 +87,21 @@ export default {
         .getTemp();
       db.collection(artTemp, userTemp)
         .orderBy(this.navlist[this.navActive].type, 'desc')
+        .skip(this.dataList.length)
+        .limit(5)
         .get()
         .then(async res => {
           let idArr = [];
-          let resDateArr = res.result.data;
+          let oldresDateArr = this.dataList;
+          if (res.result.data.length == 0) {
+            this.nomore = true;
+            this.more = 'noMore';
+            return;
+          }
+          let resDateArr = [...oldresDateArr, ...res.result.data]; //数组拼接
 
           if (store.hasLogin) {
-            //判断登录状态
+            //判断登录状态delEvent
             resDateArr.forEach(item => {
               idArr.push(item._id);
             });
@@ -112,8 +131,11 @@ export default {
           // }
         });
     },
+    //点击切换
     clickNav(e) {
       console.log(e);
+      this.more = 'more';
+      this.nomore = false;
       this.loadState = true;
       this.dataList = [];
       this.navActive = e.index;
