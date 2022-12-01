@@ -31,7 +31,7 @@
       </view>
       <view class="box" @click="godetail">
         <text class="iconfont icon-a-5-xinxi"></text>
-        <text>{{ item.comment_count ? item.comment_count : '评论' }}</text>
+        <text>{{ item.comment_count && item.comment_count > 0 ? item.comment_count : '评论' }}</text>
       </view>
       <view class="box" :class="item.islike ? 'active' : ''" @click="clickLike">
         <text class="iconfont icon-a-106-xihuan"></text>

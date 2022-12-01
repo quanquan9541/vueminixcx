@@ -138,7 +138,16 @@
         "navigationBarTitleText": "详情"
       }
     }
-  ],
+      ,{
+            "path" : "pages/reply/reply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "评论回复",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "交流圈子",

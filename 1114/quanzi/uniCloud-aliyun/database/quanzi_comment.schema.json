@@ -4,10 +4,9 @@
     "article_id",
     "user_id",
     "comment_content",
-
-    "comment_type",
-    "reply_user_id",
-    "reply_comment_id"
+    "comment_type"
+    // "reply_user_id",
+    // "reply_comment_id"
   ],
   "permission": {
     "read": true,

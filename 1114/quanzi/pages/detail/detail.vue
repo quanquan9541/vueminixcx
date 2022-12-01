@@ -35,14 +35,13 @@
     </view>
     <!-- 评论区 -->
     <view class="comment">
-      <view><u-empty mode="comment" icon="http://cdn.uviewui.com/uview/empty/comment.png"></u-empty></view>
-      <view class="content">
-        <view class="item" v-for="item in 3"><comment-item></comment-item></view>
+      <view v-if="!Commentlist.length && NoComment"><u-empty mode="comment" icon="http://cdn.uviewui.com/uview/empty/comment.png"></u-empty></view>
+      <view class="content" v-else>
+        <view class="item" v-for="item in Commentlist"><comment-item :item="item" @removeEnv="removeEnv"></comment-item></view>
       </view>
     </view>
     <!-- 评论输入框 -->
-    <comment-frame></comment-frame>
-    >
+    <comment-frame :comment="commentObj" @commentEnv="PcommentEnv"></comment-frame>
   </view>
 </template>
 
@@ -67,7 +66,13 @@ export default {
         img: 'margin:10rpx 0'
       },
       detailObj: null,
-      likeUserArr: []
+      likeUserArr: [],
+      commentObj: {
+        article_id: '',
+        comment_type: 0
+      },
+      Commentlist: [],
+      NoComment: false
     };
   },
   onLoad(e) {
@@ -79,15 +84,55 @@ export default {
 
     console.log(e);
     this.artid = e.id;
+    this.commentObj.article_id = e.id;
     this.getData();
     this.readUpdata();
     this.getLikeuser();
+    this.getComment();
   },
   methods: {
     likefun, //导入点赞
     giveName,
     giveAvatar,
-
+    //删除后回调
+    removeEnv(e) {
+      console.log('删除后回调', e);
+      //获取索引值
+      let index = this.Commentlist.findIndex(item => {
+        return item._id == e.id;
+      });
+      this.Commentlist.splice(index, 1); //删除索引值为index 1个
+    },
+    //发布成功后的回调
+    PcommentEnv(e) {
+      // console.log(e);
+      this.Commentlist.unshift({
+        ...e,
+        ...this.commentObj,
+        user_id: [store.userInfo]
+      });
+    },
+    //获取评论
+    getComment() {
+      let commentTemp = db
+        .collection('quanzi_comment')
+        .where(`article_id=="${this.artid}"`)
+        .orderBy('comment_date desc')
+        .limit(5)
+        .getTemp();
+      let userTemp = db
+        .collection('uni-id-users')
+        .field('_id,username,nickname,avatar_file')
+        .getTemp();
+      db.collection(commentTemp, userTemp)
+        .get()
+        .then(res => {
+          console.log('评论', res);
+          if (res.result.data == 0) this.NoComment = true; //修改
+          //
+          this.Commentlist = res.result.data;
+        });
+    },
     //获取点赞用户
     getLikeuser() {
       let likeTemp = db
