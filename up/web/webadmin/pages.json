@@ -10,7 +10,14 @@
     , {
       "path": "pages/cpu/cpu_add",
       "style": {
-        "navigationBarTitleText": "",
+        "navigationBarTitleText": "新增处理器",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/cpu/cpu_list",
+      "style": {
+        "navigationBarTitleText": "处理器列表",
         "enablePullDownRefresh": false
       }
 
