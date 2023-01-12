@@ -1,8 +1,11 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png"></image>
+    <image class="logo" src="/static/logo.png" @click="click"></image>
     <view class="text-area">
       <text class="title">{{title}}</text>
+      <uni-data-picker placeholder="请选择处理器" popup-title="请选择处理器型号" collection="mini_cpu"
+        field="Cpuvlue as value, model as text" :step-searh="true" self-field="model" parent-field="series">
+      </uni-data-picker>
     </view>
   </view>
 </template>
@@ -18,7 +21,11 @@
 
     },
     methods: {
-
+      click() {
+        uni.navigateTo({
+          url: "/pages/cpu/cpu_list"
+        })
+      }
     }
   }
 </script>
