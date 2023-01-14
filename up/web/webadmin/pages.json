@@ -11,7 +11,7 @@
       "path": "pages/cpu/cpu_add",
       "style": {
         "navigationBarTitleText": "新增处理器",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
 
     }, {
@@ -21,8 +21,38 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/cpu/cpu_manufacturer",
+      "style": {
+        "navigationBarTitleText": "新增SOC厂商",
+        "enablePullDownRefresh": true
+      }
+
+    }, {
+      "path": "pages/cpu/cpu_series",
+      "style": {
+        "navigationBarTitleText": "新建SOC系列",
+        "enablePullDownRefresh": true
+      }
+
+    }, {
+      "path": "pages/css/css",
+      "style": {
+        "navigationBarTitleText": "测试体验",
+        "enablePullDownRefresh": false
+      }
+
     }
-  ],
+      ,{
+            "path" : "pages/cpu/cpu_value",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "型号和值",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
