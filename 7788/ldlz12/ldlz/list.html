@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>推荐列表</title>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logo/logo2.ico" />
+    <style>
+        * {
+            /* 初始化 */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 100%窗口高度 */
+            height: 100vh;
+            /* 弹性布局 居中 */
+            display: flex;
+            /* 改方向 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 渐变背景 */
+            background: linear-gradient(200deg, #e3c5eb, #a9c1ed);
+            /* 溢出隐藏 */
+            overflow: hidden;
+        }
+
+        .container {
+            /* 相对定位 */
+            position: relative;
+            z-index: 1;
+            background-color: #fff;
+            border-radius: 15px;
+            /* 弹性布局 垂直排列 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+            height: 500px;
+            /* 阴影 */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .tit {
+            font-size: 26px;
+            margin: 65px auto 20px auto;
+        }
+
+        .container button {
+            width: 280px;
+            height: 45px;
+            margin: 5px auto 10px auto;
+            border: none;
+            background: linear-gradient(-200deg, #fac0e7, #aac2ee);
+            color: #fff;
+            /* font-weight: bold; */
+            font-size: 16px;
+            letter-spacing: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            /* 动画过渡 */
+            transition: 0.5s;
+        }
+
+        .container button:hover {
+            background: linear-gradient(-200deg, #aac2ee, #fac0e7);
+            background-position-x: -280px;
+        }
+
+        .container span {
+            font-size: 14px;
+        }
+
+        .container a {
+            color: plum;
+            text-decoration: none;
+        }
+
+        ul li {
+            position: absolute;
+            border: 1px solid #fff;
+            background-color: #fff;
+            width: 30px;
+            height: 30px;
+            list-style: none;
+            opacity: 0;
+        }
+
+        .square li {
+            top: 40vh;
+            left: 60vw;
+            /* 执行动画：动画名 时长 线性的 无限次播放 */
+            animation: square 10s linear infinite;
+        }
+
+        .square li:nth-child(2) {
+            top: 80vh;
+            left: 10vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 2s;
+        }
+
+        .square li:nth-child(3) {
+            top: 80vh;
+            left: 85vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 4s;
+        }
+
+        .square li:nth-child(4) {
+            top: 10vh;
+            left: 70vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 6s;
+        }
+
+        .square li:nth-child(5) {
+            top: 10vh;
+            left: 10vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 8s;
+        }
+
+        .circle li {
+            bottom: 0;
+            left: 15vw;
+            /* 执行动画 */
+            animation: circle 10s linear infinite;
+        }
+
+        .circle li:nth-child(2) {
+            left: 35vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 2s;
+        }
+
+        .circle li:nth-child(3) {
+            left: 55vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 6s;
+        }
+
+        .circle li:nth-child(4) {
+            left: 75vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 4s;
+        }
+
+        .circle li:nth-child(5) {
+            left: 90vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 8s;
+        }
+
+        /* 定义动画 */
+        @keyframes square {
+            0% {
+                transform: scale(0) rotateY(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(5) rotateY(1000deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes circle {
+            0% {
+                transform: scale(0) rotateY(0deg);
+                opacity: 1;
+                bottom: 0;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: scale(5) rotateY(1000deg);
+                opacity: 0;
+                bottom: 90vh;
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tit">推荐列表</div>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=32715&utm_campaign=t_2017236845">
+            <button>性价比手机推荐-主观</button></a>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=30788&utm_campaign=t_2017236845">
+            <button>性价比手机推荐-数据</button></a>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=30793&utm_campaign=t_2017236845">
+            <button>笔记本推荐</button></a>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=26808&utm_campaign=t_2017236845">
+            <button>路由器推荐</button></a>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=30970&utm_campaign=t_2017236845">
+            <!-- 这里写跳转也 -->
+            <button>组装台式机配置单</button>
+        </a>
+        <a href="https://jingfen.jd.com/item?u_act_p=union-activity&union_page_id=30970&utm_campaign=t_2017236845">
+            <!-- 这里写跳转也 -->
+            <button>配件清单</button>
+        </a>
+        <!-- <span>了解更多<a href="#">点击查看</a></span> -->
+    </div>
+
+    <div class="square">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="circle">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

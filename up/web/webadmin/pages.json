@@ -42,17 +42,16 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/cpu/soc_add",
+      "style": {
+        "navigationBarTitleText": "新增芯片",
+        "enablePullDownRefresh": true
+      }
+
+
     }
-      ,{
-            "path" : "pages/cpu/cpu_value",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "型号和值",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

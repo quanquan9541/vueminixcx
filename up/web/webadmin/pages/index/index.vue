@@ -4,7 +4,7 @@
     <view class="text-area">
       <text class="title">{{title}}</text>
       <uni-data-picker placeholder="请选择处理器" popup-title="请选择处理器型号" collection="mini_cpu"
-        field="model as value, model as text" :step-searh="true" self-field="madel" parent-field="series">
+        field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="series">
       </uni-data-picker>
       <uni-data-picker placeholder="请选择地址" popup-title="请选择城市" collection="opendb-city-china"
         field="code as value, name as text" orderby="value asc" :step-searh="true" self-field="code"

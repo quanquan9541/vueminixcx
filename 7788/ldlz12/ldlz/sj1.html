@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>随机选购</title>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./logo/logo2.ico" />
+    <style>
+        * {
+            /* 初始化 */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 100%窗口高度 */
+            height: 100vh;
+            /* 弹性布局 居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 渐变背景 */
+            background: linear-gradient(200deg, #e3c5eb, #a9c1ed);
+            /* 溢出隐藏 */
+            overflow: hidden;
+        }
+
+        .container {
+            /* 相对定位 */
+            position: relative;
+            z-index: 1;
+            background-color: #fff;
+            border-radius: 15px;
+            /* 弹性布局 垂直排列 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+            height: 500px;
+            /* 阴影 */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .tit {
+            font-size: 26px;
+            margin: 65px auto 70px auto;
+        }
+
+        .container span {
+            width: 280px;
+            height: 30px;
+            text-align: center;
+            text-indent: 8px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            outline: none;
+            margin: 12px auto;
+        }
+
+        .container button {
+            width: 280px;
+            height: 40px;
+            margin: 35px auto 40px auto;
+            border: none;
+            background: linear-gradient(-200deg, #fac0e7, #aac2ee);
+            color: #FFF6FE;
+            /* font-size: 16px; */
+            /* 设置按钮字体大小 */
+            font-weight: bold;
+            letter-spacing: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            /* 动画过渡 */
+            transition: 0.5s;
+        }
+
+        .container button:hover {
+            background: linear-gradient(-200deg, #aac2ee, #fac0e7);
+            background-position-x: -280px;
+        }
+
+        /* 
+        .container span {
+            font-size: 14px;
+        } */
+
+        .container a {
+            color: plum;
+            text-decoration: none;
+        }
+
+        ul li {
+            position: absolute;
+            border: 1px solid #fff;
+            background-color: #fff;
+            width: 30px;
+            height: 30px;
+            list-style: none;
+            opacity: 0;
+        }
+
+        .square li {
+            top: 40vh;
+            left: 60vw;
+            /* 执行动画：动画名 时长 线性的 无限次播放 */
+            animation: square 10s linear infinite;
+        }
+
+        .square li:nth-child(2) {
+            top: 80vh;
+            left: 10vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 2s;
+        }
+
+        .square li:nth-child(3) {
+            top: 80vh;
+            left: 85vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 4s;
+        }
+
+        .square li:nth-child(4) {
+            top: 10vh;
+            left: 70vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 6s;
+        }
+
+        .square li:nth-child(5) {
+            top: 10vh;
+            left: 10vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 8s;
+        }
+
+        .circle li {
+            bottom: 0;
+            left: 15vw;
+            /* 执行动画 */
+            animation: circle 10s linear infinite;
+        }
+
+        .circle li:nth-child(2) {
+            left: 35vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 2s;
+        }
+
+        .circle li:nth-child(3) {
+            left: 55vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 6s;
+        }
+
+        .circle li:nth-child(4) {
+            left: 75vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 4s;
+        }
+
+        .circle li:nth-child(5) {
+            left: 90vw;
+            /* 设置动画延迟时间 */
+            animation-delay: 8s;
+        }
+
+        /* 定义动画 */
+        @keyframes square {
+            0% {
+                transform: scale(0) rotateY(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(5) rotateY(1000deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes circle {
+            0% {
+                transform: scale(0) rotateY(0deg);
+                opacity: 1;
+                bottom: 0;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: scale(5) rotateY(1000deg);
+                opacity: 0;
+                bottom: 90vh;
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tit">命定之机</div>
+        <span id="name"></span>
+        <button id="button_text">停止</button>
+    </div>
+    <script>
+        // 获取标签
+        let nametxt = document.getElementById('name');
+        let button = document.getElementById('button_text');
+        // 创建一个数组存储名字
+
+        let uname = [
+            '再来一次',
+            'Apple/iPhone12',
+            '小米/11',
+            'VIVO/IQOO7',
+            'VIVO/X60 Pro+',
+            '小米/Redmi K40',
+            '小米/Redminote9 5G',
+            '魅族/18s',
+            '魅族/18s Pro',
+            'OPPO/Find X3',
+            'VIVO/IQOO NEO 5',
+            'OPPO/一加9',
+            '小米/11青春版',
+            '小米/11 Pro',
+            '小米/11 Ultra',
+            '中兴/Axon 30 Pro',
+            '中兴/Axon 30 Ultra',
+            '中兴/努比亚 Z30 Pro',
+            'VIVO/IQOO NEO 5活力版',
+            '小米/Redmi Note10 Pro',
+            '小米/Redmi Note10',
+            '中兴/红魔6R',
+            '荣耀/50 Pro',
+            '荣耀/50',
+            '荣耀/X20 SE',
+            'VIVO/Y53 S',
+            'VIVO/S10',
+            'VIVO/S10Pro',
+            'OPPO/Realme GT 大师探索版',
+            '华为/P50 Pro',
+            '中兴/Axon 30 屏下',
+            '小米/小米 MIX4',
+            '荣耀/Magic 3',
+            '荣耀/Magic 3 Pro',
+            '荣耀/Magic 3 至臻版',
+            'VIVO/IQOO 8',
+            'VIVO/IQOO 8 Pro',
+            '中兴/努比亚 红魔 6S Pro',
+            'VIVO/X70',
+            'VIVO/X70 Pro',
+            'VIVO/X70 Pro+',
+            'Apple/iPhone 13 mini',
+            'Apple/iPhone 13',
+            'Apple/iPhone 13 Pro',
+            'Apple/iPhone 13 Pro max',
+            'OPPO/Realme GT Neo2',
+            '魅族/18X',
+            'VIVO/IQOO Z5',
+            '华为/nova 9',
+            '华为/nova 9 Pro',
+            'OPPO/K9 Pro',
+            '小米/CiVi',
+            'OPPO/Realme Q 3s',
+            'OPPO/Realme GT Neo 2T',
+            'VIVO/T1x',
+            'VIVO/T1',
+            'OPPO/K9s',
+            'VIVO/S10e',
+            '荣耀/X30 Max',
+            '小米/红米 Note 11 Pro',
+            '小米/红米 Note 11 Pro +',
+            'OPPO/Reno 6 Pro +',
+            'OPPO/Reno 7 SE',
+            'OPPO/Reno 7',
+            'OPPO/Reno 7 Pro',
+            '荣耀/60',
+            '荣耀/60 Pro',
+            '联想/摩托罗拉 Edge S Pro',
+            '联想/摩托罗拉 Edge S30',
+            '联想/摩托罗拉 Edge X30',
+            '荣耀/畅玩 30 puls',
+            '荣耀/X30',
+            'VIVO/IQOO NEO 5SE',
+            'VIVO/IQOO NEO 5S',
+            'VIVO/S12',
+            'VIVO/S12 Pro',
+            '小米/12 Pro',
+            '小米/12',
+            '小米/12 X',
+            'OPPO/Realme GT 2',
+            'OPPO/Realme GT 2 Pro',
+            'VIVO/IQOO 9',
+            'VIVO/IQOO 9 Pro',
+            'OPPO/一加 10Pro',
+            'OPPO/A 36',
+            'OPPO/A 96',
+            'VIVO/Y 10',
+            'VIVO/Y 32',
+            '小米/Redmi K50 电竞版',
+            '中兴/努比亚 红魔 7',
+            '中兴/努比亚 红魔 7 Pro',
+            '荣耀/60 SE',
+            '三星/S 22',
+            '三星/S 22 +',
+            '三星/S 22 Ultra',
+            'OPPO/Find X5',
+            'OPPO/Find X5 Pro',
+            'OPPO/Find X5 Pro 天玑版',
+            '中兴/努比亚 Z40 Pro',
+            '中兴/努比亚 Z40 Pro 引力版',
+            '联想/拯救者 Y90',
+            'Apple/iPhone SE 3',
+            'VIVO/Y 33s',
+            '联想/摩托罗拉 X30 屏下',
+            '荣耀/Magic 4',
+            '荣耀/Magic 4 Pro',
+            '荣耀/Magic 4 至臻版',
+            '华为/Nova 9 SE',
+            '小米/Redmi K40S',
+            '小米/Redmi K50',
+            '小米/Redmi K50 Pro',
+            'OPPO/Realme GT Neo 3',
+            'OPPO/Realme GT Neo 3 150W版',
+            '华为/P50 E',
+            '三星/Galaxy A53',
+            '联通华盛/优畅享 50 Puls',
+            '小米/黑鲨 5',
+            '小米/黑鲨 5 RS',
+            '小米/黑鲨 5 Pro',
+            '荣耀/Play 6 T',
+            '荣耀/Play 6 T Pro',
+            'VIVO/X Note',
+            'VIVO/IQOO Neo 6',
+            'OPPO/A 57',
+            'OPPO/Realme Q 5i',
+            'OPPO/Realme Q 5',
+            'OPPO/Realme Q 5Pro',
+            '中邮通信/Hi Nova 9 SE',
+            '小米/Civi 1S',
+            'OPPO/一加 ACE',
+            'OPPO/K 10',
+            'OPPO/K 10 Pro',
+            'VIVO/S 15 e',
+            'VIVO/X 80',
+            'VIVO/X 80 Pro(骁龙)',
+            'VIVO/X 80 Pro(天玑)',
+            '中兴/远航 30',
+            '中兴/远航 30 Pro',
+            '中兴/远航 30 Pro+',
+            'VIVO/IQOO Neo 6 SE',
+            '中兴/Axon 40 Ultra',
+            '中兴/Axon 40 Pro',
+            '中邮通信/Hi Nova 9 z',
+            '华为/鼎桥 M40',
+            '天翼电信/麦芒 11',
+            '荣耀/畅玩 30',
+            '索尼/Xperia 1 IV',
+            'OPPO/一加 ACE 竞速版',
+            'VIVO/S 15',
+            'VIVO/S 15 Pro',
+        ];
+        // 创建一个函数生成随机数字
+        function getrandom(min, max) {
+            return Math.floor(Math.random() * (max - min - 1) + min);
+        }
+        function clock() {
+            // 通过获取一个随机的数组下标实现随机获取一个名字，并将这个名字赋值给变量random
+            let random = uname[getrandom(0, uname.length - 1)];
+            //将random塞到span里
+            nametxt.innerHTML = random;
+        };
+        // 打印名字已经实现了，下一步让没点击按钮前名字一直刷新
+        // 设置不停止时名字的刷新速度为30毫秒
+        let time = self.setInterval("clock()", 30);
+        // 将开始与停止按钮绑定到按钮上，并通过按钮控制
+        let flag = false;
+        button.onclick = function () {
+            // 当flag标志为false时，点击按钮让刷新停止；
+            if (flag == false) {
+                time = window.clearInterval(time);
+                // 按钮文字从stop变为start；
+                button.innerHTML = '再来一次';
+                // 标志变更
+                flag = true;
+            } else {
+                // 当flag标志为true时，开始刷新，文字变更
+                time = self.setInterval("clock()", 30);
+                button.innerHTML = '停止';
+                flag = false;
+            }
+        }
+    </script>
+    <div class="square">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="circle">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

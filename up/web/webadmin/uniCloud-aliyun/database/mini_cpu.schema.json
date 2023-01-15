@@ -1,0 +1,67 @@
+//CPu数据表
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "manufacturer": {
+      "bsonType": "string",
+      "description": "爷ID"
+      // "parentKey": "mini_cpu._id"
+    },
+    "manufacturername": {
+      "bsonType": "string",
+      "description": "爷名字"
+    },
+    "series": {
+      "bsonType": "string",
+      "description": "父ID"
+      // "parentKey": "mini_cpu._id"
+    },
+    "seriesname": {
+      "bsonType": "string",
+      "description": "父名称"
+    },
+    "name": {
+      "bsonType": "string",
+      "description": "名称"
+    },
+    "Cpuvalue": {
+      "bsonType": "string",
+      "description": "性能数值",
+      "defaultValue": "100"
+    },
+    "state": {
+      "bsonType": "bool",
+      "description": "状态",
+      "defaultValue": false
+    },
+    "type": {
+      "bsonType": "int",
+      "description": "SOC类型；0厂商，1系列，2型号"
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    },
+    "last_update_date": {
+      "bsonType": "timestamp",
+      "description": "最后一次修改时间",
+      // "forceDefaultValue": {
+      //   "$env": "now"
+      // }
+    }
+  },
+  "version": "0.0.1"
+}
