@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "新建SOC系列",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "cpu_input": "/components/cpu_input/cpu_input"
+  }
+}

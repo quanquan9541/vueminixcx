@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "新增SOC厂商",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "cpu_input": "/components/cpu_input/cpu_input"
+  }
+}

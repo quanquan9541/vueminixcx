@@ -3,13 +3,14 @@
     <image class="logo" src="/static/logo.png" @click="click"></image>
     <view class="text-area">
       <text class="title">{{title}}</text>
-      <uni-data-picker placeholder="请选择处理器" popup-title="请选择处理器型号" collection="mini_cpu"
-        field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="series">
+      <uni-data-picker placeholder="请选择处理器" popup-title="请选择处理器型号" collection="mini_cpu" where="
+     state == false" field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="series">
       </uni-data-picker>
       <uni-data-picker placeholder="请选择地址" popup-title="请选择城市" collection="opendb-city-china"
         field="code as value, name as text" orderby="value asc" :step-searh="true" self-field="code"
         parent-field="parent_code" @change="onchange" @nodeclick="onnodeclick">
       </uni-data-picker>
+      <button @click="goadd">123</button>
     </view>
   </view>
 </template>
@@ -25,6 +26,12 @@
 
     },
     methods: {
+      goadd() {
+        uni.navigateTo({
+          url: '/pages/index/add/add'
+        })
+      },
+
       click() {
         uni.navigateTo({
           url: "/pages/cpu/cpu_manufacturer"

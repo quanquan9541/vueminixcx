@@ -51,7 +51,16 @@
 
 
     }
-  ],
+      ,{
+            "path" : "pages/index/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新增手机",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

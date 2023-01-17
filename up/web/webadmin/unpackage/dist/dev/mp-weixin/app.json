@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cpu/cpu_add",
+    "pages/cpu/cpu_list",
+    "pages/cpu/cpu_manufacturer",
+    "pages/cpu/cpu_series",
+    "pages/css/css",
+    "pages/cpu/soc_add",
+    "pages/index/add/add"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

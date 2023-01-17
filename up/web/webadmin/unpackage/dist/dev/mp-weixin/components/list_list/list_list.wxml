@@ -1,0 +1,1 @@
+<view><view data-event-opts="{{[['tap',[['goEdit',['$0'],['item._id']]]]]}}" class="listbox" bindtap="__e"><view class="text">{{item.manufacturer+" "+item.series+" "+item.model}}</view><view class="value">{{item.Cpuvalue}}</view></view></view>

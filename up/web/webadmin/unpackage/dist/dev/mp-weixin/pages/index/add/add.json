@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "新增手机",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u--form": "/uni_modules/uview-ui/components/u--form/u--form",
+    "u-form-item": "/uni_modules/uview-ui/components/u-form-item/u-form-item",
+    "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input"
+  }
+}

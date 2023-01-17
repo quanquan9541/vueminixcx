@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "处理器列表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "list_list": "/components/list_list/list_list",
+    "uni-fab": "/uni_modules/uni-fab/components/uni-fab/uni-fab"
+  }
+}

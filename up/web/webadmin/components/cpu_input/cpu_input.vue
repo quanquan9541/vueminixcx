@@ -63,7 +63,7 @@
       //状态选择
       statechange(e) {
         // console.log('change', e);
-        this.manufacturer.state = e
+        this.data.state = e
       },
       //数据验证
       submit() {
@@ -93,6 +93,7 @@
         } else {
           db.collection('mini_cpu').where(`_id=="${this.data._id}"`).update({
             name: this.data.name,
+            state: this.data.state,
             last_update_date: Date.now()
           }).then(res => {
             console.log('修改成功', res);
