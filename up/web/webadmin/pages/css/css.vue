@@ -11,6 +11,8 @@
       </u-form-item>
     </u--form>
     <u-button @click="submit">提交</u-button>
+    <u-button @click="post">按钮</u-button>
+
   </view>
 </template>
 

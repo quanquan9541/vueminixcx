@@ -11,11 +11,22 @@
             <uni-easyinput v-model="data.name" placeholder="请输入具体型号"></uni-easyinput>
           </u-form-item>
         </view>
-        <u-form-item labelWidth='125rpx' label="手机型号" prop="soc" borderBottom>
+        <u-form-item labelWidth='125rpx' label="处理器" prop="soc" borderBottom>
           <uni-data-picker placeholder="请选择处理器" popup-title="请选择处理器型号" collection="mini_cpu" where="
 state == false" field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="series"
             @change="socchange">
           </uni-data-picker>
+        </u-form-item>
+        <view class="RomRam">
+          <u-form-item labelWidth='125rpx' label="内存" prop="Rom" borderBottom>
+            <uni-data-select v-model="data.Rom" :localdata="romlist" @change="changerom" placeholder='选择Rom规格'>
+            </uni-data-select>
+          </u-form-item>
+          <u-form-item labelWidth='75rpx' label="闪存" prop="Ram" borderBottom class='ram'>
+            <uni-data-select v-model="data.Ram" :localdata="ramlist" @change="changeram" placeholder='选择Ram规格'>
+            </uni-data-select>
+          </u-form-item>
+        </view>
         </u-form-item>
       </u--form>
       <view class="button">
@@ -29,20 +40,61 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
   export default {
     data() {
       return {
-        //输入框样式
-        styles: {
-          hight: 55
-        },
+        //Ram选择器列表
+        ramlist: [{
+            value: "USF 4.0",
+            text: "USF 4.0"
+          }, {
+            value: "USF 3.1",
+            text: "USF 3.1"
+          },
+          {
+            value: "USF 2.2",
+            text: "USF 2.2"
+          },
+          {
+            value: "emmc",
+            text: "emmc"
+          },
+          {
+            value: "未知",
+            text: "未知"
+          }
+        ],
+        //Rom选择器列表
+        romlist: [{
+            value: "LPDDR 5",
+            text: "LPDDR 5"
+          },
+          {
+            value: "LPDDR 4X",
+            text: "LPDDR 4X"
+          },
+          {
+            value: "LPDDR 4",
+            text: "LPDDR 4"
+          },
+          {
+            value: '未知',
+            text: "未知"
+          },
+        ],
         // 表单数据
         data: {
           names: '',
           name: '',
-          soc: ''
+          soc: '',
+          Rom: "",
+          Ram: ""
         },
         // 表单规则
         datarules: {
-          names: '',
-          name: ''
+          'name': [{
+            type: 'string',
+            required: true,
+            message: '请填写内容',
+            trigger: ['blur', 'change']
+          }]
         },
         //手机型号列表
         phone: [{
@@ -158,6 +210,16 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
       };
     },
     methods: {
+      //ram选择器
+      changeram(e) {
+        // console.log("ram:", e);
+        this.data.Ram = e
+      },
+      //rom选择器
+      changerom(e) {
+        // console.log("rom:", e);
+        this.data.Rom = e
+      },
       //数据验证
       submit() {
         this.$refs.dataform.validate().then(res => {
@@ -199,7 +261,6 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
 
       .name {
         display: flex;
-        height: 56.8px;
 
         .nameleft {
           flex: 3;
@@ -208,6 +269,14 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
         .nameright {
           flex: 2;
           margin-left: 5rpx;
+        }
+      }
+
+      .RomRam {
+        display: flex;
+
+        .ram {
+          margin-left: 90rpx;
         }
       }
     }
