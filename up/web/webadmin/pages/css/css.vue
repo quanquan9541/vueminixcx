@@ -10,6 +10,10 @@
         <u-input v-model="form.name" />
       </u-form-item>
     </u--form>
+    <view>
+      <uni-data-checkbox multiple v-model="value" :localdata="range" :multiple="true" @change="change">
+      </uni-data-checkbox>
+    </view>
     <u-button @click="submit">提交</u-button>
     <u-button @click="post">按钮</u-button>
 
@@ -20,6 +24,17 @@
   export default {
     data() {
       return {
+        value: "",
+        range: [{
+          "value": 0,
+          "text": "篮球"
+        }, {
+          "value": 1,
+          "text": "足球"
+        }, {
+          "value": 2,
+          "text": "游泳"
+        }],
         data: [],
         form: {
           name: '',
@@ -35,6 +50,9 @@
       };
     },
     methods: {
+      change(e) {
+        console.log('e:', e);
+      },
       submit() {
         this.$refs.uForm.validate().then(res => {
           console.log(res);

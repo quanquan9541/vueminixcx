@@ -3,12 +3,11 @@
     <view class="form">
       <u--form labelPosition="left" :model="data" :rules="datarules" ref="dataform">
         <view class="name">
-          <u-form-item class='nameleft' labelWidth='125rpx' label="手机型号" prop="names" borderBottom>
-            <uni-data-picker :localdata="phone" popup-title="请选择手机型号" @change="onchange" @nodeclick="onnodeclick">
+          <u-form-item labelWidth='125rpx' label="手机型号" prop="name.text" borderBottom>
+            <uni-data-picker class='nameleft' :localdata="phone" placeholder="请选择手机品牌" popup-title="请选择手机型号"
+              @change="onchange" @nodeclick="onnodeclick">
             </uni-data-picker>
-          </u-form-item>
-          <u-form-item class='nameright' prop="name" borderBottom>
-            <uni-easyinput v-model="data.name" placeholder="请输入具体型号"></uni-easyinput>
+            <uni-easyinput class='nameright' v-model="data.name.text" placeholder="请输入具体型号"></uni-easyinput>
           </u-form-item>
         </view>
         <u-form-item labelWidth='125rpx' label="处理器" prop="soc" borderBottom>
@@ -28,6 +27,31 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
           </u-form-item>
         </view>
         </u-form-item>
+        <u-form-item labelWidth='125rpx' label="屏幕厂商" prop="monitor" borderBottom>
+          <uni-data-picker :localdata="monitorlist" placeholder="请选择屏幕厂商" popup-title="请选择屏幕" @change="monitorchange"
+            @nodeclick="onnodeclick">
+          </uni-data-picker>
+        </u-form-item>
+        <u-form-item class="pixel" labelWidth='125rpx' label="分辨率" prop="pixel" borderBottom>
+          <uni-easyinput class="l_box" v-model="data.pixel.t_pixel" placeholder="横向分辨率"></uni-easyinput>
+          <uni-easyinput class="c_box" v-model="data.pixel.l_pixel" placeholder="纵向分辨率"></uni-easyinput>
+          <uni-easyinput class="r_box" v-model="data.pixel.size" placeholder="尺寸"></uni-easyinput>
+        </u-form-item>
+        <u-form-item class="Hz" labelWidth='125rpx' label="刷新采样" prop="Hz" borderBottom>
+          <uni-easyinput class="l_box" v-model="data.Hz.R_Hz" placeholder="刷新率"></uni-easyinput>
+          <uni-easyinput class="r_box" v-model="data.Hz.S_Hz" placeholder="采样率"></uni-easyinput>
+        </u-form-item>
+        <u-form-item labelWidth='125rpx' label="调光方式" prop="Hz" borderBottom>
+          <uni-data-picker :localdata="Dimminglist" placeholder="请选择调光方式" popup-title="请选择调光方式" @change="Dimmingchange"
+            @nodeclick="onnodeclick">
+          </uni-data-picker>
+        </u-form-item>
+        <u-form-item labelWidth='125rpx' label="屏幕附加" prop="ScreenAttach" borderBottom>
+          <uni-data-checkbox multiple v-model="data.ScreenAttach.value" :localdata="ScreenAttachlist" :multiple="true"
+            @change="ScreenAttachchange">
+          </uni-data-checkbox>
+          </uni-data-picker>
+        </u-form-item>
       </u--form>
       <view class="button">
         <u-button class='button' type="primary" text="确定" @click="submit"></u-button>
@@ -37,9 +61,89 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
 </template>
 
 <script>
+  //屏幕类型0 OLED 1LCD
+  let monitorlistchildren = [{
+      text: "OLED",
+      value: 1000
+    },
+    {
+      text: "LCD",
+      value: 2000
+    }
+  ];
+  //
   export default {
     data() {
       return {
+        //屏幕附加
+        ScreenAttachlist: [{
+          "value": 0,
+          "text": "DCI-P3"
+        }, {
+          "value": 1,
+          "text": "HDR10+"
+        }],
+        //调光
+        Dimminglist: [{
+            value: 0,
+            text: "DC调光",
+
+          }, {
+            value: 1,
+            text: "PWM调光",
+            children: [{
+                value: 1000,
+                text: "1440Hz",
+              },
+              {
+                value: 1100,
+                text: "1920Hz",
+              },
+              {
+                value: 1200,
+                text: "2160Hz",
+              }
+            ]
+          },
+
+        ],
+        //monitorlist屏幕厂商选择器
+        monitorlist: [{
+            value: 0,
+            text: "三星",
+            children: monitorlistchildren
+
+          }, {
+            value: 1,
+            text: "京东方",
+            children: monitorlistchildren
+          },
+          {
+            value: 2,
+            text: "华星光电",
+            children: monitorlistchildren
+          },
+          {
+            value: 3,
+            text: "天马微电子",
+            children: monitorlistchildren
+          },
+          {
+            value: 4,
+            text: "维信诺",
+            children: monitorlistchildren
+          },
+          {
+            value: 5,
+            text: "柔宇科技",
+            children: monitorlistchildren
+          },
+          {
+            value: 6,
+            text: "其他",
+            children: monitorlistchildren
+          }
+        ],
         //Ram选择器列表
         ramlist: [{
             value: "USF 4.0",
@@ -81,18 +185,35 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
         ],
         // 表单数据
         data: {
-          names: '',
-          name: '',
+          name: {
+            prefix: "",
+            text: ""
+          },
           soc: '',
           Rom: "",
-          Ram: ""
+          Ram: "",
+          monitor: "",
+          pixel: {
+            t_pixel: "", //横向
+            l_pixel: "", //纵向
+            size: "", //尺寸
+          },
+          Hz: {
+            R_Hz: "",
+            S_Hz: "",
+            Dimming: "" //调光
+          },
+          ScreenAttach: {
+            Object: [],
+            value: []
+          } //屏幕附加
         },
         // 表单规则
         datarules: {
-          'name': [{
+          'name.text': [{
             type: 'string',
             required: true,
-            message: '请填写内容',
+            message: '请填写具体型号',
             trigger: ['blur', 'change']
           }]
         },
@@ -210,6 +331,21 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
       };
     },
     methods: {
+      //屏幕附加
+      ScreenAttachchange(e) {
+        // console.log(e);
+        this.data.ScreenAttach.Object = e.detail
+        this.data.ScreenAttach.value = e.detail.value
+      },
+      //选择调光方式
+      Dimmingchange(e) {
+        this.data.Hz.Dimming = e.detail.value
+      },
+      //屏幕厂商和类型选择器
+      monitorchange(e) {
+        // console.log('屏幕', e);
+        this.data.monitor = e.detail.value
+      },
       //ram选择器
       changeram(e) {
         // console.log("ram:", e);
@@ -239,8 +375,9 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
       onchange(e) {
         let value = e.detail.value
         // console.log(value);
-        this.data.names = value[0].text + "\xa0" + value[1].text
-        console.log(this.data.names);
+        // this.data.names = value[0].text + "\xa0" + value[1].text
+        this.data.name.prefix = value
+        // console.log(this.data.names);
       },
       onnodeclick(node) {}
       //
@@ -259,16 +396,22 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
     .form {
       padding: 0 20rpx;
 
-      .name {
-        display: flex;
-
-        .nameleft {
-          flex: 3;
+      .pixel,
+      .Hz {
+        .l_box {
+          margin-right: 20rpx;
         }
 
+        .r_box {
+          margin-left: 20rpx;
+        }
+      }
+
+      .name {
+        .nameleft {}
+
         .nameright {
-          flex: 2;
-          margin-left: 5rpx;
+          margin-left: 10rpx;
         }
       }
 
