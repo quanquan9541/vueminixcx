@@ -2,17 +2,17 @@
 	<view class="uni-data-pickerview">
 		<scroll-view class="selected-area" scroll-x="true" scroll-y="false" :show-scrollbar="false">
 			<view class="selected-list">
-				<block v-for="(item,index) in selected" :key="index">
+				<template v-for="(item,index) in selected">
 					<view class="selected-item"
 						:class="{'selected-item-active':index==selectedIndex, 'selected-item-text-overflow': ellipsis}"
 						 v-if="item.text" @click="handleSelect(index)">
 						<text class="">{{item.text}}</text>
 					</view>
-				</block>
+				</template>
 			</view>
 		</scroll-view>
 		<view class="tab-c">
-			<block v-for="(child, i) in dataList" :key="index">
+			<template v-for="(child, i) in dataList" >
 				<scroll-view class="list" :key="i" v-if="i==selectedIndex" :scroll-y="true">
 					<view class="item" :class="{'is-disabled': !!item.disable}" v-for="(item, j) in child" :key="j"
 						@click="handleNodeClick(item, i, j)">
@@ -20,7 +20,7 @@
 						<view class="check" v-if="selected.length > i && item[map.value] == selected[i].value"></view>
 					</view>
 				</scroll-view>
-			</block>
+			</template>
 
 			<view class="loading-cover" v-if="loading">
 				<uni-load-more class="load-more" :contentText="loadMore" status="loading"></uni-load-more>

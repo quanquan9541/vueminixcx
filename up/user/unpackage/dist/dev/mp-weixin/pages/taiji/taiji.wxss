@@ -136,6 +136,25 @@
   border-radius: 50%;
   background-image: radial-gradient(white 20%, black 20%);
 }
+.content .list.data-v-76ecb53e {
+  width: 80vw;
+  height: 80rpx;
+  overflow: scroll;
+}
+.content .list .listlist.data-v-76ecb53e {
+  display: flex;
+  justify-content: space-around;
+}
+.content .list .listlist .time.data-v-76ecb53e,
+.content .list .listlist .text.data-v-76ecb53e {
+  padding: 20rpx 0;
+  font-family: '华文细黑';
+  font-style: normal;
+  font-size: 16px;
+  color: #555500;
+  text-align: center;
+  text-shadow: 1px 1px 1px #c4c4c4;
+}
 .content .buttom text.data-v-76ecb53e {
   padding: 20rpx 0;
   font-family: '华文细黑';

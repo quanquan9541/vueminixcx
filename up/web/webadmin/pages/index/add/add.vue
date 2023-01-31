@@ -46,10 +46,20 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
             @nodeclick="onnodeclick">
           </uni-data-picker>
         </u-form-item>
+        <u-form-item class="nitcolor" labelWidth='125rpx' label="亮度颜色" prop="nitcolor.nit" borderBottom>
+          <uni-easyinput class="l_box" v-model="data.nitcolor.nit" placeholder="亮度"></uni-easyinput>
+          <uni-data-picker class="r_box" :localdata="colorlist" placeholder="请选择色彩数值" popup-title="请选择调光方式"
+            @change="colorchange" @nodeclick="onnodeclick">
+          </uni-data-picker>
+        </u-form-item>
         <u-form-item labelWidth='125rpx' label="屏幕附加" prop="ScreenAttach" borderBottom>
           <uni-data-checkbox multiple v-model="data.ScreenAttach.value" :localdata="ScreenAttachlist" :multiple="true"
             @change="ScreenAttachchange">
           </uni-data-checkbox>
+        </u-form-item>
+        <u-form-item labelWidth='125rpx' label="外观设计" prop="Design" borderBottom>
+          <uni-data-picker :localdata="Designlist" placeholder="请选择外观设计" popup-title="请选择外观设计" @change="Designchange"
+            @nodeclick="onnodeclick">
           </uni-data-picker>
         </u-form-item>
       </u--form>
@@ -75,6 +85,104 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
   export default {
     data() {
       return {
+        // 表单数据
+        data: {
+          name: {
+            prefix: "",
+            text: ""
+          },
+          soc: '',
+          Rom: "",
+          Ram: "",
+          monitor: "",
+          pixel: {
+            t_pixel: "", //横向
+            l_pixel: "", //纵向
+            size: "", //尺寸
+          },
+          Hz: {
+            R_Hz: "",
+            S_Hz: "",
+            Dimming: "" //调光
+          },
+          nitcolor: { //亮度和色彩
+            nit: "",
+            color: ""
+          },
+          ScreenAttach: {
+            Object: [],
+            value: []
+          }, //屏幕附加
+          Design: "" //外观
+        },
+        // 表单规则
+        datarules: {
+          'name.text': [{
+            type: 'string',
+            required: true,
+            message: '请填写具体型号',
+            trigger: ['blur', 'change']
+          }],
+          'nitcolor.nit': [{
+            type: 'string',
+            required: true,
+            message: '请填写亮度数值',
+            trigger: ['blur', 'change']
+          }]
+        },
+        //外观设计
+        Designlist: [{
+          value: 1,
+          text: "全面屏",
+          children: [{
+              value: 10,
+              text: "刘海",
+            },
+            {
+              value: 20,
+              text: "挖槽",
+            },
+            {
+              value: 30,
+              text: "水滴",
+            },
+            {
+              value: 40,
+              text: "打孔",
+              children: [{
+                  value: 401,
+                  text: "左置",
+                },
+                {
+                  value: 402,
+                  text: "中置",
+                }, {
+                  value: 403,
+                  text: "右置",
+                }
+              ]
+            },
+            {
+              value: 50,
+              text: "真全面屏(屏下镜头)",
+            }
+
+          ]
+        }, {
+          value: 99999,
+          text: "非全面屏",
+        }],
+        //色彩表
+        colorlist: [{
+          "value": 8,
+          "text": "8bit"
+        }, {
+          "value": 10,
+          "text": "10bit"
+        }, {
+          "value": 12,
+          "text": "12bit"
+        }],
         //屏幕附加
         ScreenAttachlist: [{
           "value": 0,
@@ -183,40 +291,7 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
             text: "未知"
           },
         ],
-        // 表单数据
-        data: {
-          name: {
-            prefix: "",
-            text: ""
-          },
-          soc: '',
-          Rom: "",
-          Ram: "",
-          monitor: "",
-          pixel: {
-            t_pixel: "", //横向
-            l_pixel: "", //纵向
-            size: "", //尺寸
-          },
-          Hz: {
-            R_Hz: "",
-            S_Hz: "",
-            Dimming: "" //调光
-          },
-          ScreenAttach: {
-            Object: [],
-            value: []
-          } //屏幕附加
-        },
-        // 表单规则
-        datarules: {
-          'name.text': [{
-            type: 'string',
-            required: true,
-            message: '请填写具体型号',
-            trigger: ['blur', 'change']
-          }]
-        },
+
         //手机型号列表
         phone: [{
             text: "OPPO",
@@ -331,6 +406,17 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
       };
     },
     methods: {
+      //外观选择
+      Designchange(e) {
+        // console.log('外观选择', e);
+        this.data.Design = e.detail.value
+      },
+
+      //颜色选择
+      colorchange(e) {
+        // console.log('颜色选择',e);
+        this.data.nitcolor.color = e.detail.value
+      },
       //屏幕附加
       ScreenAttachchange(e) {
         // console.log(e);
@@ -397,7 +483,8 @@ state == false" field="_id as value, name as text" :step-searh="true" self-field
       padding: 0 20rpx;
 
       .pixel,
-      .Hz {
+      .Hz,
+      .nitcolor {
         .l_box {
           margin-right: 20rpx;
         }

@@ -43,6 +43,7 @@ export function getProvince() {
 function getIp() {
   return new Promise((resolve, reject) => {
     uni.request({
+
       url: "https://restapi.amap.com/v3/ip?key=f55ac7c6a06cce856428e551f0acf0fc",
       success: res => {
         console.log("进行网络请求")

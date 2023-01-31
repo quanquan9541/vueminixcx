@@ -18,7 +18,13 @@
           text="太极八卦图">
         </u-button>
       </view>
+      <view class="button">
+        <u-button @click="gotojd" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
+          text="链接转化器">
+        </u-button>
+      </view>
     </view>
+
   </view>
 </template>
 
@@ -30,6 +36,12 @@
       };
     },
     methods: {
+      //跳转到京东链接转化
+      gotojd() {
+        uni.navigateTo({
+          url: '/pages/jdurl/jdurl'
+        })
+      },
       //跳转到工作排行榜
       gotowork() {
         uni.navigateTo({
@@ -85,14 +97,11 @@
 
     .bottom {
       flex: 1;
-      // height: 300rpx;
       padding: 20rpx;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // align-items: center;
       border-radius: 14px;
-      // padding: 20rpx;
       border: 1rpx solid #aaaaff;
 
 
