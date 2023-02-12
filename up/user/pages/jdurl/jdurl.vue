@@ -77,6 +77,7 @@
         if ((Date.now() - urltime) < 3000) {
           uni.showLoading({
             mask: true,
+            icon: 'error',
             title: '查询过于频繁'
           });
           setTimeout(function() {
@@ -85,8 +86,10 @@
           return
         }
         if (!this.isUrl(this.jdvalue) || !this.containsNumber(this.jdvalue)) {
+          this.jdvalue = null
           uni.showLoading({
             mask: true,
+            icon: 'error',
             title: '链接错误'
           });
           setTimeout(function() {
@@ -191,8 +194,12 @@
 
             let data = JSON.parse(res.data.jd_union_open_goods_promotiongoodsinfo_query_responce.queryResult)
             if (!data.data) {
+              this.state = false
+              this.show = false
+              this.jdvalue = null
               uni.showLoading({
                 mask: true,
+                icon: 'error',
                 title: '无效链接'
               });
               setTimeout(function() {

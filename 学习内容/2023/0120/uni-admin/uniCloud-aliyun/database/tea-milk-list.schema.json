@@ -1,0 +1,80 @@
+// 奶茶数据表
+{
+  "bsonType": "object",
+  "required": [
+    "name",
+    "pic"
+  ],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "存储文档 ID（商品 ID），系统自动生成"
+    },
+    "category_id": {
+      "bsonType": "string",
+      "title": "品牌",
+      "description": "请选择品牌",
+      "foreignKey": "tea-milk-class._id",
+      "enum": {
+        "collection": "tea-milk-class",
+        "field": "_id as value, name as text"
+      }
+    },
+
+    "name": {
+      "bsonType": "string",
+      "description": "请输入商品名称",
+      "title": "名称",
+      "trim": "both"
+    },
+    "pic": {
+      "bsonType": "array",
+      "arrayType": "file",
+      "title": "大图",
+      "multiple": true,
+      "fileMediaType": "image",
+      "fileExtName": "jpg,png",
+      "maxLength": 3
+    },
+    "goods_desc": {
+      "bsonType": "string",
+      "description": "请输入配料表",
+      "title": "配料",
+      "trim": "both"
+    },
+    "url": {
+      "bsonType": "string",
+      "description": "商品图文链接",
+      "title": "图文",
+      "pattern": "^(http://|https://|/|./|@/)\\S",
+      "trim": "both"
+    },
+    "add_date": {
+      "bsonType": "timestamp",
+      "title": "日期",
+      "description": "上架时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "state": {
+      "bsonType": "bool",
+      "title": "状态",
+      "defaultValue": true
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+
+  },
+  "version": "0.0.1"
+}

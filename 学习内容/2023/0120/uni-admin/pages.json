@@ -182,6 +182,36 @@
       "style": {
         "navigationBarTitleText": "品牌列表"
       }
+    }, {
+      "path": "pages/tea-milk-class/add",
+      "style": {
+        "navigationBarTitleText": "新增奶茶品牌"
+      }
+    }, {
+      "path": "pages/tea-milk-class/edit",
+      "style": {
+        "navigationBarTitleText": "编辑奶茶品牌"
+      }
+    }, {
+      "path": "pages/tea-milk-class/list",
+      "style": {
+        "navigationBarTitleText": "品牌列表"
+      }
+    }, {
+      "path": "pages/tea-milk-list/add",
+      "style": {
+        "navigationBarTitleText": "新增奶茶"
+      }
+    }, {
+      "path": "pages/tea-milk-list/edit",
+      "style": {
+        "navigationBarTitleText": "编辑奶茶"
+      }
+    }, {
+      "path": "pages/tea-milk-list/list",
+      "style": {
+        "navigationBarTitleText": "奶茶列表"
+      }
     }
   ],
   "subPackages": [{

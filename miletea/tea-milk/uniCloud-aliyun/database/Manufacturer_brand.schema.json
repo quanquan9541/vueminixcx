@@ -1,0 +1,83 @@
+{
+	"bsonType": "object",
+	"required": [
+		"name"
+	],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（文章 ID），系统自动生成"
+		},
+		"z_id": {
+			"bsonType": "string",
+			"description": "爷ID，用于多级分类",
+			"title": "厂商"
+			// "parentKey": "parent_id" // 指定父子关系为：如果数据库记录A的_id和数据库记录B的parent_id相等，则A是B的父级。
+
+		},
+		"parent_id": {
+			"bsonType": "string",
+			"description": "父ID，用于多级分类",
+			"title": "品牌"
+			// "parentKey": "_id" // 指定父子关系为：如果数据库记录A的_id和数据库记录B的parent_id相等，则A是B的父级。
+
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "名称",
+			"title": "名称",
+			"trim": "both"
+		},
+		"pic": {
+			"bsonType": "file",
+			"defaultValue": "上传手机大图",
+			"title": "大图",
+			"fileMediaType": "image", // 可选值 all|image|video 默认值为all,表示所有文件，image表示图片类型文件，video表示视频类型文件
+			"fileExtName": "jpg,png"
+		},
+		"money": {
+			"bsonType": "int",
+			"defaultValue": "请输入价格",
+			"title": "价格",
+			"minimum ": 0
+		},
+		"birth_data": {
+			"bsonType": "int",
+			"title": "发布日期",
+			"defaultValue": "请输入发布日期",
+			"minimum": 2008,
+			"maximum": 2050
+		},
+		"status": {
+			"bsonType": "bool",
+			"description": "启用状态",
+			"title": "启用",
+			"defaultValue": true
+		},
+		"type": {
+			"bsonType": "int",
+			"description": "类型0厂商1品牌2型号",
+			"title": "类型"
+		},
+		"create_date": {
+			"bsonType": "timestamp",
+			"description": "创建时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			},
+			"last_date": {
+				"bsonType": "timestamp",
+				"description": "创建时间",
+				"defaultValue": {
+					"$env": "now"
+				}
+			}
+		}
+	},
+	"version": "0.0.1"
+}

@@ -5,13 +5,21 @@
         <uni-easyinput placeholder="名称" v-model="formData.name" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="pic" label="大图">
-        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic"></uni-file-picker>
+        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic">
+        </uni-file-picker>
       </uni-forms-item>
       <uni-forms-item name="money" label="价格">
         <uni-easyinput type="number" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="url" label="链接">
         <uni-easyinput placeholder="请输入购买链接" v-model="formData.url"></uni-easyinput>
+      </uni-forms-item>
+      <uni-forms-item name="pic" label="大图">
+        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic">
+        </uni-file-picker>
+      </uni-forms-item>
+      <uni-forms-item name="money" label="价格">
+        <uni-easyinput type="number" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="brith" label="发售日期">
         <uni-datetime-picker return-type="timestamp" v-model="formData.brith"></uni-datetime-picker>
@@ -39,7 +47,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/Manufacturer_brand.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/Manufacturer_brand.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -55,7 +65,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -89,7 +99,7 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+
       /**
        * 验证表单并提交
        */
@@ -99,8 +109,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },
@@ -132,13 +141,14 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("name,pic,money,url,brith,status,type,parent_id,z_id").get().then((res) => {
-          const data = res.result.data[0]
-          if (data) {
-            this.formData = data
-            
-          }
-        }).catch((err) => {
+        db.collection(dbCollectionName).doc(id).field("name,pic,money,url,brith,status,type,parent_id,z_id").get().then(
+          (res) => {
+            const data = res.result.data[0]
+            if (data) {
+              this.formData = data
+
+            }
+          }).catch((err) => {
           uni.showModal({
             content: err.message || '请求服务失败',
             showCancel: false
