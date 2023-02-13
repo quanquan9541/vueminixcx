@@ -1,22 +1,33 @@
 <template>
   <view class="content">
-    <view class="top">
-      <view class="classname">
-        <u-tabs :list="classlist" lineWidth="25" lineHeight="6" :activeStyle="{
-            color: '#303133',
-            fontWeight: 'bold',
-            transform: 'scale(1.1)'
-        }" @click="click"></u-tabs>
+    <view class="skeleton">
+      <u-skeleton rows="5" :loading="loading" title>
+      </u-skeleton>
+    </view>
+    <view class="data" v-if="!loading">
+      <view class="top">
+        <view class="classname">
+          <u-tabs :list="classlist" lineWidth="25" lineHeight="6" :activeStyle="{
+              color: '#303133',
+              fontWeight: 'bold',
+              transform: 'scale(1.1)'
+          }" @click="click"></u-tabs>
+        </view>
+        <view class="search" @click="gosearch">
+          <u-icon name="search" color="#55aaff" size="30"></u-icon>
+        </view>
       </view>
-      <view class="search" @click="gosearch">
-        <u-icon name="search" color="#55aaff" size="30"></u-icon>
+      <view class="kong" v-if='!data.length'>
+        <u-empty mode="list" icon="http://cdn.uviewui.com/uview/empty/list.png">
+        </u-empty>
+      </view>
+      <view class="listbox" v-else>
+        <view class="list" v-for="(item,index) in data" :key="item.id">
+          <list :item="item"></list>
+        </view>
       </view>
     </view>
-    <view class="listbox">
-      <view class="list" v-for="(item,index) in data" :key="item.id">
-        <list :item="item"></list>
-      </view>
-    </view>
+
   </view>
 </template>
 
@@ -25,11 +36,16 @@
   export default {
     data() {
       return {
+        loading: true,
         classlist: [],
         data: []
       }
     },
     onLoad() {
+      // 延时2秒钟显示数据
+      uni.$u.sleep(2000).then(() => {
+        this.loading = false
+      })
       this.getclass()
       // this.getyuntea(this.classlist[0].id)
     },
@@ -38,7 +54,7 @@
       async getclass() {
         let res = await db.collection('tea-milk-class').where(`state==true`).field('_id as id,name as name').orderBy(
           'sort asc').get()
-        console.log(res.result.data);
+        // console.log(res.result.data);
         this.classlist = res.result.data
         // console.log(this.data.length);
         if (!this.data.length) { //判断下首页是否有数据
@@ -72,7 +88,8 @@
             }
           }
         )
-        console.log(this.data)
+        this.loading = false
+        // console.log(this.data)
       },
     }
   }
@@ -80,60 +97,73 @@
 
 <style lang="scss">
   .content {
-    margin: 10rpx;
+    margin: 0 10rpx;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
-    .top {
-      // width: 720rpx;
-      margin: 5rpx;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-around;
-      background: rgba(99, 225, 93, 0.1);
-      border-radius: 14rpx;
-      box-shadow: 0px 1px 1px 1px #dbdbdb;
-      // border-radius: 14px;
-
-      .classname {
-        padding: 0 10rpx;
-        // margin: 20rpx;
-
-      }
-
-      .search {
-        margin: 0 20rpx 0 10rpx;
-        padding-right: 20rpx;
-      }
-    }
-
-    .listbox {
+    .skeleton {
       width: 720rpx;
-      height: auto;
-      border-radius: 14rpx;
-      display: flex;
-      flex-direction: row;
-      // box-shadow: 0px 1px 1px 1px #dbdbdb;
-      margin: 5rpx;
       margin-top: 20rpx;
-      // border: 1rpx blue solid;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      align-content: stretch;
+    }
 
-      &:after {
-        content: "";
-        width: 320rpx;
-        margin: 20rpx;
+    .data {
+      .top {
+        width: 720rpx;
+        // margin: 5rpx;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        background: rgba(99, 225, 93, 0.1);
+        border-radius: 14rpx;
+        box-shadow: 0px 1px 1px 1px #dbdbdb;
+
+        .classname {
+          padding: 0 10rpx;
+        }
+
+        .search {
+          margin: 0 20rpx 0 10rpx;
+          padding-right: 20rpx;
+        }
       }
 
-      .list {
-        margin: 0 10rpx;
+      .kong {
+        width: 720rpx;
+        height: 1080rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .listbox {
+        width: 720rpx;
+        height: auto;
+        border-radius: 14rpx;
+        display: flex;
+        flex-direction: row;
+        // box-shadow: 0px 1px 1px 1px #dbdbdb;
+        margin: 5rpx;
+        margin-top: 20rpx;
+        // border: 1rpx blue solid;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: stretch;
+
+        &:after {
+          content: "";
+          width: 300rpx;
+          margin: 10rpx 30rpx;
+        }
+
+        .list {
+          margin: 10rpx 0;
+        }
       }
     }
+
   }
 </style>

@@ -1,4 +1,7 @@
 import App from './App'
+//分享引用小程序
+import share from '@/tools/share.js'
+Vue.mixin(share)
 
 // #ifndef VUE3
 import Vue from 'vue'

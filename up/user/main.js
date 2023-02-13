@@ -1,6 +1,6 @@
 import App from './App'
 //分享引用
-import share from '@/js/share.js'
+import share from '@/js/sharepuls.js'
 Vue.mixin(share)
 
 // #ifndef VUE3

@@ -1,12 +1,12 @@
 <template>
   <view>
-    <view class="logbox">
+    <view class="logbox" v-if='logdata.length'>
       <view class="text">
-        <view class="loglist" v-for="item in 5">
-          <view class="log">log</view>
+        <view class="loglist" v-for="(item,index) in logdata" :key="index">
+          <view class="log">{{item}}</view>
         </view>
       </view>
-      <view class="button">
+      <view class="button" @click="clean">
         <view class="clean">清除历史记录</view>
       </view>
     </view>
@@ -16,10 +16,24 @@
 <script>
   export default {
     name: "tealog",
+    props: {
+      logdata: {
+        type: Array,
+        default () {
+          return {};
+        }
+      },
+    },
     data() {
       return {
 
       };
+    },
+    methods: {
+      clean() {
+        this.logdata = []
+        uni.removeStorageSync('log');
+      }
     }
   }
 </script>
@@ -44,7 +58,6 @@
           font-weight: 400;
           font-size: 12px;
           color: #c4c4c4;
-          white-space: normal;
           text-align: center;
           word-wrap: normal;
         }
