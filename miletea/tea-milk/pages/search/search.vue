@@ -2,7 +2,8 @@
   <view class="content">
     <view class="searchbox">
       <u-search searchIcon=arrow-down inputAlign="center" height="40" size='18' placeholder="请输出搜索内容" :label=title
-        v-model="keyword" :showAction="true" actionText="搜索" :animation="true" @custom='search' @clickIcon="clickIcon">
+        bgColor='#F1FCEF' v-model="keyword" :showAction="true" :clearabled='false' actionText="搜索" @custom='search'
+        @clickIcon="clickIcon">
       </u-search>
     </view>
     <view class="log">
@@ -17,6 +18,7 @@
         <list :item="item"></list>
       </view>
     </view>
+
     <view class="type">
       <u-picker :show="show" :columns="columns" keyName="label" @cancel='cancel' @confirm='confirm' @change='change'>
       </u-picker>
@@ -26,12 +28,16 @@
 
 <script>
   const db = uniCloud.database();
+  //引入防抖文件
+  import {
+    antiShake
+  } from '@/tools/antiShake.js'; //防抖
   export default {
     data() {
       return {
         logdata: [], //缓存
         data: [], //云端数据
-        keyword: '豆乳玉麒麟',
+        keyword: '',
         title: "产品",
         show: false,
         type: "name",
@@ -51,11 +57,12 @@
       const logdata = uni.getStorageSync('log')
       if (!logdata.length) {
         this.logdata = []
+        this.keyword = '豆乳玉麒麟'
         return
       } else {
+        this.keyword = logdata[0] || '豆乳玉麒麟'
         this.logdata = logdata
       }
-
     },
     methods: {
       //设置缓存
@@ -89,8 +96,10 @@
         this.type = e.value[0].type
       },
       //点击搜索
-      search() {
-        // console.log('点了搜索', this.keyword, this.type);
+      //给按钮添加防抖
+      search: antiShake(function() {
+        // // console.log('节流');
+        // // console.log('点了搜索', this.keyword, this.type);
         if (!this.keyword) {
           uni.showToast({
             icon: "none",
@@ -99,50 +108,55 @@
             duration: 900
           })
         } else {
-          this.setdata()
-          this.getdata(this.type)
+          uni.showLoading({
+            title: '搜索中',
+            mask: true
+          });
+          let e = this.ptype() //判断结果
+          this.getdata(e) //调用函数
+
+        }
+      }),
+      //判断类型
+      ptype() {
+        if (this.type == "name") {
+          const war = {
+            name: new RegExp(this.keyword, 'gi'),
+            state: true
+          }
+          return war
+        } else {
+          const war = {
+            goods_desc: new RegExp(this.keyword, 'gi'),
+            state: true
+          }
+          return war
         }
       },
       //获取网络数据
       async getdata(e) {
-        if (e == "name") {
-          const res = await db.collection('tea-milk-list').where(
-              `${new RegExp(this.keyword, 'gi')}.test(name) && state==true`)
-            .get()
-          console.log(res);
-          if (!res.result.data.length) {
-            uni.showToast({
-              icon: "none",
-              title: "搜索内容不存在",
-              mask: true,
-              duration: 900
-            })
-          }
-          this.data = res.result.data
-        } else {
-          const res = await db.collection('tea-milk-list').where(
-              `${new RegExp(this.keyword, 'gi')}.test(goods_desc) && state==true`)
-            .get()
-          // console.log(res);
-          if (!res.result.data.length) {
-            uni.showToast({
-              icon: "none",
-              title: "搜索内容不存在",
-              mask: true,
-              duration: 900
-            })
-          }
-          this.data = res.result.data
+        const res = await db.collection('tea-milk-list').where(
+          e).orderBy('create_date desc').get()
+        // console.log(res);
+        uni.hideLoading();
+        if (!res.result.data.length) {
+          return uni.showToast({
+            icon: "none",
+            title: "搜索内容不存在",
+            mask: true,
+            duration: 900
+          })
         }
-
+        this.data = res.result.data
       }
+
     }
   }
 </script>
 
 <style lang="scss">
   .content {
-    margin: 10rpx;
+    margin: 30rpx 10rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,7 +165,7 @@
     .searchbox {
       width: 720rpx;
       margin: 5rpx;
-      background: rgba(151, 151, 151, 0.4);
+      background: rgba(99, 225, 93, 0.1);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -159,7 +173,7 @@
       align-items: flex-start;
       align-content: stretch;
       box-shadow: 0px 1px 1px 1px #cecece;
-      border-radius: 20px;
+      border-radius: 14px;
 
 
       .classname {
@@ -181,29 +195,25 @@
     }
 
     .listbox {
-      width: 720rpx;
       height: auto;
-      border-radius: 14rpx;
       display: flex;
       flex-direction: row;
-      // box-shadow: 0px 1px 1px 1px #dbdbdb;
       margin: 5rpx;
       margin-top: 20rpx;
       // border: 1rpx blue solid;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
       align-items: flex-start;
-      align-content: stretch;
-
+      align-content: flex-start;
 
       &:after {
         content: "";
-        width: 290rpx;
-        margin: 20rpx;
+        width: 300rpx;
+        margin: 10rpx;
       }
 
       .list {
-        margin: 10rpx 0;
+        // margin: 10rpx 0;
       }
     }
   }

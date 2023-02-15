@@ -37,8 +37,9 @@
     },
     "sort": {
       "bsonType": "int",
-      "description": "类别排序，越大越靠后",
+      "description": "类别排序，越大越靠前",
       "title": "排序"
+      // "defaultValue": 0
     },
     "state": {
       "bsonType": "bool",

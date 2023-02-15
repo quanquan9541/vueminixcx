@@ -3,7 +3,7 @@
     <view class="listcbox" @click="goedit">
       <view class="pic">
         <u--image :showLoading="true" :src="item.pic[0].url
-    " width="300rpx" height="400rpx" mode="aspectFill" shape="square" radius="10"></u--image>
+    " width="345rpx" height="400rpx" mode="aspectFill" bgColor="#eOeee8" shape="square" radius="10"></u--image>
       </view>
       <view class="text">
         <!-- <view class="title">{{item.class}}</view> -->
@@ -26,7 +26,7 @@
     },
     data() {
       return {
-
+        src: 'https://cdn.uviewui.com/uview/album/1.jpg'
       };
     },
 
@@ -45,20 +45,23 @@
 
 <style lang="scss">
   .listcbox {
-    width: 300rpx;
+    width: 345rpx;
     height: 450rpx;
-    margin: 10rpx 30rpx;
-    border-radius: 14rpx;
-    box-shadow: 0px 1px 1px 0.1px #CCCCCC;
-    background: rgba(214, 236, 240, 0.3); // border: 1rpx red solid;
+    margin: 10rpx 0;
+    border-radius: 10px;
+    box-shadow: 0px 1px 1px 0.1px #bcbcbc;
+    background: rgba(99, 225, 93, 0.1); // border: 1rpx red solid;
 
     .pic {
-      width: 300rpx;
+      width: 345rpx;
       height: 400rpx;
       display: flex;
       flex-direction: row;
       align-items: center;
+      border-radius: 10px;
+      // border: 1rpx blue solid;
       justify-content: center;
+      background: rgba(224, 238, 232, 0.3)
     }
 
     .text {
@@ -66,17 +69,22 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      margin-top: 10rpx;
+      margin-top: 5rpx;
 
       .name {
         font-family: '微软雅黑';
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none solid;
+        white-space: normal;
+        text-overflow: clip;
+        word-wrap: normal;
+        text-shadow: 0px 2px 4px #bcbcbc;
         font-size: 16px;
         text-decoration: none;
-        white-space: normal;
         text-align: center;
         direction: ltr;
-        text-shadow: 1px 0px 0px #666666;
-        color: #177cb0;
+        color: #009AFF;
         margin-bottom: 10rpx;
       }
     }

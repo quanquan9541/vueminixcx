@@ -72,10 +72,10 @@
       id = e.id
       // console.log(e);
       this.getdata(id)
-      // 延时2秒钟显示数据
-      uni.$u.sleep(2000).then(() => {
-        this.onloading = false
-      })
+      // // 延时2秒钟显示数据
+      // uni.$u.sleep(2000).then(() => {
+      //   this.onloading = false
+      // })
     },
     methods: {
       //点击复制
@@ -97,19 +97,20 @@
         const list = await db.collection('tea-milk-list').where(`_id=='${id}'`).getTemp()
         const res = await db.collection(list, 'tea-milk-class').field(
           'add_date,name,goods_desc,url,pic.url as picurl,category_id.name as class').get();
-        console.log(res.result.data[0]);
+        // console.log(res.result.data[0]);
         this.data = res.result.data[0]; //赋值
         // console.log(this.data);
         //设置标题
         uni.setNavigationBarTitle({
-          title: res.result.data[0].name
+          title: res.result.data[0].class + '\xa0\xa0' +
+            res.result.data[0].name
         });
         //设置显示
         this.onloading = false
       },
       //点击看大图
       clickpic(e) {
-        console.log('点击详情图片', e);
+        // console.log('点击详情图片', e);
         uni.previewImage({
           urls: this.data.picurl,
           current: e
@@ -137,16 +138,23 @@
       width: 720rpx;
       margin-bottom: 30rpx;
       font-family: '微软雅黑';
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none solid;
+      white-space: normal;
+      text-overflow: clip;
+      word-wrap: normal;
+      text-shadow: 0px 2px 7px #bcbcbc;
       font-size: 16px;
       text-decoration: none;
       text-align: center;
       direction: ltr;
-      white-space: normal;
-      word-wrap: break-word;
-      text-shadow: 1px 0px 0px #c4c4c4;
+      color: #b0a4e3;
 
       .txt {
         width: 420rpx;
+        text-overflow: clip;
+        word-wrap: break-word;
       }
     }
 

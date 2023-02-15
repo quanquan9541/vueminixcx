@@ -8,10 +8,11 @@
         <uni-easyinput placeholder="请输入官网链接" v-model="formData.url" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="logo" label="图标">
-        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="object" v-model="formData.logo"></uni-file-picker>
+        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="object" v-model="formData.logo">
+        </uni-file-picker>
       </uni-forms-item>
       <uni-forms-item name="sort" label="排序">
-        <uni-easyinput placeholder="类别排序，越大越靠后" type="number" v-model="formData.sort"></uni-easyinput>
+        <uni-easyinput placeholder="类别排序，越大越靠前" type="number" v-model="formData.sort"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="state" label="状态">
         <switch @change="binddata('state', $event.detail.value)" :checked="formData.state"></switch>
@@ -27,7 +28,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/tea-milk-class.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/tea-milk-class.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -43,7 +46,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -73,7 +76,7 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+
       /**
        * 验证表单并提交
        */
@@ -83,8 +86,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },
@@ -120,7 +122,7 @@
           const data = res.result.data[0]
           if (data) {
             this.formData = data
-            
+
           }
         }).catch((err) => {
           uni.showModal({

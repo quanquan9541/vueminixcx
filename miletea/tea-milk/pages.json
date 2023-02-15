@@ -3,7 +3,8 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "奶茶图鉴"
+        "navigationBarTitleText": "奶茶图鉴",
+        "enablePullDownRefresh": true
       }
     }, {
       "path": "pages/search/search",
