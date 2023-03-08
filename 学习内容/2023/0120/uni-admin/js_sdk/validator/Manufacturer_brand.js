@@ -17,6 +17,9 @@ const validator = {
   "pic": {
     "rules": [
       {
+        "required": true
+      },
+      {
         "format": "array"
       },
       {
@@ -27,17 +30,11 @@ const validator = {
     "defaultValue": "上传手机大图",
     "label": "大图"
   },
-  "money": {
-    "rules": [
-      {
-        "format": "int"
-      }
-    ],
-    "title": "价格",
-    "label": "价格"
-  },
   "url": {
     "rules": [
+      {
+        "required": true
+      },
       {
         "format": "string"
       }
@@ -45,8 +42,23 @@ const validator = {
     "title": "链接",
     "label": "链接"
   },
+  "money": {
+    "rules": [
+      {
+        "required": true
+      },
+      {
+        "format": "int"
+      }
+    ],
+    "title": "价格",
+    "label": "价格"
+  },
   "brith": {
     "rules": [
+      {
+        "required": true
+      },
       {
         "format": "timestamp"
       }
@@ -54,8 +66,21 @@ const validator = {
     "title": "发售日期",
     "label": "发售日期"
   },
+  "hot": {
+    "rules": [
+      {
+        "format": "bool"
+      }
+    ],
+    "title": "热门",
+    "defaultValue": false,
+    "label": "热门"
+  },
   "status": {
     "rules": [
+      {
+        "required": true
+      },
       {
         "format": "bool"
       }
@@ -73,8 +98,23 @@ const validator = {
     "title": "类型",
     "label": "类型"
   },
+  "z_id": {
+    "rules": [
+      {
+        "required": true
+      },
+      {
+        "format": "object"
+      }
+    ],
+    "title": "厂商",
+    "label": "厂商"
+  },
   "parent_id": {
     "rules": [
+      {
+        "required": true
+      },
       {
         "format": "object"
       }
@@ -82,14 +122,12 @@ const validator = {
     "title": "品牌",
     "label": "品牌"
   },
-  "z_id": {
+  "create_date": {
     "rules": [
       {
-        "format": "object"
+        "format": "timestamp"
       }
-    ],
-    "title": "厂商",
-    "label": "厂商"
+    ]
   }
 }
 

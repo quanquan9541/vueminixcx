@@ -20,7 +20,7 @@
       </view>
       <view class="button">
         <u-button @click="gotojd" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
-          text="链接转化器">
+          text="销量查询器">
         </u-button>
       </view>
     </view>

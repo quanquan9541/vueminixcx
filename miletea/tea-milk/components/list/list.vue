@@ -46,7 +46,7 @@
 <style lang="scss">
   .listcbox {
     width: 345rpx;
-    height: 450rpx;
+    height: 455rpx;
     margin: 10rpx 0;
     border-radius: 10px;
     box-shadow: 0px 1px 1px 0.1px #bcbcbc;
@@ -85,7 +85,7 @@
         text-align: center;
         direction: ltr;
         color: #009AFF;
-        margin-bottom: 10rpx;
+        margin: 5rpx 0;
       }
     }
   }

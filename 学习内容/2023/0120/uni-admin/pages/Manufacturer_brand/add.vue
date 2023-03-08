@@ -1,36 +1,42 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="z_id" label="厂商">
+      <uni-forms-item name="z_id" label="厂商" required>
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Manufacturer_brand" :where="zwhere"
           field="_id as value, name as text" :step-searh="true" self-field="_id" @change="zonchange">
         </uni-data-picker>
       </uni-forms-item>
-      <uni-forms-item name="parent_id" label="品牌">
+      <uni-forms-item name="parent_id" label="品牌" required>
         <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Manufacturer_brand" :where="pwhere"
           field="_id as value, name as text" :step-searh="true" self-field="_id" @change="ponchange">
         </uni-data-picker>
       </uni-forms-item>
-      <uni-forms-item name="name" label="产品" required>
-        <uni-easyinput placeholder="请输入产品型号" v-model="formData.name" trim="both"></uni-easyinput>
+      <uni-forms-item name="name" label="名称" required>
+        <uni-easyinput placeholder="名称" v-model="formData.name" trim="both"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="url" label="链接">
-        <uni-easyinput placeholder="请输入购买链接" v-model="formData.url" @change='urlchenge'></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="pic" label="大图">
+      <uni-forms-item name="pic" label="大图" required>
         <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic">
         </uni-file-picker>
       </uni-forms-item>
-      <uni-forms-item name="money" label="价格">
-        <uni-easyinput type="number" v-model="formData.money"></uni-easyinput>
+      <uni-forms-item name="url" label="链接" required>
+        <uni-easyinput placeholder="请输入购买链接" @change="getjdsuld" v-model="formData.url" type="text">
+        </uni-easyinput>
+        <!-- {{formData.jdurl}} -->
       </uni-forms-item>
-      <uni-forms-item name="brith" label="发售日">
-        <uni-datetime-picker return-type="timestamp" v-model="formData.brith"></uni-datetime-picker>
+      <uni-forms-item name="money" label="价格" required>
+        <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="status" label="启用">
+      <uni-forms-item name="brith" label="发售日" required>
+        <uni-datetime-picker type="date" :clear-icon="false" return-type="timestamp" placeholder="请选择发售日期"
+          v-model="formData.brith">
+        </uni-datetime-picker>
+      </uni-forms-item>
+      <uni-forms-item name="hot" label="热门">
+        <switch @change="binddata('hot', $event.detail.value)" :checked="formData.hot"></switch>
+      </uni-forms-item>
+      <uni-forms-item name="status" label="启用" required>
         <switch @change="binddata('status', $event.detail.value)" :checked="formData.status"></switch>
       </uni-forms-item>
-
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
         <navigator open-type="navigateBack" style="margin-left: 15px;">
@@ -43,13 +49,18 @@
 
 <script>
   import {
+    jddatalist,
+    urlchenge
+  } from '../../js/jdurl.js';
+  import {
     validator
   } from '../../js_sdk/validator/Manufacturer_brand.js';
-
+  import {
+    request
+  } from '../../js/request.js';
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Manufacturer_brand';
-  const jdurl = uniCloud.importObject('jdurl')
 
   function getValidator(fields) {
     let result = {}
@@ -68,13 +79,16 @@
       let formData = {
         "name": "",
         "pic": "",
-        "money": null,
         "url": "",
-        "brith": null,
+        "jdurl": "",
+        "money": "",
+        "brith": "",
+        "hot": false,
         "status": true,
         "type": 2,
-        "parent_id": null,
-        "z_id": null
+        "z_id": null,
+        "parent_id": "_id",
+        "create_date": null
       }
       return {
         formData,
@@ -82,19 +96,36 @@
         rules: {
           ...getValidator(Object.keys(formData))
         },
-        zwhere: 'status==true && type==0',
-        pwhere: "status==true && type==1",
+        zwhere: 'status==true && type==0', //爷级查询条件
+        pwhere: "status==true && type==1", //父级查询条件
       }
     },
     onReady() {
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      //输入框失去焦点
-      async urlchenge() {
-        console.log('测试焦点');
-        let res = jdurl('1234')
-        console.log('res');
+      //获取京东id
+      async getjdsuld() {
+        const jdsuld = this.formData.url.match(/\d+(\.\d+)?/g)[0]
+        const requesturl = jddatalist(jdsuld)
+        let jddetailed = await request(requesturl) //请求
+        let datailed = JSON.parse(jddetailed.jd_union_open_goods_promotiongoodsinfo_query_responce.queryResult)
+        this.formData.money = datailed.data[0].unitPrice
+        // console.log(datailed);
+        // 获取链接
+        let eurl = datailed.data[0].materialUrl
+        //调用转化链接
+        this.chengeurl(eurl)
+      },
+      //转化链接 
+      async chengeurl(e) {
+        let method = "jd.union.open.promotion.common.get"
+        let jdurl = e
+        let jdddurl = urlchenge(method, jdurl) //拼接链接
+        let urldatailed = await request(jdddurl)
+        let data = JSON.parse(urldatailed.jd_union_open_promotion_common_get_responce.getResult)
+        console.log('12333', data.data.clickURL);
+        this.formData.jdurl = data.data.clickURL
       },
       //选择父亲
       ponchange(e) {
@@ -106,7 +137,6 @@
         // console.log(e.detail.value[0]);
         this.formData.z_id = e.detail.value[0]
         this.pwhere = 'status==true && type==1 && parent_id.value==' + JSON.stringify(e.detail.value[0].value)
-
       },
       /**
        * 验证表单并提交
@@ -127,7 +157,12 @@
        */
       submitForm(value) {
         // 使用 clientDB 提交数据
-        return db.collection(dbCollectionName).add(value).then((res) => {
+        return db.collection(dbCollectionName).add({
+          ...value,
+          type: this.formData.type,
+          jdurl: this.formData.jdurl,
+          // last_date: new Date()
+        }).then((res) => {
           uni.showToast({
             title: '新增成功'
           })

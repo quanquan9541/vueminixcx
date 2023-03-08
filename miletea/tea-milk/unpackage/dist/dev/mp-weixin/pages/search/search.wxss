@@ -51,6 +51,17 @@
 .content .searchbox .search {
   margin: 0 10rpx;
 }
+.content .searchtime {
+  width: 720rpx;
+  height: 68rpx;
+  margin: 5rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content .searchtime .time {
+  flex: 1;
+}
 .content .kong {
   width: 720rpx;
   height: 1080rpx;
@@ -58,7 +69,16 @@
   justify-content: center;
   align-items: center;
 }
+.content .text {
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-family: '微软雅黑';
+  font-style: normal;
+  font-weight: normal;
+}
 .content .listbox {
+  width: 720rpx;
   height: auto;
   display: flex;
   flex-direction: row;

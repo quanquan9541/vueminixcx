@@ -176,7 +176,7 @@
           method +
           'timestamp' + timestamp + 'v' + v + app_secret
         // console.log(data);
-        let sign = this.sign(data);
+        const sign = this.sign(data);
         // console.log('md5加密', sign);
 
         let url = 'https://api.jd.com/routerjson?app_key=' + app_key + '&method=' + method + '&v=' + v + '&sign=' +
@@ -185,9 +185,7 @@
         // console.log('url', url);
         uni.request({
           url: url,
-          data: {
-
-          },
+          data: {},
           success: (res) => {
             console.log(res);
 
@@ -222,7 +220,7 @@
       sign(e) {
         return this.md5(e).toUpperCase()
       },
-      // //时间格式化
+      //时间格式化
       dateFormat(date, format = 'yyyy-MM-dd hh:mm:ss') {
         if (typeof date === 'string') {
           return date

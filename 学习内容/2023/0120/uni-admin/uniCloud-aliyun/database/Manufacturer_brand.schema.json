@@ -1,7 +1,14 @@
 {
   "bsonType": "object",
   "required": [
-    "name"
+    "z_id",
+    "parent_id",
+    "name",
+    "pic",
+    "url",
+    "money",
+    "brith",
+    "status"
   ],
   "permission": {
     "read": true,
@@ -17,19 +24,19 @@
       "bsonType": "object",
       "description": "爷ID，用于多级分类",
       "title": "厂商"
-
     },
     "parent_id": {
       "bsonType": "object",
       "description": "父ID，用于多级分类",
       "title": "品牌",
-      "parentKey": "_id" //指定父子关系为：如果数据库记录A的_id和数据库记录B的parent_id相等，则A是B的父级。
+      "parentKey": "_id" //认爹
     },
     "name": {
       "bsonType": "string",
       "description": "名称",
       "title": "名称",
       "trim": "both"
+
     },
     "pic": {
       "bsonType": "array",
@@ -39,21 +46,32 @@
       "fileMediaType": "image",
       "fileExtName": "jpg,png"
     },
+    "url": {
+      "bsonType": "string",
+      "title": "链接",
+      "description": "请输入购买链接"
+    },
+    "jdurl": {
+      "bsonType": "string",
+      "title": "京东链接",
+      "description": "转化后的京东链接"
+    },
     "money": {
       "bsonType": "int",
       // "defaultValue": "请输入价格",
       "title": "价格",
       "minimum ": 1
     },
-    "url": {
-      "bsonType": "string",
-      "title": "链接",
-      "description": "请输入购买链接"
-    },
     "brith": {
       "bsonType": "timestamp",
       "title": "发售日期",
       "description": "请选择发售日期"
+    },
+    "hot": {
+      "bsonType": "bool",
+      "description": "热门",
+      "title": "热门",
+      "defaultValue": false
     },
     "status": {
       "bsonType": "bool",
@@ -66,18 +84,18 @@
       "description": "类型0厂商1品牌2型号",
       "title": "类型"
     },
-    "create_date": {
+    "last_date": {
       "bsonType": "timestamp",
       "description": "创建时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
       "forceDefaultValue": {
         "$env": "now"
-      },
-      "last_date": {
-        "bsonType": "timestamp",
-        "description": "创建时间",
-        "defaultValue": {
-          "$env": "now"
-        }
       }
     }
   },

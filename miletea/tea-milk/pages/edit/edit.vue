@@ -1,10 +1,12 @@
 <template>
   <view>
     <view class="skeleton">
-      <u-skeleton rows="5" :loading="onloading" title>
-      </u-skeleton>
+      <view class="skeletons">
+        <u-skeleton rows="5" :loading="onloading" title>
+        </u-skeleton>
+      </view>
     </view>
-    <view class="edit" v-if='!this.onloading'>
+    <view class="edit" v-if='!onloading'>
       <view class="text">
         <uni-table border :loading='loading' stripe emptyText="暂无更多数据">
           <!-- 表格数据行 -->
@@ -32,13 +34,13 @@
           <uni-tr>
             <uni-td>配料表</uni-td>
             <uni-td>
-              <view class="txt" @click="copy(data.goods_desc)">{{data.goods_desc }}</view>
+              <view class="txt" @click="copy('配料表',data.goods_desc)">{{data.goods_desc }}</view>
             </uni-td>
           </uni-tr>
           <uni-tr>
             <uni-td>原文链接</uni-td>
             <uni-td>
-              <view class="txt" @click="copy(data.url)">{{data.url}}</view>
+              <view class="txt" @click="copy('原文链接',data.url)">{{data.url}}</view>
             </uni-td>
           </uni-tr>
         </uni-table>
@@ -79,15 +81,16 @@
     },
     methods: {
       //点击复制
-      copy(e) {
+      copy(e, data) {
         uni.setClipboardData({
-          data: e,
+          data: data,
           success: function(res) {
             // console.log('复制的信息：', e);
             uni.showToast({
-              title: '成功复制 ' + e,
-              icon: "none",
-              duration: 900
+              title: '复制' + e,
+              icon: "success",
+              duration: 1500,
+              mask: true
             });
           }
         });
@@ -123,8 +126,14 @@
 
 <style lang="scss">
   .skeleton {
-    width: 720rpx;
-    margin: 20rpx;
+    // border: red solid 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .skeletons {
+      width: 720rpx;
+    }
   }
 
   .edit {

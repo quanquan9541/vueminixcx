@@ -3,7 +3,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-search": "/uni_modules/uview-ui/components/u-search/u-search",
-    "tealog": "/components/tealog/tealog",
+    "uni-datetime-picker": "/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
     "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
     "list": "/components/list/list",
     "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"

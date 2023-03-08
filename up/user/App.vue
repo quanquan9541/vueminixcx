@@ -2,7 +2,6 @@
   export default {
     onLaunch: function() {
       console.log('App Launch')
-
       //
       //调用定义的更新方法       
       this.VersionUpdate();

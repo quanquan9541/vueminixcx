@@ -3,16 +3,20 @@
     <view class="skeleton">
       <u-skeleton rows="5" :loading="loading" title>
       </u-skeleton>
+      <text v-if="loading">如无数据，请下拉页面手动刷新</text>
     </view>
     <view class="data" v-if="!loading">
       <u-sticky offset-top="10">
         <view class="top">
+          <view class="time" @click="gosearch('time')">
+            <u-icon name="clock" color="#0080EF" size="26"></u-icon>
+          </view>
           <view class="classname">
             <u-tabs class="classlist" :list="classlist" lineWidth="25" lineHeight="6" :current=" current" :activeStyle="{
               color: '#343C33' , fontWeight: 'bold' , transform: 'scale(1.1)' }" @click="click">
             </u-tabs>
           </view>
-          <view class="search" @click="gosearch">
+          <view class="search" @click="gosearch('text')">
             <u-icon name="search" color="#0080EF" size="30"></u-icon>
           </view>
         </view>
@@ -35,6 +39,9 @@
 </template>
 
 <script>
+  import {
+    interval
+  } from '../../tools/judge.js'
   const db = uniCloud.database();
   export default {
     data() {
@@ -42,7 +49,11 @@
         id: "",
         current: "0",
         loading: true,
-        classlist: [],
+        classlist: [{
+          name: '若无数据'
+        }, {
+          name: '请手动下拉刷新'
+        }],
         data: [],
         noMore: true,
         more: false,
@@ -53,23 +64,15 @@
       }
     },
     onLoad() {
+      // console.log('onload启动');
       //启动下拉刷新
-      // setTimeout(function() {
-      //   console.log('start pulldown');
-      // }, 1000);
       uni.startPullDownRefresh();
-      // 延时3秒钟显示数据
-      uni.$u.sleep(3000).then(() => {
+      setTimeout(() => {
         this.loading = false
-      })
-      //启动下拉刷新
-      setTimeout(function() {
-        // console.log('start pulldown');
-      }, 1000);
-      uni.startPullDownRefresh();
+      }, 1000)
     },
     onPullDownRefresh() {
-      // console.log('下拉刷新');
+      if (!interval(5000)) return uni.stopPullDownRefresh();
       this.classlist = []
       this.data = []
       this.getclass() //调用函数
@@ -85,28 +88,23 @@
       async getclass() {
         let res = await db.collection('tea-milk-class').where(`state==true`).field('_id as id,name as name ,sort')
           .orderBy('sort desc').get()
-        // console.log(res.result.data);
         this.classlist = res.result.data
-        // console.log(this.data.length);
+        // console.log(this.classlist);
         //停止下拉刷新
-        setTimeout(function() {
-          uni.stopPullDownRefresh();
-        }, 1000);
-        if (!this.data.length) { //判断下首页是否有数据
-          let id = res.result.data[this.current]
-          this.getyuntea(id)
-          this.id = res.result.data[this.current]
-        }
+        uni.stopPullDownRefresh();
+        let id = res.result.data[this.current]
+        this.getyuntea(id)
+        this.id = res.result.data[this.current]
       },
       //跳转的搜索页面
-      gosearch() {
+      gosearch(e) {
         uni.navigateTo({
-          url: '/pages/search/search'
+          url: '/pages/search/search?type=' + e
         })
       },
       //选择分类
       click(item) {
-        console.log(item);
+        // console.log(item);
         this.current = item.index
         this.data = []
         this.getyuntea(item)
@@ -152,6 +150,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 
     .skeleton {
       width: 650rpx;
@@ -173,15 +172,18 @@
         box-shadow: 0px 1px 1px 1px #dbdbdb;
 
         .classname {
-          width: 620rpx;
-          // flex: 1;
-          // border: blue 1px solid; //边框
-          margin-left: 10rpx;
-
+          width: 600rpx;
+          margin-left: 0rpx;
 
           .classlist {
-            width: 620rpx;
+            width: 100%
           }
+        }
+
+        .time {
+          width: 50rpx;
+          height: 100%;
+          // border: red 1px solid; //边框
         }
 
         .search {

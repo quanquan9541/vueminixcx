@@ -11,7 +11,6 @@
       console.log('App Hide')
     },
     methods: {
-      //更新函数
       VersionUpdate() {
         // 判断应用的 getUpdateManager 是否在当前版本可用
         if (uni.canIUse('getUpdateManager')) {
