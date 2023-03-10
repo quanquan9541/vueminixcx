@@ -5,7 +5,7 @@
     </view>
     <view class="top">
       <text>哈喽大家好</text>
-      <text>这里略懂少年的工具小程序</text>
+      <text>这里略懂少年的工具小站</text>
     </view>
     <view class="bottom">
       <view class="button">
@@ -24,7 +24,11 @@
         </u-button>
       </view>
     </view>
-
+    <!-- #ifdef H5 -->
+    <view class="bottombox">
+      <ggbottombox></ggbottombox>
+    </view>
+    <!-- #endif -->
   </view>
 </template>
 
@@ -64,6 +68,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    .bottombox {
+      float: left // position: relative;
+        // border: 1px red solid;
+    }
 
     .logo {
       padding: 30rpx;

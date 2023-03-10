@@ -212,6 +212,21 @@
       "style": {
         "navigationBarTitleText": "奶茶列表"
       }
+    }, {
+      "path": "pages/Msoc/add",
+      "style": {
+        "navigationBarTitleText": "新增SOC"
+      }
+    }, {
+      "path": "pages/Msoc/edit",
+      "style": {
+        "navigationBarTitleText": "编辑SOC"
+      }
+    }, {
+      "path": "pages/Msoc/list",
+      "style": {
+        "navigationBarTitleText": "SOC列表"
+      }
     }
   ],
   "subPackages": [{

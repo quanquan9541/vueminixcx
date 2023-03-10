@@ -88,7 +88,7 @@
         "type": 2,
         "z_id": null,
         "parent_id": "_id",
-        "create_date": null
+        "create_date": new Date()
       }
       return {
         formData,
@@ -110,6 +110,14 @@
         const requesturl = jddatalist(jdsuld)
         let jddetailed = await request(requesturl) //请求
         let datailed = JSON.parse(jddetailed.jd_union_open_goods_promotiongoodsinfo_query_responce.queryResult)
+        if (!datailed.data.length) {
+          uni.showToast({
+            title: datailed.message,
+            icon: 'none',
+            duration: 2000
+          });
+          return
+        }
         this.formData.money = datailed.data[0].unitPrice
         // console.log(datailed);
         // 获取链接

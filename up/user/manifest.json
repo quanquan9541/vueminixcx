@@ -78,6 +78,13 @@
             "treeShaking" : {
                 "enable" : true
             }
+        },
+        "router" : {
+            "mode" : "hash",
+            "base" : ""
+        },
+        "devServer" : {
+            "https" : true
         }
     }
 }

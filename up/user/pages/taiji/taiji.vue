@@ -34,6 +34,14 @@
 </template>
 
 <script>
+  import {
+    debounce,
+    dateFormat
+  } from '../../js/tools.js';
+  import colorGradient from '../../uni_modules/uview-ui/libs/function/colorGradient.js';
+  import {
+    data
+  } from '../../uni_modules/uview-ui/libs/mixin/mixin.js';
   export default {
     data() {
       let guaObj = {
@@ -114,7 +122,7 @@
         status: true,
         status1: true,
         animation: "animation-play-state: paused",
-
+        arr: []
         // cesc: "你好"
       }
     },
@@ -144,19 +152,8 @@
       },
       //获取年月日
       ymdget() {
-        // let time = Date.now()
-        var date = new Date()
-        var day = date.getDate()
-        day = (day < 10) ? ("0" + day) : day
-        let month = date.getMonth() + 1
-        month = (month > 9) ? month : ("0" + month) //三元表达式
-        // if (month >= 1 && month <= 9) {
-        //   month = '0' + month
-        // }
-        let year = date.getFullYear()
-        this.zip.yymmdd = year + '-' + month + '-' + day
-        this.zip.ymd = year + month + day
-
+        this.zip.yymmdd = dateFormat(new Date(), 'yyyy-MM-dd')
+        this.zip.ymd = dateFormat(new Date(), 'yyyyMMdd')
       },
       //复制以前的
       copytext(e) {
@@ -186,7 +183,7 @@
         this.ymdget() //显示时间
         if (!this.zipdata.length) {
           console.log("没有值", this.zipdata);
-          this.suanfa()
+          this.fangdou()
         } else {
           console.log('有值', this.zipdata);
           if (this.zip.ymd - this.zipdata[0].ymd < 1) {
@@ -198,49 +195,66 @@
             })
             return
           } else {
-            this.suanfa()
+            this.fangdou()
           }
         }
       },
+      //循环64ms*49
+      circulate() {
+        let arr = [] //放个空数组在这里，等会算八卦
+        for (let i = 0; i < 6; i++) { //循环6次
+          let num = String(Math.floor(Math.random() * 2)) //求0-1
+          arr.push(num) //输出
+        }
+        // console.log('内部' + arr);
+        return arr
+      },
+      //定时器
+      timers() {
+        let num = 0
+        let time = setInterval(() => {
+          num++
+          // console.log(num);
+          if (num >= 49) {
+            clearInterval(time)
+            this.circulate()
+          }
+          this.arr = this.circulate()
+        }, 64);
+      },
+      //抽取卦象
+      arrayguaxiang() {
+        this.timers()
+        setTimeout(() => {
+          // console.log('ssss' + this.arr);
+          //逆序
+          let darr = [];
+          for (let i = this.arr.length - 1; i >= 0; i--) {
+            let j = this.arr[i]
+            darr.push(j)
+          }
+          this.guxiang = darr
+          let guatou = this.arr.join('')
+          this.zip.guaming = this.guaObj[guatou]
+        }, 6000)
+
+        return
+
+      },
+      //使用防抖
+      fangdou: debounce(function() {
+        this.suanfa()
+      }),
       // 算卦函数抽取
       suanfa() {
         this.status1 = false
         if (this.status == true) {
           this.animation = "animation-play-state: running"
-          uni.showLoading({
-            title: '演算中',
-            mask: true //遮罩 禁止触摸
-          });
-          let arr = [] //放个空数组在这里，等会算八卦
-          for (let i = 0; i < 6; i++) { //循环6次
-            let num = String(Math.floor(Math.random() * 2)) //求0-1
-            arr.push(num) //输出
-          }
-          console.log(arr) //日志
-
-          //逆序
-          let darr = [];
-          for (let i = arr.length - 1; i >= 0; i--) {
-            let j = arr[i]
-            darr.push(j)
-          }
-          //
-          console.log(darr);
-          //
-          this.guxiang = darr
-          //arr.join('')
-
-          let guatou = arr.join('')
-          this.zip.guaming = this.guaObj[guatou]
-
-          // this.status = false;//移步定时器输出
-
+          this.arrayguaxiang()
           setTimeout(() => { //箭头函数 必须用
             this.status = !this.status; //切换界面
             this.animation = "animation-play-state: paused" //暂停动画
             this.setdata() //设置缓存
-            uni.hideLoading();
-
           }, 9000); //定时。9秒
 
         } else {

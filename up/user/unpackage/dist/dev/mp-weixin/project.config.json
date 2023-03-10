@@ -1,46 +1,36 @@
 {
-    "description": "项目配置文件。",
-    "packOptions": {
-        "ignore": [],
-        "include": []
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "bigPackageSizeSupport": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "wx3a7ff2fa29a7d755",
+  "projectname": "up",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
     },
-    "setting": {
-        "urlCheck": false,
-        "es6": false,
-        "postcss": true,
-        "minified": true,
-        "newFeature": true,
-        "bigPackageSizeSupport": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        }
+    "conversation": {
+      "current": -1,
+      "list": []
     },
-    "compileType": "miniprogram",
-    "libVersion": "",
-    "appid": "wx3a7ff2fa29a7d755",
-    "projectname": "up",
-    "condition": {
-        "search": {
-            "current": -1,
-            "list": []
-        },
-        "conversation": {
-            "current": -1,
-            "list": []
-        },
-        "game": {
-            "current": -1,
-            "list": []
-        },
-        "miniprogram": {
-            "current": -1,
-            "list": []
-        }
+    "game": {
+      "current": -1,
+      "list": []
     },
-    "editorSetting": {
-        "tabIndent": "insertSpaces",
-        "tabSize": 4
+    "miniprogram": {
+      "current": -1,
+      "list": []
     }
+  }
 }

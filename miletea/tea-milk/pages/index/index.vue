@@ -40,6 +40,9 @@
 
 <script>
   import {
+    debounce
+  } from '../../tools/tools.js';
+  import {
     interval
   } from '../../tools/judge.js'
   const db = uniCloud.database();
@@ -107,9 +110,20 @@
         // console.log(item);
         this.current = item.index
         this.data = []
-        this.getyuntea(item)
+        this.notification('加载中')
+        this.fangdou(item) //调用防抖
         this.id = item
       },
+      //弹窗
+      notification(e) {
+        uni.showLoading({
+          title: e || "加载中",
+        });
+      },
+      //使用防抖
+      fangdou: debounce(function(item) {
+        this.getyuntea(item)
+      }, 1000),
       //获取详细数据
       async getyuntea(e) {
         const skip = this.data.length
@@ -118,6 +132,7 @@
         if (data.result.data.length == 0) {
           this.more = true
           this.status = "nomore"
+          uni.hideLoading();
           return
         }
         let newvalue = data.result.data
@@ -130,6 +145,7 @@
             }
           }
         )
+        uni.hideLoading();
         this.loading = false
         // this.status = 'loadmore'
         if (value.length <= 6) {

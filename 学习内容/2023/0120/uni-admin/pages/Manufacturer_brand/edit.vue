@@ -1,38 +1,43 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
+      <uni-forms-item name="z_id" label="厂商" required>
+        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Manufacturer_brand" :where="zwhere"
+          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.z_id.value"
+          @change="zonchange">
+        </uni-data-picker>
+      </uni-forms-item>
+      <uni-forms-item name="parent_id" label="品牌" required>
+        <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Manufacturer_brand" :where="pwhere"
+          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.parent_id.value"
+          @change="ponchange">
+        </uni-data-picker>
+      </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>
         <uni-easyinput placeholder="名称" v-model="formData.name" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="pic" label="大图" required>
-        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic"></uni-file-picker>
+        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic">
+        </uni-file-picker>
       </uni-forms-item>
       <uni-forms-item name="url" label="链接" required>
-        <uni-easyinput placeholder="请输入购买链接" v-model="formData.url"></uni-easyinput>
+        <uni-easyinput placeholder="请输入购买链接" @change="getjdsuld" v-model="formData.url" type="text">
+        </uni-easyinput>
+        <!-- {{formData.jdurl}} -->
       </uni-forms-item>
       <uni-forms-item name="money" label="价格" required>
-        <uni-easyinput type="number" v-model="formData.money"></uni-easyinput>
+        <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="brith" label="发售日期" required>
-        <uni-datetime-picker return-type="timestamp" v-model="formData.brith"></uni-datetime-picker>
+      <uni-forms-item name="brith" label="发售日" required>
+        <uni-datetime-picker type="date" :clear-icon="false" return-type="timestamp" placeholder="请选择发售日期"
+          v-model="formData.brith">
+        </uni-datetime-picker>
       </uni-forms-item>
       <uni-forms-item name="hot" label="热门">
         <switch @change="binddata('hot', $event.detail.value)" :checked="formData.hot"></switch>
       </uni-forms-item>
       <uni-forms-item name="status" label="启用" required>
         <switch @change="binddata('status', $event.detail.value)" :checked="formData.status"></switch>
-      </uni-forms-item>
-      <uni-forms-item name="type" label="类型">
-        <uni-easyinput placeholder="类型0厂商1品牌2型号" type="number" v-model="formData.type"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="z_id" label="厂商" required>
-        <undefined v-model="formData.z_id"></undefined>
-      </uni-forms-item>
-      <uni-forms-item name="parent_id" label="品牌" required>
-        <uni-data-checkbox v-model="formData.parent_id" text="name" value="_id"></uni-data-checkbox>
-      </uni-forms-item>
-      <uni-forms-item name="create_date" label="">
-        <uni-datetime-picker return-type="timestamp" v-model="formData.create_date"></uni-datetime-picker>
       </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
@@ -45,7 +50,16 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/Manufacturer_brand.js';
+  import {
+    jddatalist,
+    urlchenge
+  } from '../../js/jdurl.js';
+  import {
+    request
+  } from '../../js/request.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/Manufacturer_brand.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -61,29 +75,32 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
       let formData = {
         "name": "",
-        "pic": "上传手机大图",
+        "pic": "",
         "url": "",
-        "money": null,
-        "brith": null,
+        "jdurl": "",
+        "money": "",
+        "brith": "",
         "hot": false,
         "status": true,
-        "type": null,
-        "z_id": null,
-        "parent_id": "_id",
-        "create_date": null
+        "type": 2,
+        "z_id": "",
+        "parent_id": "",
+        "create_date": new Date()
       }
       return {
         formData,
         formOptions: {},
         rules: {
           ...getValidator(Object.keys(formData))
-        }
+        },
+        zwhere: 'status==true && type==0', //爷级查询条件
+        pwhere: "status==true && type==1", //父级查询条件
       }
     },
     onLoad(e) {
@@ -97,7 +114,54 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+      //获取京东id
+      async getjdsuld() {
+        const jdsuld = this.formData.url.match(/\d+(\.\d+)?/g)[0]
+        const requesturl = jddatalist(jdsuld)
+        // console.log(requesturl);
+        let jddetailed = await request(requesturl) //请求
+        let datailed = JSON.parse(jddetailed.jd_union_open_goods_promotiongoodsinfo_query_responce.queryResult)
+        // console.log(datailed);
+        if (!datailed.data.length) {
+          uni.showToast({
+            title: datailed.message,
+            icon: 'none',
+            duration: 2000
+          });
+          return
+        }
+        // return
+        this.formData.money = datailed.data[0].unitPrice
+
+        // 获取链接
+        let eurl = datailed.data[0].materialUrl
+        //调用转化链接
+        this.chengeurl(eurl)
+      },
+      //转化链接 
+      async chengeurl(e) {
+        let method = "jd.union.open.promotion.common.get"
+        let jdurl = e
+        let jdddurl = urlchenge(method, jdurl) //拼接链接
+        let urldatailed = await request(jdddurl)
+        let data = JSON.parse(urldatailed.jd_union_open_promotion_common_get_responce.getResult)
+        // console.log('12333', data.data.clickURL);
+        this.formData.jdurl = data.data.clickURL
+      },
+      //选择父亲
+      ponchange(e) {
+        // console.log(e.detail.value[0]);
+        this.formData.parent_id = e.detail.value[0]
+      },
+      //选择爷级id
+      /**
+       * @param {Object} e
+       */
+      zonchange(e) {
+        // console.log(e.detail.value[0]);
+        this.formData.z_id = e.detail.value[0]
+        this.pwhere = 'status==true && type==1 && parent_id.value==' + JSON.stringify(e.detail.value[0].value)
+      },
       /**
        * 验证表单并提交
        */
@@ -107,8 +171,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },
@@ -140,11 +203,12 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("name,pic,url,money,brith,hot,status,type,z_id,parent_id,create_date").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field(
+          "name,pic,url,money,brith,hot,status,type,z_id,parent_id,create_date").get().then((res) => {
           const data = res.result.data[0]
+          // console.log('云数据', data);
           if (data) {
             this.formData = data
-            
           }
         }).catch((err) => {
           uni.showModal({
