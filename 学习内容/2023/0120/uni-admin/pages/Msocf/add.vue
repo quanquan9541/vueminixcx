@@ -1,21 +1,13 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="z_id" label="厂商" required>
-        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="zwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="zonchange">
+      <uni-forms-item name="parent_id" label="厂商">
+        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="where"
+          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="onchange">
         </uni-data-picker>
       </uni-forms-item>
-      <uni-forms-item name="parent_id" label="品牌" required>
-        <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Msoc" :where="pwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="ponchange">
-        </uni-data-picker>
-      </uni-forms-item>
-      <uni-forms-item name="name" label="名称" required>
-        <uni-easyinput placeholder="名称" v-model="formData.name" trim="both"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="socvalue" label="性能">
-        <uni-easyinput placeholder="性能数值" type="number" v-model="formData.socvalue"></uni-easyinput>
+      <uni-forms-item name="name" label="系列" required>
+        <uni-easyinput placeholder="请输入系列名称" v-model="formData.name" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="status" label="启用">
         <switch @change="binddata('status', $event.detail.value)" :checked="formData.status"></switch>
@@ -54,12 +46,11 @@
   export default {
     data() {
       let formData = {
-        "z_id": {},
         "parent_id": {},
         "name": "",
-        "socvalue": "",
+        "socvalue": null,
         "status": true,
-        "type": 2
+        "type": 1
       }
       return {
         formData,
@@ -67,24 +58,17 @@
         rules: {
           ...getValidator(Object.keys(formData))
         },
-        zwhere: 'status==true && type==0', //爷级查询条件
-        pwhere: "status==true && type==1", //父级查询条件
+        where: 'type==0 && status==true'
       }
     },
     onReady() {
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      //选择父亲
-      ponchange(e) {
-        // console.log(e.detail.value[0]);
+      //选择父级id
+      onchange(e) {
+        console.log(e.detail.value[0]);
         this.formData.parent_id = e.detail.value[0]
-      },
-      //选择爷级id
-      zonchange(e) {
-        // console.log(e.detail.value[0]);
-        this.formData.z_id = e.detail.value[0]
-        this.pwhere = 'status==true && type==1 && parent_id.value==' + JSON.stringify(e.detail.value[0].value)
       },
       /**
        * 验证表单并提交

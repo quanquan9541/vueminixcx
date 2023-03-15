@@ -227,8 +227,62 @@
       "style": {
         "navigationBarTitleText": "SOC列表"
       }
+    },
+    {
+      "path": "pages/Msocy/add",
+      "style": {
+        "navigationBarTitleText": "新增SOC厂商"
+      }
+    }, {
+      "path": "pages/Msocy/edit",
+      "style": {
+        "navigationBarTitleText": "编辑SOC厂商"
+      }
+    }, {
+      "path": "pages/Msocy/list",
+      "style": {
+        "navigationBarTitleText": "SOC厂商列表"
+      }
+    },
+    {
+      "path": "pages/Msocf/add",
+      "style": {
+        "navigationBarTitleText": "新增SOC品牌"
+      }
+    }, {
+      "path": "pages/Msocf/edit",
+      "style": {
+        "navigationBarTitleText": "编辑SOC品牌"
+      }
+    }, {
+      "path": "pages/Msocf/list",
+      "style": {
+        "navigationBarTitleText": "SOC品牌列表"
+      }
+    }, {
+      "path": "pages/Mparameter/add",
+      "style": {
+        "navigationBarTitleText": "新增参数表"
+      }
+    }, {
+      "path": "pages/Mparameter/edit",
+      "style": {
+        "navigationBarTitleText": "编辑参数表"
+      }
+    }, {
+      "path": "pages/Mparameter/list",
+      "style": {
+        "navigationBarTitleText": "参数列表"
+      }
     }
-  ],
+  ,{
+    "path": "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+    "style": {
+        "enablePullDownRefresh": false,
+        "navigationBarTitleText": "实名认证"
+    }
+}
+],
   "subPackages": [{
       "root": "pages/system",
       "pages": [{

@@ -86,14 +86,14 @@
     },
     "last_date": {
       "bsonType": "timestamp",
-      "description": "创建时间",
+      "description": "修改时间",
       "defaultValue": {
         "$env": "now"
       }
     },
     "create_date": {
       "bsonType": "timestamp",
-      "description": "修改时间",
+      "description": "创建时间",
       "forceDefaultValue": {
         "$env": "now"
       }

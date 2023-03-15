@@ -1,21 +1,10 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="parent_id" label="厂商">
-        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Manufacturer_brand" :where="where"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="parent_id"
-          @change="onchange">
+      <uni-forms-item name="name" label="名称">
+        <uni-data-picker collection="Manufacturer_brand" orderby="create_date desc" field="_id as value,name as text"
+          parent-field="parent_id.value" self-field="_id" @change="onchange">
         </uni-data-picker>
-      </uni-forms-item>
-      <uni-forms-item name="name" label="品牌" required>
-        <uni-easyinput placeholder="输入品牌" v-model="formData.name" trim="both"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="pic" label="大图">
-        <uni-file-picker file-mediatype="image" file-extname="jpg,png" return-type="array" v-model="formData.pic[0]">
-        </uni-file-picker>
-      </uni-forms-item>
-      <uni-forms-item name="status" label="启用">
-        <switch @change="change" :checked="formData.status"></switch>
       </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
@@ -30,11 +19,11 @@
 <script>
   import {
     validator
-  } from '../../js_sdk/validator/Manufacturer_brand.js';
+  } from '../../js_sdk/validator/Mparameter.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
-  const dbCollectionName = 'Manufacturer_brand';
+  const dbCollectionName = 'Mparameter';
 
   function getValidator(fields) {
     let result = {}
@@ -51,35 +40,25 @@
   export default {
     data() {
       let formData = {
-        "parent_id": {},
-        "name": "",
-        "pic": "",
-        "status": true,
-        "type": 1
+        "name": []
       }
       return {
         formData,
         formOptions: {},
         rules: {
           ...getValidator(Object.keys(formData))
-        },
-        where: 'status==true && type==0',
+        }
       }
     },
     onReady() {
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      //开关选择
-      change(e) {
-        // console.log(e);
-        this.formData.status = e.detail.value
-      },
-      //选择父级id
       onchange(e) {
-        console.log(e.detail.value[0]);
-        this.formData.parent_id = e.detail.value[0]
+        this.formData.name = e.detail.value
+        console.log(e.detail.value);
       },
+
       /**
        * 验证表单并提交
        */
@@ -88,7 +67,7 @@
           mask: true
         })
         this.$refs.form.validate().then((res) => {
-          return this.submitForm(this.formData)
+          return this.submitForm(res)
         }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })

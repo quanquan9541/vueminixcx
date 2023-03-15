@@ -3,7 +3,8 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="z_id" label="厂商" required>
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Manufacturer_brand" :where="zwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="zonchange">
+          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="
+          zonchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="parent_id" label="品牌" required>

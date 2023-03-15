@@ -18,29 +18,22 @@
       </view>
     </view>
     <view class="uni-container">
-      <unicloud-db ref="udb" :collection="collectionList" field="z_id,parent_id,name,socvalue,status,type"
-        :where="where" page-data="replace" :orderby="orderby" :getcount="true" :page-size="options.pageSize"
-        :page-current="options.pageCurrent" v-slot:default="{data,pagination,loading,error,options}" :options="options"
-        loadtime="manual" @load="onqueryload">
+      <unicloud-db ref="udb" :collection="collectionList" field="name,status,type" :where="where" page-data="replace"
+        :orderby="orderby" :getcount="true" :page-size="options.pageSize" :page-current="options.pageCurrent"
+        v-slot:default="{data,pagination,loading,error,options}" :options="options" loadtime="manual"
+        @load="onqueryload">
         <uni-table ref="table" :loading="loading" :emptyText="error.message || '没有更多数据'" border stripe type="selection"
           @selection-change="selectionChange">
           <uni-tr>
-            <uni-th align="center" sortable @sort-change="sortChange($event, 'z_id')">厂商</uni-th>
-            <uni-th align="center" sortable @sort-change="sortChange($event, 'parent_id')">品牌</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'name')" sortable
               @sort-change="sortChange($event, 'name')">名称</uni-th>
-            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'socvalue')" sortable
-              @sort-change="sortChange($event, 'socvalue')">性能</uni-th>
             <uni-th align="center" sortable @sort-change="sortChange($event, 'status')">启用</uni-th>
             <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'type')" sortable
               @sort-change="sortChange($event, 'type')">类型</uni-th>
             <uni-th align="center">操作</uni-th>
           </uni-tr>
           <uni-tr v-for="(item,index) in data" :key="index">
-            <uni-td align="center">{{item.z_id.text}}</uni-td>
-            <uni-td align="center">{{item.parent_id.text}}</uni-td>
             <uni-td align="center">{{item.name}}</uni-td>
-            <uni-td align="center">{{item.socvalue}}</uni-td>
             <uni-td align="center">{{item.status == true ? '✅' : '❌'}}</uni-td>
             <uni-td align="center">{{item.type}}</uni-td>
             <uni-td align="center">
@@ -85,7 +78,7 @@
       return {
         collectionList: "Msoc",
         query: '',
-        where: 'type==2',
+        where: 'type==0',
         orderby: dbOrderBy,
         orderByFieldName: "",
         selectedIndexs: [],

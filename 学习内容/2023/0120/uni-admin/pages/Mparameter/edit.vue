@@ -1,26 +1,11 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="z_id" label="厂商" required>
-        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="zwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.z_id.value"
-          @change="zonchange">
+      <uni-forms-item name="name" label="名称">
+        {{formData.name}}
+        <uni-data-picker collection="Manufacturer_brand" orderby="create_date desc" field="_id as value,name as text"
+          parent-field="parent_id.value" self-field="_id" @change="onchange">
         </uni-data-picker>
-      </uni-forms-item>
-      <uni-forms-item name="parent_id" label="品牌" required>
-        <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Msoc" :where="pwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.parent_id.value"
-          @change="ponchange">
-        </uni-data-picker>
-      </uni-forms-item>
-      <uni-forms-item name="name" label="名称" required>
-        <uni-easyinput placeholder="名称" v-model="formData.name" trim="both"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="socvalue" label="性能">
-        <uni-easyinput placeholder="性能数值" type="number" v-model="formData.socvalue"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="status" label="启用">
-        <switch @change="binddata('status', $event.detail.value)" :checked="formData.status"></switch>
       </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
@@ -35,11 +20,11 @@
 <script>
   import {
     validator
-  } from '../../js_sdk/validator/Msoc.js';
+  } from '../../js_sdk/validator/Mparameter.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
-  const dbCollectionName = 'Msoc';
+  const dbCollectionName = 'Mparameter';
 
   function getValidator(fields) {
     let result = {}
@@ -56,21 +41,14 @@
   export default {
     data() {
       let formData = {
-        "z_id": {},
-        "parent_id": {},
-        "name": "",
-        "socvalue": null,
-        "status": true,
-        "type": 2
+        "name": []
       }
       return {
         formData,
         formOptions: {},
         rules: {
           ...getValidator(Object.keys(formData))
-        },
-        zwhere: 'status==true && type==0', //爷级查询条件
-        pwhere: "status==true && type==1", //父级查询条件
+        }
       }
     },
     onLoad(e) {
@@ -84,20 +62,12 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      //选择父亲
-      ponchange(e) {
-        // console.log(e.detail.value[0]);
-        this.formData.parent_id = e.detail.value[0]
+      onchange(e) {
+        this.formData.name = []
+        console.log(this.formData.name);
+        this.formData.name = e.detail.value
       },
-      //选择爷级id
-      /**
-       * @param {Object} e
-       */
-      zonchange(e) {
-        // console.log(e.detail.value[0]);
-        this.formData.z_id = e.detail.value[0]
-        this.pwhere = 'status==true && type==1 && parent_id.value==' + JSON.stringify(e.detail.value[0].value)
-      },
+
       /**
        * 验证表单并提交
        */
@@ -116,13 +86,14 @@
        * 提交表单
        */
       submitForm(value) {
+        console.log('value', value);
         // 使用 clientDB 提交数据
         return db.collection(dbCollectionName).doc(this.formDataId).update(value).then((res) => {
           uni.showToast({
             title: '修改成功'
           })
           this.getOpenerEventChannel().emit('refreshData')
-          setTimeout(() => uni.navigateBack(), 500)
+          // setTimeout(() => uni.navigateBack(), 500)
         }).catch((err) => {
           uni.showModal({
             content: err.message || '请求服务失败',
@@ -139,11 +110,10 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("z_id,parent_id,name,socvalue,status,type").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field("name").get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data
-
           }
         }).catch((err) => {
           uni.showModal({
