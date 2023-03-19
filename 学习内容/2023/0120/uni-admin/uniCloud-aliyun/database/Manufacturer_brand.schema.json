@@ -1,14 +1,7 @@
 {
   "bsonType": "object",
   "required": [
-    "z_id",
-    "parent_id",
-    "name",
-    "pic",
-    "url",
-    "money",
-    "brith",
-    "status"
+    "name"
   ],
   "permission": {
     "read": true,
@@ -61,6 +54,12 @@
       // "defaultValue": "请输入价格",
       "title": "价格",
       "minimum ": 1
+    },
+    "moneyCheck": {
+      "bsonType": "int",
+      "title": "补正价",
+      "description": "价格补正值",
+      "defaultValue": 0
     },
     "brith": {
       "bsonType": "timestamp",

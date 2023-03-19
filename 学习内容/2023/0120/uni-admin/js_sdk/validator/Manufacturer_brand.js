@@ -2,6 +2,24 @@
 
 
 const validator = {
+  "z_id": {
+    "rules": [
+      {
+        "format": "object"
+      }
+    ],
+    "title": "厂商",
+    "label": "厂商"
+  },
+  "parent_id": {
+    "rules": [
+      {
+        "format": "object"
+      }
+    ],
+    "title": "品牌",
+    "label": "品牌"
+  },
   "name": {
     "rules": [
       {
@@ -17,9 +35,6 @@ const validator = {
   "pic": {
     "rules": [
       {
-        "required": true
-      },
-      {
         "format": "array"
       },
       {
@@ -33,20 +48,23 @@ const validator = {
   "url": {
     "rules": [
       {
-        "required": true
-      },
-      {
         "format": "string"
       }
     ],
     "title": "链接",
     "label": "链接"
   },
-  "money": {
+  "jdurl": {
     "rules": [
       {
-        "required": true
-      },
+        "format": "string"
+      }
+    ],
+    "title": "京东链接",
+    "label": "京东链接"
+  },
+  "money": {
+    "rules": [
       {
         "format": "int"
       }
@@ -54,11 +72,18 @@ const validator = {
     "title": "价格",
     "label": "价格"
   },
-  "brith": {
+  "moneyCheck": {
     "rules": [
       {
-        "required": true
-      },
+        "format": "int"
+      }
+    ],
+    "title": "补正价",
+    "defaultValue": 0,
+    "label": "补正价"
+  },
+  "brith": {
+    "rules": [
       {
         "format": "timestamp"
       }
@@ -79,9 +104,6 @@ const validator = {
   "status": {
     "rules": [
       {
-        "required": true
-      },
-      {
         "format": "bool"
       }
     ],
@@ -89,45 +111,15 @@ const validator = {
     "defaultValue": true,
     "label": "启用"
   },
-  "type": {
-    "rules": [
-      {
-        "format": "int"
-      }
-    ],
-    "title": "类型",
-    "label": "类型"
-  },
-  "z_id": {
-    "rules": [
-      {
-        "required": true
-      },
-      {
-        "format": "object"
-      }
-    ],
-    "title": "厂商",
-    "label": "厂商"
-  },
-  "parent_id": {
-    "rules": [
-      {
-        "required": true
-      },
-      {
-        "format": "object"
-      }
-    ],
-    "title": "品牌",
-    "label": "品牌"
-  },
-  "create_date": {
+  "last_date": {
     "rules": [
       {
         "format": "timestamp"
       }
-    ]
+    ],
+    "defaultValue": {
+      "$env": "now"
+    }
   }
 }
 

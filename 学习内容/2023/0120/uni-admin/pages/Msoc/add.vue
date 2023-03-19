@@ -3,12 +3,12 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="z_id" label="厂商" required>
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="zwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="zonchange">
+          field="_id as value, name as text" :step-searh="true" @change="zonchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="parent_id" label="品牌" required>
         <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Msoc" :where="pwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="ponchange">
+          field="_id as value, name as text" :step-searh="true" @change="ponchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>
@@ -68,7 +68,7 @@
           ...getValidator(Object.keys(formData))
         },
         zwhere: 'status==true && type==0', //爷级查询条件
-        pwhere: "status==true && type==1", //父级查询条件
+        pwhere: 'status==true && type==1', //父级查询条件
       }
     },
     onReady() {

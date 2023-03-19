@@ -9,8 +9,8 @@
       </uni-forms-item>
       <uni-forms-item name="parent_id" label="品牌" required>
         <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Manufacturer_brand" :where="pwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.parent_id.value"
-          @change="ponchange">
+          field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="parent_id.value"
+          v-model="formData.parent_id.value" @change="ponchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>
@@ -27,6 +27,9 @@
       </uni-forms-item>
       <uni-forms-item name="money" label="价格" required>
         <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
+      </uni-forms-item>
+      <uni-forms-item name="moneyCheck" label="价格补正" required>
+        <uni-easyinput type="number" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="brith" label="发售日" required>
         <uni-datetime-picker type="date" :clear-icon="false" return-type="timestamp" placeholder="请选择发售日期"
@@ -85,6 +88,7 @@
         "url": "",
         "jdurl": "",
         "money": "",
+        "moneyCheck": 0,
         "brith": "",
         "hot": false,
         "status": true,

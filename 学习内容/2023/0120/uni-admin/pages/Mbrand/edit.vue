@@ -3,8 +3,7 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="parent_id" label="品牌">
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Manufacturer_brand" :where="where"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="parent_id.value"
-          v-model="formData.parent_id.value" @change="onchange">
+          field="_id as value, name as text" :step-searh="true" v-model="formData.parent_id.value" @change="onchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>
@@ -51,8 +50,8 @@
   export default {
     data() {
       let formData = {
-        "z_id": "",
-        "parent_id": "",
+        "z_id": {},
+        "parent_id": {},
         "name": "",
         "pic": "",
         "status": true,

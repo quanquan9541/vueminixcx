@@ -1,0 +1,121 @@
+{
+  "id": "3771939",
+  "name": "后台管理",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6932619",
+      "name": "奶茶2",
+      "font_class": "naicha1",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "9503794",
+      "name": "性价比",
+      "font_class": "xingjiabi",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "13083099",
+      "name": "品牌",
+      "font_class": "pinpai",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "25162868",
+      "name": "奶茶小吃",
+      "font_class": "naichaxiaochi",
+      "unicode": "fd19",
+      "unicode_decimal": 64793
+    },
+    {
+      "icon_id": "3456454",
+      "name": "品牌特卖",
+      "font_class": "pinpaitemai",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "5092023",
+      "name": "电池",
+      "font_class": "dianchi",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "10131698",
+      "name": "充电",
+      "font_class": "chongdian",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "13210923",
+      "name": "重量",
+      "font_class": "anzhuo-",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "15739173",
+      "name": "材质",
+      "font_class": "caizhi",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "658053",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "666888",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "12614678",
+      "name": "芯片",
+      "font_class": "xinpian",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "1247",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "646390",
+      "name": "砖石",
+      "font_class": "zhuanshi",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "5047158",
+      "name": "工具箱",
+      "font_class": "gongjuxiang",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "29957524",
+      "name": "房屋认证",
+      "font_class": "fangwurenzheng",
+      "unicode": "100d2",
+      "unicode_decimal": 65746
+    }
+  ]
+}

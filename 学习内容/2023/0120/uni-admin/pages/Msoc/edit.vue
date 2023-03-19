@@ -3,14 +3,14 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="z_id" label="厂商" required>
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="zwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.z_id.value"
-          @change="zonchange">
+          field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="parent_id.value"
+          v-model="formData.z_id.value" @change="zonchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="parent_id" label="品牌" required>
         <uni-data-picker placeholder="请选择品牌" popup-title="请选择品牌" collection="Msoc" :where="pwhere"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" v-model="formData.parent_id.value"
-          @change="ponchange">
+          field="_id as value, name as text" :step-searh="true" self-field="_id" parent-field="parent_id.value"
+          v-model="formData.parent_id.value" @change="ponchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>

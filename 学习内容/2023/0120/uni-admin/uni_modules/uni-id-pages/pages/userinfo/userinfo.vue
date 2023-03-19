@@ -11,15 +11,22 @@
 			</uni-list-item>
 			<uni-list-item v-if="userInfo.email" class="item" title="电子邮箱" :rightText="userInfo.email">
 			</uni-list-item>
+			<!-- #ifdef APP -->
+      <!-- 如未开通实人认证服务，可以将实名认证入口注释 -->
+			<uni-list-item class="item" @click="realNameVerify" title="实名认证" :rightText="realNameStatus !== 2 ? '未认证': '已认证'" link>
+			</uni-list-item>
+			<!-- #endif -->
 			<uni-list-item v-if="hasPwd" class="item" @click="changePassword" title="修改密码" link>
 			</uni-list-item>
 		</uni-list>
+		<!-- #ifndef MP -->
 		<uni-list class="mt10">
 			<uni-list-item @click="deactivate" title="注销账号" link="navigateTo"></uni-list-item>
 		</uni-list>
+		<!-- #endif -->
 		<uni-popup ref="dialog" type="dialog">
-			<uni-popup-dialog mode="input" :value="userInfo.nickname" @confirm="setNickname" title="设置昵称"
-				placeholder="请输入要设置的昵称">
+			<uni-popup-dialog mode="input" :value="userInfo.nickname" @confirm="setNickname" :inputType="setNicknameIng?'nickname':'text'"
+				title="设置昵称" placeholder="请输入要设置的昵称">
 			</uni-popup-dialog>
 		</uni-popup>
 		<uni-id-pages-bind-mobile ref="bind-mobile-by-sms" @success="bindMobileSuccess"></uni-id-pages-bind-mobile>
@@ -30,9 +37,7 @@
 	</view>
 </template>
 <script>
-	const db = uniCloud.database();
-	const usersTable = db.collection('uni-id-users')
-	const uniIdCo = uniCloud.importObject("uni-id-co")
+const uniIdCo = uniCloud.importObject("uni-id-co")
   import {
     store,
     mutations
@@ -41,7 +46,14 @@
     computed: {
       userInfo() {
         return store.userInfo
-      }
+      },
+	  realNameStatus () {
+		  if (!this.userInfo.realNameAuth) {
+			  return 0
+		  }
+
+		  return this.userInfo.realNameAuth.authStatus
+	  }
     },
 		data() {
 			return {
@@ -57,8 +69,9 @@
 				// 	mobile:'',
 				// 	nickname:''
 				// },
-				hasPwd:false,
-				showLoginManage:false//通过页面传参隐藏登录&退出登录按钮
+				hasPwd: false,
+				showLoginManage: false ,//通过页面传参隐藏登录&退出登录按钮
+				setNicknameIng:false
 			}
 		},
 		async onShow() {
@@ -66,8 +79,8 @@
 			this.univerifyStyle.otherLoginButton.title = "其他号码绑定"
 		},
 		async onLoad(e) {
-			if(e.showLoginManage){
-				this.showLoginManage = true//通过页面传参隐藏登录&退出登录按钮
+			if (e.showLoginManage) {
+				this.showLoginManage = true //通过页面传参隐藏登录&退出登录按钮
 			}
 			//判断当前用户是否有密码，否则就不显示密码修改功能
 			let res = await uniIdCo.getAccountInfo()
@@ -82,13 +95,13 @@
 					}
 				})
 			},
-      logout(){
-        mutations.logout()
-      },
-      bindMobileSuccess(){
-        mutations.updateUserInfo()
-      },
-			changePassword(){
+			logout() {
+				mutations.logout()
+			},
+			bindMobileSuccess() {
+				mutations.updateUserInfo()
+			},
+			changePassword() {
 				uni.navigateTo({
 					url: '/uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd',
 					complete: (e) => {
@@ -123,13 +136,11 @@
 					"provider": 'univerify',
 					"univerifyStyle": this.univerifyStyle,
 					success: async e => {
-						// console.log(e.authResult);
 						uniIdCo.bindMobileByUniverify(e.authResult).then(res => {
-							// console.log(res);
 							mutations.updateUserInfo()
 						}).catch(e => {
 							console.log(e);
-						}).finally(e=>{
+						}).finally(e => {
 							// console.log(e);
 							uni.closeAuthView()
 						})
@@ -148,9 +159,11 @@
 				})
 			},
 			setNickname(nickname) {
-				// console.log(nickname);
 				if (nickname) {
-					mutations.updateUserInfo({nickname})
+					mutations.updateUserInfo({
+						nickname
+					})
+					this.setNicknameIng = false
 					this.$refs.dialog.close()
 				} else {
 					this.$refs.dialog.open()
@@ -178,7 +191,9 @@
 						provider: provider.toLowerCase(),
 						onlyAuthorize: true,
 						success: async e => {
-							const res = await uniIdCo['bind' + provider]({code: e.code})
+							const res = await uniIdCo['bind' + provider]({
+								code: e.code
+							})
 							if (res.errCode) {
 								uni.showToast({
 									title: res.errMsg || '绑定失败',
@@ -193,12 +208,16 @@
 						}
 					})
 				}
+			},
+			realNameVerify () {
+				uni.navigateTo({
+					url: "/uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify"
+				})
 			}
 		}
 	}
 </script>
 <style lang="scss" scoped>
-
 	@import "@/uni_modules/uni-id-pages/common/login-page.scss";
 
 	.uni-content {
@@ -211,6 +230,7 @@
 		box-sizing: border-box;
 		flex-direction: column;
 	}
+
 	@media screen and (min-width: 690px) {
 		.uni-content {
 			padding: 0;
@@ -222,6 +242,7 @@
 			box-shadow: none;
 		}
 	}
+
 	/* #endif */
 	.avatar {
 		align-items: center;
@@ -245,7 +266,7 @@
 		width: 80%;
 	}
 
-	.mt10{
+	.mt10 {
 		margin-top: 10px;
 	}
 </style>

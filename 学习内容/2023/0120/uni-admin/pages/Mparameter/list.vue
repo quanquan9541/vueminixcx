@@ -22,10 +22,92 @@
         <uni-table ref="table" :loading="loading" :emptyText="error.message || '没有更多数据'" border stripe type="selection" @selection-change="selectionChange">
           <uni-tr>
             <uni-th align="center">名称</uni-th>
+            <uni-th align="center" sortable @sort-change="sortChange($event, 'configurationParameter')">配置</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'screenMeasurement')" sortable @sort-change="sortChange($event, 'screenMeasurement')">屏尺寸</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.screenMaterial_localdata" @filter-change="filterChange($event, 'screenMaterial')">材质</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.screenSupplier_localdata" @filter-change="filterChange($event, 'screenSupplier')">屏厂</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'screenX')" sortable @sort-change="sortChange($event, 'screenX')">横向</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'screenY')" sortable @sort-change="sortChange($event, 'screenY')">纵向</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'screenPPI')" sortable @sort-change="sortChange($event, 'screenPPI')">PPI</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'screenRenovate')" sortable @sort-change="sortChange($event, 'screenRenovate')">刷新率</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'screenSampling')" sortable @sort-change="sortChange($event, 'screenSampling')">采用率</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.screenDimming_localdata" @filter-change="filterChange($event, 'screenDimming')">调光</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'screnPwm')" sortable @sort-change="sortChange($event, 'screnPwm')">频率</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'screenLuminance')" sortable @sort-change="sortChange($event, 'screenLuminance')">亮度</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'screenColor')" sortable @sort-change="sortChange($event, 'screenColor')">色彩</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.screenAdd_localdata" @filter-change="filterChange($event, 'screenAdd')">附加功能</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'screenAdmin')" sortable @sort-change="sortChange($event, 'screenAdmin')">情感分</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'AppearanceDesign')" sortable @sort-change="sortChange($event, 'AppearanceDesign')">外观</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'FrontCamera')" sortable @sort-change="sortChange($event, 'FrontCamera')">前置</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'FrontCameraT')" sortable @sort-change="sortChange($event, 'FrontCameraT')">前置2</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'MainCamera')" sortable @sort-change="sortChange($event, 'MainCamera')">主摄</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'wideAngleCamera')" sortable @sort-change="sortChange($event, 'wideAngleCamera')">广角</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'TelephotoCamera')" sortable @sort-change="sortChange($event, 'TelephotoCamera')">长焦</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'TelephotoCameraT')" sortable @sort-change="sortChange($event, 'TelephotoCameraT')">长焦2</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'PortraitCamera')" sortable @sort-change="sortChange($event, 'PortraitCamera')">人像</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'MacroCamera')" sortable @sort-change="sortChange($event, 'MacroCamera')">微距</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'depthCamera')" sortable @sort-change="sortChange($event, 'depthCamera')">景深</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'otherCamera')" sortable @sort-change="sortChange($event, 'otherCamera')">其他镜头</uni-th>
+            <uni-th align="center">芯片</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'ram')" sortable @sort-change="sortChange($event, 'ram')">内存</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'rom')" sortable @sort-change="sortChange($event, 'rom')">闪存</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'cell')" sortable @sort-change="sortChange($event, 'cell')">电池</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'WiredCharging')" sortable @sort-change="sortChange($event, 'WiredCharging')">有线充</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'WirelessCharging')" sortable @sort-change="sortChange($event, 'WirelessCharging')">无线充</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'ReverseCharging')" sortable @sort-change="sortChange($event, 'ReverseCharging')">反充</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'measurementHight')" sortable @sort-change="sortChange($event, 'measurementHight')">高度</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'measurementWidth')" sortable @sort-change="sortChange($event, 'measurementWidth')">宽度</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'measurementThickness')" sortable @sort-change="sortChange($event, 'measurementThickness')">厚度</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'weight')" sortable @sort-change="sortChange($event, 'weight')">重量</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.cheek_localdata" @filter-change="filterChange($event, 'cheek')">边框</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.backCover_localdata" @filter-change="filterChange($event, 'backCover')">后盖</uni-th>
             <uni-th align="center">操作</uni-th>
           </uni-tr>
           <uni-tr v-for="(item,index) in data" :key="index">
-            <uni-td align="center">{{item.name && item.name[0] && item.name[0].text}}</uni-td>
+            <uni-td align="center">{{item.title && item.title[0] && item.title[0].text}}</uni-td>
+            <uni-td align="center">{{item.configurationParameter}}</uni-td>
+            <uni-td align="center">{{item.screenMeasurement}}</uni-td>
+            <uni-td align="center">{{options.screenMaterial_valuetotext[item.screenMaterial]}}</uni-td>
+            <uni-td align="center">
+              <uni-data-picker :localdata="options.screenSupplier_valuetotext" :value="item.screenSupplier" :border="false" :readonly="true" split=","></uni-data-picker>
+            </uni-td>
+            <uni-td align="center">{{item.screenX}}</uni-td>
+            <uni-td align="center">{{item.screenY}}</uni-td>
+            <uni-td align="center">{{item.screenPPI}}</uni-td>
+            <uni-td align="center">{{item.screenRenovate}}</uni-td>
+            <uni-td align="center">{{item.screenSampling}}</uni-td>
+            <uni-td align="center">{{options.screenDimming_valuetotext[item.screenDimming]}}</uni-td>
+            <uni-td align="center">{{item.screnPwm}}</uni-td>
+            <uni-td align="center">{{item.screenLuminance}}</uni-td>
+            <uni-td align="center">{{item.screenColor}}</uni-td>
+            <uni-td align="center">
+              <uni-data-picker :localdata="options.screenAdd_valuetotext" :value="item.screenAdd" :border="false" :readonly="true" split=","></uni-data-picker>
+            </uni-td>
+            <uni-td align="center">{{item.screenAdmin}}</uni-td>
+            <uni-td align="center">{{item.AppearanceDesign}}</uni-td>
+            <uni-td align="center">{{item.FrontCamera}}</uni-td>
+            <uni-td align="center">{{item.FrontCameraT}}</uni-td>
+            <uni-td align="center">{{item.MainCamera}}</uni-td>
+            <uni-td align="center">{{item.wideAngleCamera}}</uni-td>
+            <uni-td align="center">{{item.TelephotoCamera}}</uni-td>
+            <uni-td align="center">{{item.TelephotoCameraT}}</uni-td>
+            <uni-td align="center">{{item.PortraitCamera}}</uni-td>
+            <uni-td align="center">{{item.MacroCamera}}</uni-td>
+            <uni-td align="center">{{item.depthCamera}}</uni-td>
+            <uni-td align="center">{{item.otherCamera}}</uni-td>
+            <uni-td align="center">{{item.socfunction && item.socfunction[0] && item.socfunction[0].text}}</uni-td>
+            <uni-td align="center">{{item.ram}}</uni-td>
+            <uni-td align="center">{{item.rom}}</uni-td>
+            <uni-td align="center">{{item.cell}}</uni-td>
+            <uni-td align="center">{{item.WiredCharging}}</uni-td>
+            <uni-td align="center">{{item.WirelessCharging}}</uni-td>
+            <uni-td align="center">{{item.ReverseCharging}}</uni-td>
+            <uni-td align="center">{{item.measurementHight}}</uni-td>
+            <uni-td align="center">{{item.measurementWidth}}</uni-td>
+            <uni-td align="center">{{item.measurementThickness}}</uni-td>
+            <uni-td align="center">{{item.weight}}</uni-td>
+            <uni-td align="center">{{options.cheek_valuetotext[item.cheek]}}</uni-td>
+            <uni-td align="center">{{options.backCover_valuetotext[item.backCover]}}</uni-td>
             <uni-td align="center">
               <view class="uni-group">
                 <button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">修改</button>
@@ -61,7 +143,7 @@
   export default {
     data() {
       return {
-        collectionList: [ db.collection('Mparameter').field('name').getTemp(),db.collection('Manufacturer_brand').field('_id,name as text').getTemp() ],
+        collectionList: [ db.collection('Mparameter').field('title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screnPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,FrontCamera,FrontCameraT,MainCamera,wideAngleCamera,TelephotoCamera,TelephotoCameraT,PortraitCamera,MacroCamera,depthCamera,otherCamera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover').getTemp(),db.collection('Manufacturer_brand').field('_id, name as text').getTemp(),db.collection('Msoc').field('_id, name as text').getTemp() ],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -70,7 +152,100 @@
         options: {
           pageSize,
           pageCurrent,
-          filterData: {},
+          filterData: {
+            "screenMaterial_localdata": [
+              {
+                "text": "OLED",
+                "value": "0.8"
+              },
+              {
+                "text": "LCD",
+                "value": "1"
+              }
+            ],
+            "screenSupplier_localdata": [
+              {
+                "text": "三星",
+                "value": 0
+              },
+              {
+                "text": "华星光电",
+                "value": 1
+              },
+              {
+                "text": "京东方",
+                "value": 2
+              },
+              {
+                "text": "天马",
+                "value": 3
+              },
+              {
+                "text": "维信诺",
+                "value": 4
+              },
+              {
+                "text": "柔宇",
+                "value": 5
+              },
+              {
+                "text": "未知",
+                "value": 9
+              }
+            ],
+            "screenDimming_localdata": [
+              {
+                "text": "DC调光",
+                "value": 1
+              },
+              {
+                "text": "类DC调光",
+                "value": 2
+              },
+              {
+                "text": "PWM调光",
+                "value": 3
+              }
+            ],
+            "screenAdd_localdata": [
+              {
+                "text": "DCI-P3",
+                "value": 0
+              },
+              {
+                "text": "HDR10",
+                "value": 1
+              },
+              {
+                "text": "HDR10+",
+                "value": 2
+              }
+            ],
+            "cheek_localdata": [
+              {
+                "text": "塑料",
+                "value": 1
+              },
+              {
+                "text": "金素",
+                "value": 2
+              }
+            ],
+            "backCover_localdata": [
+              {
+                "text": "塑料",
+                "value": 1
+              },
+              {
+                "text": "玻璃",
+                "value": 2
+              },
+              {
+                "text": "陶瓷",
+                "value": 2
+              }
+            ]
+          },
           ...enumConverter
         },
         imageStyles: {
@@ -81,7 +256,46 @@
           "filename": "Mparameter.xls",
           "type": "xls",
           "fields": {
-            "名称": "name"
+            "名称": "title",
+            "配置": "configurationParameter",
+            "屏尺寸": "screenMeasurement",
+            "材质": "screenMaterial",
+            "屏厂": "screenSupplier",
+            "横向": "screenX",
+            "纵向": "screenY",
+            "PPI": "screenPPI",
+            "刷新率": "screenRenovate",
+            "采用率": "screenSampling",
+            "调光": "screenDimming",
+            "频率": "screnPwm",
+            "亮度": "screenLuminance",
+            "色彩": "screenColor",
+            "附加功能": "screenAdd",
+            "情感分": "screenAdmin",
+            "外观": "AppearanceDesign",
+            "前置": "FrontCamera",
+            "前置2": "FrontCameraT",
+            "主摄": "MainCamera",
+            "广角": "wideAngleCamera",
+            "长焦": "TelephotoCamera",
+            "长焦2": "TelephotoCameraT",
+            "人像": "PortraitCamera",
+            "微距": "MacroCamera",
+            "景深": "depthCamera",
+            "其他镜头": "otherCamera",
+            "芯片": "socfunction",
+            "内存": "ram",
+            "闪存": "rom",
+            "电池": "cell",
+            "有线充": "WiredCharging",
+            "无线充": "WirelessCharging",
+            "反充": "ReverseCharging",
+            "高度": "measurementHight",
+            "宽度": "measurementWidth",
+            "厚度": "measurementThickness",
+            "重量": "weight",
+            "边框": "cheek",
+            "后盖": "backCover"
           }
         },
         exportExcelData: []

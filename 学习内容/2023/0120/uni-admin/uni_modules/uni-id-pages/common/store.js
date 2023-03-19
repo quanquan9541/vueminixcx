@@ -37,12 +37,21 @@ export const mutations = {
 			})
 
 		} else {
+			const uniIdCo = uniCloud.importObject("uni-id-co", {
+				customUI: true
+			})
 			try {
 				let res = await usersTable.where("'_id' == $cloudEnv_uid")
-						.field('mobile,nickname,username,email,avatar_file')
-						.get()
+					.field('mobile,nickname,username,email,avatar_file')
+					.get()
+
+				const realNameRes = await uniIdCo.getRealNameInfo()
+
 				// console.log('fromDbData',res.result.data);
-				this.setUserInfo(res.result.data[0])
+				this.setUserInfo({
+					...res.result.data[0],
+					realNameAuth: realNameRes
+				})
 			} catch (e) {
 				this.setUserInfo({},{cover:true})
 				console.error(e.message, e.errCode);
@@ -139,7 +148,7 @@ export const mutations = {
 		}
 
 		if (autoBack) {
-			this.loginBack(uniIdRedirectUrl)
+			this.loginBack({uniIdRedirectUrl})
 		}
 	}
 
