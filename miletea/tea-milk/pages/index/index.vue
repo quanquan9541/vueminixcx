@@ -40,6 +40,9 @@
 
 <script>
   import {
+    getdata
+  } from '../../tools/getlist.js';
+  import {
     debounce
   } from '../../tools/tools.js';
   import {
@@ -58,7 +61,7 @@
           name: '请手动下拉刷新'
         }],
         data: [],
-        noMore: true,
+        noMore: false,
         more: false,
         status: 'loadmore',
         loadingText: '努力加载中',
@@ -70,6 +73,7 @@
       // console.log('onload启动');
       //启动下拉刷新
       uni.startPullDownRefresh();
+      this.noMore = false
       setTimeout(() => {
         this.loading = false
       }, 1000)
@@ -81,8 +85,8 @@
       this.getclass() //调用函数
     },
     onReachBottom() {
-      // console.log('触底');
       if (this.more) return this.status = 'noMore'
+      console.log('触底');
       this.getyuntea(this.id)
       this.status = "loading"
     },
@@ -110,6 +114,7 @@
         // console.log(item);
         this.current = item.index
         this.data = []
+        this.noMore = false
         this.notification('加载中')
         this.fangdou(item) //调用防抖
         this.id = item
@@ -126,17 +131,24 @@
       }, 1000),
       //获取详细数据
       async getyuntea(e) {
+        this.more = false
+        this.status = "loadmore"
         const skip = this.data.length
-        let data = await db.collection('tea-milk-list').where(`category_id=='${e.id}'&&state==true`).field(
-          '_id,name,category_id,pic').skip(skip).limit(8).get()
-        if (data.result.data.length == 0) {
+        const wer = `category_id=='${e.id}'&&state==true`
+        // console.log(wer);
+        let data = await getdata(wer, skip, 6)
+        // console.log(data);
+        let newvalue = data.result.data
+        let value = [...this.data, ...newvalue]
+        // console.log(value.length);
+        // console.log('count', data.result.count);
+        // 判断步长相等
+        if (value.length == data.result.count) {
           this.more = true
           this.status = "nomore"
           uni.hideLoading();
-          return
         }
-        let newvalue = data.result.data
-        let value = [...this.data, ...newvalue]
+
         this.data = value.map(
           item => {
             return {
@@ -147,13 +159,12 @@
         )
         uni.hideLoading();
         this.loading = false
-        // this.status = 'loadmore'
-        if (value.length <= 6) {
+
+        if (value.length <= 4) {
           this.noMore = false
         } else {
           this.noMore = true
         }
-        // console.log(this.data)
       },
     }
   }

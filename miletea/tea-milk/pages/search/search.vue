@@ -37,6 +37,9 @@
 
 <script>
   const db = uniCloud.database();
+  import {
+    getdata
+  } from '../../tools/getlist.js';
   //引入防抖文件
   import {
     antiShake
@@ -64,6 +67,8 @@
             type: "goods_desc"
           }]
         ],
+        Xx: "",
+        More: false
       };
     },
     onLoad(e) {
@@ -86,6 +91,11 @@
         // console.log("范围选:", this.rangetime);
       },
     },
+    onReachBottom() {
+      if (!this.More) return
+      // console.log('触底', this.Xx);
+      this.getdatalist()
+    },
     computed: {
       where() { //计算属性
         return `add_date>=${this.rangetime[0]} && add_date<=${this.rangetime[1]}`
@@ -100,10 +110,8 @@
           mask: true
         });
         setTimeout(() => {
-          // console.log("点击确认", this.rangetime);
-          const wer = this.where //就是一个值 不是函数
-          // console.log(wer);
-          this.getdata(wer)
+          this.Xx = this.where //就是一个值 不是函数
+          this.getdatalist()
         }, 1500)
       },
       //设置缓存
@@ -111,7 +119,6 @@
         const logdata = this.logdata
         const num = logdata.unshift(this.keyword)
         const log = logdata.slice(0, 3)
-        // console.log(log);
         this.logdata = log
         uni.setStorageSync('log', log);
       },
@@ -142,8 +149,6 @@
       },
       //给按钮添加防抖
       search: antiShake(function() {
-        // // console.log('节流');
-        // // console.log('点了搜索', this.keyword, this.type);
         if (!this.keyword) {
           uni.showToast({
             icon: "error",
@@ -157,8 +162,8 @@
             title: '搜索中',
             mask: true
           });
-          let e = this.ptype() //判断结果
-          this.getdata(e) //调用函数
+          this.Xx = this.ptype() //判断结果
+          this.getdatalist() //调用函数
         }
       }),
       //判断类型
@@ -178,23 +183,36 @@
         }
       },
       //获取网络数据
-      async getdata(e) {
-        const res = await db.collection('tea-milk-list').where(
-          e).orderBy('create_date desc').get()
-        // console.log(res);
+      async getdatalist() {
+        this.More = true
+        const skip = this.data.length
+        const e = this.Xx
+        const res = await getdata(e, skip, 6)
+        console.log(res);
         uni.hideLoading();
-        if (!res.result.data.length) {
+        if (!res.result.count) {
           this.keyword = '' //清空输入框
           return uni.showToast({
             icon: "error",
-            title: "搜索内容不存在",
+            title: "没有数据",
             mask: true,
             duration: 900
           })
         }
         this.setdata() //设置缓存
-        this.data = res.result.data
-        this.num = res.result.data.length
+        const newdata = res.result.data
+        const olddata = this.data
+        this.data = [...newdata, ...olddata]
+        this.num = res.result.count
+        if (this.data.length == this.num) {
+          this.More = false
+          uni.showToast({
+            icon: "none",
+            title: "共" + res.result.count + "条数据",
+            mask: true,
+            duration: 900
+          })
+        }
       }
 
     }
