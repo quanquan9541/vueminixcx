@@ -1,0 +1,56 @@
+// 金钱榜
+{
+  "bsonType": "object",
+  "required": ["ram", "rom"],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    //选择手机ID
+    "edit_id": {
+      "bsonType": "string",
+      "description": "产品型号",
+      "title": "名称",
+      "foreignKey": "Manufacturer_brand._id",
+      "enum": {
+        "collection": "Manufacturer_brand",
+        "field": "_id as value, name as text"
+      }
+    },
+    "ram": {
+      "bsonType": "int",
+      "title": "内存",
+      "description": "手机内存",
+      "enum": [4, 6, 8, 12, 16, 18]
+    },
+    "rom": {
+      "bsonType": "int",
+      "title": "闪存",
+      "description": "手机闪存",
+      "enum": [32, 64, 128, 256, 512, 1024]
+    },
+    "money": {
+      "bsonType": "string",
+      "title": "价格",
+      "description": "价格表"
+    },
+    "sort": {
+      "bsonType": "int",
+      "title": "排序",
+      "defaultValue": 0
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

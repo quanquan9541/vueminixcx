@@ -274,15 +274,44 @@
       "style": {
         "navigationBarTitleText": "参数列表"
       }
-    }
-  ,{
-    "path": "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
-    "style": {
+    }, {
+      "path": "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+      "style": {
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "实名认证"
+      }
+    }, {
+      "path": "pages/Mcamera/add",
+      "style": {
+        "navigationBarTitleText": "新增相机"
+      }
+    }, {
+      "path": "pages/Mcamera/edit",
+      "style": {
+        "navigationBarTitleText": "编辑相机"
+      }
+    }, {
+      "path": "pages/Mcamera/list",
+      "style": {
+        "navigationBarTitleText": "相机列表"
+      }
+    }, {
+      "path": "pages/Mmoney/add",
+      "style": {
+        "navigationBarTitleText": "新增价格"
+      }
+    }, {
+      "path": "pages/Mmoney/edit",
+      "style": {
+        "navigationBarTitleText": "编辑价格"
+      }
+    }, {
+      "path": "pages/Mmoney/list",
+      "style": {
+        "navigationBarTitleText": "价格列表"
+      }
     }
-}
-],
+  ],
   "subPackages": [{
       "root": "pages/system",
       "pages": [{

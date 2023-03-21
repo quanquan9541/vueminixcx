@@ -98,7 +98,6 @@
       "title": "PPI",
       "description": "等效PPI"
     },
-
     "screenRenovate": {
       "bsonType": "string",
       "title": "刷新率",
@@ -129,7 +128,7 @@
         }
       ]
     },
-    "screnPwm": {
+    "screenPwm": {
       "bsonType": "string",
       "title": "频率",
       "description": "调光频率"
@@ -177,55 +176,10 @@
       "description": "外观设计"
     },
     //相机
-    "FrontCamera": {
-      "bsonType": "string",
-      "title": "前置",
-      "description": "前置相机"
-    },
-    "FrontCameraT": {
-      "bsonType": "string",
-      "title": "前置2",
-      "description": "前置相机2"
-    },
-    "MainCamera": {
-      "bsonType": "string",
-      "title": "主摄",
-      "description": "主摄"
-    },
-    "wideAngleCamera": {
-      "bsonType": "string",
-      "title": "广角",
-      "description": "广角"
-    },
-    "TelephotoCamera": {
-      "bsonType": "string",
-      "title": "长焦",
-      "description": "长焦"
-    },
-    "TelephotoCameraT": {
-      "bsonType": "string",
-      "title": "长焦2",
-      "description": "长焦2"
-    },
-    "PortraitCamera": {
-      "bsonType": "string",
-      "title": "人像",
-      "description": "人像"
-    },
-    "MacroCamera": {
-      "bsonType": "string",
-      "title": "微距",
-      "description": "微距"
-    },
-    "depthCamera": {
-      "bsonType": "string",
-      "title": "景深",
-      "description": "景深"
-    },
-    "otherCamera": {
-      "bsonType": "string",
-      "title": "其他镜头",
-      "description": "其他镜头"
+    "Camera": {
+      "bsonType": "array",
+      "title": "相机",
+      "description": "相机列表"
     },
     //性能部分
     "socfunction": {
@@ -313,7 +267,7 @@
           "value": 1
         },
         {
-          "text": "金素",
+          "text": "金属",
           "value": 2
         }
       ]
@@ -337,112 +291,108 @@
           "value": 2
         }
       ]
-    }
-  },
-  //系统
-  "system": {
-    "bsonType": "string",
-    "title": "系统",
-    "description": "系统名称"
-  },
-  //指纹识别
-  "fingerprintIdentification": {
-    "bsonType": "int",
-    "title": "指纹",
-    "description": "指纹识别",
-    "defaultValue": 1,
-    "enum": [{
-        "text": "短焦·光学·屏下指纹",
-        "value": 1
-      },
-      {
-        "text": "超薄·光学·屏下指纹",
-        "value": 2
-      },
-      {
-        "text": "侧边·实体指纹",
-        "value": 3
-      },
-      {
-        "text": "背部·实体指纹",
-        "value": 4
-      },
-      {
-        "text": "无指纹识别",
-        "value": 5
-      }
-    ]
-  },
-  //震动马达
-  "motor": {
-    "bsonType": "int",
-    "title": "马达",
-    "description": "震动马达",
-    "defaultValue": 1,
-    "enum": [{
-        "text": "X轴·线性马达",
-        "value": 1
-      },
-      {
-        "text": "Z轴·线性马达",
-        "value": 2
-      },
-      {
-        "text": "转子马达",
-        "value": 3
-      },
-      {
-        "text": null,
-        "value": 4
-      }
-    ]
-  },
-  //附加体验项目
-  "AdditionalExperience": {
-    "bsonType": "array",
-    "title": "其他",
-    "description": "附加体验",
-    "defaultValue": [1, 2, 3],
-    "enum": [{
-        "text": "双扬声器",
-        "value": 1
-      },
-      {
-        "text": "NFC",
-        "value": 2
-      },
+    },
+    //系统
+    "system": {
+      "bsonType": "string",
+      "title": "系统",
+      "description": "系统名称"
+    },
+    //指纹识别
+    "fingerprintIdentification": {
+      "bsonType": "int",
+      "title": "指纹",
+      "description": "指纹识别",
+      "defaultValue": 1,
+      "enum": [{
+          "text": "短焦·光学·屏下指纹",
+          "value": 1
+        },
+        {
+          "text": "超薄·光学·屏下指纹",
+          "value": 2
+        },
+        {
+          "text": "侧边·实体指纹",
+          "value": 3
+        },
+        {
+          "text": "背部·实体指纹",
+          "value": 4
+        },
+        {
+          "text": "无指纹识别",
+          "value": 5
+        }
+      ]
+    },
+    //震动马达
+    "motor": {
+      "bsonType": "int",
+      "title": "马达",
+      "description": "震动马达",
+      "defaultValue": 1,
+      "enum": [{
+          "text": "X轴·线性马达",
+          "value": 1
+        },
+        {
+          "text": "Z轴·线性马达",
+          "value": 2
+        },
+        {
+          "text": "转子马达",
+          "value": 3
+        }
+      ]
+    },
+    //附加体验项目
+    "AdditionalExperience": {
+      "bsonType": "array",
+      "title": "其他",
+      "description": "附加体验",
+      "defaultValue": [1, 2, 3],
+      "enum": [{
+          "text": "双扬声器",
+          "value": 1
+        },
+        {
+          "text": "NFC",
+          "value": 2
+        },
 
-      {
-        "text": "WiFi6",
-        "value": 3
-      },
-      {
-        "text": "红外遥控",
-        "value": 4
-      },
-      {
-        "text": "VC液冷散热",
-        "value": 5
-      },
-      {
-        "text": "IP68防尘防水",
-        "value": 6
+        {
+          "text": "WiFi6",
+          "value": 3
+        },
+        {
+          "text": "红外遥控",
+          "value": 4
+        },
+        {
+          "text": "VC液冷散热",
+          "value": 5
+        },
+        {
+          "text": "IP68防尘防水",
+          "value": 6
+        }
+      ]
+    },
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
       }
-    ]
-  },
-  //over
-  "last_date": {
-    "bsonType": "timestamp",
-    "description": "修改时间",
-    "defaultValue": {
-      "$env": "now"
-    }
-  },
-  "create_date": {
-    "bsonType": "timestamp",
-    "description": "创建时间",
-    "forceDefaultValue": {
-      "$env": "now"
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
     }
   }
 }

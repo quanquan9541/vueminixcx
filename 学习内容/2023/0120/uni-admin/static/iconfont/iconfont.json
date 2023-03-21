@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5387967",
+      "name": "金币_o",
+      "font_class": "jinbi_o",
+      "unicode": "eba1",
+      "unicode_decimal": 60321
+    },
+    {
+      "icon_id": "20781683",
+      "name": "sp-重要设备-重要设备",
+      "font_class": "sp-zhongyaoshebei-zhongyaoshebei",
+      "unicode": "e9e6",
+      "unicode_decimal": 59878
+    },
+    {
       "icon_id": "6932619",
       "name": "奶茶2",
       "font_class": "naicha1",

@@ -167,7 +167,7 @@ const validator = {
     "defaultValue": 1,
     "label": "调光"
   },
-  "screnPwm": {
+  "screenPwm": {
     "rules": [
       {
         "format": "string"
@@ -243,95 +243,14 @@ const validator = {
     "title": "外观",
     "label": "外观"
   },
-  "FrontCamera": {
+  "Camera": {
     "rules": [
       {
-        "format": "string"
+        "format": "array"
       }
     ],
-    "title": "前置",
-    "label": "前置"
-  },
-  "FrontCameraT": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "前置2",
-    "label": "前置2"
-  },
-  "MainCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "主摄",
-    "label": "主摄"
-  },
-  "wideAngleCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "广角",
-    "label": "广角"
-  },
-  "TelephotoCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "长焦",
-    "label": "长焦"
-  },
-  "TelephotoCameraT": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "长焦2",
-    "label": "长焦2"
-  },
-  "PortraitCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "人像",
-    "label": "人像"
-  },
-  "MacroCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "微距",
-    "label": "微距"
-  },
-  "depthCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "景深",
-    "label": "景深"
-  },
-  "otherCamera": {
-    "rules": [
-      {
-        "format": "string"
-      }
-    ],
-    "title": "其他镜头",
-    "label": "其他镜头"
+    "title": "相机",
+    "label": "相机"
   },
   "socfunction": {
     "rules": [
@@ -454,7 +373,7 @@ const validator = {
             "value": 1
           },
           {
-            "text": "金素",
+            "text": "金属",
             "value": 2
           }
         ]
@@ -489,6 +408,127 @@ const validator = {
     "title": "后盖",
     "defaultValue": 1,
     "label": "后盖"
+  },
+  "system": {
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
+    "title": "系统",
+    "label": "系统"
+  },
+  "fingerprintIdentification": {
+    "rules": [
+      {
+        "format": "int"
+      },
+      {
+        "range": [
+          {
+            "text": "短焦·光学·屏下指纹",
+            "value": 1
+          },
+          {
+            "text": "超薄·光学·屏下指纹",
+            "value": 2
+          },
+          {
+            "text": "侧边·实体指纹",
+            "value": 3
+          },
+          {
+            "text": "背部·实体指纹",
+            "value": 4
+          },
+          {
+            "text": "无指纹识别",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "title": "指纹",
+    "defaultValue": 1,
+    "label": "指纹"
+  },
+  "motor": {
+    "rules": [
+      {
+        "format": "int"
+      },
+      {
+        "range": [
+          {
+            "text": "X轴·线性马达",
+            "value": 1
+          },
+          {
+            "text": "Z轴·线性马达",
+            "value": 2
+          },
+          {
+            "text": "转子马达",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "title": "马达",
+    "defaultValue": 1,
+    "label": "马达"
+  },
+  "AdditionalExperience": {
+    "rules": [
+      {
+        "format": "array"
+      },
+      {
+        "range": [
+          {
+            "text": "双扬声器",
+            "value": 1
+          },
+          {
+            "text": "NFC",
+            "value": 2
+          },
+          {
+            "text": "WiFi6",
+            "value": 3
+          },
+          {
+            "text": "红外遥控",
+            "value": 4
+          },
+          {
+            "text": "VC液冷散热",
+            "value": 5
+          },
+          {
+            "text": "IP68防尘防水",
+            "value": 6
+          }
+        ]
+      }
+    ],
+    "title": "其他",
+    "defaultValue": [
+      1,
+      2,
+      3
+    ],
+    "label": "其他"
+  },
+  "last_date": {
+    "rules": [
+      {
+        "format": "timestamp"
+      }
+    ],
+    "defaultValue": {
+      "$env": "now"
+    }
   }
 }
 
@@ -548,12 +588,50 @@ const enumConverter = {
   ],
   "cheek_valuetotext": {
     "1": "塑料",
-    "2": "金素"
+    "2": "金属"
   },
   "backCover_valuetotext": {
     "1": "塑料",
     "2": "陶瓷"
-  }
+  },
+  "fingerprintIdentification_valuetotext": {
+    "1": "短焦·光学·屏下指纹",
+    "2": "超薄·光学·屏下指纹",
+    "3": "侧边·实体指纹",
+    "4": "背部·实体指纹",
+    "5": "无指纹识别"
+  },
+  "motor_valuetotext": {
+    "1": "X轴·线性马达",
+    "2": "Z轴·线性马达",
+    "3": "转子马达"
+  },
+  "AdditionalExperience_valuetotext": [
+    {
+      "text": "双扬声器",
+      "value": 1
+    },
+    {
+      "text": "NFC",
+      "value": 2
+    },
+    {
+      "text": "WiFi6",
+      "value": 3
+    },
+    {
+      "text": "红外遥控",
+      "value": 4
+    },
+    {
+      "text": "VC液冷散热",
+      "value": 5
+    },
+    {
+      "text": "IP68防尘防水",
+      "value": 6
+    }
+  ]
 }
 
 function filterToWhere(filter, command) {

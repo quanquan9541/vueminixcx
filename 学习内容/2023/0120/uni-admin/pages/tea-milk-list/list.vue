@@ -51,7 +51,7 @@
             <uni-td align="center">{{item.goods_desc}}</uni-td>
             <uni-td align="center">{{item.url}}</uni-td>
             <uni-td align="center">
-              <uni-dateformat :threshold="[0, 0]" :date="item.add_date"></uni-dateformat>
+              <uni-dateformat format="yyyy/MM/dd" :date="item.add_date"></uni-dateformat>
             </uni-td>
             <uni-td align="center">{{item.state == true ? '✅' : '❌'}}</uni-td>
             <uni-td align="center">
@@ -80,8 +80,8 @@
 
   const db = uniCloud.database()
   // 表查询配置
-  const dbOrderBy = '' // 排序字段
-  const dbSearchFields = [] // 模糊搜索字段，支持模糊搜索的字段列表。联表查询格式: 主表字段名.副表字段名，例如用户表关联角色表 role.role_name
+  const dbOrderBy = 'add_date desc' // 排序字段
+  const dbSearchFields = ["category_id.name"] // 模糊搜索字段，支持模糊搜索的字段列表。联表查询格式: 主表字段名.副表字段名，例如用户表关联角色表 role.role_name
   // 分页配置
   const pageSize = 20
   const pageCurrent = 1
@@ -116,13 +116,13 @@
           "filename": "tea-milk-list.xls",
           "type": "xls",
           "fields": {
-            "品牌": "category_id",
+            "品牌": "category_id.name",
             "名称": "name",
-            "大图": "pic",
+            // "大图": "pic",
             "配料": "goods_desc",
             "图文": "url",
             "日期": "add_date",
-            "状态": "state"
+            // "状态": "state"
           }
         },
         exportExcelData: []

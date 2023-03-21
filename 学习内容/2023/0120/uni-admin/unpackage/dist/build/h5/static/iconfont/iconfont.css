@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont";
   /* Project id 3771939 */
-  src: url('@/static/iconfont/iconfont.woff2?t=1678442627754') format('woff2'),
-    url('@/static/iconfont/iconfont.woff?t=1678442627754') format('woff'),
-    url('@/static/iconfont/iconfont.ttf?t=1678442627754') format('truetype');
+  src: url('@/static/iconfont/iconfont.woff2?t=1678451314092') format('woff2'),
+    url('@/static/iconfont/iconfont.woff?t=1678451314092') format('woff'),
+    url('@/static/iconfont/iconfont.ttf?t=1678451314092') format('truetype');
 }
 
 .iconfont {
@@ -14,8 +14,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-naicha:before {
-  content: "\e612";
+.icon-naicha1:before {
+  content: "\e611";
+}
+
+.icon-xingjiabi:before {
+  content: "\e662";
 }
 
 .icon-pinpai:before {

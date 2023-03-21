@@ -54,7 +54,7 @@
         "name": "",
         "url": "",
         "logo": null,
-        "sort": null,
+        "sort": 0,
         "state": true
       }
       return {

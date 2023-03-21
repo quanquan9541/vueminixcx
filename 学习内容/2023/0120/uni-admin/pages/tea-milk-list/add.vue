@@ -2,13 +2,15 @@
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="category_id" label="品牌">
-        <uni-data-picker v-model="formData.category_id" collection="tea-milk-class" field="_id as value, name as text"></uni-data-picker>
+        <uni-data-picker v-model="formData.category_id" collection="tea-milk-class" field="_id as value, name as text">
+        </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="名称" required>
         <uni-easyinput placeholder="请输入商品名称" v-model="formData.name" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="pic" label="大图" required>
-        <uni-file-picker file-mediatype="image" file-extname="jpg,png" :limit="3" return-type="array" v-model="formData.pic"></uni-file-picker>
+        <uni-file-picker file-mediatype="image" file-extname="jpg,png" :limit="3" return-type="array"
+          v-model="formData.pic"></uni-file-picker>
       </uni-forms-item>
       <uni-forms-item name="goods_desc" label="配料">
         <uni-easyinput placeholder="请输入配料表" v-model="formData.goods_desc" trim="both"></uni-easyinput>
@@ -17,7 +19,7 @@
         <uni-easyinput placeholder="商品图文链接" v-model="formData.url" trim="both"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="add_date" label="日期">
-        <uni-datetime-picker return-type="timestamp" v-model="formData.add_date"></uni-datetime-picker>
+        <uni-datetime-picker type="date" return-type="timestamp" v-model="formData.add_date"></uni-datetime-picker>
       </uni-forms-item>
       <uni-forms-item name="state" label="状态">
         <switch @change="binddata('state', $event.detail.value)" :checked="formData.state"></switch>
@@ -33,7 +35,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/tea-milk-list.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/tea-milk-list.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -49,7 +53,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -74,7 +78,7 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+
       /**
        * 验证表单并提交
        */
@@ -84,8 +88,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },

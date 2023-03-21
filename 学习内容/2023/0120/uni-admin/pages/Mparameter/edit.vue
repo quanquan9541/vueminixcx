@@ -34,8 +34,8 @@
       <uni-forms-item name="screenDimming" label="调光">
         <uni-data-checkbox v-model="formData.screenDimming" :localdata="formOptions.screenDimming_localdata"></uni-data-checkbox>
       </uni-forms-item>
-      <uni-forms-item name="screnPwm" label="频率">
-        <uni-easyinput placeholder="调光频率" v-model="formData.screnPwm"></uni-easyinput>
+      <uni-forms-item name="screenPwm" label="频率">
+        <uni-easyinput placeholder="调光频率" v-model="formData.screenPwm"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenLuminance" label="亮度">
         <uni-easyinput placeholder="屏幕亮度/nit" type="number" v-model="formData.screenLuminance"></uni-easyinput>
@@ -52,35 +52,8 @@
       <uni-forms-item name="AppearanceDesign" label="外观">
         <uni-easyinput placeholder="外观设计" v-model="formData.AppearanceDesign"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="FrontCamera" label="前置">
-        <uni-easyinput placeholder="前置相机" v-model="formData.FrontCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="FrontCameraT" label="前置2">
-        <uni-easyinput placeholder="前置相机2" v-model="formData.FrontCameraT"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="MainCamera" label="主摄">
-        <uni-easyinput placeholder="主摄" v-model="formData.MainCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="wideAngleCamera" label="广角">
-        <uni-easyinput placeholder="广角" v-model="formData.wideAngleCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="TelephotoCamera" label="长焦">
-        <uni-easyinput placeholder="长焦" v-model="formData.TelephotoCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="TelephotoCameraT" label="长焦2">
-        <uni-easyinput placeholder="长焦2" v-model="formData.TelephotoCameraT"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="PortraitCamera" label="人像">
-        <uni-easyinput placeholder="人像" v-model="formData.PortraitCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="MacroCamera" label="微距">
-        <uni-easyinput placeholder="微距" v-model="formData.MacroCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="depthCamera" label="景深">
-        <uni-easyinput placeholder="景深" v-model="formData.depthCamera"></uni-easyinput>
-      </uni-forms-item>
-      <uni-forms-item name="otherCamera" label="其他镜头">
-        <uni-easyinput placeholder="其他镜头" v-model="formData.otherCamera"></uni-easyinput>
+      <uni-forms-item name="Camera" label="相机">
+        <uni-data-checkbox :multiple="true" v-model="formData.Camera"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
         <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text"></uni-data-picker>
@@ -120,6 +93,21 @@
       </uni-forms-item>
       <uni-forms-item name="backCover" label="后盖">
         <uni-data-checkbox v-model="formData.backCover" :localdata="formOptions.backCover_localdata"></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item name="system" label="系统">
+        <uni-easyinput placeholder="系统名称" v-model="formData.system"></uni-easyinput>
+      </uni-forms-item>
+      <uni-forms-item name="fingerprintIdentification" label="指纹">
+        <uni-data-checkbox v-model="formData.fingerprintIdentification" :localdata="formOptions.fingerprintIdentification_localdata"></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item name="motor" label="马达">
+        <uni-data-checkbox v-model="formData.motor" :localdata="formOptions.motor_localdata"></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item name="AdditionalExperience" label="其他">
+        <uni-data-checkbox :multiple="true" v-model="formData.AdditionalExperience" :localdata="formOptions.AdditionalExperience_localdata"></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item name="last_date" label="">
+        <uni-datetime-picker return-type="timestamp" v-model="formData.last_date"></uni-datetime-picker>
       </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
@@ -166,7 +154,7 @@
         "screenRenovate": "120",
         "screenSampling": "240",
         "screenDimming": 1,
-        "screnPwm": "",
+        "screenPwm": "",
         "screenLuminance": 1200,
         "screenColor": 8,
         "screenAdd": [
@@ -174,16 +162,7 @@
         ],
         "screenAdmin": 0,
         "AppearanceDesign": "",
-        "FrontCamera": "",
-        "FrontCameraT": "",
-        "MainCamera": "",
-        "wideAngleCamera": "",
-        "TelephotoCamera": "",
-        "TelephotoCameraT": "",
-        "PortraitCamera": "",
-        "MacroCamera": "",
-        "depthCamera": "",
-        "otherCamera": "",
+        "Camera": [],
         "socfunction": "",
         "ram": "LPDDR 5",
         "rom": "USF 3.1",
@@ -196,7 +175,16 @@
         "measurementThickness": "7.9",
         "weight": "200.00",
         "cheek": 1,
-        "backCover": 1
+        "backCover": 1,
+        "system": "",
+        "fingerprintIdentification": 1,
+        "motor": 1,
+        "AdditionalExperience": [
+          1,
+          2,
+          3
+        ],
+        "last_date": null
       }
       return {
         formData,
@@ -275,7 +263,7 @@
               "value": 1
             },
             {
-              "text": "金素",
+              "text": "金属",
               "value": 2
             }
           ],
@@ -291,6 +279,68 @@
             {
               "text": "陶瓷",
               "value": 2
+            }
+          ],
+          "fingerprintIdentification_localdata": [
+            {
+              "text": "短焦·光学·屏下指纹",
+              "value": 1
+            },
+            {
+              "text": "超薄·光学·屏下指纹",
+              "value": 2
+            },
+            {
+              "text": "侧边·实体指纹",
+              "value": 3
+            },
+            {
+              "text": "背部·实体指纹",
+              "value": 4
+            },
+            {
+              "text": "无指纹识别",
+              "value": 5
+            }
+          ],
+          "motor_localdata": [
+            {
+              "text": "X轴·线性马达",
+              "value": 1
+            },
+            {
+              "text": "Z轴·线性马达",
+              "value": 2
+            },
+            {
+              "text": "转子马达",
+              "value": 3
+            }
+          ],
+          "AdditionalExperience_localdata": [
+            {
+              "text": "双扬声器",
+              "value": 1
+            },
+            {
+              "text": "NFC",
+              "value": 2
+            },
+            {
+              "text": "WiFi6",
+              "value": 3
+            },
+            {
+              "text": "红外遥控",
+              "value": 4
+            },
+            {
+              "text": "VC液冷散热",
+              "value": 5
+            },
+            {
+              "text": "IP68防尘防水",
+              "value": 6
             }
           ]
         },
@@ -353,7 +403,7 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screnPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,FrontCamera,FrontCameraT,MainCamera,wideAngleCamera,TelephotoCamera,TelephotoCameraT,PortraitCamera,MacroCamera,depthCamera,otherCamera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field("title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screenPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,Camera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover,system,fingerprintIdentification,motor,AdditionalExperience,last_date").get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data
