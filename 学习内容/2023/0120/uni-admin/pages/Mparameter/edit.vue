@@ -2,19 +2,24 @@
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="title" label="名称">
-        <uni-data-picker v-model="formData.title" collection="Manufacturer_brand" field="_id as value, name as text"></uni-data-picker>
+        <uni-data-picker v-model="formData.title" collection="Manufacturer_brand" parent-field="parent_id.value"
+          self-field="_id" field="_id as value, name as text" @change="onchange"></uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="configurationParameter" label="配置">
-        <uni-data-checkbox :multiple="true" v-model="formData.configurationParameter"></uni-data-checkbox>
+        <view v-for="item in formData.configurationParameter" :key="_id">
+          <money :item="item"></money>
+        </view>
       </uni-forms-item>
       <uni-forms-item name="screenMeasurement" label="屏尺寸">
         <uni-easyinput placeholder="屏幕尺寸" v-model="formData.screenMeasurement"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenMaterial" label="材质">
-        <uni-data-checkbox v-model="formData.screenMaterial" :localdata="formOptions.screenMaterial_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.screenMaterial" :localdata="formOptions.screenMaterial_localdata">
+        </uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="screenSupplier" label="屏厂">
-        <uni-data-checkbox :multiple="true" v-model="formData.screenSupplier" :localdata="formOptions.screenSupplier_localdata"></uni-data-checkbox>
+        <uni-data-checkbox :multiple="true" v-model="formData.screenSupplier"
+          :localdata="formOptions.screenSupplier_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="screenX" label="横向">
         <uni-easyinput placeholder="横轴" type="number" v-model="formData.screenX"></uni-easyinput>
@@ -32,7 +37,8 @@
         <uni-easyinput placeholder="请输入采样率" v-model="formData.screenSampling"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenDimming" label="调光">
-        <uni-data-checkbox v-model="formData.screenDimming" :localdata="formOptions.screenDimming_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.screenDimming" :localdata="formOptions.screenDimming_localdata">
+        </uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="screenPwm" label="频率">
         <uni-easyinput placeholder="调光频率" v-model="formData.screenPwm"></uni-easyinput>
@@ -44,7 +50,8 @@
         <uni-easyinput placeholder="屏幕色彩丰富度/bit" type="number" v-model="formData.screenColor"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenAdd" label="附加功能">
-        <uni-data-checkbox :multiple="true" v-model="formData.screenAdd" :localdata="formOptions.screenAdd_localdata"></uni-data-checkbox>
+        <uni-data-checkbox :multiple="true" v-model="formData.screenAdd" :localdata="formOptions.screenAdd_localdata">
+        </uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="screenAdmin" label="情感分">
         <uni-easyinput placeholder="加权分0-1之间" type="number" v-model="formData.screenAdmin"></uni-easyinput>
@@ -53,10 +60,13 @@
         <uni-easyinput placeholder="外观设计" v-model="formData.AppearanceDesign"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="Camera" label="相机">
-        <uni-data-checkbox :multiple="true" v-model="formData.Camera"></uni-data-checkbox>
+        <view v-for="item in formData.Camera" :key="_id">
+          <left-right :item="item"></left-right>
+        </view>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
-        <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text"></uni-data-picker>
+        <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text">
+        </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存">
         <uni-easyinput placeholder="内存" v-model="formData.ram"></uni-easyinput>
@@ -92,19 +102,22 @@
         <uni-data-checkbox v-model="formData.cheek" :localdata="formOptions.cheek_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="backCover" label="后盖">
-        <uni-data-checkbox v-model="formData.backCover" :localdata="formOptions.backCover_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.backCover" :localdata="formOptions.backCover_localdata">
+        </uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="system" label="系统">
         <uni-easyinput placeholder="系统名称" v-model="formData.system"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="fingerprintIdentification" label="指纹">
-        <uni-data-checkbox v-model="formData.fingerprintIdentification" :localdata="formOptions.fingerprintIdentification_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.fingerprintIdentification"
+          :localdata="formOptions.fingerprintIdentification_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="motor" label="马达">
         <uni-data-checkbox v-model="formData.motor" :localdata="formOptions.motor_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="AdditionalExperience" label="其他">
-        <uni-data-checkbox :multiple="true" v-model="formData.AdditionalExperience" :localdata="formOptions.AdditionalExperience_localdata"></uni-data-checkbox>
+        <uni-data-checkbox :multiple="true" v-model="formData.AdditionalExperience"
+          :localdata="formOptions.AdditionalExperience_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="last_date" label="">
         <uni-datetime-picker return-type="timestamp" v-model="formData.last_date"></uni-datetime-picker>
@@ -120,7 +133,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/Mparameter.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/Mparameter.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -136,7 +151,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -189,8 +204,7 @@
       return {
         formData,
         formOptions: {
-          "screenMaterial_localdata": [
-            {
+          "screenMaterial_localdata": [{
               "text": "OLED",
               "value": "0.8"
             },
@@ -199,8 +213,7 @@
               "value": "1"
             }
           ],
-          "screenSupplier_localdata": [
-            {
+          "screenSupplier_localdata": [{
               "text": "三星",
               "value": 0
             },
@@ -229,8 +242,7 @@
               "value": 9
             }
           ],
-          "screenDimming_localdata": [
-            {
+          "screenDimming_localdata": [{
               "text": "DC调光",
               "value": 1
             },
@@ -243,8 +255,7 @@
               "value": 3
             }
           ],
-          "screenAdd_localdata": [
-            {
+          "screenAdd_localdata": [{
               "text": "DCI-P3",
               "value": 0
             },
@@ -257,8 +268,7 @@
               "value": 2
             }
           ],
-          "cheek_localdata": [
-            {
+          "cheek_localdata": [{
               "text": "塑料",
               "value": 1
             },
@@ -267,8 +277,7 @@
               "value": 2
             }
           ],
-          "backCover_localdata": [
-            {
+          "backCover_localdata": [{
               "text": "塑料",
               "value": 1
             },
@@ -281,8 +290,7 @@
               "value": 2
             }
           ],
-          "fingerprintIdentification_localdata": [
-            {
+          "fingerprintIdentification_localdata": [{
               "text": "短焦·光学·屏下指纹",
               "value": 1
             },
@@ -303,8 +311,7 @@
               "value": 5
             }
           ],
-          "motor_localdata": [
-            {
+          "motor_localdata": [{
               "text": "X轴·线性马达",
               "value": 1
             },
@@ -317,8 +324,7 @@
               "value": 3
             }
           ],
-          "AdditionalExperience_localdata": [
-            {
+          "AdditionalExperience_localdata": [{
               "text": "双扬声器",
               "value": 1
             },
@@ -360,7 +366,24 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+      // 获取选择手机id
+      onchange(e) {
+        const id = e.detail.value[2].value
+        // console.log(id);
+        this.getCamera(id)
+      },
+      //获取相机和金钱数据
+      async getCamera(e) {
+        let Cameradata = await db.collection('Mcamera').where(`edit_id=="${e}"`).field(
+          "_id, ComeraType,Comeraedit, sort").orderBy("sort desc").get()
+        let Moneydata = await await db.collection('Mmoney').where(`edit_id=="${e}"`).field("_id,ram,rom,money,sort")
+          .orderBy("sort desc").get()
+
+        this.formData.Camera = Cameradata.result.data
+        this.formData.configurationParameter = Moneydata.result.data
+        // console.log(this.formData.configurationParameter);
+      },
+
       /**
        * 验证表单并提交
        */
@@ -370,8 +393,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },
@@ -403,11 +425,13 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screenPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,Camera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover,system,fingerprintIdentification,motor,AdditionalExperience,last_date").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field(
+          "title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screenPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,Camera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover,system,fingerprintIdentification,motor,AdditionalExperience,last_date"
+        ).get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data
-            
+            this.getCamera(data.title)
           }
         }).catch((err) => {
           uni.showModal({

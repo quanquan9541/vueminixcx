@@ -1,11 +1,15 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="edit_id" label="名称">
-        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" field="_id as value, name as text"></uni-data-picker>
+      <uni-forms-item class="namew" name="edit_id" label="名称">
+        <view> {{this.name[0]? this.name[0].text :"厂商"}}-{{this.name[1]? this.name[1].text :"品牌"}}</view>
+        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" parent-field="parent_id.value"
+          placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange">
+        </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="ComeraType" label="类型" required>
-        <uni-data-checkbox v-model="formData.ComeraType" :localdata="formOptions.ComeraType_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.ComeraType" :localdata="formOptions.ComeraType_localdata">
+        </uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="Comeraedit" label="详情" required>
         <uni-easyinput placeholder="相机详情" v-model="formData.Comeraedit"></uni-easyinput>
@@ -30,7 +34,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/Mcamera.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/Mcamera.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -46,7 +52,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -59,10 +65,10 @@
         "sort": 0
       }
       return {
+        name: "",
         formData,
         formOptions: {
-          "ComeraType_localdata": [
-            {
+          "ComeraType_localdata": [{
               "text": "前置",
               "value": "前置"
             },
@@ -105,7 +111,11 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+      //获取选择数据
+      onchange(e) {
+        console.log(e);
+        this.name = e.detail.value
+      },
       /**
        * 验证表单并提交
        */
@@ -115,8 +125,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },
@@ -142,3 +151,5 @@
     }
   }
 </script>
+<style lang="scss">
+</style>

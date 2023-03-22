@@ -453,6 +453,13 @@
           "style": {
             "navigationBarTitleText": "表格"
           }
+        }, {
+          "path": "udbdemo/udbdemo",
+          "style": {
+            "navigationBarTitleText": "",
+            "enablePullDownRefresh": false
+          }
+
         }
       ]
     },

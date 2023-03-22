@@ -2,7 +2,8 @@
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="edit_id" label="名称">
-        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" field="_id as value, name as text"></uni-data-picker>
+        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" parent-field="parent_id.value"
+          self-field="_id" field="_id as value, name as text"></uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存" required>
         <uni-data-checkbox v-model="formData.ram" :localdata="formOptions.ram_localdata"></uni-data-checkbox>
@@ -27,7 +28,9 @@
 </template>
 
 <script>
-  import { validator } from '../../js_sdk/validator/Mmoney.js';
+  import {
+    validator
+  } from '../../js_sdk/validator/Mmoney.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -43,7 +46,7 @@
     return result
   }
 
-  
+
 
   export default {
     data() {
@@ -57,8 +60,7 @@
       return {
         formData,
         formOptions: {
-          "ram_localdata": [
-            {
+          "ram_localdata": [{
               "value": 4,
               "text": 4
             },
@@ -83,8 +85,7 @@
               "text": 18
             }
           ],
-          "rom_localdata": [
-            {
+          "rom_localdata": [{
               "value": 32,
               "text": 32
             },
@@ -119,7 +120,7 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      
+
       /**
        * 验证表单并提交
        */
@@ -129,8 +130,7 @@
         })
         this.$refs.form.validate().then((res) => {
           return this.submitForm(res)
-        }).catch(() => {
-        }).finally(() => {
+        }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
       },

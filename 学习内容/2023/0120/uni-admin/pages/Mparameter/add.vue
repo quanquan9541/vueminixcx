@@ -7,7 +7,9 @@
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="configurationParameter" label="配置">
-        <uni-data-checkbox :multiple="true" v-model="formData.configurationParameter"></uni-data-checkbox>
+        <view v-for="item in formData.configurationParameter" :key="_id">
+          <money :item="item"></money>
+        </view>
       </uni-forms-item>
       <uni-forms-item name="screenMeasurement" label="屏尺寸">
         <uni-easyinput placeholder="屏幕尺寸" v-model="formData.screenMeasurement"></uni-easyinput>
@@ -59,7 +61,9 @@
         <uni-easyinput placeholder="外观设计" v-model="formData.AppearanceDesign"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="Camera" label="相机">
-        <view class="">{{formData.Camera}}</view>
+        <view v-for="item in formData.Camera" :key="_id">
+          <left-right :item="item"></left-right>
+        </view>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
         <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text">
@@ -127,6 +131,9 @@
 </template>
 
 <script>
+  import {
+    callWithErrorHandling
+  } from "vue";
   import {
     validator
   } from '../../js_sdk/validator/Mparameter.js';
@@ -356,13 +363,19 @@
       // 获取选择手机id
       onchange(e) {
         const id = e.detail.value[2].value
-        console.log(id);
+        // console.log(id);
         this.getCamera(id)
       },
-      //获取相机数据
+      //获取相机和金钱数据
       async getCamera(e) {
-        let Cameradata = await db.collection('Mcamera').where(`edit_id=="${e}"`).get()
-        console.log(Cameradata);
+        let Cameradata = await db.collection('Mcamera').where(`edit_id=="${e}"`).field(
+          "_id, ComeraType,Comeraedit, sort").orderBy("sort desc").get()
+        let Moneydata = await await db.collection('Mmoney').where(`edit_id=="${e}"`).field("_id,ram,rom,money,sort")
+          .orderBy("sort desc").get()
+
+        this.formData.Camera = Cameradata.result.data
+        this.formData.configurationParameter = Moneydata.result.data
+        // console.log(this.formData.configurationParameter);
       },
       /**
        * 验证表单并提交
