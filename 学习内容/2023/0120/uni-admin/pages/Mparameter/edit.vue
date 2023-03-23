@@ -65,7 +65,8 @@
         </view>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
-        <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text">
+        <uni-data-picker v-model="formData.socfunction" collection="Msoc" parent-field="parent_id.value"
+          self-field="_id" field="_id as value, name as text">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存">
@@ -118,9 +119,6 @@
       <uni-forms-item name="AdditionalExperience" label="其他">
         <uni-data-checkbox :multiple="true" v-model="formData.AdditionalExperience"
           :localdata="formOptions.AdditionalExperience_localdata"></uni-data-checkbox>
-      </uni-forms-item>
-      <uni-forms-item name="last_date" label="">
-        <uni-datetime-picker return-type="timestamp" v-model="formData.last_date"></uni-datetime-picker>
       </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>

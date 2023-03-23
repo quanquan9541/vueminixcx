@@ -26,7 +26,7 @@
         <uni-easyinput placeholder="横轴" type="number" v-model="formData.screenX"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenY" label="纵向">
-        <uni-easyinput placeholder="纵轴" type="number" v-model="formData.screenY"></uni-easyinput>
+        <uni-easyinput placeholder="纵轴" type="number" v-model="formData.screenY" @blur="blur"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="screenPPI" label="PPI">
         <uni-easyinput placeholder="等效PPI" v-model="formData.screenPPI"></uni-easyinput>
@@ -66,7 +66,8 @@
         </view>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
-        <uni-data-picker v-model="formData.socfunction" collection="Msoc" field="_id as value, name as text">
+        <uni-data-picker v-model="formData.socfunction" collection="Msoc" parent-field="parent_id.value"
+          self-field="_id" field="_id as value, name as text">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存">
@@ -160,12 +161,12 @@
         "title": "",
         "configurationParameter": [],
         "screenMeasurement": "",
-        "screenMaterial": "",
+        "screenMaterial": "", //材质
         "screenSupplier": [
           0
         ],
-        "screenX": null,
-        "screenY": null,
+        "screenX": 1080, //
+        "screenY": 0,
         "screenPPI": "",
         "screenRenovate": "120",
         "screenSampling": "240",
@@ -359,7 +360,25 @@
     onReady() {
       this.$refs.form.setRules(this.rules)
     },
+    computed: {
+
+    },
     methods: {
+      //计算ppi
+      blur() {
+        if (this.formData.screenMeasurement && this.formData.screenMaterial && this.formData.screenX && this
+          .formData.screenY) {
+          // console.log('失去焦点');
+          const ppi2 = Number(this.formData.screenX) ** 2 + Number(this.formData.screenY) ** 2
+          const ppi = Math.round(Math.sqrt(ppi2) * Number(this.formData.screenMaterial) / Number(this.formData
+            .screenMeasurement))
+          this.formData.screenPPI = String(ppi)
+          // console.log(ppi);
+        } else {
+          console.log('缺失数据');
+        }
+
+      },
       // 获取选择手机id
       onchange(e) {
         const id = e.detail.value[2].value
