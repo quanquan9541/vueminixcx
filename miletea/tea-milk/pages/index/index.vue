@@ -8,16 +8,17 @@
     <view class="data" v-if="!loading">
       <u-sticky offset-top="10">
         <view class="top">
-          <view class="time" @click="gosearch('time')">
-            <u-icon name="clock" color="#0080EF" size="26"></u-icon>
-          </view>
           <view class="classname">
-            <u-tabs class="classlist" :list="classlist" lineWidth="25" lineHeight="6" :current=" current" :activeStyle="{
+            <u-tabs class="classlist" :list="classlist" lineWidth="25" lineHeight="6" scrollable :current=" current"
+              :activeStyle="{
               color: '#343C33' , fontWeight: 'bold' , transform: 'scale(1.1)' }" @click="click">
+              <view slot="left" style="padding:0 8rpx;" @tap="gosearch('time')">
+                <u-icon name="clock" color="#0080EF" size="20"></u-icon>
+              </view>
+              <view slot="right" style="padding:0 8rpx;" @tap="gosearch('text')">
+                <u-icon name="search" color="#0080EF" size="24"></u-icon>
+              </view>
             </u-tabs>
-          </view>
-          <view class="search" @click="gosearch('text')">
-            <u-icon name="search" color="#0080EF" size="30"></u-icon>
           </view>
         </view>
       </u-sticky>
@@ -199,23 +200,12 @@
         box-shadow: 0px 1px 1px 1px #dbdbdb;
 
         .classname {
-          width: 600rpx;
+          width: 720rpx;
           margin-left: 0rpx;
 
           .classlist {
             width: 100%
           }
-        }
-
-        .time {
-          width: 50rpx;
-          height: 100%;
-          // border: red 1px solid; //边框
-        }
-
-        .search {
-          width: 50rpx;
-          margin-right: 10rpx;
         }
       }
 

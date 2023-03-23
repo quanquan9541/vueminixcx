@@ -1,0 +1,58 @@
+//芯片表
+{
+	"bsonType": "object",
+	"required": ["name"],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（文章 ID），系统自动生成"
+		},
+		"z_id": {
+			"bsonType": "object",
+			"description": "爷ID，用于多级分类",
+			"title": "厂商"
+		},
+		"parent_id": {
+			"bsonType": "object",
+			"description": "父ID，用于多级分类",
+			"title": "品牌",
+			"parentKey": "_id" //认爹
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "名称",
+			"title": "名称",
+			"trim": "both"
+		},
+		"socvalue": {
+			"bsonType": "num",
+			"description": "性能数值",
+			"title": "性能",
+			"trim": "both"
+		},
+		"status": {
+			"bsonType": "bool",
+			"description": "启用状态",
+			"title": "启用",
+			"defaultValue": true
+		},
+
+		"type": {
+			"bsonType": "int",
+			"description": "类型0厂商1品牌2型号",
+			"title": "类型"
+		},
+		"create_date": {
+			"bsonType": "timestamp",
+			"description": "修改时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		}
+	}
+}

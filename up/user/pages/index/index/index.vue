@@ -8,19 +8,9 @@
       <text>这里略懂少年的工具小站</text>
     </view>
     <view class="bottom">
-      <view class="button">
-        <u-button @click="gotowork" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
-          text="工作计算器">
-        </u-button>
-      </view>
-      <view class="button">
-        <u-button @click="gototaiji" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
-          text="太极八卦图">
-        </u-button>
-      </view>
-      <view class="button">
-        <u-button @click="gotojd" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
-          text="销量查询器">
+      <view class="button" v-for="(item,index) in list" :key="index">
+        <u-button @click="gototo(item.url)" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
+          :text=item.text>
         </u-button>
       </view>
     </view>
@@ -36,28 +26,34 @@
   export default {
     data() {
       return {
+        list: [{
+            text: "今日幸运茶",
+            url: "/pages/teamilk/teamilk"
+          }, {
+            text: "每天测一卦",
+            url: "/pages/taiji/taiji"
+          }, {
+            text: "销量查询器",
+            url: "/pages/jdurl/jdurl"
+          },
 
+          {
+            text: "工作计算器",
+            url: "/pages/worklist/listw"
+          }
+        ],
       };
     },
     methods: {
-      //跳转到京东链接转化
-      gotojd() {
+      /**跳转函数
+       * @param {Object} e 链接地址
+       */
+      gototo(e) {
         uni.navigateTo({
-          url: '/pages/jdurl/jdurl'
+          url: e
         })
       },
-      //跳转到工作排行榜
-      gotowork() {
-        uni.navigateTo({
-          url: "/pages/worklist/listw"
-        })
-      },
-      //跳转到太极图
-      gototaiji() {
-        uni.navigateTo({
-          url: "/pages/taiji/taiji"
-        })
-      },
+
     },
   }
 </script>
@@ -70,8 +66,7 @@
     justify-content: space-between;
 
     .bottombox {
-      float: left // position: relative;
-        // border: 1px red solid;
+      float: left // position: relative; border: 1px red solid;
     }
 
     .logo {
@@ -92,7 +87,6 @@
       border: 1rpx solid #aaaaff;
 
       text {
-
         font-family: '微软雅黑';
         font-style: normal;
         font-weight: normal;
@@ -100,6 +94,7 @@
         white-space: normal;
         text-overflow: clip;
         word-wrap: normal;
+        color: #464555;
         text-shadow: 0px 2px 7px #bcbcbc
       }
     }

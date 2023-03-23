@@ -5,7 +5,8 @@
     "pages/worklist/work",
     "pages/worklist/listw",
     "pages/taiji/taiji",
-    "pages/jdurl/jdurl"
+    "pages/jdurl/jdurl",
+    "pages/teamilk/teamilk"
   ],
   "subPackages": [],
   "window": {

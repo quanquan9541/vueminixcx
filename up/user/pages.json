@@ -46,17 +46,22 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/jdurl/jdurl",
+      "style": {
+        "navigationBarTitleText": "京东商品查询",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/teamilk/teamilk",
+      "style": {
+        "navigationBarTitleText": "每天来一杯",
+        "enablePullDownRefresh": false
+      }
+
     }
-      ,{
-            "path" : "pages/jdurl/jdurl",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "京东商品查询",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

@@ -102,10 +102,10 @@ var components
 try {
   components = {
     "u-Image": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--image/u--image.vue */ 221))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--image/u--image.vue */ 230))
     },
     uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 227))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 236))
     },
   }
 } catch (e) {
@@ -192,37 +192,31 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      list: [{
+        text: "工作计算器",
+        url: "/pages/worklist/listw"
+      }, {
+        text: "每天测一画",
+        url: "/pages/taiji/taiji"
+      }, {
+        text: "销量查询器",
+        url: "/pages/jdurl/jdurl"
+      }, {
+        text: "今日幸运茶",
+        url: "/pages/teamilk/teamilk"
+      }]
+    };
   },
   methods: {
-    //跳转到京东链接转化
-    gotojd: function gotojd() {
+    /**跳转函数
+     * @param {Object} e 链接地址
+     */
+    gototo: function gototo(e) {
       uni.navigateTo({
-        url: '/pages/jdurl/jdurl'
-      });
-    },
-    //跳转到工作排行榜
-    gotowork: function gotowork() {
-      uni.navigateTo({
-        url: "/pages/worklist/listw"
-      });
-    },
-    //跳转到太极图
-    gototaiji: function gototaiji() {
-      uni.navigateTo({
-        url: "/pages/taiji/taiji"
+        url: e
       });
     }
   }

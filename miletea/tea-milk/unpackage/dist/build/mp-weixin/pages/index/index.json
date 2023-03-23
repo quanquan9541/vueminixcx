@@ -4,8 +4,8 @@
   "usingComponents": {
     "u-skeleton": "/uni_modules/uview-ui/components/u-skeleton/u-skeleton",
     "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
-    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
     "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
     "list": "/components/list/list",
     "u-loadmore": "/uni_modules/uview-ui/components/u-loadmore/u-loadmore"
