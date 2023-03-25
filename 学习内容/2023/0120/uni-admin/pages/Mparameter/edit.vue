@@ -121,10 +121,17 @@
           :localdata="formOptions.AdditionalExperience_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <view class="uni-button-group">
+        <navigator open-type="navigate" url="../Mcamera/add" style="margin-left: 15px;">
+          <button class="uni-button" style="width: 100px;">相机</button>
+        </navigator>
+        <navigator open-type="navigate" url="../Mmoney/add" style="margin:0 15px;">
+          <button class="uni-button" style="width: 100px;">价格</button>
+        </navigator>
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
         <navigator open-type="navigateBack" style="margin-left: 15px;">
           <button class="uni-button" style="width: 100px;">返回</button>
         </navigator>
+
       </view>
     </uni-forms>
   </view>
