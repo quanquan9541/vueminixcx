@@ -101,19 +101,25 @@ var components
 try {
   components = {
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 527))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 566))
     },
     uniFormsItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 536))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */ "uni_modules/uni-forms/components/uni-forms-item/uni-forms-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 575))
     },
     uniDataPicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 903))
+      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 941))
     },
-    uniDataCheckbox: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */ "uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 929))
+    money: function () {
+      return __webpack_require__.e(/*! import() | components/money/money */ "components/money/money").then(__webpack_require__.bind(null, /*! @/components/money/money.vue */ 1105))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 543))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 582))
+    },
+    uniDataCheckbox: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */ "uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 967))
+    },
+    leftRight: function () {
+      return __webpack_require__.e(/*! import() | components/left-right/left-right */ "components/left-right/left-right").then(__webpack_require__.bind(null, /*! @/components/left-right/left-right.vue */ 1112))
     },
   }
 } catch (e) {
@@ -177,6 +183,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 29));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _Mparameter = __webpack_require__(/*! ../../js_sdk/validator/Mparameter.js */ 399);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -207,7 +215,31 @@ var _default = {
       "screenRenovate": "120",
       "screenSampling": "240",
       "screenDimming": 1,
-      "screnPwm": ""
+      "screenPwm": "",
+      "screenLuminance": 1200,
+      "screenColor": 8,
+      "screenAdd": [0],
+      "screenAdmin": 0,
+      "AppearanceDesign": "",
+      "Camera": [],
+      "socfunction": "",
+      "ram": "LPDDR 5",
+      "rom": "USF 3.1",
+      "cell": 5000,
+      "WiredCharging": 65,
+      "WirelessCharging": 50,
+      "ReverseCharging": 10,
+      "measurementHight": "170",
+      "measurementWidth": "70",
+      "measurementThickness": "7.9",
+      "weight": "200.00",
+      "cheek": 1,
+      "backCover": 1,
+      "system": "",
+      "fingerprintIdentification": 1,
+      "motor": 1,
+      "AdditionalExperience": [1, 2, 3],
+      "last_date": null
     };
     return {
       formData: formData,
@@ -250,6 +282,78 @@ var _default = {
         }, {
           "text": "PWM调光",
           "value": 3
+        }],
+        "screenAdd_localdata": [{
+          "text": "DCI-P3",
+          "value": 0
+        }, {
+          "text": "HDR10",
+          "value": 1
+        }, {
+          "text": "HDR10+",
+          "value": 2
+        }],
+        "cheek_localdata": [{
+          "text": "塑料",
+          "value": 1
+        }, {
+          "text": "金属",
+          "value": 2
+        }],
+        "backCover_localdata": [{
+          "text": "塑料",
+          "value": 1
+        }, {
+          "text": "玻璃",
+          "value": 2
+        }, {
+          "text": "陶瓷",
+          "value": 2
+        }],
+        "fingerprintIdentification_localdata": [{
+          "text": "短焦·光学·屏下指纹",
+          "value": 1
+        }, {
+          "text": "超薄·光学·屏下指纹",
+          "value": 2
+        }, {
+          "text": "侧边·实体指纹",
+          "value": 3
+        }, {
+          "text": "背部·实体指纹",
+          "value": 4
+        }, {
+          "text": "无指纹识别",
+          "value": 5
+        }],
+        "motor_localdata": [{
+          "text": "X轴·线性马达",
+          "value": 1
+        }, {
+          "text": "Z轴·线性马达",
+          "value": 2
+        }, {
+          "text": "转子马达",
+          "value": 3
+        }],
+        "AdditionalExperience_localdata": [{
+          "text": "双扬声器",
+          "value": 1
+        }, {
+          "text": "NFC",
+          "value": 2
+        }, {
+          "text": "WiFi6",
+          "value": 3
+        }, {
+          "text": "红外遥控",
+          "value": 4
+        }, {
+          "text": "VC液冷散热",
+          "value": 5
+        }, {
+          "text": "IP68防尘防水",
+          "value": 6
         }]
       },
       rules: _objectSpread({}, getValidator(Object.keys(formData)))
@@ -266,16 +370,53 @@ var _default = {
     this.$refs.form.setRules(this.rules);
   },
   methods: {
+    // 获取选择手机id
+    onchange: function onchange(e) {
+      var id = e.detail.value[2].value;
+      // console.log(id);
+      this.getCamera(id);
+    },
+    //获取相机和金钱数据
+    getCamera: function getCamera(e) {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var Cameradata, Moneydata;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return db.collection('Mcamera').where("edit_id==\"".concat(e, "\"")).field("_id, ComeraType,Comeraedit, sort").orderBy("sort desc").get();
+              case 2:
+                Cameradata = _context.sent;
+                _context.next = 5;
+                return db.collection('Mmoney').where("edit_id==\"".concat(e, "\"")).field("_id,ram,rom,money,sort").orderBy("sort desc").get();
+              case 5:
+                _context.next = 7;
+                return _context.sent;
+              case 7:
+                Moneydata = _context.sent;
+                _this.formData.Camera = Cameradata.result.data;
+                _this.formData.configurationParameter = Moneydata.result.data;
+                // console.log(this.formData.configurationParameter);
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     /**
      * 验证表单并提交
      */
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
       uni.showLoading({
         mask: true
       });
       this.$refs.form.validate().then(function (res) {
-        return _this.submitForm(res);
+        return _this2.submitForm(res);
       }).catch(function () {}).finally(function () {
         uni.hideLoading();
       });
@@ -284,13 +425,13 @@ var _default = {
      * 提交表单
      */
     submitForm: function submitForm(value) {
-      var _this2 = this;
+      var _this3 = this;
       // 使用 clientDB 提交数据
       return db.collection(dbCollectionName).doc(this.formDataId).update(value).then(function (res) {
         uni.showToast({
           title: '修改成功'
         });
-        _this2.getOpenerEventChannel().emit('refreshData');
+        _this3.getOpenerEventChannel().emit('refreshData');
         setTimeout(function () {
           return uni.navigateBack();
         }, 500);
@@ -306,14 +447,15 @@ var _default = {
      * @param {Object} id
      */
     getDetail: function getDetail(id) {
-      var _this3 = this;
+      var _this4 = this;
       uni.showLoading({
         mask: true
       });
-      db.collection(dbCollectionName).doc(id).field("title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screnPwm").get().then(function (res) {
+      db.collection(dbCollectionName).doc(id).field("title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screenPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,Camera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover,system,fingerprintIdentification,motor,AdditionalExperience,last_date").get().then(function (res) {
         var data = res.result.data[0];
         if (data) {
-          _this3.formData = data;
+          _this4.formData = data;
+          _this4.getCamera(data.title);
         }
       }).catch(function (err) {
         uni.showModal({

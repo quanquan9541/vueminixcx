@@ -26,6 +26,7 @@
           @selection-change="selectionChange">
           <uni-tr>
             <uni-th align="center">名称</uni-th>
+            <uni-th align="center" sortable @sort-change="sortChange($event, 'edit')">关联</uni-th>
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.ram_localdata"
               @filter-change="filterChange($event, 'ram')">内存</uni-th>
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.rom_localdata"
@@ -37,9 +38,9 @@
             <uni-th align="center">操作</uni-th>
           </uni-tr>
           <uni-tr v-for="(item,index) in data" :key="index">
-            <uni-td align="center">
-              {{item.edit_id && item.edit_id[0] && item.edit_id[0].parent_id.text+"&#160"+item.edit_id[0].text}}
-            </uni-td>
+            <uni-td
+              align="center">{{item.phone_id && item.phone_id[0] && item.phone_id[0].parent_id.text+"&#160"+item.phone_id[0].text}}</uni-td>
+            <uni-td align="center">{{item.edit}}</uni-td>
             <uni-td align="center">{{options.ram_valuetotext[item.ram]}}</uni-td>
             <uni-td align="center">{{options.rom_valuetotext[item.rom]}}</uni-td>
             <uni-td align="center">{{item.money}}</uni-td>
@@ -84,8 +85,8 @@
   export default {
     data() {
       return {
-        collectionList: [db.collection('Mmoney').field('edit_id,ram,rom,money,sort').getTemp(), db.collection(
-          'Manufacturer_brand').field('_id,z_id, parent_id,name as text').getTemp()],
+        collectionList: [db.collection('Mmoney').field('phone_id,edit,ram,rom,money,sort').getTemp(), db.collection(
+          'Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -156,7 +157,8 @@
           "filename": "Mmoney.xls",
           "type": "xls",
           "fields": {
-            "名称": "edit_id",
+            "名称": "phone_id",
+            "关联": "edit",
             "内存": "ram",
             "闪存": "rom",
             "价格": "money",

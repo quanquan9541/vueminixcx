@@ -47,7 +47,13 @@
     "pages/Mparameter/add",
     "pages/Mparameter/edit",
     "pages/Mparameter/list",
-    "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify"
+    "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+    "pages/Mcamera/add",
+    "pages/Mcamera/edit",
+    "pages/Mcamera/list",
+    "pages/Mmoney/add",
+    "pages/Mmoney/edit",
+    "pages/Mmoney/list"
   ],
   "subPackages": [
     {
@@ -78,7 +84,8 @@
       "root": "pages/demo",
       "pages": [
         "icons/icons",
-        "table/table"
+        "table/table",
+        "udbdemo/udbdemo"
       ]
     },
     {

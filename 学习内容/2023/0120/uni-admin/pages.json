@@ -310,6 +310,13 @@
       "style": {
         "navigationBarTitleText": "价格列表"
       }
+    }, {
+      "path": "pages/piclist/piclist",
+      "style": {
+        "navigationBarTitleText": "图片生成",
+        "enablePullDownRefresh": false
+      }
+
     }
   ],
   "subPackages": [{

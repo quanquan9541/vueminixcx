@@ -1,9 +1,13 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="edit_id" label="名称">
-        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" parent-field="parent_id.value"
-          self-field="_id" field="_id as value, name as text"></uni-data-picker>
+      <uni-forms-item name="phone_id" label="名称">
+        <uni-data-picker v-model="formData.phone_id" collection="Manufacturer_brand" parent-field="parent_id.value"
+          placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange">
+        </uni-data-picker>
+      </uni-forms-item>
+      <uni-forms-item name="edit" label="关联">
+        <uni-easyinput disabled placeholder="参数关联" v-model="formData.edit"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存" required>
         <uni-data-checkbox v-model="formData.ram" :localdata="formOptions.ram_localdata"></uni-data-checkbox>
@@ -51,7 +55,8 @@
   export default {
     data() {
       let formData = {
-        "edit_id": "",
+        "phone_id": "",
+        "edit": "",
         "ram": null,
         "rom": null,
         "money": "",
@@ -120,7 +125,17 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-
+      //查询详情id
+      //获取选择数据
+      async onchange(e) {
+        let titleid = e.detail.value[2].value
+        // console.log(titleid);
+        let editid = await db.collection('Mparameter').where(`title=='${titleid}'`).field('_id').get({
+          getOne: true
+        })
+        this.formData.edit = editid.result.data._id
+        // console.log('数据', editid.result.data._id);
+      },
       /**
        * 验证表单并提交
        */

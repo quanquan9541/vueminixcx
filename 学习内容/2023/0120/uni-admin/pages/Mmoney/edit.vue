@@ -1,9 +1,13 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="edit_id" label="名称">
-        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" parent-field="parent_id.value"
-          self-field="_id" field="_id as value, name as text"></uni-data-picker>
+      <uni-forms-item name="phone_id" label="名称">
+        <uni-data-picker v-model="formData.phone_id" collection="Manufacturer_brand" parent-field="parent_id.value"
+          placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange">
+        </uni-data-picker>
+      </uni-forms-item>
+      <uni-forms-item name="edit" label="关联">
+        <uni-easyinput disabled placeholder="参数关联" v-model="formData.edit"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="ram" label="内存" required>
         <uni-data-checkbox v-model="formData.ram" :localdata="formOptions.ram_localdata"></uni-data-checkbox>
@@ -31,7 +35,9 @@
   import {
     validator
   } from '../../js_sdk/validator/Mmoney.js';
-
+  import {
+    relevance
+  } from '../../js/tools.js'
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mmoney';
@@ -51,7 +57,8 @@
   export default {
     data() {
       let formData = {
-        "edit_id": "",
+        "phone_id": "",
+        "edit": "",
         "ram": null,
         "rom": null,
         "money": "",
@@ -127,7 +134,13 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-
+      //选择数据
+      async onchange(e) {
+        //调用公共函数
+        let editid = await relevance(e)
+        console.log(editid);
+        this.formData.edit = editid
+      },
       /**
        * 验证表单并提交
        */
@@ -169,7 +182,7 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("edit_id,ram,rom,money,sort").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field("phone_id,edit,ram,rom,money,sort").get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data

@@ -101,28 +101,28 @@ var components
 try {
   components = {
     downloadExcel: function () {
-      return Promise.all(/*! import() | components/download-excel/download-excel */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/download-excel/download-excel")]).then(__webpack_require__.bind(null, /*! @/components/download-excel/download-excel.vue */ 1047))
+      return Promise.all(/*! import() | components/download-excel/download-excel */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/download-excel/download-excel")]).then(__webpack_require__.bind(null, /*! @/components/download-excel/download-excel.vue */ 1092))
     },
     unicloudDb: function () {
-      return Promise.all(/*! import() | node-modules/@dcloudio/uni-cli-shared/components/unicloud-db */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-cli-shared/components/unicloud-db")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-cli-shared/components/unicloud-db.vue */ 892))
+      return Promise.all(/*! import() | node-modules/@dcloudio/uni-cli-shared/components/unicloud-db */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-cli-shared/components/unicloud-db")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-cli-shared/components/unicloud-db.vue */ 930))
     },
     uniTable: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-table/uni-table */ "uni_modules/uni-table/components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-table/uni-table.vue */ 828))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-table/uni-table */ "uni_modules/uni-table/components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-table/uni-table.vue */ 873))
     },
     uniTr: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-tr/uni-tr */ "uni_modules/uni-table/components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-tr/uni-tr.vue */ 835))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-tr/uni-tr */ "uni_modules/uni-table/components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-tr/uni-tr.vue */ 880))
     },
     uniTh: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-th/uni-th */ "uni_modules/uni-table/components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-th/uni-th.vue */ 842))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-th/uni-th */ "uni_modules/uni-table/components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-th/uni-th.vue */ 887))
     },
     uniTd: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-td/uni-td */ "uni_modules/uni-table/components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-td/uni-td.vue */ 849))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-table/components/uni-td/uni-td */ "uni_modules/uni-table/components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-table/components/uni-td/uni-td.vue */ 894))
     },
     uniDataPicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 903))
+      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 941))
     },
     uniPagination: function () {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 916))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 954))
     },
   }
 } catch (e) {
@@ -195,7 +195,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 29));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _tools = __webpack_require__(/*! ../../js/tools.js */ 412);
 var _Mparameter = __webpack_require__(/*! ../../js_sdk/validator/Mparameter.js */ 399);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -213,7 +216,7 @@ var orderByMapping = {
 var _default = {
   data: function data() {
     return {
-      collectionList: [db.collection('Mparameter').field('title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screnPwm').getTemp(), db.collection('Manufacturer_brand').field('_id, name as text').getTemp()],
+      collectionList: [db.collection('Mparameter').field('title,configurationParameter,screenMeasurement,screenMaterial,screenSupplier,screenX,screenY,screenPPI,screenRenovate,screenSampling,screenDimming,screenPwm,screenLuminance,screenColor,screenAdd,screenAdmin,AppearanceDesign,Camera,socfunction,ram,rom,cell,WiredCharging,WirelessCharging,ReverseCharging,measurementHight,measurementWidth,measurementThickness,weight,cheek,backCover,system,fingerprintIdentification,motor,AdditionalExperience,last_date').getTemp(), db.collection('Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp(), db.collection('Msoc').field('_id,parent_id,z_id, name as text').getTemp()],
       query: '',
       where: '',
       orderby: dbOrderBy,
@@ -261,6 +264,78 @@ var _default = {
           }, {
             "text": "PWM调光",
             "value": 3
+          }],
+          "screenAdd_localdata": [{
+            "text": "DCI-P3",
+            "value": 0
+          }, {
+            "text": "HDR10",
+            "value": 1
+          }, {
+            "text": "HDR10+",
+            "value": 2
+          }],
+          "cheek_localdata": [{
+            "text": "塑料",
+            "value": 1
+          }, {
+            "text": "金属",
+            "value": 2
+          }],
+          "backCover_localdata": [{
+            "text": "塑料",
+            "value": 1
+          }, {
+            "text": "玻璃",
+            "value": 2
+          }, {
+            "text": "陶瓷",
+            "value": 2
+          }],
+          "fingerprintIdentification_localdata": [{
+            "text": "短焦·光学·屏下指纹",
+            "value": 1
+          }, {
+            "text": "超薄·光学·屏下指纹",
+            "value": 2
+          }, {
+            "text": "侧边·实体指纹",
+            "value": 3
+          }, {
+            "text": "背部·实体指纹",
+            "value": 4
+          }, {
+            "text": "无指纹识别",
+            "value": 5
+          }],
+          "motor_localdata": [{
+            "text": "X轴·线性马达",
+            "value": 1
+          }, {
+            "text": "Z轴·线性马达",
+            "value": 2
+          }, {
+            "text": "转子马达",
+            "value": 3
+          }],
+          "AdditionalExperience_localdata": [{
+            "text": "双扬声器",
+            "value": 1
+          }, {
+            "text": "NFC",
+            "value": 2
+          }, {
+            "text": "WiFi6",
+            "value": 3
+          }, {
+            "text": "红外遥控",
+            "value": 4
+          }, {
+            "text": "VC液冷散热",
+            "value": 5
+          }, {
+            "text": "IP68防尘防水",
+            "value": 6
           }]
         }
       }, _Mparameter.enumConverter),
@@ -283,7 +358,31 @@ var _default = {
           "刷新率": "screenRenovate",
           "采用率": "screenSampling",
           "调光": "screenDimming",
-          "频率": "screnPwm"
+          "频率": "screenPwm",
+          "亮度": "screenLuminance",
+          "色彩": "screenColor",
+          "附加功能": "screenAdd",
+          "情感分": "screenAdmin",
+          "外观": "AppearanceDesign",
+          "相机": "Camera",
+          "芯片": "socfunction",
+          "内存": "ram",
+          "闪存": "rom",
+          "电池": "cell",
+          "有线充": "WiredCharging",
+          "无线充": "WirelessCharging",
+          "反充": "ReverseCharging",
+          "高度": "measurementHight",
+          "宽度": "measurementWidth",
+          "厚度": "measurementThickness",
+          "重量": "weight",
+          "边框": "cheek",
+          "后盖": "backCover",
+          "系统": "system",
+          "指纹": "fingerprintIdentification",
+          "马达": "motor",
+          "其他": "AdditionalExperience",
+          "last_date": "last_date"
         }
       },
       exportExcelData: []
@@ -296,6 +395,27 @@ var _default = {
     this.$refs.udb.loadData();
   },
   methods: {
+    getdatadata: function getdatadata(e) {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var Cameradata;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return (0, _tools.gettreedata)(0, "edit_id=='".concat(e, "'"));
+              case 2:
+                Cameradata = _context.sent;
+                console.log('相机', Cameradata);
+                return _context.abrupt("return", 5);
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     onqueryload: function onqueryload(data) {
       this.exportExcelData = data;
     },

@@ -18,9 +18,8 @@
         const data1 = db.collection('Manufacturer_brand').getTemp();
         const data2 = db.collection('Mcamera')
           .getTemp();
-        const data3 = db.collection('Mparameter').getTemp({
-          getOne: true
-        });
+        const data3 = db.collection('Mparameter').getTemp();
+        // const data4 = db.collection('Msoc').getTemp();
         const listdata = await db.collection(data1, data2, data3).get()
         console.log(listdata);
       }
