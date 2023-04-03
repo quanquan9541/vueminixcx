@@ -12,7 +12,7 @@ export async function gettreedata(fun, wer) {
  */
 export async function relevance(e) {
   if (!e.detail.value[2]) {
-    return "重新选择"
+    return "200" //没选到第三级
   } else {
     let titleid = e.detail.value[2].value
     let editid = await db.collection('Mparameter').where(`title=='${titleid}'`).field('_id').get({
@@ -20,10 +20,18 @@ export async function relevance(e) {
     })
     console.log(editid);
     if (!editid.result.data) {
-      return "无结果"
+      return "400" //没有详情参数
     } else {
       let id = editid.result.data._id
       return id
     }
+  }
+}
+
+export function codeeditid(e) {
+  if (e == '200' || e == '400') {
+    return e
+  } else {
+    return 'success'
   }
 }

@@ -40,7 +40,7 @@
           <uni-tr v-for="(item,index) in data" :key="index">
             <uni-td
               align="center">{{item.phone_id && item.phone_id[0] && item.phone_id[0].parent_id.text+"&#160"+item.phone_id[0].text}}</uni-td>
-            <uni-td align="center">{{item.edit}}</uni-td>
+            <uni-td align="center">{{codeeditid(item.edit)}}</uni-td>
             <uni-td align="center">{{options.ram_valuetotext[item.ram]}}</uni-td>
             <uni-td align="center">{{options.rom_valuetotext[item.rom]}}</uni-td>
             <uni-td align="center">{{item.money}}</uni-td>
@@ -68,7 +68,10 @@
     enumConverter,
     filterToWhere
   } from '../../js_sdk/validator/Mmoney.js';
-
+  import {
+    relevance,
+    codeeditid
+  } from '../../js/tools.js';
   const db = uniCloud.database()
   // 表查询配置
   const dbOrderBy = '' // 排序字段
@@ -175,6 +178,7 @@
       this.$refs.udb.loadData()
     },
     methods: {
+      codeeditid,
       onqueryload(data) {
         this.exportExcelData = data
       },

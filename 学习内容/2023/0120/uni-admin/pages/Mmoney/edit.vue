@@ -134,11 +134,19 @@
       this.$refs.form.setRules(this.rules)
     },
     methods: {
-      //选择数据
+      //查询详情id
+      //获取选择数据
       async onchange(e) {
         //调用公共函数
         let editid = await relevance(e)
-        console.log(editid);
+        if (editid == "200") {
+          setTimeout(() => {
+            this.formData.phone_id = null
+            // console.log(editid);
+          }, 800)
+          return
+        }
+        // console.log(editid);
         this.formData.edit = editid
       },
       /**

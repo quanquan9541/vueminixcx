@@ -23,6 +23,7 @@
         "field": "_id as value, name as text"
       }
     },
+    //详情页关联id
     "edit": {
       "bsonType": "string",
       "description": "参数关联",

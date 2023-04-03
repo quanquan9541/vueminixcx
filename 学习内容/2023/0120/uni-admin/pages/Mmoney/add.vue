@@ -35,7 +35,9 @@
   import {
     validator
   } from '../../js_sdk/validator/Mmoney.js';
-
+  import {
+    relevance
+  } from '../../js/tools.js';
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mmoney';
@@ -128,13 +130,17 @@
       //查询详情id
       //获取选择数据
       async onchange(e) {
-        let titleid = e.detail.value[2].value
-        // console.log(titleid);
-        let editid = await db.collection('Mparameter').where(`title=='${titleid}'`).field('_id').get({
-          getOne: true
-        })
-        this.formData.edit = editid.result.data._id
-        // console.log('数据', editid.result.data._id);
+        //调用公共函数
+        let editid = await relevance(e)
+        if (editid == "200") {
+          setTimeout(() => {
+            this.formData.phone_id = null
+            // console.log(editid);
+          }, 800)
+          return
+        }
+        // console.log(editid);
+        this.formData.edit = editid
       },
       /**
        * 验证表单并提交

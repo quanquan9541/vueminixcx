@@ -26,6 +26,7 @@
           @selection-change="selectionChange">
           <uni-tr>
             <uni-th align="center">名称</uni-th>
+            <uni-th align="center" sortable @sort-change="sortChange($event, 'edit')">关联</uni-th>
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.ComeraType_localdata"
               @filter-change="filterChange($event, 'ComeraType')">类型</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'Comeraedit')" sortable
@@ -39,9 +40,9 @@
             <uni-th align="center">操作</uni-th>
           </uni-tr>
           <uni-tr v-for="(item,index) in data" :key="index">
-            <uni-td align="center">
-              {{item.edit_id && item.edit_id[0] &&item.edit_id[0].parent_id.text+"&#160"+item.edit_id[0].text}}
-            </uni-td>
+            <uni-td
+              align="center">{{item.phone_id && item.phone_id[0] && item.phone_id[0].parent_id.text+"&#160"+item.phone_id[0].text}}</uni-td>
+            <uni-td align="center">{{codeeditid(item.edit)}}</uni-td>
             <uni-td align="center">{{options.ComeraType_valuetotext[item.ComeraType]}}</uni-td>
             <uni-td align="center">{{item.Comeraedit}}</uni-td>
             <uni-td align="center">{{item.Comeravalue}}</uni-td>
@@ -70,7 +71,10 @@
     enumConverter,
     filterToWhere
   } from '../../js_sdk/validator/Mcamera.js';
-
+  import {
+    relevance,
+    codeeditid
+  } from '../../js/tools.js';
   const db = uniCloud.database()
   // 表查询配置
   const dbOrderBy = '' // 排序字段
@@ -87,9 +91,9 @@
   export default {
     data() {
       return {
-        collectionList: [db.collection('Mcamera').field('edit_id,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort')
-          .getTemp(), db.collection('Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()
-        ],
+        collectionList: [db.collection('Mcamera').field(
+          'phone_id,edit,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort').getTemp(), db.collection(
+          'Manufacturer_brand').field('_id, parent_id,z_id, name as text').getTemp()],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -143,7 +147,8 @@
           "filename": "Mcamera.xls",
           "type": "xls",
           "fields": {
-            "名称": "edit_id",
+            "名称": "phone_id",
+            "关联": "edit",
             "类型": "ComeraType",
             "详情": "Comeraedit",
             "数值": "Comeravalue",
@@ -161,6 +166,7 @@
       this.$refs.udb.loadData()
     },
     methods: {
+      codeeditid,
       onqueryload(data) {
         this.exportExcelData = data
       },
@@ -248,7 +254,6 @@
           this.where = newWhere
         } else {
           this.where = ''
-
         }
         this.$nextTick(() => {
           this.$refs.udb.loadData()

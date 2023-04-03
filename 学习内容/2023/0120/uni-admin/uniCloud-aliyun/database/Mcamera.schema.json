@@ -13,7 +13,7 @@
       "description": "ID，系统自动生成"
     },
     //选择手机ID
-    "edit_id": {
+    "phone_id": {
       "bsonType": "string",
       "description": "产品型号",
       "title": "名称",
@@ -22,6 +22,13 @@
         "collection": "Manufacturer_brand",
         "field": "_id as value, name as text"
       }
+    },
+    //详情页关联id
+    "edit": {
+      "bsonType": "string",
+      "description": "参数关联",
+      "title": "关联",
+      "foreignKey": "Mparameter._id"
     },
     // 选择类型
     "ComeraType": {

@@ -2,7 +2,7 @@
 
 
 const validator = {
-  "edit_id": {
+  "phone_id": {
     "rules": [
       {
         "format": "string"
@@ -10,6 +10,15 @@ const validator = {
     ],
     "title": "名称",
     "label": "名称"
+  },
+  "edit": {
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
+    "title": "关联",
+    "label": "关联"
   },
   "ComeraType": {
     "rules": [

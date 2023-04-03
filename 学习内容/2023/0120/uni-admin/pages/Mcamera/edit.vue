@@ -1,15 +1,17 @@
 <template>
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
-      <uni-forms-item name="edit_id" label="名称">
-        <view> {{this.name[0]? this.name[0].text :"厂商"}}-{{this.name[1]? this.name[1].text :"品牌"}}</view>
-        <uni-data-picker v-model="formData.edit_id" collection="Manufacturer_brand" parent-field="parent_id.value"
+      <uni-forms-item name="phone_id" label="名称">
+        <uni-data-picker v-model="formData.phone_id" collection="Manufacturer_brand" parent-field="parent_id.value"
           placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange">
         </uni-data-picker>
       </uni-forms-item>
+      <uni-forms-item name="edit" label="关联">
+        <uni-easyinput disabled placeholder="参数关联" v-model="formData.edit"></uni-easyinput>
+      </uni-forms-item>
       <uni-forms-item name="ComeraType" label="类型" required>
-        <uni-data-checkbox v-model="formData.ComeraType" :localdata="formOptions.ComeraType_localdata">
-        </uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.ComeraType"
+          :localdata="formOptions.ComeraType_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="Comeraedit" label="详情" required>
         <uni-easyinput placeholder="相机详情" v-model="formData.Comeraedit"></uni-easyinput>
@@ -37,6 +39,10 @@
   import {
     validator
   } from '../../js_sdk/validator/Mcamera.js';
+  import {
+    relevance,
+    codeeditid
+  } from '../../js/tools.js';
 
   const db = uniCloud.database();
   const dbCmd = db.command;
@@ -57,7 +63,8 @@
   export default {
     data() {
       let formData = {
-        "edit_id": "",
+        "phone_id": "",
+        "edit": "",
         "ComeraType": "",
         "Comeraedit": "",
         "Comeravalue": null,
@@ -65,7 +72,6 @@
         "sort": 0
       }
       return {
-        name: "",
         formData,
         formOptions: {
           "ComeraType_localdata": [{
@@ -119,9 +125,18 @@
     },
     methods: {
       //获取选择数据
-      onchange(e) {
-        console.log(e);
-        this.name = e.detail.value
+      async onchange(e) {
+        //调用公共函数
+        let editid = await relevance(e)
+        if (editid == "200") {
+          setTimeout(() => {
+            this.formData.phone_id = null
+            // console.log(editid);
+          }, 800)
+          return
+        }
+        // console.log(editid);
+        this.formData.edit = editid
       },
       /**
        * 验证表单并提交
@@ -164,20 +179,12 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("edit_id,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort").get()
-          .then((res) => {
+        db.collection(dbCollectionName).doc(id).field("phone_id,edit,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort")
+          .get().then((res) => {
             const data = res.result.data[0]
             if (data) {
               this.formData = data
-              db.collection("Manufacturer_brand").where(`_id=='${data.edit_id}'`).get({
-                getOne: true
-              }).then(res => {
-                let name = []
-                name[0] = res.result.data.z_id
-                name[1] = res.result.data.parent_id
-                this.name = name
-                // console.log('树状获取', name);
-              })
+
             }
           }).catch((err) => {
             uni.showModal({
