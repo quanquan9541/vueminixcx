@@ -28,8 +28,8 @@
       <uni-forms-item name="money" label="价格" required>
         <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="moneyCheck" label="价格补正" required>
-        <uni-easyinput type="number" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
+      <uni-forms-item name="moneyCheck" label="补正" required>
+        <uni-easyinput type="text" Trim="both" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="brith" label="发售日" required>
         <uni-datetime-picker type="date" :clear-icon="false" return-type="timestamp" placeholder="请选择发售日期"
@@ -88,7 +88,7 @@
         "url": "",
         "jdurl": "",
         "money": "",
-        "moneyCheck": 0,
+        "moneyCheck": "0",
         "brith": "",
         "hot": false,
         "status": true,
@@ -208,7 +208,7 @@
           mask: true
         })
         db.collection(dbCollectionName).doc(id).field(
-          "name,pic,url,money,brith,hot,status,type,z_id,parent_id,create_date").get().then((res) => {
+          "name,pic,url,money,brith,hot,status,type,z_id,parent_id,create_date,moneyCheck").get().then((res) => {
           const data = res.result.data[0]
           // console.log('云数据', data);
           if (data) {

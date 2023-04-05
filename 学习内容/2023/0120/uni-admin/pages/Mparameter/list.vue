@@ -99,7 +99,7 @@
               {{item.title && item.title[0] && item.title[0].parent_id.text+"&#160"+item.title[0].text}}
             </uni-td>
             <uni-td align="center">
-              点击查看详情
+              {{item.configurationParameter[0].ram+'GB+'+item.configurationParameter[0].rom+'GB&#160'+item.configurationParameter[0].money}}
             </uni-td>
             <uni-td align="center">{{item.screenMeasurement}}</uni-td>
             <uni-td align="center">{{options.screenMaterial_valuetotext[item.screenMaterial]}}</uni-td>

@@ -56,7 +56,7 @@
       "minimum ": 1
     },
     "moneyCheck": {
-      "bsonType": "int",
+      "bsonType": "string",
       "title": "补正价",
       "description": "价格补正值",
       "defaultValue": 0

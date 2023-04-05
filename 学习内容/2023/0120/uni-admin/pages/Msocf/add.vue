@@ -3,7 +3,7 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="parent_id" label="厂商">
         <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="where"
-          field="_id as value, name as text" :step-searh="true" self-field="_id" @change="onchange">
+          field="_id as value, name as text" :step-searh="true" @change="onchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="系列" required>
@@ -58,7 +58,7 @@
         rules: {
           ...getValidator(Object.keys(formData))
         },
-        where: 'type==0 && status==true'
+        where: 'status==true && type==0',
       }
     },
     onReady() {

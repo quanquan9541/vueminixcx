@@ -55,7 +55,7 @@
             <uni-td align="center">{{item.url}}</uni-td>
             <uni-td align="center">{{item.money}}</uni-td>
             <uni-td align="center">
-              <uni-dateformat :threshold="[0, 0]" :date="item.brith"></uni-dateformat>
+              <uni-dateformat format="yyyy/MM/dd" :date="item.brith"></uni-dateformat>
             </uni-td>
             <uni-td align="center">{{item.hot == true ? '✅' : '❌'}}</uni-td>
             <uni-td align="center">{{item.status == true ? '✅' : '❌'}}</uni-td>

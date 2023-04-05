@@ -26,7 +26,7 @@
       <uni-forms-item name="money" label="价格" required>
         <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item name="moneyCheck" label="价格补正" required>
+      <uni-forms-item name="moneyCheck" Trim="both" label="补正" required>
         <uni-easyinput type="number" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="brith" label="发售日" required>
@@ -85,7 +85,7 @@
         "url": "",
         "jdurl": "",
         "money": "",
-        "moneyCheck": 0,
+        "moneyCheck": "0",
         "brith": "",
         "hot": false,
         "status": true,

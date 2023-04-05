@@ -35,3 +35,35 @@ export function codeeditid(e) {
     return 'success'
   }
 }
+
+export async function phonevalue(e, id, fun) {
+  let value = {}
+  value.phone_id = e.title //手机关联
+  // 获取soc 数据
+  let phonefunction = await db.collection('Msoc').where(`_id=='${e.socfunction}'`).field("_id,socvalue").get({
+    getOne: true
+  })
+  value.phonefunction = phonefunction.result.data.socvalue
+  //轻薄
+  let light_thin = {}
+  light_thin.weight = e.weight
+  light_thin.measurement = Number(e.measurementHight) * Number(e.measurementWidth) * Number(e
+    .measurementThickness)
+  value.light_thin = light_thin
+  //屏幕水平
+  let phoneshow = ((Number(e.screenPPI) * Number(e.screenMaterial)) / 50 + (Number(e.screenRenovate) -
+      60) / 60 +
+    Number(e.screenAdmin) / 10) - 1
+  value.phoneshow = Number(phoneshow.toFixed(2))
+  //相机水平
+  let phoneimage = await db.collection('Mcamera').where(`phone_id=='${e.title}'`).groupBy('phone_id').groupField(
+    'sum(add(Comeravalue,Comeraadd)) as sumScore ').get({
+    getOne: true
+  })
+  value.phoneimage = phoneimage.result.data.sumScore
+  //电池
+  value.phonecell = e.cell
+  //充电
+  value.phonecharge = Number(e.WiredCharging) + (Number(e.WirelessCharging) / 4)
+  console.log(value);
+}

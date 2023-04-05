@@ -141,7 +141,9 @@
   import {
     validator
   } from '../../js_sdk/validator/Mparameter.js';
-
+  import {
+    phonevalue
+  } from '../../js/tools.js';
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mparameter';
@@ -379,14 +381,14 @@
       },
       //获取相机和金钱数据
       async getCamera(e) {
-        let Cameradata = await db.collection('Mcamera').where(`edit_id=="${e}"`).field(
-          "_id, ComeraType,Comeraedit, sort").orderBy("sort desc").get()
-        let Moneydata = await await db.collection('Mmoney').where(`edit_id=="${e}"`).field("_id,ram,rom,money,sort")
-          .orderBy("sort desc").get()
-
+        this.formData.Camera = ""
+        this.formData.configurationParameter = ""
+        let Cameradata = await db.collection('Mcamera').where(`phone_id=="${e}"`).field(
+          "_id, ComeraType,Comeraedit, sort").orderBy("sort asc").get()
+        let Moneydata = await await db.collection('Mmoney').where(`phone_id=="${e}"`).field("_id,ram,rom,money,sort")
+          .orderBy("sort asc").get()
         this.formData.Camera = Cameradata.result.data
         this.formData.configurationParameter = Moneydata.result.data
-        // console.log(this.formData.configurationParameter);
       },
 
       /**
@@ -397,7 +399,9 @@
           mask: true
         })
         this.$refs.form.validate().then((res) => {
-          return this.submitForm(res)
+          phonevalue(this.formData)
+          this.submitForm(res)
+          return
         }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
@@ -413,7 +417,7 @@
             title: '修改成功'
           })
           this.getOpenerEventChannel().emit('refreshData')
-          setTimeout(() => uni.navigateBack(), 500)
+          // setTimeout(() => uni.navigateBack(), 500) //注意返回
         }).catch((err) => {
           uni.showModal({
             content: err.message || '请求服务失败',

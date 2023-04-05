@@ -138,7 +138,9 @@
   import {
     validator
   } from '../../js_sdk/validator/Mparameter.js';
-
+  import {
+    phonevalue
+  } from '../../js/tools.js';
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mparameter';
@@ -370,7 +372,7 @@
           .formData.screenY) {
           // console.log('失去焦点');
           const ppi2 = Number(this.formData.screenX) ** 2 + Number(this.formData.screenY) ** 2
-          const ppi = Math.round(Math.sqrt(ppi2) * Number(this.formData.screenMaterial) / Number(this.formData
+          const ppi = Math.round(Math.sqrt(ppi2) / Number(this.formData
             .screenMeasurement))
           this.formData.screenPPI = String(ppi)
           // console.log(ppi);
@@ -387,10 +389,10 @@
       },
       //获取相机和金钱数据
       async getCamera(e) {
-        let Cameradata = await db.collection('Mcamera').where(`edit_id=="${e}"`).field(
-          "_id, ComeraType,Comeraedit, sort").orderBy("sort desc").get()
-        let Moneydata = await await db.collection('Mmoney').where(`edit_id=="${e}"`).field("_id,ram,rom,money,sort")
-          .orderBy("sort desc").get()
+        let Cameradata = await db.collection('Mcamera').where(`phone_id=="${e}"`).field(
+          "_id, ComeraType,Comeraedit, sort").orderBy("sort asc").get()
+        let Moneydata = await await db.collection('Mmoney').where(`phone_id=="${e}"`).field("_id,ram,rom,money,sort")
+          .orderBy("sort asc").get()
 
         this.formData.Camera = Cameradata.result.data
         this.formData.configurationParameter = Moneydata.result.data
@@ -404,7 +406,9 @@
           mask: true
         })
         this.$refs.form.validate().then((res) => {
-          return this.submitForm(res)
+          this.submitForm(res)
+          phonevalue(this.formData)
+          return
         }).catch(() => {}).finally(() => {
           uni.hideLoading()
         })
@@ -420,7 +424,7 @@
             title: '新增成功'
           })
           this.getOpenerEventChannel().emit('refreshData')
-          setTimeout(() => uni.navigateBack(), 500)
+          // setTimeout(() => uni.navigateBack(), 500) //注意
         }).catch((err) => {
           uni.showModal({
             content: err.message || '请求服务失败',
