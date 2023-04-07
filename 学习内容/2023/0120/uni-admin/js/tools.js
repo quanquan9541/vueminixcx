@@ -36,17 +36,18 @@ export function codeeditid(e) {
   }
 }
 
-export async function phonevalue(e, id, fun) {
+export async function phonevalue(e, id, fun = "add") {
   let value = {}
   value.phone_id = e.title //手机关联
   // 获取soc 数据
   let phonefunction = await db.collection('Msoc').where(`_id=='${e.socfunction}'`).field("_id,socvalue").get({
     getOne: true
   })
-  value.phonefunction = phonefunction.result.data.socvalue
+  value.phonefunction = String(phonefunction.result.data.socvalue)
+  // console.log(typeof(value.phonefunction));
   //轻薄
   let light_thin = {}
-  light_thin.weight = e.weight
+  light_thin.weight = String(e.weight)
   light_thin.measurement = Number(e.measurementHight) * Number(e.measurementWidth) * Number(e
     .measurementThickness)
   value.light_thin = light_thin
@@ -54,16 +55,33 @@ export async function phonevalue(e, id, fun) {
   let phoneshow = ((Number(e.screenPPI) * Number(e.screenMaterial)) / 50 + (Number(e.screenRenovate) -
       60) / 60 +
     Number(e.screenAdmin) / 10) - 1
-  value.phoneshow = Number(phoneshow.toFixed(2))
+  value.phoneshow = String(Number(phoneshow.toFixed(2)))
   //相机水平
   let phoneimage = await db.collection('Mcamera').where(`phone_id=='${e.title}'`).groupBy('phone_id').groupField(
     'sum(add(Comeravalue,Comeraadd)) as sumScore ').get({
     getOne: true
   })
-  value.phoneimage = phoneimage.result.data.sumScore
+  value.phoneimage = String(phoneimage.result.data.sumScore)
   //电池
-  value.phonecell = e.cell
+  value.phonecell = String(e.cell)
   //充电
-  value.phonecharge = Number(e.WiredCharging) + (Number(e.WirelessCharging) / 4)
-  console.log(value);
+  value.phonecharge = String(Number(e.WiredCharging) + (Number(e.WirelessCharging) / 4))
+  if (fun == "add") {
+    //云数据上传
+    db.collection('Mphonevalue').add({
+      ...value,
+      last_date: Date.now()
+    }).then((res) => {
+      console.log('上传', res);
+    }).catch((err) => {
+      console.log('上传失败', err);
+    })
+  } else {
+    //云数据修改
+    db.collection('Mphonevalue').doc(id).update(value).then(res => {
+      console.log("修改", res);
+    }).catch(err => {
+      console.log('修改失败', err);
+    })
+  }
 }

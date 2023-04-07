@@ -424,7 +424,7 @@
             title: '新增成功'
           })
           this.getOpenerEventChannel().emit('refreshData')
-          // setTimeout(() => uni.navigateBack(), 500) //注意
+          setTimeout(() => uni.navigateBack(), 500) //注意
         }).catch((err) => {
           uni.showModal({
             content: err.message || '请求服务失败',

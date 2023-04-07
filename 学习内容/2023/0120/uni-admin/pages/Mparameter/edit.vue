@@ -209,6 +209,7 @@
         "last_date": null
       }
       return {
+        phonevalueid: "",
         formData,
         formOptions: {
           "screenMaterial_localdata": [{
@@ -379,8 +380,15 @@
         // console.log(id);
         this.getCamera(id)
       },
-      //获取相机和金钱数据
+      //获取相机和金钱数据+获取计算后数据id
       async getCamera(e) {
+        //拿计算后id
+        let phonevalueid = await db.collection('Mphonevalue').where(`phone_id=="${e}"`).field("_id").get({
+          getOne: true
+        })
+        this.phonevalueid = phonevalueid.result.data._id
+        // console.log('拿到id', this.phonevalueid);
+        //相机和钱的数据
         this.formData.Camera = ""
         this.formData.configurationParameter = ""
         let Cameradata = await db.collection('Mcamera').where(`phone_id=="${e}"`).field(
@@ -399,7 +407,7 @@
           mask: true
         })
         this.$refs.form.validate().then((res) => {
-          phonevalue(this.formData)
+          phonevalue(this.formData, this.phonevalueid, "edit")
           this.submitForm(res)
           return
         }).catch(() => {}).finally(() => {

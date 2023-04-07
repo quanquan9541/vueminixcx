@@ -23,7 +23,7 @@
       "title": "性能"
     },
     "light_thin": {
-      "bsonType": "string",
+      "bsonType": "object",
       "title": "轻薄"
     },
     "phoneshow": {
