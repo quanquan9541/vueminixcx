@@ -57,6 +57,7 @@
   white-space: normal;
   text-overflow: clip;
   word-wrap: normal;
+  color: #464555;
   text-shadow: 0px 2px 7px #bcbcbc;
 }
 .home .bottom {

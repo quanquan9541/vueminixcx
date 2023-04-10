@@ -1,0 +1,99 @@
+// 相机列表
+{
+  "bsonType": "object",
+  "required": ["ComeraType", "Comeraedit", "Comeravalue"],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    //选择手机ID
+    "phone_id": {
+      "bsonType": "string",
+      "description": "产品型号",
+      "title": "名称",
+      "foreignKey": "Manufacturer_brand._id",
+      "enum": {
+        "collection": "Manufacturer_brand",
+        "field": "_id as value, name as text"
+      }
+    },
+    //详情页关联id
+    "edit": {
+      "bsonType": "string",
+      "description": "参数关联",
+      "title": "关联",
+      "foreignKey": "Mparameter._id"
+    },
+    // 选择类型
+    "ComeraType": {
+      "bsonType": "string",
+      "title": "类型",
+      "description": "相机类型",
+      "enum": [{
+          "text": "前置",
+          "value": "前置"
+        }, {
+          "text": "主摄",
+          "value": "主摄"
+        }, {
+          "text": "广角",
+          "value": "广角"
+        }, {
+          "text": "长焦",
+          "value": "长焦"
+        }, {
+          "text": "人像",
+          "value": "人像"
+        }, {
+          "text": "微距",
+          "value": "微距"
+        }, {
+          "text": "景深",
+          "value": "景深"
+        },
+        {
+          "text": "其他",
+          "value": "其他"
+        }
+      ]
+    },
+    // 写个详情
+    "Comeraedit": {
+      "bsonType": "string",
+      "title": "详情",
+      "description": "相机详情"
+    },
+    // 手动评分
+    "Comeravalue": {
+      "bsonType": "int",
+      "title": "数值",
+      "description": "相机数值644"
+    },
+    // 附加分ois 芯片类
+    "Comeraadd": {
+      "bsonType": "int",
+      "title": "附加分",
+      "description": "特别加分",
+      "defaultValue": 0
+    },
+    "sort": {
+      "bsonType": "int",
+      "title": "排序",
+      "defaultValue": 0
+    },
+    //over
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

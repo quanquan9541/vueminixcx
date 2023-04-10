@@ -1,0 +1,398 @@
+// 参数表
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "产品型号",
+      "title": "名称",
+      "foreignKey": "Manufacturer_brand._id",
+      "enum": {
+        "collection": "Manufacturer_brand",
+        "field": "_id as value, name as text"
+      }
+    },
+    "configurationParameter": {
+      "bsonType": "array",
+      "description": "产品配置",
+      "title": "配置"
+    },
+    //这是屏幕
+    "screenMeasurement": {
+      "bsonType": "string",
+      "description": "屏幕尺寸",
+      "title": "屏尺寸"
+    },
+    "screenMaterial": {
+      "bsonType": "string",
+      "title": "材质",
+      "enum": [{
+          "text": "OLED",
+          "value": "0.8"
+        },
+        {
+          "text": "LCD",
+          "value": "1"
+        }
+      ]
+    },
+    "screenSupplier": {
+      "bsonType": "array",
+      "title": "屏厂",
+      "description": "屏幕供应商",
+      "defaultValue": [0],
+      "enum": [{
+          "text": "三星",
+          "value": 0
+        },
+        {
+          "text": "华星光电",
+          "value": 1
+        },
+        {
+          "text": "京东方",
+          "value": 2
+        },
+        {
+          "text": "天马",
+          "value": 3
+        },
+        {
+          "text": "维信诺",
+          "value": 4
+        },
+        {
+          "text": "柔宇",
+          "value": 5
+        },
+        {
+          "text": "未知",
+          "value": 9
+        }
+      ]
+
+    },
+
+    "screenX": {
+      "bsonType": "int",
+      "title": "横向",
+      "description": "横轴"
+    },
+    "screenY": {
+      "bsonType": "int",
+      "title": "纵向",
+      "description": "纵轴"
+    },
+    "screenPPI": {
+      "bsonType": "string",
+      "title": "PPI",
+      "description": "等效PPI"
+    },
+    "screenRenovate": {
+      "bsonType": "string",
+      "title": "刷新率",
+      "description": "请输入刷新率",
+      "defaultValue": "120"
+    },
+    "screenSampling": {
+      "bsonType": "string",
+      "title": "采用率",
+      "description": "请输入采样率",
+      "defaultValue": "240"
+    },
+    "screenDimming": {
+      "bsonType": "int",
+      "title": "调光",
+      "defaultValue": 1,
+      "enum": [{
+          "text": "DC调光",
+          "value": 1
+        },
+        {
+          "text": "类DC调光",
+          "value": 2
+        },
+        {
+          "text": "PWM调光",
+          "value": 3
+        }
+      ]
+    },
+    "screenPwm": {
+      "bsonType": "string",
+      "title": "频率",
+      "description": "调光频率"
+    },
+    "screenLuminance": {
+      "bsonType": "int",
+      "title": "亮度",
+      "description": "屏幕亮度/nit",
+      "defaultValue": 1200
+    },
+    "screenColor": {
+      "bsonType": "int",
+      "title": "色彩",
+      "description": "屏幕色彩丰富度/bit",
+      "defaultValue": 8
+    },
+    "screenAdd": {
+      "bsonType": "array",
+      "title": "附加功能",
+      "defaultValue": [0],
+      "enum": [{
+          "text": "DCI-P3",
+          "value": 0
+        },
+        {
+          "text": "HDR10",
+          "value": 1
+        },
+        {
+          "text": "HDR10+",
+          "value": 2
+        }
+      ]
+    },
+    "screenAdmin": {
+      "bsonType": "int",
+      "defaultValue": 0,
+      "title": "情感分",
+      "description": "加权分0-1之间"
+    },
+    //外观设计
+    "AppearanceDesign": {
+      "bsonType": "string",
+      "title": "外观",
+      "description": "外观设计"
+    },
+    //相机
+    "Camera": {
+      "bsonType": "array",
+      "title": "相机",
+      "description": "相机列表"
+    },
+    //性能部分
+    "socfunction": {
+      "bsonType": "string",
+      "description": "芯片",
+      "title": "芯片",
+      "foreignKey": "Msoc._id",
+      "enum": {
+        "collection": "Msoc",
+        "field": "_id as value, name as text"
+      }
+    },
+    "ram": {
+      "bsonType": "string",
+      "description": "内存",
+      "title": "内存",
+      "defaultValue": "LPDDR 5"
+    },
+    "rom": {
+      "bsonType": "string",
+      "description": "闪存",
+      "title": "闪存",
+      "defaultValue": "USF 3.1"
+    },
+    //电池
+    "cell": {
+      "bsonType": "int",
+      "description": "电池容量",
+      "title": "电池",
+      "defaultValue": 5000
+    },
+    // 充电
+    "WiredCharging": {
+      "bsonType": "int",
+      "description": "有线充电",
+      "title": "有线充",
+      "defaultValue": 65
+    },
+    "WirelessCharging": {
+      "bsonType": "int",
+      "description": "无线充电",
+      "title": "无线充",
+      "defaultValue": 50
+    },
+    "ReverseCharging": {
+      "bsonType": "int",
+      "description": "反向充电",
+      "title": "反充",
+      "defaultValue": 10
+    },
+    //尺寸measurement
+    "measurementHight": {
+      "bsonType": "string",
+      "defaultValue": "170",
+      "title": "高度",
+      "description": "高度"
+    },
+    "measurementWidth": {
+      "bsonType": "string",
+      "defaultValue": "70",
+      "title": "宽度",
+      "description": "宽度"
+    },
+    "measurementThickness": {
+      "bsonType": "string",
+      "defaultValue": "7.9",
+      "title": "厚度",
+      "description": "厚度"
+    },
+    //重量weight
+    "weight": {
+      "bsonType": "string",
+      "defaultValue": "200.00",
+      "title": "重量",
+      "description": "重量"
+    },
+    //边框cheek
+    "cheek": {
+      "bsonType": "int",
+      "defaultValue": 1,
+      "title": "边框",
+      "description": "边框材质",
+      "enum": [{
+          "text": "塑料",
+          "value": 1
+        },
+        {
+          "text": "金属",
+          "value": 2
+        }
+      ]
+    },
+    // 后盖back cover
+    "backCover": {
+      "bsonType": "int",
+      "defaultValue": 1,
+      "title": "后盖",
+      "description": "后盖材质",
+      "enum": [{
+          "text": "塑料",
+          "value": 1
+        },
+        {
+          "text": "玻璃",
+          "value": 2
+        },
+        {
+          "text": "陶瓷",
+          "value": 2
+        }
+      ]
+    },
+    //系统
+    "system": {
+      "bsonType": "string",
+      "title": "系统",
+      "description": "系统名称"
+    },
+    //指纹识别
+    "fingerprintIdentification": {
+      "bsonType": "int",
+      "title": "指纹",
+      "description": "指纹识别",
+      "defaultValue": 1,
+      "enum": [{
+          "text": "短焦·光学·屏下指纹",
+          "value": 1
+        },
+        {
+          "text": "超薄·光学·屏下指纹",
+          "value": 2
+        },
+        {
+          "text": "侧边·实体指纹",
+          "value": 3
+        },
+        {
+          "text": "背部·实体指纹",
+          "value": 4
+        },
+        {
+          "text": "无指纹识别",
+          "value": 5
+        }
+      ]
+    },
+    //震动马达
+    "motor": {
+      "bsonType": "int",
+      "title": "马达",
+      "description": "震动马达",
+      "defaultValue": 1,
+      "enum": [{
+          "text": "X轴·线性马达",
+          "value": 1
+        },
+        {
+          "text": "Z轴·线性马达",
+          "value": 2
+        },
+        {
+          "text": "转子马达",
+          "value": 3
+        }
+      ]
+    },
+    //附加体验项目
+    "AdditionalExperience": {
+      "bsonType": "array",
+      "title": "其他",
+      "description": "附加体验",
+      "defaultValue": [1, 2, 3],
+      "enum": [{
+          "text": "双扬声器",
+          "value": 1
+        },
+        {
+          "text": "NFC",
+          "value": 2
+        },
+
+        {
+          "text": "WiFi6",
+          "value": 3
+        },
+        {
+          "text": "红外遥控",
+          "value": 4
+        },
+        {
+          "text": "VC液冷散热",
+          "value": 5
+        },
+        {
+          "text": "IP68防尘防水",
+          "value": 6
+        }
+      ]
+    },
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

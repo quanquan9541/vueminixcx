@@ -102,10 +102,10 @@ var components
 try {
   components = {
     "u-Image": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--image/u--image.vue */ 230))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--image/u--image.vue */ 372))
     },
     uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 236))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 378))
     },
   }
 } catch (e) {
@@ -196,17 +196,17 @@ var _default = {
   data: function data() {
     return {
       list: [{
-        text: "工作计算器",
-        url: "/pages/worklist/listw"
+        text: "今日幸运茶",
+        url: "/pages/teamilk/teamilk"
       }, {
-        text: "每天测一画",
+        text: "每天测一卦",
         url: "/pages/taiji/taiji"
       }, {
         text: "销量查询器",
         url: "/pages/jdurl/jdurl"
       }, {
-        text: "今日幸运茶",
-        url: "/pages/teamilk/teamilk"
+        text: "工作计算器",
+        url: "/pages/worklist/listw"
       }]
     };
   },
