@@ -76,4 +76,5 @@
 
 <style lang="scss">
   @import "@/uni_modules/uview-ui/index.scss";
+  @import "@/static/iconfont/iconfont.css"
 </style>

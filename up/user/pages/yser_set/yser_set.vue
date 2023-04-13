@@ -22,7 +22,7 @@
             </view>
           </view>
 
-          <view class="more"><text class="iconfont icon-a-10-you"></text></view>
+          <view class="more"><text class="iconfont icon-you"></text></view>
         </view>
 
         <view class="bg">
@@ -35,53 +35,41 @@
       <view class="main">
         <view class="list">
           <view class="group">
+            <!-- 1 -->
             <view class="item" @click="gomylist">
               <view class="left">
-                <text class="iconfont icon-a-24-bianji"></text>
-                <text class="text">我的长文</text>
+                <text class="iconfont icon-shouji1"></text>
+                <text class="text">我的手机</text>
               </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
-            <view class="item" @click="gomylike">
-              <view class="left">
-                <text class="iconfont icon-a-106-xihuan"></text>
-                <text class="text">我的点赞</text>
-              </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
-            </view>
-            <view class="item">
-              <view class="left">
-                <text class="iconfont icon-a-21-xiugai"></text>
-                <text class="text">评论过的</text>
-              </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
-            </view>
+            <!-- 2 -->
           </view>
 
           <view class="group">
-            <view class="item">
+            <view class="item" @click="goabout">
               <view class="left">
-                <text class="iconfont icon-a-32-wenjian"></text>
+                <text class="iconfont icon-question-circle"></text>
                 <text class="text">关于</text>
               </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
             <view class="item" @click="gofeedback">
               <view class="left">
-                <text class="iconfont icon-a-5-xinxi"></text>
+                <text class="iconfont icon-qrcode"></text>
                 <text class="text">意见反馈</text>
               </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
           </view>
 
           <view class="group">
             <view class="item" @click="logout">
               <view class="left">
-                <text class="iconfont icon-a-73-tuichu"></text>
+                <text class="iconfont icon-tuichu1"></text>
                 <text class="text">退出登录</text>
               </view>
-              <view class="right"><text class="iconfont icon-a-10-you"></text></view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
           </view>
         </view>
@@ -111,11 +99,39 @@
       }
     },
     methods: {
+      //前往关于页面
+      goabout() {
+        uni.navigateTo({
+          url: '/pages/aboutme/aboutme',
+        })
+      },
       //编辑个人资料
       toUserInfo() {
         uni.navigateTo({
           url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo'
         });
+      },
+      //退出登录
+      logout() {
+        //调用下方判断
+        if (this.goLoginpages()) return;
+
+        uni.showModal({
+          title: '是否确认退出？',
+          success: res => {
+            // console.log(res);
+            if (res.confirm) {
+              mutations.logout();
+              uni.showToast({
+                title: '退出中',
+                mask: true,
+                duration: 1000,
+                icon: 'loading'
+              });
+            }
+          }
+        });
+        // mutations.logout();
       },
       //判断是否登录
       goLoginpages() {

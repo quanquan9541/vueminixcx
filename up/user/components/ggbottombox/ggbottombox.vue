@@ -32,7 +32,7 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px 0;
-    position: absolute;
+    // position: absolute;
     bottom: 15rpx;
     left: 5%;
     // border: 1px red solid;
