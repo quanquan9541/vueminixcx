@@ -2,11 +2,11 @@
   <view>
     <view class="listcbox" @click="goedit">
       <view class="pic">
-        <u--image :showLoading="true" :src="item.pic[0].url" width="345rpx" height="400rpx" mode="aspectFill"
+        <u--image :showLoading="true" :src="item.pic[0].url" width="345rpx" height="400rpx" mode="aspectFill" lazyLoad
           bgColor="#eOeee8" shape="square" radius="10"></u--image>
       </view>
       <view class="text">
-        <!-- <view class="title">{{item.class}}</view> -->
+        <!-- <view class="title">{{item.class}}</view> 作废-->
         <view class="name">{{item.name}}</view>
       </view>
     </view>
@@ -31,7 +31,6 @@
     },
 
     methods: {
-
       //跳转到详情页
       goedit() {
         // console.log('点击组件');

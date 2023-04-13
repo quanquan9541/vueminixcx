@@ -70,7 +70,6 @@ export async function phonevalue(e, id, fun = "add") {
     //云数据上传
     db.collection('Mphonevalue').add({
       ...value,
-      last_date: Date.now()
     }).then((res) => {
       console.log('上传', res);
     }).catch((err) => {
@@ -78,7 +77,10 @@ export async function phonevalue(e, id, fun = "add") {
     })
   } else {
     //云数据修改
-    db.collection('Mphonevalue').doc(id).update(value).then(res => {
+    db.collection('Mphonevalue').doc(id).update({
+      ...value,
+      last_date: Date.now()
+    }).then(res => {
       console.log("修改", res);
     }).catch(err => {
       console.log('修改失败', err);

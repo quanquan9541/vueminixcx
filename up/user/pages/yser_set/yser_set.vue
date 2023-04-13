@@ -62,7 +62,6 @@
               <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
           </view>
-
           <view class="group">
             <view class="item" @click="logout">
               <view class="left">
@@ -99,6 +98,36 @@
       }
     },
     methods: {
+      //点击反馈
+      gofeedback() {
+        uni.showModal({
+          title: '问题反馈',
+          content: '问题反馈交流群:527854339',
+          showCancel: false,
+          complete: (res) => { //改箭头函数
+            this.copy("527854339", "群号复制成功")
+          }
+        });
+      },
+
+      //复制内容
+      /**
+       * @param {Object} e 复制内容
+       * @param {Object} text  提示信息
+       */
+      copy(e, text) {
+        // console.log('复制');
+        // return
+        uni.setClipboardData({
+          data: e,
+          success: function(res) {
+            // console.log('复制的信息：', e);
+            uni.showToast({
+              title: text,
+            });
+          }
+        });
+      },
       //前往关于页面
       goabout() {
         uni.navigateTo({
