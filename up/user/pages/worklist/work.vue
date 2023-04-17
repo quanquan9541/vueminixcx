@@ -345,7 +345,9 @@
       }
     },
 
-    onLoad() {},
+    onLoad() {
+      uni.$u.mpShare.title = '工作计算器';
+    },
     onReady() {
       // :rules="rules" //小程序必须在这里引入验证规则
       this.$refs.work.setRules(this.rules)

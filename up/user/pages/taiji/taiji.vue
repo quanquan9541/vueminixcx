@@ -56,6 +56,7 @@
       }
     },
     onLoad() {
+      uni.$u.mpShare.title = '太极八卦图';
       console.log('启动');
       // uni.removeStorageSync('taijibagua')
       let setdata = uni.getStorageSync('taijibaguatu')

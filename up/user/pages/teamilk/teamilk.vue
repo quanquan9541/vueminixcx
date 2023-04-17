@@ -37,6 +37,7 @@
       };
     },
     onLoad() {
+      uni.$u.mpShare.title = '每天来一杯';
       // console.log('123');
       this.check()
     },

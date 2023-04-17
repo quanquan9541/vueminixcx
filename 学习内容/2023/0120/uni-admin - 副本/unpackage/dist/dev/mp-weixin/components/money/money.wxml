@@ -1,0 +1,1 @@
+<view><view class="lrbox"><view class="left">{{item.ram+"+"+item.rom}}</view><view class="right">{{item.money}}</view><button class="but" type="mini" data-event-opts="{{[['tap',[['gotocamera',['$0'],['item._id']]]]]}}" bindtap="__e"><text>编辑</text></button></view></view>

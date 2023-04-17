@@ -1,0 +1,61 @@
+//计算数值
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "phone_id": {
+      "bsonType": "string",
+      "description": "手机id",
+      "title": "手机",
+      "foreignKey": "Manufacturer_brand._id"
+    },
+    "phonefunction": {
+      "bsonType": "string",
+      "title": "性能"
+    },
+    "light_thin": {
+      "bsonType": "object",
+      "title": "轻薄"
+    },
+    "phoneshow": {
+      "bsonType": "string",
+      "title": "显示"
+    },
+    "phoneimage": {
+      "bsonType": "string",
+      "title": "影像"
+    },
+    "phonecell": {
+      "bsonType": "string",
+      "title": "电池"
+    },
+    "phonecharge": {
+      "bsonType": "string",
+      "title": "充电"
+    },
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

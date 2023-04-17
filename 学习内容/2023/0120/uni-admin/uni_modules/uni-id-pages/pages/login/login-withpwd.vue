@@ -26,8 +26,8 @@
         <text class="forget">忘记了？</text>
         <text class="link" @click="toRetrievePwd">找回密码</text>
       </view>
-      <text class="link" @click="toRegister">{{config.isAdmin ? '注册管理员账号': '注册账号'}}</text>
-      <!-- <text class="link" @click="toRegister" v-if="!config.isAdmin">注册账号</text> -->
+      <!-- <text class="link" @click="toRegister">{{config.isAdmin ? '注册管理员账号': '注册账号'}}</text> -->
+      <text class="link" @click="toRegister" v-if="!config.isAdmin">注册账号</text>
     </view>
     <!-- 悬浮登录方式组件暂时不使用这个功能 -->
     <!-- <uni-id-pages-fab-login ref="uniFabLogin"></uni-id-pages-fab-login> -->
@@ -139,9 +139,8 @@
       /* 前往注册 */
       toRegister() {
         uni.navigateTo({
-          url: '/uni_modules/uni-id-pages/pages/register/register',
-          // this.config.isAdmin ? 判断注销 '/uni_modules/uni-id-pages/pages/register/register-admin' :
-          //   '/uni_modules/uni-id-pages/pages/register/register',
+          url: this.config.isAdmin ? '/uni_modules/uni-id-pages/pages/register/register-admin' :
+            '/uni_modules/uni-id-pages/pages/register/register',
           fail(e) {
             console.error(e);
           }

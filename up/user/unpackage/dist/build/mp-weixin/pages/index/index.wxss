@@ -1,0 +1,1 @@
+.home{overflow:hidden;padding:30rpx;display:flex;flex-direction:column;justify-content:space-between;height:100%}.home .bottom{margin-top:20rpx;padding:20rpx;height:calc(100vh - 360rpx);overflow:scroll;display:flex;flex-direction:column;justify-content:start;border-radius:14px;border:1rpx solid #aaf}.home .bottom .button{margin:20rpx 0}

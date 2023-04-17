@@ -6,7 +6,7 @@
     },
     "setting": {
         "urlCheck": false,
-        "es6": false,
+        "es6": true,
         "postcss": true,
         "minified": true,
         "newFeature": true,
@@ -18,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.30.3",
+    "libVersion": "2.31.0",
     "appid": "wx3a7ff2fa29a7d755",
     "projectname": "略懂工具箱",
     "condition": {},

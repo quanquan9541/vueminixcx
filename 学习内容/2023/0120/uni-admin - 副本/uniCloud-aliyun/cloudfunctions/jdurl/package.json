@@ -1,0 +1,7 @@
+{
+  "name": "jdurl",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

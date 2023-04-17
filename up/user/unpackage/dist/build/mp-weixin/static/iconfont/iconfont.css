@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "iconfont";
+  /* Project id 3771939 */
+  src: url('@/static/iconfont/iconfont.woff2?t=1681351001878') format('woff2'),
+    url('@/static/iconfont/iconfont.woff?t=1681351001878') format('woff'),
+    url('@/static/iconfont/iconfont.ttf?t=1681351001878') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tuichu:before {
+  content: "\e604";
+}
+
+.icon-you:before {
+  content: "\e65f";
+}
+
+.icon-tuichu1:before {
+  content: "\e65b";
+}
+
+.icon-qrcode:before {
+  content: "\e7dd";
+}
+
+.icon-phone:before {
+  content: "\e602";
+}
+
+.icon-phone1:before {
+  content: "\e606";
+}
+
+.icon-shouji1:before {
+  content: "\e607";
+}
+
+.icon-question-circle:before {
+  content: "\e782";
+}
+
+.icon-edit-square:before {
+  content: "\e791";
+}
+
+.icon-instagram:before {
+  content: "\e87f";
+}
+
+.icon-liuyan:before {
+  content: "\e61f";
+}
+
+.icon-bianzu16:before {
+  content: "\e620";
+}
+
+.icon-gongnengkaiguan:before {
+  content: "\e601";
+}
+
+.icon-gongneng:before {
+  content: "\e6c3";
+}
+
+.icon-gongnengguanli:before {
+  content: "\e63d";
+}
+
+.icon-changyonggongneng:before {
+  content: "\e7b5";
+}
+
+.icon-shangchuantupian:before {
+  content: "\e6e9";
+}
+
+.icon-jinbi_o:before {
+  content: "\eba1";
+}
+
+.icon-sp-zhongyaoshebei-zhongyaoshebei:before {
+  content: "\e9e6";
+}
+
+.icon-naicha1:before {
+  content: "\e611";
+}
+
+.icon-xingjiabi:before {
+  content: "\e662";
+}
+
+.icon-pinpai:before {
+  content: "\e655";
+}
+
+.icon-naichaxiaochi:before {
+  content: "\fd19";
+}
+
+.icon-pinpaitemai:before {
+  content: "\e70d";
+}
+
+.icon-dianchi:before {
+  content: "\e711";
+}
+
+.icon-chongdian:before {
+  content: "\e63c";
+}
+
+.icon-anzhuo-:before {
+  content: "\e610";
+}
+
+.icon-caizhi:before {
+  content: "\e647";
+}
+
+.icon-xiangji:before {
+  content: "\e672";
+}
+
+.icon-shouji:before {
+  content: "\e692";
+}
+
+.icon-xinpian:before {
+  content: "\e603";
+}
+
+.icon-shezhi:before {
+  content: "\e600";
+}
+
+.icon-zhuanshi:before {
+  content: "\e634";
+}
+
+.icon-gongjuxiang:before {
+  content: "\e618";
+}
+
+.icon-fangwurenzheng:before {
+  content: "\100d2";
+}

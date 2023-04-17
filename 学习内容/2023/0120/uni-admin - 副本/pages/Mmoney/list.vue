@@ -1,0 +1,279 @@
+<template>
+  <view>
+    <view class="uni-header">
+      <view class="uni-group">
+        <view class="uni-title"></view>
+        <view class="uni-sub-title"></view>
+      </view>
+      <view class="uni-group">
+        <input class="uni-search" type="text" v-model="query" @confirm="search" placeholder="请输入搜索内容" />
+        <button class="uni-button" type="default" size="mini" @click="search">搜索</button>
+        <button class="uni-button" type="default" size="mini" @click="navigateTo('./add')">新增</button>
+        <button class="uni-button" type="default" size="mini" :disabled="!selectedIndexs.length"
+          @click="delTable">批量删除</button>
+        <download-excel class="hide-on-phone" :fields="exportExcel.fields" :data="exportExcelData"
+          :type="exportExcel.type" :name="exportExcel.filename">
+          <button class="uni-button" type="primary" size="mini">导出 Excel</button>
+        </download-excel>
+      </view>
+    </view>
+    <view class="uni-container">
+      <unicloud-db ref="udb" :collection="collectionList" :where="where" page-data="replace" :orderby="orderby"
+        :getcount="true" :page-size="options.pageSize" :page-current="options.pageCurrent"
+        v-slot:default="{data,pagination,loading,error,options}" :options="options" loadtime="manual"
+        @load="onqueryload">
+        <uni-table ref="table" :loading="loading" :emptyText="error.message || '没有更多数据'" border stripe type="selection"
+          @selection-change="selectionChange">
+          <uni-tr>
+            <uni-th align="center">名称</uni-th>
+            <uni-th align="center" sortable @sort-change="sortChange($event, 'edit')">关联</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.ram_localdata"
+              @filter-change="filterChange($event, 'ram')">内存</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.rom_localdata"
+              @filter-change="filterChange($event, 'rom')">闪存</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'money')" sortable
+              @sort-change="sortChange($event, 'money')">价格</uni-th>
+            <uni-th align="center" filter-type="range" @filter-change="filterChange($event, 'sort')" sortable
+              @sort-change="sortChange($event, 'sort')">排序</uni-th>
+            <uni-th align="center">操作</uni-th>
+          </uni-tr>
+          <uni-tr v-for="(item,index) in data" :key="index">
+            <uni-td
+              align="center">{{item.phone_id && item.phone_id[0] && item.phone_id[0].parent_id.text+"&#160"+item.phone_id[0].text}}</uni-td>
+            <uni-td align="center">{{codeeditid(item.edit)}}</uni-td>
+            <uni-td align="center">{{options.ram_valuetotext[item.ram]}}</uni-td>
+            <uni-td align="center">{{options.rom_valuetotext[item.rom]}}</uni-td>
+            <uni-td align="center">{{item.money}}</uni-td>
+            <uni-td align="center">{{item.sort}}</uni-td>
+            <uni-td align="center">
+              <view class="uni-group">
+                <button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini"
+                  type="primary">修改</button>
+                <button @click="confirmDelete(item._id)" class="uni-button" size="mini" type="warn">删除</button>
+              </view>
+            </uni-td>
+          </uni-tr>
+        </uni-table>
+        <view class="uni-pagination-box">
+          <uni-pagination show-icon :page-size="pagination.size" v-model="pagination.current" :total="pagination.count"
+            @change="onPageChanged" />
+        </view>
+      </unicloud-db>
+    </view>
+  </view>
+</template>
+
+<script>
+  import {
+    enumConverter,
+    filterToWhere
+  } from '../../js_sdk/validator/Mmoney.js';
+  import {
+    relevance,
+    codeeditid
+  } from '../../js/tools.js';
+  const db = uniCloud.database()
+  // 表查询配置
+  const dbOrderBy = '' // 排序字段
+  const dbSearchFields = [] // 模糊搜索字段，支持模糊搜索的字段列表。联表查询格式: 主表字段名.副表字段名，例如用户表关联角色表 role.role_name
+  // 分页配置
+  const pageSize = 20
+  const pageCurrent = 1
+
+  const orderByMapping = {
+    "ascending": "asc",
+    "descending": "desc"
+  }
+
+  export default {
+    data() {
+      return {
+        collectionList: [db.collection('Mmoney').field('phone_id,edit,ram,rom,money,sort').getTemp(), db.collection(
+          'Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()],
+        query: '',
+        where: '',
+        orderby: dbOrderBy,
+        orderByFieldName: "",
+        selectedIndexs: [],
+        options: {
+          pageSize,
+          pageCurrent,
+          filterData: {
+            "ram_localdata": [{
+                "value": 4,
+                "text": 4
+              },
+              {
+                "value": 6,
+                "text": 6
+              },
+              {
+                "value": 8,
+                "text": 8
+              },
+              {
+                "value": 12,
+                "text": 12
+              },
+              {
+                "value": 16,
+                "text": 16
+              },
+              {
+                "value": 18,
+                "text": 18
+              }
+            ],
+            "rom_localdata": [{
+                "value": 32,
+                "text": 32
+              },
+              {
+                "value": 64,
+                "text": 64
+              },
+              {
+                "value": 128,
+                "text": 128
+              },
+              {
+                "value": 256,
+                "text": 256
+              },
+              {
+                "value": 512,
+                "text": 512
+              },
+              {
+                "value": 1024,
+                "text": 1024
+              }
+            ]
+          },
+          ...enumConverter
+        },
+        imageStyles: {
+          width: 64,
+          height: 64
+        },
+        exportExcel: {
+          "filename": "Mmoney.xls",
+          "type": "xls",
+          "fields": {
+            "名称": "phone_id",
+            "关联": "edit",
+            "内存": "ram",
+            "闪存": "rom",
+            "价格": "money",
+            "排序": "sort"
+          }
+        },
+        exportExcelData: []
+      }
+    },
+    onLoad() {
+      this._filter = {}
+    },
+    onReady() {
+      this.$refs.udb.loadData()
+    },
+    methods: {
+      codeeditid,
+      onqueryload(data) {
+        this.exportExcelData = data
+      },
+      getWhere() {
+        const query = this.query.trim()
+        if (!query) {
+          return ''
+        }
+        const queryRe = new RegExp(query, 'i')
+        return dbSearchFields.map(name => queryRe + '.test(' + name + ')').join(' || ')
+      },
+      search() {
+        const newWhere = this.getWhere()
+        this.where = newWhere
+        this.$nextTick(() => {
+          this.loadData()
+        })
+      },
+      loadData(clear = true) {
+        this.$refs.udb.loadData({
+          clear
+        })
+      },
+      onPageChanged(e) {
+        this.selectedIndexs.length = 0
+        this.$refs.table.clearSelection()
+        this.$refs.udb.loadData({
+          current: e.current
+        })
+      },
+      navigateTo(url, clear) {
+        // clear 表示刷新列表时是否清除页码，true 表示刷新并回到列表第 1 页，默认为 true
+        uni.navigateTo({
+          url,
+          events: {
+            refreshData: () => {
+              this.loadData(clear)
+            }
+          }
+        })
+      },
+      // 多选处理
+      selectedItems() {
+        var dataList = this.$refs.udb.dataList
+        return this.selectedIndexs.map(i => dataList[i]._id)
+      },
+      // 批量删除
+      delTable() {
+        this.$refs.udb.remove(this.selectedItems(), {
+          success: (res) => {
+            this.$refs.table.clearSelection()
+          }
+        })
+      },
+      // 多选
+      selectionChange(e) {
+        this.selectedIndexs = e.detail.index
+      },
+      confirmDelete(id) {
+        this.$refs.udb.remove(id, {
+          success: (res) => {
+            this.$refs.table.clearSelection()
+          }
+        })
+      },
+      sortChange(e, name) {
+        this.orderByFieldName = name;
+        if (e.order) {
+          this.orderby = name + ' ' + orderByMapping[e.order]
+        } else {
+          this.orderby = ''
+        }
+        this.$refs.table.clearSelection()
+        this.$nextTick(() => {
+          this.$refs.udb.loadData()
+        })
+      },
+      filterChange(e, name) {
+        this._filter[name] = {
+          type: e.filterType,
+          value: e.filter
+        }
+        let newWhere = filterToWhere(this._filter, db.command)
+        if (Object.keys(newWhere).length) {
+          this.where = newWhere
+        } else {
+          this.where = ''
+        }
+        this.$nextTick(() => {
+          this.$refs.udb.loadData()
+        })
+      }
+    }
+  }
+</script>
+
+<style>
+</style>

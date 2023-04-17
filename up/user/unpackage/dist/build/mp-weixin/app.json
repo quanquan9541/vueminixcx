@@ -1,12 +1,30 @@
 {
   "pages": [
-    "pages/index/index/index",
+    "pages/index/index",
     "pages/worklist/worklist",
     "pages/worklist/work",
     "pages/worklist/listw",
     "pages/taiji/taiji",
     "pages/jdurl/jdurl",
-    "pages/teamilk/teamilk"
+    "pages/teamilk/teamilk",
+    "pages/yser_set/yser_set",
+    "uni_modules/uni-id-pages/pages/userinfo/deactivate/deactivate",
+    "uni_modules/uni-id-pages/pages/userinfo/userinfo",
+    "uni_modules/uni-id-pages/pages/userinfo/bind-mobile/bind-mobile",
+    "uni_modules/uni-id-pages/pages/userinfo/cropImage/cropImage",
+    "uni_modules/uni-id-pages/pages/login/login-withoutpwd",
+    "uni_modules/uni-id-pages/pages/login/login-withpwd",
+    "uni_modules/uni-id-pages/pages/login/login-smscode",
+    "uni_modules/uni-id-pages/pages/register/register",
+    "uni_modules/uni-id-pages/pages/register/register-by-email",
+    "uni_modules/uni-id-pages/pages/retrieve/retrieve",
+    "uni_modules/uni-id-pages/pages/retrieve/retrieve-by-email",
+    "uni_modules/uni-id-pages/pages/common/webview/webview",
+    "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd",
+    "uni_modules/uni-id-pages/pages/register/register-admin",
+    "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd",
+    "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+    "pages/aboutme/aboutme"
   ],
   "subPackages": [],
   "window": {
@@ -14,6 +32,29 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#679EFD",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "fontSize": "12rpx",
+    "iconWidth": "48rpx",
+    "spacing": "3rpx",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/iconPath/fun1.png",
+        "selectedIconPath": "static/iconPath/fun2.png",
+        "text": "功能"
+      },
+      {
+        "pagePath": "pages/yser_set/yser_set",
+        "iconPath": "static/iconPath/set1.png",
+        "selectedIconPath": "static/iconPath/set2.png",
+        "text": "设置"
+      }
+    ]
   },
   "usingComponents": {}
 }

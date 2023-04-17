@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "略懂工具箱",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

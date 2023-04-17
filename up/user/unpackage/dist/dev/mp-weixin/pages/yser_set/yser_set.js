@@ -102,7 +102,7 @@ var components
 try {
   components = {
     uniDateformat: function () {
-      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 685))
+      return Promise.all(/*! import() | uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.vue */ 500))
     },
   }
 } catch (e) {
@@ -258,6 +258,7 @@ var _store = __webpack_require__(/*! @/uni_modules/uni-id-pages/common/store.js 
 //
 //
 //
+//
 
 var db = uniCloud.database();
 var _default = {
@@ -273,11 +274,79 @@ var _default = {
     }
   },
   methods: {
+    //未完成功能提示弹窗
+    Tshow: function Tshow() {
+      uni.showModal({
+        title: '提示',
+        content: '功能未完成',
+        showCancel: false,
+        complete: function complete(res) {//改箭头函数
+        }
+      });
+    },
+    //点击反馈
+    gofeedback: function gofeedback() {
+      var _this = this;
+      uni.showModal({
+        title: '问题反馈',
+        content: '问题反馈交流群:527854339',
+        showCancel: false,
+        complete: function complete(res) {
+          //改箭头函数
+          _this.copy("527854339", "群号复制成功");
+        }
+      });
+    },
+    //复制内容
+    /**
+     * @param {Object} e 复制内容
+     * @param {Object} text  提示信息
+     */
+    copy: function copy(e, text) {
+      // console.log('复制');
+      // return
+      uni.setClipboardData({
+        data: e,
+        success: function success(res) {
+          // console.log('复制的信息：', e);
+          uni.showToast({
+            title: text
+          });
+        }
+      });
+    },
+    //前往关于页面
+    goabout: function goabout() {
+      uni.navigateTo({
+        url: '/pages/aboutme/aboutme'
+      });
+    },
     //编辑个人资料
     toUserInfo: function toUserInfo() {
       uni.navigateTo({
         url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo'
       });
+    },
+    //退出登录
+    logout: function logout() {
+      //调用下方判断
+      if (this.goLoginpages()) return;
+      uni.showModal({
+        title: '是否确认退出？',
+        success: function success(res) {
+          // console.log(res);
+          if (res.confirm) {
+            _store.mutations.logout();
+            uni.showToast({
+              title: '退出中',
+              mask: true,
+              duration: 1000,
+              icon: 'loading'
+            });
+          }
+        }
+      });
+      // mutations.logout();
     },
     //判断是否登录
     goLoginpages: function goLoginpages() {

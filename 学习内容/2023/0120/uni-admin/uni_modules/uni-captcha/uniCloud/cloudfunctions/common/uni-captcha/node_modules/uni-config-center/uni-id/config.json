@@ -1,5 +1,5 @@
 {
-  "passwordSecret": "passwordSecret-demo",
+  "passwordSecret": "passwordSecret-ldsn",
   "tokenSecret": "ldlz12",
   "tokenExpiresIn": 7200,
   "tokenExpiresThreshold": 3600,

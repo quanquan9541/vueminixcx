@@ -17124,7 +17124,7 @@ var _default = {
     "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
   },
   "pages": [{
-    "path": "pages/index/index/index",
+    "path": "pages/index/index",
     "style": {
       "navigationBarTitleText": "略懂工具箱",
       "enablePullDownRefresh": false
@@ -17170,7 +17170,8 @@ var _default = {
     "path": "pages/yser_set/yser_set",
     "style": {
       "navigationBarTitleText": "用户设置",
-      "enablePullDownRefresh": false
+      "enablePullDownRefresh": false,
+      "navigationStyle": "custom"
     }
   }, {
     "path": "uni_modules/uni-id-pages/pages/userinfo/deactivate/deactivate",
@@ -17257,6 +17258,12 @@ var _default = {
       "enablePullDownRefresh": false,
       "navigationBarTitleText": "实名认证"
     }
+  }, {
+    "path": "pages/aboutme/aboutme",
+    "style": {
+      "navigationBarTitleText": "关于",
+      "enablePullDownRefresh": false
+    }
   }],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -17273,7 +17280,7 @@ var _default = {
     "iconWidth": "48rpx",
     "spacing": "3rpx",
     "list": [{
-      "pagePath": "pages/index/index/index",
+      "pagePath": "pages/index/index",
       "iconPath": "static/iconPath/fun1.png",
       "selectedIconPath": "static/iconPath/fun2.png",
       "text": "功能"
@@ -17450,47 +17457,6 @@ function normalizeComponent (
 
 /***/ }),
 /* 45 */
-/*!************************************************************!*\
-  !*** C:/Users/20210408/Desktop/xcx/up/user/js/sharemax.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = {
-  onLoad: function onLoad() {
-    //分享白名单
-    var urlList = [];
-    //获取路由信息
-    var pages = getCurrentPages();
-    //获取当前路由
-    var nowPage = pages[pages.length - 1];
-    // 获取标题
-    // let title = nowPage.$holder.navigationBar.titleText
-    // let title = nowPage //没写好
-    var path = nowPage.route;
-    // console.log('页面', title);
-    // 设置默认的转发参数
-    this.share = {
-      title: '略懂工具箱',
-      // 空默认为小程序名称
-      path: path,
-      // 默认为当前页面路径
-      imageUrl: '' // 默认为当前页面的截图
-    };
-  },
-  //分享好友
-  onShareAppMessage: function onShareAppMessage() {
-    // console.log('888', this.share);
-    return this.share;
-  },
-  //朋友圈
-  onShareTimeline: function onShareTimeline() {
-    return this.share;
-  }
-};
-
-/***/ }),
-/* 46 */
 /*!***************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/index.js ***!
   \***************************************************************************/
@@ -17506,20 +17472,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 47));
-var _mpMixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mpMixin.js */ 48));
-var _luchRequest = _interopRequireDefault(__webpack_require__(/*! ./libs/luch-request */ 49));
-var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/util/route.js */ 67));
-var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 68));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 69));
-var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 70));
-var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 71));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./libs/function/index.js */ 72));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 75));
-var _props = _interopRequireDefault(__webpack_require__(/*! ./libs/config/props.js */ 76));
-var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 166));
-var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/config/color.js */ 124));
-var _platform = _interopRequireDefault(__webpack_require__(/*! ./libs/function/platform */ 167));
+var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 46));
+var _mpMixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mpMixin.js */ 47));
+var _luchRequest = _interopRequireDefault(__webpack_require__(/*! ./libs/luch-request */ 48));
+var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/util/route.js */ 66));
+var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 67));
+var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 68));
+var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 69));
+var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 70));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./libs/function/index.js */ 71));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 74));
+var _props = _interopRequireDefault(__webpack_require__(/*! ./libs/config/props.js */ 75));
+var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 165));
+var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/config/color.js */ 123));
+var _platform = _interopRequireDefault(__webpack_require__(/*! ./libs/function/platform */ 166));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 // 看到此报错，是因为没有配置vue.config.js的【transpileDependencies】，详见：https://www.uviewui.com/components/npmSetting.html#_5-cli模式额外配置
@@ -17579,7 +17545,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 47 */
+/* 46 */
 /*!**************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/mixin/mixin.js ***!
   \**************************************************************************************/
@@ -17747,7 +17713,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 48 */
+/* 47 */
 /*!****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
   \****************************************************************************************/
@@ -17770,7 +17736,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 49 */
+/* 48 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/index.js ***!
   \*********************************************************************************************/
@@ -17785,12 +17751,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _Request = _interopRequireDefault(__webpack_require__(/*! ./core/Request */ 50));
+var _Request = _interopRequireDefault(__webpack_require__(/*! ./core/Request */ 49));
 var _default = _Request.default;
 exports.default = _default;
 
 /***/ }),
-/* 50 */
+/* 49 */
 /*!****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
   \****************************************************************************************************/
@@ -17808,12 +17774,12 @@ exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest */ 51));
-var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager */ 59));
-var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig */ 60));
-var _defaults = _interopRequireDefault(__webpack_require__(/*! ./defaults */ 61));
-var _utils = __webpack_require__(/*! ../utils */ 54);
-var _clone = _interopRequireDefault(__webpack_require__(/*! ../utils/clone */ 62));
+var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest */ 50));
+var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager */ 58));
+var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig */ 59));
+var _defaults = _interopRequireDefault(__webpack_require__(/*! ./defaults */ 60));
+var _utils = __webpack_require__(/*! ../utils */ 53);
+var _clone = _interopRequireDefault(__webpack_require__(/*! ../utils/clone */ 61));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var Request = /*#__PURE__*/function () {
@@ -17996,7 +17962,7 @@ var Request = /*#__PURE__*/function () {
 exports.default = Request;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /*!************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
   \************************************************************************************************************/
@@ -18011,14 +17977,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _index = _interopRequireDefault(__webpack_require__(/*! ../adapters/index */ 52));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../adapters/index */ 51));
 var _default = function _default(config) {
   return (0, _index.default)(config);
 };
 exports.default = _default;
 
 /***/ }),
-/* 52 */
+/* 51 */
 /*!******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
   \******************************************************************************************************/
@@ -18034,10 +18000,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL */ 53));
-var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath */ 55));
-var _settle = _interopRequireDefault(__webpack_require__(/*! ../core/settle */ 58));
-var _utils = __webpack_require__(/*! ../utils */ 54);
+var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL */ 52));
+var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath */ 54));
+var _settle = _interopRequireDefault(__webpack_require__(/*! ../core/settle */ 57));
+var _utils = __webpack_require__(/*! ../utils */ 53);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
@@ -18099,7 +18065,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 53 */
+/* 52 */
 /*!********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
   \********************************************************************************************************/
@@ -18114,7 +18080,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildURL;
-var utils = _interopRequireWildcard(__webpack_require__(/*! ../utils */ 54));
+var utils = _interopRequireWildcard(__webpack_require__(/*! ../utils */ 53));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function encode(val) {
@@ -18169,7 +18135,7 @@ function buildURL(url, params) {
 }
 
 /***/ }),
-/* 54 */
+/* 53 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/utils.js ***!
   \*********************************************************************************************/
@@ -18322,7 +18288,7 @@ function isUndefined(val) {
 }
 
 /***/ }),
-/* 55 */
+/* 54 */
 /*!**********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
   \**********************************************************************************************************/
@@ -18337,8 +18303,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildFullPath;
-var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL */ 56));
-var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs */ 57));
+var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL */ 55));
+var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs */ 56));
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -18356,7 +18322,7 @@ function buildFullPath(baseURL, requestedURL) {
 }
 
 /***/ }),
-/* 56 */
+/* 55 */
 /*!*************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
   \*************************************************************************************************************/
@@ -18384,7 +18350,7 @@ function isAbsoluteURL(url) {
 }
 
 /***/ }),
-/* 57 */
+/* 56 */
 /*!***********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
   \***********************************************************************************************************/
@@ -18410,7 +18376,7 @@ function combineURLs(baseURL, relativeURL) {
 }
 
 /***/ }),
-/* 58 */
+/* 57 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
   \***************************************************************************************************/
@@ -18442,7 +18408,7 @@ function settle(resolve, reject, response) {
 }
 
 /***/ }),
-/* 59 */
+/* 58 */
 /*!***************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
   \***************************************************************************************************************/
@@ -18506,7 +18472,7 @@ var _default = InterceptorManager;
 exports.default = _default;
 
 /***/ }),
-/* 60 */
+/* 59 */
 /*!********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
   \********************************************************************************************************/
@@ -18522,7 +18488,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _utils = __webpack_require__(/*! ../utils */ 54);
+var _utils = __webpack_require__(/*! ../utils */ 53);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
@@ -18582,7 +18548,7 @@ var _default = function _default(globalsConfig) {
 exports.default = _default;
 
 /***/ }),
-/* 61 */
+/* 60 */
 /*!*****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
   \*****************************************************************************************************/
@@ -18614,7 +18580,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 62 */
+/* 61 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
   \***************************************************************************************************/
@@ -18863,10 +18829,10 @@ var clone = function () {
 }();
 var _default = clone;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../yl/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 63).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../yl/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 62).Buffer))
 
 /***/ }),
-/* 63 */
+/* 62 */
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
   \**************************************/
@@ -18884,9 +18850,9 @@ exports.default = _default;
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ 64)
-var ieee754 = __webpack_require__(/*! ieee754 */ 65)
-var isArray = __webpack_require__(/*! isarray */ 66)
+var base64 = __webpack_require__(/*! base64-js */ 63)
+var ieee754 = __webpack_require__(/*! ieee754 */ 64)
+var isArray = __webpack_require__(/*! isarray */ 65)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -20667,7 +20633,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 64 */
+/* 63 */
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
   \*****************************************/
@@ -20828,7 +20794,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /*!***************************************!*\
   !*** ./node_modules/ieee754/index.js ***!
   \***************************************/
@@ -20923,7 +20889,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
   \***************************************/
@@ -20938,7 +20904,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /*!*************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/util/route.js ***!
   \*************************************************************************************/
@@ -21126,7 +21092,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 68 */
+/* 67 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/colorGradient.js ***!
   \*************************************************************************************************/
@@ -21281,7 +21247,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 69 */
+/* 68 */
 /*!****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/test.js ***!
   \****************************************************************************************/
@@ -21586,7 +21552,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 70 */
+/* 69 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/debounce.js ***!
   \********************************************************************************************/
@@ -21633,7 +21599,7 @@ var _default = debounce;
 exports.default = _default;
 
 /***/ }),
-/* 71 */
+/* 70 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/throttle.js ***!
   \********************************************************************************************/
@@ -21682,7 +21648,7 @@ var _default = throttle;
 exports.default = _default;
 
 /***/ }),
-/* 72 */
+/* 71 */
 /*!*****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/index.js ***!
   \*****************************************************************************************/
@@ -21699,8 +21665,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 69));
-var _digit = __webpack_require__(/*! ./digit.js */ 73);
+var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 68));
+var _digit = __webpack_require__(/*! ./digit.js */ 72);
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
  * @param {number} min
@@ -22483,7 +22449,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 73 */
+/* 72 */
 /*!*****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/digit.js ***!
   \*****************************************************************************************/
@@ -22504,7 +22470,7 @@ exports.minus = minus;
 exports.plus = plus;
 exports.round = round;
 exports.times = times;
-var _toArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toArray */ 74));
+var _toArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toArray */ 73));
 var _boundaryCheckingState = true; // 是否进行越界检查的全局开关
 
 /**
@@ -22685,7 +22651,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 74 */
+/* 73 */
 /*!********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/toArray.js ***!
   \********************************************************/
@@ -22702,7 +22668,7 @@ function _toArray(arr) {
 module.exports = _toArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 75 */
+/* 74 */
 /*!****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/config.js ***!
   \****************************************************************************************/
@@ -22746,7 +22712,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 76 */
+/* 75 */
 /*!***************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props.js ***!
   \***************************************************************************************/
@@ -22762,95 +22728,95 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 75));
-var _actionSheet = _interopRequireDefault(__webpack_require__(/*! ./props/actionSheet.js */ 77));
-var _album = _interopRequireDefault(__webpack_require__(/*! ./props/album.js */ 78));
-var _alert = _interopRequireDefault(__webpack_require__(/*! ./props/alert.js */ 79));
-var _avatar = _interopRequireDefault(__webpack_require__(/*! ./props/avatar */ 80));
-var _avatarGroup = _interopRequireDefault(__webpack_require__(/*! ./props/avatarGroup */ 81));
-var _backtop = _interopRequireDefault(__webpack_require__(/*! ./props/backtop */ 82));
-var _badge = _interopRequireDefault(__webpack_require__(/*! ./props/badge */ 83));
-var _button = _interopRequireDefault(__webpack_require__(/*! ./props/button */ 84));
-var _calendar = _interopRequireDefault(__webpack_require__(/*! ./props/calendar */ 85));
-var _carKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/carKeyboard */ 86));
-var _cell = _interopRequireDefault(__webpack_require__(/*! ./props/cell */ 87));
-var _cellGroup = _interopRequireDefault(__webpack_require__(/*! ./props/cellGroup */ 88));
-var _checkbox = _interopRequireDefault(__webpack_require__(/*! ./props/checkbox */ 89));
-var _checkboxGroup = _interopRequireDefault(__webpack_require__(/*! ./props/checkboxGroup */ 90));
-var _circleProgress = _interopRequireDefault(__webpack_require__(/*! ./props/circleProgress */ 91));
-var _code = _interopRequireDefault(__webpack_require__(/*! ./props/code */ 92));
-var _codeInput = _interopRequireDefault(__webpack_require__(/*! ./props/codeInput */ 93));
-var _col = _interopRequireDefault(__webpack_require__(/*! ./props/col */ 94));
-var _collapse = _interopRequireDefault(__webpack_require__(/*! ./props/collapse */ 95));
-var _collapseItem = _interopRequireDefault(__webpack_require__(/*! ./props/collapseItem */ 96));
-var _columnNotice = _interopRequireDefault(__webpack_require__(/*! ./props/columnNotice */ 97));
-var _countDown = _interopRequireDefault(__webpack_require__(/*! ./props/countDown */ 98));
-var _countTo = _interopRequireDefault(__webpack_require__(/*! ./props/countTo */ 99));
-var _datetimePicker = _interopRequireDefault(__webpack_require__(/*! ./props/datetimePicker */ 100));
-var _divider = _interopRequireDefault(__webpack_require__(/*! ./props/divider */ 101));
-var _empty = _interopRequireDefault(__webpack_require__(/*! ./props/empty */ 102));
-var _form = _interopRequireDefault(__webpack_require__(/*! ./props/form */ 103));
-var _formItem = _interopRequireDefault(__webpack_require__(/*! ./props/formItem */ 104));
-var _gap = _interopRequireDefault(__webpack_require__(/*! ./props/gap */ 105));
-var _grid = _interopRequireDefault(__webpack_require__(/*! ./props/grid */ 106));
-var _gridItem = _interopRequireDefault(__webpack_require__(/*! ./props/gridItem */ 107));
-var _icon = _interopRequireDefault(__webpack_require__(/*! ./props/icon */ 108));
-var _image = _interopRequireDefault(__webpack_require__(/*! ./props/image */ 109));
-var _indexAnchor = _interopRequireDefault(__webpack_require__(/*! ./props/indexAnchor */ 110));
-var _indexList = _interopRequireDefault(__webpack_require__(/*! ./props/indexList */ 111));
-var _input = _interopRequireDefault(__webpack_require__(/*! ./props/input */ 112));
-var _keyboard = _interopRequireDefault(__webpack_require__(/*! ./props/keyboard */ 113));
-var _line = _interopRequireDefault(__webpack_require__(/*! ./props/line */ 114));
-var _lineProgress = _interopRequireDefault(__webpack_require__(/*! ./props/lineProgress */ 115));
-var _link = _interopRequireDefault(__webpack_require__(/*! ./props/link */ 116));
-var _list = _interopRequireDefault(__webpack_require__(/*! ./props/list */ 117));
-var _listItem = _interopRequireDefault(__webpack_require__(/*! ./props/listItem */ 118));
-var _loadingIcon = _interopRequireDefault(__webpack_require__(/*! ./props/loadingIcon */ 119));
-var _loadingPage = _interopRequireDefault(__webpack_require__(/*! ./props/loadingPage */ 120));
-var _loadmore = _interopRequireDefault(__webpack_require__(/*! ./props/loadmore */ 121));
-var _modal = _interopRequireDefault(__webpack_require__(/*! ./props/modal */ 122));
-var _navbar = _interopRequireDefault(__webpack_require__(/*! ./props/navbar */ 123));
-var _noNetwork = _interopRequireDefault(__webpack_require__(/*! ./props/noNetwork */ 125));
-var _noticeBar = _interopRequireDefault(__webpack_require__(/*! ./props/noticeBar */ 126));
-var _notify = _interopRequireDefault(__webpack_require__(/*! ./props/notify */ 127));
-var _numberBox = _interopRequireDefault(__webpack_require__(/*! ./props/numberBox */ 128));
-var _numberKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/numberKeyboard */ 129));
-var _overlay = _interopRequireDefault(__webpack_require__(/*! ./props/overlay */ 130));
-var _parse = _interopRequireDefault(__webpack_require__(/*! ./props/parse */ 131));
-var _picker = _interopRequireDefault(__webpack_require__(/*! ./props/picker */ 132));
-var _popup = _interopRequireDefault(__webpack_require__(/*! ./props/popup */ 133));
-var _radio = _interopRequireDefault(__webpack_require__(/*! ./props/radio */ 134));
-var _radioGroup = _interopRequireDefault(__webpack_require__(/*! ./props/radioGroup */ 135));
-var _rate = _interopRequireDefault(__webpack_require__(/*! ./props/rate */ 136));
-var _readMore = _interopRequireDefault(__webpack_require__(/*! ./props/readMore */ 137));
-var _row = _interopRequireDefault(__webpack_require__(/*! ./props/row */ 138));
-var _rowNotice = _interopRequireDefault(__webpack_require__(/*! ./props/rowNotice */ 139));
-var _scrollList = _interopRequireDefault(__webpack_require__(/*! ./props/scrollList */ 140));
-var _search = _interopRequireDefault(__webpack_require__(/*! ./props/search */ 141));
-var _section = _interopRequireDefault(__webpack_require__(/*! ./props/section */ 142));
-var _skeleton = _interopRequireDefault(__webpack_require__(/*! ./props/skeleton */ 143));
-var _slider = _interopRequireDefault(__webpack_require__(/*! ./props/slider */ 144));
-var _statusBar = _interopRequireDefault(__webpack_require__(/*! ./props/statusBar */ 145));
-var _steps = _interopRequireDefault(__webpack_require__(/*! ./props/steps */ 146));
-var _stepsItem = _interopRequireDefault(__webpack_require__(/*! ./props/stepsItem */ 147));
-var _sticky = _interopRequireDefault(__webpack_require__(/*! ./props/sticky */ 148));
-var _subsection = _interopRequireDefault(__webpack_require__(/*! ./props/subsection */ 149));
-var _swipeAction = _interopRequireDefault(__webpack_require__(/*! ./props/swipeAction */ 150));
-var _swipeActionItem = _interopRequireDefault(__webpack_require__(/*! ./props/swipeActionItem */ 151));
-var _swiper = _interopRequireDefault(__webpack_require__(/*! ./props/swiper */ 152));
-var _swipterIndicator = _interopRequireDefault(__webpack_require__(/*! ./props/swipterIndicator */ 153));
-var _switch2 = _interopRequireDefault(__webpack_require__(/*! ./props/switch */ 154));
-var _tabbar = _interopRequireDefault(__webpack_require__(/*! ./props/tabbar */ 155));
-var _tabbarItem = _interopRequireDefault(__webpack_require__(/*! ./props/tabbarItem */ 156));
-var _tabs = _interopRequireDefault(__webpack_require__(/*! ./props/tabs */ 157));
-var _tag = _interopRequireDefault(__webpack_require__(/*! ./props/tag */ 158));
-var _text = _interopRequireDefault(__webpack_require__(/*! ./props/text */ 159));
-var _textarea = _interopRequireDefault(__webpack_require__(/*! ./props/textarea */ 160));
-var _toast = _interopRequireDefault(__webpack_require__(/*! ./props/toast */ 161));
-var _toolbar = _interopRequireDefault(__webpack_require__(/*! ./props/toolbar */ 162));
-var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./props/tooltip */ 163));
-var _transition = _interopRequireDefault(__webpack_require__(/*! ./props/transition */ 164));
-var _upload = _interopRequireDefault(__webpack_require__(/*! ./props/upload */ 165));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 74));
+var _actionSheet = _interopRequireDefault(__webpack_require__(/*! ./props/actionSheet.js */ 76));
+var _album = _interopRequireDefault(__webpack_require__(/*! ./props/album.js */ 77));
+var _alert = _interopRequireDefault(__webpack_require__(/*! ./props/alert.js */ 78));
+var _avatar = _interopRequireDefault(__webpack_require__(/*! ./props/avatar */ 79));
+var _avatarGroup = _interopRequireDefault(__webpack_require__(/*! ./props/avatarGroup */ 80));
+var _backtop = _interopRequireDefault(__webpack_require__(/*! ./props/backtop */ 81));
+var _badge = _interopRequireDefault(__webpack_require__(/*! ./props/badge */ 82));
+var _button = _interopRequireDefault(__webpack_require__(/*! ./props/button */ 83));
+var _calendar = _interopRequireDefault(__webpack_require__(/*! ./props/calendar */ 84));
+var _carKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/carKeyboard */ 85));
+var _cell = _interopRequireDefault(__webpack_require__(/*! ./props/cell */ 86));
+var _cellGroup = _interopRequireDefault(__webpack_require__(/*! ./props/cellGroup */ 87));
+var _checkbox = _interopRequireDefault(__webpack_require__(/*! ./props/checkbox */ 88));
+var _checkboxGroup = _interopRequireDefault(__webpack_require__(/*! ./props/checkboxGroup */ 89));
+var _circleProgress = _interopRequireDefault(__webpack_require__(/*! ./props/circleProgress */ 90));
+var _code = _interopRequireDefault(__webpack_require__(/*! ./props/code */ 91));
+var _codeInput = _interopRequireDefault(__webpack_require__(/*! ./props/codeInput */ 92));
+var _col = _interopRequireDefault(__webpack_require__(/*! ./props/col */ 93));
+var _collapse = _interopRequireDefault(__webpack_require__(/*! ./props/collapse */ 94));
+var _collapseItem = _interopRequireDefault(__webpack_require__(/*! ./props/collapseItem */ 95));
+var _columnNotice = _interopRequireDefault(__webpack_require__(/*! ./props/columnNotice */ 96));
+var _countDown = _interopRequireDefault(__webpack_require__(/*! ./props/countDown */ 97));
+var _countTo = _interopRequireDefault(__webpack_require__(/*! ./props/countTo */ 98));
+var _datetimePicker = _interopRequireDefault(__webpack_require__(/*! ./props/datetimePicker */ 99));
+var _divider = _interopRequireDefault(__webpack_require__(/*! ./props/divider */ 100));
+var _empty = _interopRequireDefault(__webpack_require__(/*! ./props/empty */ 101));
+var _form = _interopRequireDefault(__webpack_require__(/*! ./props/form */ 102));
+var _formItem = _interopRequireDefault(__webpack_require__(/*! ./props/formItem */ 103));
+var _gap = _interopRequireDefault(__webpack_require__(/*! ./props/gap */ 104));
+var _grid = _interopRequireDefault(__webpack_require__(/*! ./props/grid */ 105));
+var _gridItem = _interopRequireDefault(__webpack_require__(/*! ./props/gridItem */ 106));
+var _icon = _interopRequireDefault(__webpack_require__(/*! ./props/icon */ 107));
+var _image = _interopRequireDefault(__webpack_require__(/*! ./props/image */ 108));
+var _indexAnchor = _interopRequireDefault(__webpack_require__(/*! ./props/indexAnchor */ 109));
+var _indexList = _interopRequireDefault(__webpack_require__(/*! ./props/indexList */ 110));
+var _input = _interopRequireDefault(__webpack_require__(/*! ./props/input */ 111));
+var _keyboard = _interopRequireDefault(__webpack_require__(/*! ./props/keyboard */ 112));
+var _line = _interopRequireDefault(__webpack_require__(/*! ./props/line */ 113));
+var _lineProgress = _interopRequireDefault(__webpack_require__(/*! ./props/lineProgress */ 114));
+var _link = _interopRequireDefault(__webpack_require__(/*! ./props/link */ 115));
+var _list = _interopRequireDefault(__webpack_require__(/*! ./props/list */ 116));
+var _listItem = _interopRequireDefault(__webpack_require__(/*! ./props/listItem */ 117));
+var _loadingIcon = _interopRequireDefault(__webpack_require__(/*! ./props/loadingIcon */ 118));
+var _loadingPage = _interopRequireDefault(__webpack_require__(/*! ./props/loadingPage */ 119));
+var _loadmore = _interopRequireDefault(__webpack_require__(/*! ./props/loadmore */ 120));
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./props/modal */ 121));
+var _navbar = _interopRequireDefault(__webpack_require__(/*! ./props/navbar */ 122));
+var _noNetwork = _interopRequireDefault(__webpack_require__(/*! ./props/noNetwork */ 124));
+var _noticeBar = _interopRequireDefault(__webpack_require__(/*! ./props/noticeBar */ 125));
+var _notify = _interopRequireDefault(__webpack_require__(/*! ./props/notify */ 126));
+var _numberBox = _interopRequireDefault(__webpack_require__(/*! ./props/numberBox */ 127));
+var _numberKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/numberKeyboard */ 128));
+var _overlay = _interopRequireDefault(__webpack_require__(/*! ./props/overlay */ 129));
+var _parse = _interopRequireDefault(__webpack_require__(/*! ./props/parse */ 130));
+var _picker = _interopRequireDefault(__webpack_require__(/*! ./props/picker */ 131));
+var _popup = _interopRequireDefault(__webpack_require__(/*! ./props/popup */ 132));
+var _radio = _interopRequireDefault(__webpack_require__(/*! ./props/radio */ 133));
+var _radioGroup = _interopRequireDefault(__webpack_require__(/*! ./props/radioGroup */ 134));
+var _rate = _interopRequireDefault(__webpack_require__(/*! ./props/rate */ 135));
+var _readMore = _interopRequireDefault(__webpack_require__(/*! ./props/readMore */ 136));
+var _row = _interopRequireDefault(__webpack_require__(/*! ./props/row */ 137));
+var _rowNotice = _interopRequireDefault(__webpack_require__(/*! ./props/rowNotice */ 138));
+var _scrollList = _interopRequireDefault(__webpack_require__(/*! ./props/scrollList */ 139));
+var _search = _interopRequireDefault(__webpack_require__(/*! ./props/search */ 140));
+var _section = _interopRequireDefault(__webpack_require__(/*! ./props/section */ 141));
+var _skeleton = _interopRequireDefault(__webpack_require__(/*! ./props/skeleton */ 142));
+var _slider = _interopRequireDefault(__webpack_require__(/*! ./props/slider */ 143));
+var _statusBar = _interopRequireDefault(__webpack_require__(/*! ./props/statusBar */ 144));
+var _steps = _interopRequireDefault(__webpack_require__(/*! ./props/steps */ 145));
+var _stepsItem = _interopRequireDefault(__webpack_require__(/*! ./props/stepsItem */ 146));
+var _sticky = _interopRequireDefault(__webpack_require__(/*! ./props/sticky */ 147));
+var _subsection = _interopRequireDefault(__webpack_require__(/*! ./props/subsection */ 148));
+var _swipeAction = _interopRequireDefault(__webpack_require__(/*! ./props/swipeAction */ 149));
+var _swipeActionItem = _interopRequireDefault(__webpack_require__(/*! ./props/swipeActionItem */ 150));
+var _swiper = _interopRequireDefault(__webpack_require__(/*! ./props/swiper */ 151));
+var _swipterIndicator = _interopRequireDefault(__webpack_require__(/*! ./props/swipterIndicator */ 152));
+var _switch2 = _interopRequireDefault(__webpack_require__(/*! ./props/switch */ 153));
+var _tabbar = _interopRequireDefault(__webpack_require__(/*! ./props/tabbar */ 154));
+var _tabbarItem = _interopRequireDefault(__webpack_require__(/*! ./props/tabbarItem */ 155));
+var _tabs = _interopRequireDefault(__webpack_require__(/*! ./props/tabs */ 156));
+var _tag = _interopRequireDefault(__webpack_require__(/*! ./props/tag */ 157));
+var _text = _interopRequireDefault(__webpack_require__(/*! ./props/text */ 158));
+var _textarea = _interopRequireDefault(__webpack_require__(/*! ./props/textarea */ 159));
+var _toast = _interopRequireDefault(__webpack_require__(/*! ./props/toast */ 160));
+var _toolbar = _interopRequireDefault(__webpack_require__(/*! ./props/toolbar */ 161));
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./props/tooltip */ 162));
+var _transition = _interopRequireDefault(__webpack_require__(/*! ./props/transition */ 163));
+var _upload = _interopRequireDefault(__webpack_require__(/*! ./props/upload */ 164));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var color = _config.default.color;
@@ -22858,7 +22824,7 @@ var _default = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSp
 exports.default = _default;
 
 /***/ }),
-/* 77 */
+/* 76 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/actionSheet.js ***!
   \***************************************************************************************************/
@@ -22902,7 +22868,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 78 */
+/* 77 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/album.js ***!
   \*********************************************************************************************/
@@ -22946,7 +22912,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 79 */
+/* 78 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/alert.js ***!
   \*********************************************************************************************/
@@ -22985,7 +22951,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 80 */
+/* 79 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/avatar.js ***!
   \**********************************************************************************************/
@@ -23030,7 +22996,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 81 */
+/* 80 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/avatarGroup.js ***!
   \***************************************************************************************************/
@@ -23072,7 +23038,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 82 */
+/* 81 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/backtop.js ***!
   \***********************************************************************************************/
@@ -23118,7 +23084,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 83 */
+/* 82 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/badge.js ***!
   \*********************************************************************************************/
@@ -23164,7 +23130,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 84 */
+/* 83 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/button.js ***!
   \**********************************************************************************************/
@@ -23223,7 +23189,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 85 */
+/* 84 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/calendar.js ***!
   \************************************************************************************************/
@@ -23286,7 +23252,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 86 */
+/* 85 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/carKeyboard.js ***!
   \***************************************************************************************************/
@@ -23318,7 +23284,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 87 */
+/* 86 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/cell.js ***!
   \********************************************************************************************/
@@ -23370,7 +23336,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 88 */
+/* 87 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/cellGroup.js ***!
   \*************************************************************************************************/
@@ -23404,7 +23370,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 89 */
+/* 88 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/checkbox.js ***!
   \************************************************************************************************/
@@ -23448,7 +23414,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 90 */
+/* 89 */
 /*!*****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
   \*****************************************************************************************************/
@@ -23496,7 +23462,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 91 */
+/* 90 */
 /*!******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/circleProgress.js ***!
   \******************************************************************************************************/
@@ -23528,7 +23494,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 92 */
+/* 91 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/code.js ***!
   \********************************************************************************************/
@@ -23565,7 +23531,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 93 */
+/* 92 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/codeInput.js ***!
   \*************************************************************************************************/
@@ -23611,7 +23577,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 94 */
+/* 93 */
 /*!*******************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/col.js ***!
   \*******************************************************************************************/
@@ -23647,7 +23613,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 95 */
+/* 94 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/collapse.js ***!
   \************************************************************************************************/
@@ -23681,7 +23647,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 96 */
+/* 95 */
 /*!****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/collapseItem.js ***!
   \****************************************************************************************************/
@@ -23723,7 +23689,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 97 */
+/* 96 */
 /*!****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/columnNotice.js ***!
   \****************************************************************************************************/
@@ -23764,7 +23730,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 98 */
+/* 97 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/countDown.js ***!
   \*************************************************************************************************/
@@ -23799,7 +23765,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 99 */
+/* 98 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/countTo.js ***!
   \***********************************************************************************************/
@@ -23841,7 +23807,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 100 */
+/* 99 */
 /*!******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/datetimePicker.js ***!
   \******************************************************************************************************/
@@ -23896,7 +23862,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 101 */
+/* 100 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/divider.js ***!
   \***********************************************************************************************/
@@ -23935,7 +23901,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 102 */
+/* 101 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/empty.js ***!
   \*********************************************************************************************/
@@ -23977,7 +23943,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 103 */
+/* 102 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/form.js ***!
   \********************************************************************************************/
@@ -24022,7 +23988,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 104 */
+/* 103 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/formItem.js ***!
   \************************************************************************************************/
@@ -24062,7 +24028,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 105 */
+/* 104 */
 /*!*******************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/gap.js ***!
   \*******************************************************************************************/
@@ -24098,7 +24064,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 106 */
+/* 105 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/grid.js ***!
   \********************************************************************************************/
@@ -24132,7 +24098,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 107 */
+/* 106 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/gridItem.js ***!
   \************************************************************************************************/
@@ -24165,7 +24131,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 108 */
+/* 107 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/icon.js ***!
   \********************************************************************************************/
@@ -24180,7 +24146,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 75));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 74));
 /*
  * @Author       : LQ
  * @Description  :
@@ -24217,7 +24183,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 109 */
+/* 108 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/image.js ***!
   \*********************************************************************************************/
@@ -24264,7 +24230,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 110 */
+/* 109 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/indexAnchor.js ***!
   \***************************************************************************************************/
@@ -24300,7 +24266,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 111 */
+/* 110 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/indexList.js ***!
   \*************************************************************************************************/
@@ -24338,7 +24304,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 112 */
+/* 111 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/input.js ***!
   \*********************************************************************************************/
@@ -24403,7 +24369,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 113 */
+/* 112 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/keyboard.js ***!
   \************************************************************************************************/
@@ -24450,7 +24416,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 114 */
+/* 113 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/line.js ***!
   \********************************************************************************************/
@@ -24487,7 +24453,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 115 */
+/* 114 */
 /*!****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/lineProgress.js ***!
   \****************************************************************************************************/
@@ -24523,7 +24489,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 116 */
+/* 115 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/link.js ***!
   \********************************************************************************************/
@@ -24538,7 +24504,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 75));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 74));
 /*
  * @Author       : LQ
  * @Description  :
@@ -24565,7 +24531,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 117 */
+/* 116 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/list.js ***!
   \********************************************************************************************/
@@ -24610,7 +24576,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 118 */
+/* 117 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/listItem.js ***!
   \************************************************************************************************/
@@ -24642,7 +24608,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 119 */
+/* 118 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/loadingIcon.js ***!
   \***************************************************************************************************/
@@ -24657,7 +24623,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 75));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 74));
 /*
  * @Author       : LQ
  * @Description  :
@@ -24688,7 +24654,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 120 */
+/* 119 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/loadingPage.js ***!
   \***************************************************************************************************/
@@ -24728,7 +24694,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 121 */
+/* 120 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/loadmore.js ***!
   \************************************************************************************************/
@@ -24777,7 +24743,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 122 */
+/* 121 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/modal.js ***!
   \*********************************************************************************************/
@@ -24824,7 +24790,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 123 */
+/* 122 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/navbar.js ***!
   \**********************************************************************************************/
@@ -24839,7 +24805,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _color = _interopRequireDefault(__webpack_require__(/*! ../color */ 124));
+var _color = _interopRequireDefault(__webpack_require__(/*! ../color */ 123));
 /*
  * @Author       : LQ
  * @Description  :
@@ -24873,7 +24839,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 124 */
+/* 123 */
 /*!***************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/color.js ***!
   \***************************************************************************************/
@@ -24906,7 +24872,7 @@ var _default = color;
 exports.default = _default;
 
 /***/ }),
-/* 125 */
+/* 124 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/noNetwork.js ***!
   \*************************************************************************************************/
@@ -24940,7 +24906,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 126 */
+/* 125 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/noticeBar.js ***!
   \*************************************************************************************************/
@@ -24986,7 +24952,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 127 */
+/* 126 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/notify.js ***!
   \**********************************************************************************************/
@@ -25025,7 +24991,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 128 */
+/* 127 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/numberBox.js ***!
   \*************************************************************************************************/
@@ -25077,7 +25043,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 129 */
+/* 128 */
 /*!******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
   \******************************************************************************************************/
@@ -25111,7 +25077,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 130 */
+/* 129 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/overlay.js ***!
   \***********************************************************************************************/
@@ -25146,7 +25112,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 131 */
+/* 130 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/parse.js ***!
   \*********************************************************************************************/
@@ -25185,7 +25151,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 132 */
+/* 131 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/picker.js ***!
   \**********************************************************************************************/
@@ -25235,7 +25201,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 133 */
+/* 132 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/popup.js ***!
   \*********************************************************************************************/
@@ -25281,7 +25247,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 134 */
+/* 133 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/radio.js ***!
   \*********************************************************************************************/
@@ -25325,7 +25291,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 135 */
+/* 134 */
 /*!**************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/radioGroup.js ***!
   \**************************************************************************************************/
@@ -25372,7 +25338,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 136 */
+/* 135 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/rate.js ***!
   \********************************************************************************************/
@@ -25415,7 +25381,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 137 */
+/* 136 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/readMore.js ***!
   \************************************************************************************************/
@@ -25454,7 +25420,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 138 */
+/* 137 */
 /*!*******************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/row.js ***!
   \*******************************************************************************************/
@@ -25488,7 +25454,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 139 */
+/* 138 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/rowNotice.js ***!
   \*************************************************************************************************/
@@ -25526,7 +25492,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 140 */
+/* 139 */
 /*!**************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/scrollList.js ***!
   \**************************************************************************************************/
@@ -25563,7 +25529,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 141 */
+/* 140 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/search.js ***!
   \**********************************************************************************************/
@@ -25621,7 +25587,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 142 */
+/* 141 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/section.js ***!
   \***********************************************************************************************/
@@ -25662,7 +25628,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 143 */
+/* 142 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/skeleton.js ***!
   \************************************************************************************************/
@@ -25704,7 +25670,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 144 */
+/* 143 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/slider.js ***!
   \**********************************************************************************************/
@@ -25746,7 +25712,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 145 */
+/* 144 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/statusBar.js ***!
   \*************************************************************************************************/
@@ -25778,7 +25744,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 146 */
+/* 145 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/steps.js ***!
   \*********************************************************************************************/
@@ -25816,7 +25782,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 147 */
+/* 146 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/stepsItem.js ***!
   \*************************************************************************************************/
@@ -25851,7 +25817,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 148 */
+/* 147 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/sticky.js ***!
   \**********************************************************************************************/
@@ -25888,7 +25854,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 149 */
+/* 148 */
 /*!**************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/subsection.js ***!
   \**************************************************************************************************/
@@ -25928,7 +25894,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 150 */
+/* 149 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/swipeAction.js ***!
   \***************************************************************************************************/
@@ -25960,7 +25926,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 151 */
+/* 150 */
 /*!*******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
   \*******************************************************************************************************/
@@ -25998,7 +25964,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 152 */
+/* 151 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/swiper.js ***!
   \**********************************************************************************************/
@@ -26055,7 +26021,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 153 */
+/* 152 */
 /*!********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
   \********************************************************************************************************/
@@ -26091,7 +26057,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 154 */
+/* 153 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/switch.js ***!
   \**********************************************************************************************/
@@ -26132,7 +26098,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 155 */
+/* 154 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/tabbar.js ***!
   \**********************************************************************************************/
@@ -26171,7 +26137,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 156 */
+/* 155 */
 /*!**************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/tabbarItem.js ***!
   \**************************************************************************************************/
@@ -26208,7 +26174,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 157 */
+/* 156 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/tabs.js ***!
   \********************************************************************************************/
@@ -26265,7 +26231,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 158 */
+/* 157 */
 /*!*******************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/tag.js ***!
   \*******************************************************************************************/
@@ -26311,7 +26277,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 159 */
+/* 158 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/text.js ***!
   \********************************************************************************************/
@@ -26367,7 +26333,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 160 */
+/* 159 */
 /*!************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/textarea.js ***!
   \************************************************************************************************/
@@ -26420,7 +26386,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 161 */
+/* 160 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/toast.js ***!
   \*********************************************************************************************/
@@ -26466,7 +26432,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 162 */
+/* 161 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/toolbar.js ***!
   \***********************************************************************************************/
@@ -26503,7 +26469,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 163 */
+/* 162 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/tooltip.js ***!
   \***********************************************************************************************/
@@ -26547,7 +26513,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 164 */
+/* 163 */
 /*!**************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/transition.js ***!
   \**************************************************************************************************/
@@ -26582,7 +26548,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 165 */
+/* 164 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/props/upload.js ***!
   \**********************************************************************************************/
@@ -26641,7 +26607,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 166 */
+/* 165 */
 /*!****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/config/zIndex.js ***!
   \****************************************************************************************/
@@ -26677,7 +26643,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 167 */
+/* 166 */
 /*!********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/function/platform.js ***!
   \********************************************************************************************/
@@ -26705,6 +26671,34 @@ platform = 'weixin';
 platform = 'mp';
 var _default = platform;
 exports.default = _default;
+
+/***/ }),
+/* 167 */
+/*!****************************************************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/mixin/mpShare.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {module.exports = {
+  onLoad: function onLoad() {
+    // 设置默认的转发参数
+    uni.$u.mpShare = {
+      title: '',
+      // 默认为小程序名称
+      path: '',
+      // 默认为当前页面路径
+      imageUrl: '' // 默认为当前页面的截图
+    };
+  },
+  onShareAppMessage: function onShareAppMessage() {
+    return uni.$u.mpShare;
+  },
+  onShareTimeline: function onShareTimeline() {
+    return uni.$u.mpShare;
+  }
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 /* 168 */,
@@ -34346,10 +34340,18 @@ function checkIdCard(idCardNumber) {
 /* 374 */,
 /* 375 */,
 /* 376 */,
-/* 377 */
-/*!**********************************************************************************************!*\
-  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-image/props.js ***!
-  \**********************************************************************************************/
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */
+/*!***********************************************************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-swiper/props.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34362,85 +34364,126 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = {
   props: {
-    // 图片地址
-    src: {
-      type: String,
-      default: uni.$u.props.image.src
+    // 列表数组，元素可为字符串，如为对象可通过keyName指定目标属性名
+    list: {
+      type: Array,
+      default: uni.$u.props.swiper.list
     },
-    // 裁剪模式
-    mode: {
-      type: String,
-      default: uni.$u.props.image.mode
+    // 是否显示面板指示器
+    indicator: {
+      type: Boolean,
+      default: uni.$u.props.swiper.indicator
     },
-    // 宽度，单位任意
-    width: {
+    // 指示器非激活颜色
+    indicatorActiveColor: {
+      type: String,
+      default: uni.$u.props.swiper.indicatorActiveColor
+    },
+    // 指示器的激活颜色
+    indicatorInactiveColor: {
+      type: String,
+      default: uni.$u.props.swiper.indicatorInactiveColor
+    },
+    // 指示器样式，可通过bottom，left，right进行定位
+    indicatorStyle: {
+      type: [String, Object],
+      default: uni.$u.props.swiper.indicatorStyle
+    },
+    // 指示器模式，line-线型，dot-点型
+    indicatorMode: {
+      type: String,
+      default: uni.$u.props.swiper.indicatorMode
+    },
+    // 是否自动切换
+    autoplay: {
+      type: Boolean,
+      default: uni.$u.props.swiper.autoplay
+    },
+    // 当前所在滑块的 index
+    current: {
       type: [String, Number],
-      default: uni.$u.props.image.width
+      default: uni.$u.props.swiper.current
     },
-    // 高度，单位任意
-    height: {
+    // 当前所在滑块的 item-id ，不能与 current 被同时指定
+    currentItemId: {
+      type: String,
+      default: uni.$u.props.swiper.currentItemId
+    },
+    // 滑块自动切换时间间隔
+    interval: {
       type: [String, Number],
-      default: uni.$u.props.image.height
+      default: uni.$u.props.swiper.interval
     },
-    // 图片形状，circle-圆形，square-方形
-    shape: {
-      type: String,
-      default: uni.$u.props.image.shape
-    },
-    // 圆角，单位任意
-    radius: {
-      type: [String, Number],
-      default: uni.$u.props.image.radius
-    },
-    // 是否懒加载，微信小程序、App、百度小程序、字节跳动小程序
-    lazyLoad: {
-      type: Boolean,
-      default: uni.$u.props.image.lazyLoad
-    },
-    // 开启长按图片显示识别微信小程序码菜单
-    showMenuByLongpress: {
-      type: Boolean,
-      default: uni.$u.props.image.showMenuByLongpress
-    },
-    // 加载中的图标，或者小图片
-    loadingIcon: {
-      type: String,
-      default: uni.$u.props.image.loadingIcon
-    },
-    // 加载失败的图标，或者小图片
-    errorIcon: {
-      type: String,
-      default: uni.$u.props.image.errorIcon
-    },
-    // 是否显示加载中的图标或者自定义的slot
-    showLoading: {
-      type: Boolean,
-      default: uni.$u.props.image.showLoading
-    },
-    // 是否显示加载错误的图标或者自定义的slot
-    showError: {
-      type: Boolean,
-      default: uni.$u.props.image.showError
-    },
-    // 是否需要淡入效果
-    fade: {
-      type: Boolean,
-      default: uni.$u.props.image.fade
-    },
-    // 只支持网络资源，只对微信小程序有效
-    webp: {
-      type: Boolean,
-      default: uni.$u.props.image.webp
-    },
-    // 过渡时间，单位ms
+    // 滑块切换过程所需时间
     duration: {
       type: [String, Number],
-      default: uni.$u.props.image.duration
+      default: uni.$u.props.swiper.duration
     },
-    // 背景颜色，用于深色页面加载图片时，为了和背景色融合
+    // 播放到末尾后是否重新回到开头
+    circular: {
+      type: Boolean,
+      default: uni.$u.props.swiper.circular
+    },
+    // 前边距，可用于露出前一项的一小部分，nvue和支付宝不支持
+    previousMargin: {
+      type: [String, Number],
+      default: uni.$u.props.swiper.previousMargin
+    },
+    // 后边距，可用于露出后一项的一小部分，nvue和支付宝不支持
+    nextMargin: {
+      type: [String, Number],
+      default: uni.$u.props.swiper.nextMargin
+    },
+    // 当开启时，会根据滑动速度，连续滑动多屏，支付宝不支持
+    acceleration: {
+      type: Boolean,
+      default: uni.$u.props.swiper.acceleration
+    },
+    // 同时显示的滑块数量，nvue、支付宝小程序不支持
+    displayMultipleItems: {
+      type: Number,
+      default: uni.$u.props.swiper.displayMultipleItems
+    },
+    // 指定swiper切换缓动动画类型，有效值：default、linear、easeInCubic、easeOutCubic、easeInOutCubic
+    // 只对微信小程序有效
+    easingFunction: {
+      type: String,
+      default: uni.$u.props.swiper.easingFunction
+    },
+    // list数组中指定对象的目标属性名
+    keyName: {
+      type: String,
+      default: uni.$u.props.swiper.keyName
+    },
+    // 图片的裁剪模式
+    imgMode: {
+      type: String,
+      default: uni.$u.props.swiper.imgMode
+    },
+    // 组件高度
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.swiper.height
+    },
+    // 背景颜色
     bgColor: {
       type: String,
-      default: uni.$u.props.image.bgColor
+      default: uni.$u.props.swiper.bgColor
+    },
+    // 组件圆角，数值或带单位的字符串
+    radius: {
+      type: [String, Number],
+      default: uni.$u.props.swiper.radius
+    },
+    // 是否加载中
+    loading: {
+      type: Boolean,
+      default: uni.$u.props.swiper.loading
+    },
+    // 是否显示标题，要求数组对象中有title属性
+    showTitle: {
+      type: Boolean,
+      default: uni.$u.props.swiper.showTitle
     }
   }
 };
@@ -34448,12 +34491,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */
 /*!***************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/mixin/button.js ***!
   \***************************************************************************************/
@@ -34483,7 +34528,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 384 */
+/* 394 */
 /*!*****************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/libs/mixin/openType.js ***!
   \*****************************************************************************************/
@@ -34525,7 +34570,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 385 */
+/* 395 */
 /*!***********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-button/props.js ***!
   \***********************************************************************************************/
@@ -34704,16 +34749,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
 /* 396 */,
 /* 397 */,
 /* 398 */,
@@ -34732,7 +34767,17 @@ exports.default = _default;
 /* 411 */,
 /* 412 */,
 /* 413 */,
-/* 414 */
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */
 /*!****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \****************************************************************************************************/
@@ -35423,7 +35468,7 @@ var _default = SchemaValidator;
 exports.default = _default;
 
 /***/ }),
-/* 415 */
+/* 425 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \*************************************************************************************************/
@@ -35758,16 +35803,6 @@ var isEqual = function isEqual(a, b) {
 exports.isEqual = isEqual;
 
 /***/ }),
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
 /* 426 */,
 /* 427 */,
 /* 428 */,
@@ -35807,7 +35842,17 @@ exports.isEqual = isEqual;
 /* 462 */,
 /* 463 */,
 /* 464 */,
-/* 465 */
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \*************************************************************************************************/
@@ -36828,14 +36873,14 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */
 /*!**********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-empty/props.js ***!
   \**********************************************************************************************/
@@ -36912,14 +36957,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-skeleton/props.js ***!
   \*************************************************************************************************/
@@ -36996,16 +37041,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
 /* 492 */,
 /* 493 */,
 /* 494 */,
@@ -37013,11 +37048,350 @@ exports.default = _default;
 /* 496 */,
 /* 497 */,
 /* 498 */,
-/* 499 */,
+/* 499 */
+/*!**********************************************************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-image/props.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 图片地址
+    src: {
+      type: String,
+      default: uni.$u.props.image.src
+    },
+    // 裁剪模式
+    mode: {
+      type: String,
+      default: uni.$u.props.image.mode
+    },
+    // 宽度，单位任意
+    width: {
+      type: [String, Number],
+      default: uni.$u.props.image.width
+    },
+    // 高度，单位任意
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.image.height
+    },
+    // 图片形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: uni.$u.props.image.shape
+    },
+    // 圆角，单位任意
+    radius: {
+      type: [String, Number],
+      default: uni.$u.props.image.radius
+    },
+    // 是否懒加载，微信小程序、App、百度小程序、字节跳动小程序
+    lazyLoad: {
+      type: Boolean,
+      default: uni.$u.props.image.lazyLoad
+    },
+    // 开启长按图片显示识别微信小程序码菜单
+    showMenuByLongpress: {
+      type: Boolean,
+      default: uni.$u.props.image.showMenuByLongpress
+    },
+    // 加载中的图标，或者小图片
+    loadingIcon: {
+      type: String,
+      default: uni.$u.props.image.loadingIcon
+    },
+    // 加载失败的图标，或者小图片
+    errorIcon: {
+      type: String,
+      default: uni.$u.props.image.errorIcon
+    },
+    // 是否显示加载中的图标或者自定义的slot
+    showLoading: {
+      type: Boolean,
+      default: uni.$u.props.image.showLoading
+    },
+    // 是否显示加载错误的图标或者自定义的slot
+    showError: {
+      type: Boolean,
+      default: uni.$u.props.image.showError
+    },
+    // 是否需要淡入效果
+    fade: {
+      type: Boolean,
+      default: uni.$u.props.image.fade
+    },
+    // 只支持网络资源，只对微信小程序有效
+    webp: {
+      type: Boolean,
+      default: uni.$u.props.image.webp
+    },
+    // 过渡时间，单位ms
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.image.duration
+    },
+    // 背景颜色，用于深色页面加载图片时，为了和背景色融合
+    bgColor: {
+      type: String,
+      default: uni.$u.props.image.bgColor
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
 /* 500 */,
 /* 501 */,
 /* 502 */,
-/* 503 */
+/* 503 */,
+/* 504 */,
+/* 505 */
+/*!*****************************************************************************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-dateformat/components/uni-dateformat/date-format.js ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatDate = formatDate;
+exports.friendlyDate = friendlyDate;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+// yyyy-MM-dd hh:mm:ss.SSS 所有支持的类型
+function pad(str) {
+  var length = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  str += '';
+  while (str.length < length) {
+    str = '0' + str;
+  }
+  return str.slice(-length);
+}
+var parser = {
+  yyyy: function yyyy(dateObj) {
+    return pad(dateObj.year, 4);
+  },
+  yy: function yy(dateObj) {
+    return pad(dateObj.year);
+  },
+  MM: function MM(dateObj) {
+    return pad(dateObj.month);
+  },
+  M: function M(dateObj) {
+    return dateObj.month;
+  },
+  dd: function dd(dateObj) {
+    return pad(dateObj.day);
+  },
+  d: function d(dateObj) {
+    return dateObj.day;
+  },
+  hh: function hh(dateObj) {
+    return pad(dateObj.hour);
+  },
+  h: function h(dateObj) {
+    return dateObj.hour;
+  },
+  mm: function mm(dateObj) {
+    return pad(dateObj.minute);
+  },
+  m: function m(dateObj) {
+    return dateObj.minute;
+  },
+  ss: function ss(dateObj) {
+    return pad(dateObj.second);
+  },
+  s: function s(dateObj) {
+    return dateObj.second;
+  },
+  SSS: function SSS(dateObj) {
+    return pad(dateObj.millisecond, 3);
+  },
+  S: function S(dateObj) {
+    return dateObj.millisecond;
+  }
+};
+
+// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
+function getDate(time) {
+  if (time instanceof Date) {
+    return time;
+  }
+  switch ((0, _typeof2.default)(time)) {
+    case 'string':
+      {
+        // 2020-12-12T12:12:12.000Z、2020-12-12T12:12:12.000
+        if (time.indexOf('T') > -1) {
+          return new Date(time);
+        }
+        return new Date(time.replace(/-/g, '/'));
+      }
+    default:
+      return new Date(time);
+  }
+}
+function formatDate(date) {
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy/MM/dd hh:mm:ss';
+  if (!date && date !== 0) {
+    return '';
+  }
+  date = getDate(date);
+  var dateObj = {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+    second: date.getSeconds(),
+    millisecond: date.getMilliseconds()
+  };
+  var tokenRegExp = /yyyy|yy|MM|M|dd|d|hh|h|mm|m|ss|s|SSS|SS|S/;
+  var flag = true;
+  var result = format;
+  while (flag) {
+    flag = false;
+    result = result.replace(tokenRegExp, function (matched) {
+      flag = true;
+      return parser[matched](dateObj);
+    });
+  }
+  return result;
+}
+function friendlyDate(time, _ref) {
+  var _ref$locale = _ref.locale,
+    locale = _ref$locale === void 0 ? 'zh' : _ref$locale,
+    _ref$threshold = _ref.threshold,
+    threshold = _ref$threshold === void 0 ? [60000, 3600000] : _ref$threshold,
+    _ref$format = _ref.format,
+    format = _ref$format === void 0 ? 'yyyy/MM/dd hh:mm:ss' : _ref$format;
+  if (time === '-') {
+    return time;
+  }
+  if (!time && time !== 0) {
+    return '';
+  }
+  var localeText = {
+    zh: {
+      year: '年',
+      month: '月',
+      day: '天',
+      hour: '小时',
+      minute: '分钟',
+      second: '秒',
+      ago: '前',
+      later: '后',
+      justNow: '刚刚',
+      soon: '马上',
+      template: '{num}{unit}{suffix}'
+    },
+    en: {
+      year: 'year',
+      month: 'month',
+      day: 'day',
+      hour: 'hour',
+      minute: 'minute',
+      second: 'second',
+      ago: 'ago',
+      later: 'later',
+      justNow: 'just now',
+      soon: 'soon',
+      template: '{num} {unit} {suffix}'
+    }
+  };
+  var text = localeText[locale] || localeText.zh;
+  var date = getDate(time);
+  var ms = date.getTime() - Date.now();
+  var absMs = Math.abs(ms);
+  if (absMs < threshold[0]) {
+    return ms < 0 ? text.justNow : text.soon;
+  }
+  if (absMs >= threshold[1]) {
+    return formatDate(date, format);
+  }
+  var num;
+  var unit;
+  var suffix = text.later;
+  if (ms < 0) {
+    suffix = text.ago;
+    ms = -ms;
+  }
+  var seconds = Math.floor(ms / 1000);
+  var minutes = Math.floor(seconds / 60);
+  var hours = Math.floor(minutes / 60);
+  var days = Math.floor(hours / 24);
+  var months = Math.floor(days / 30);
+  var years = Math.floor(months / 12);
+  switch (true) {
+    case years > 0:
+      num = years;
+      unit = text.year;
+      break;
+    case months > 0:
+      num = months;
+      unit = text.month;
+      break;
+    case days > 0:
+      num = days;
+      unit = text.day;
+      break;
+    case hours > 0:
+      num = hours;
+      unit = text.hour;
+      break;
+    case minutes > 0:
+      num = minutes;
+      unit = text.minute;
+      break;
+    default:
+      num = seconds;
+      unit = text.second;
+      break;
+  }
+  if (locale === 'en') {
+    if (num === 1) {
+      num = 'a';
+    } else {
+      unit += 's';
+    }
+  }
+  return text.template.replace(/{\s*num\s*}/g, num + '').replace(/{\s*unit\s*}/g, unit).replace(/{\s*suffix\s*}/g, suffix);
+}
+
+/***/ }),
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */
 /*!*************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \*************************************************************************************************/
@@ -37058,7 +37432,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 504 */
+/* 526 */
 /*!******************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \******************************************************************************************************/
@@ -37073,9 +37447,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 505));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 506));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 507));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 527));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 528));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 529));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -37084,7 +37458,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 505 */
+/* 527 */
 /*!*****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \*****************************************************************************************************/
@@ -37094,7 +37468,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
 
 /***/ }),
-/* 506 */
+/* 528 */
 /*!**********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \**********************************************************************************************************/
@@ -37104,7 +37478,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 507 */
+/* 529 */
 /*!**********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \**********************************************************************************************************/
@@ -37114,35 +37488,35 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
 /* 530 */,
 /* 531 */,
 /* 532 */,
 /* 533 */,
 /* 534 */,
 /* 535 */,
-/* 536 */
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */
 /*!********************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-id-pages/pages/userinfo/cropImage/limeClipper/utils.js ***!
   \********************************************************************************************************************/
@@ -37397,28 +37771,6 @@ function imageTouchMoveOfCalcOffset(data, clientXForLeft, clientYForLeft) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
 /* 559 */,
 /* 560 */,
 /* 561 */,
@@ -37439,7 +37791,22 @@ function imageTouchMoveOfCalcOffset(data, clientXForLeft, clientYForLeft) {
 /* 576 */,
 /* 577 */,
 /* 578 */,
-/* 579 */
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */
 /*!*****************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-loading-icon/props.js ***!
   \*****************************************************************************************************/
@@ -37516,14 +37883,68 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */,
-/* 584 */,
-/* 585 */,
-/* 586 */,
-/* 587 */
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */
+/*!*********************************************************************************************************!*\
+  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-swiper-indicator/props.js ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 轮播的长度
+    length: {
+      type: [String, Number],
+      default: uni.$u.props.swiperIndicator.length
+    },
+    // 当前处于活动状态的轮播的索引
+    current: {
+      type: [String, Number],
+      default: uni.$u.props.swiperIndicator.current
+    },
+    // 指示器非激活颜色
+    indicatorActiveColor: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorActiveColor
+    },
+    // 指示器的激活颜色
+    indicatorInactiveColor: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorInactiveColor
+    },
+    // 指示器模式，line-线型，dot-点型
+    indicatorMode: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorMode
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-icon/icons.js ***!
   \*********************************************************************************************/
@@ -37754,7 +38175,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 588 */
+/* 611 */
 /*!*********************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-icon/props.js ***!
   \*********************************************************************************************/
@@ -37861,21 +38282,21 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 589 */,
-/* 590 */,
-/* 591 */,
-/* 592 */,
-/* 593 */,
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */,
-/* 601 */,
-/* 602 */,
-/* 603 */
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */
 /*!**************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
   \**************************************************************************************************************/
@@ -37890,9 +38311,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 604));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 605));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 606));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 627));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 628));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 629));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -37901,7 +38322,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 604 */
+/* 627 */
 /*!*************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
   \*************************************************************************************************************/
@@ -37911,7 +38332,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
 
 /***/ }),
-/* 605 */
+/* 628 */
 /*!******************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
   \******************************************************************************************************************/
@@ -37921,7 +38342,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show mo
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
 
 /***/ }),
-/* 606 */
+/* 629 */
 /*!******************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
   \******************************************************************************************************************/
@@ -37931,19 +38352,26 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
 
 /***/ }),
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */
 /*!*********************************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*********************************************************************************************************************/
@@ -38076,12 +38504,12 @@ function createAnimation(option, _this) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 620 */,
-/* 621 */,
-/* 622 */,
-/* 623 */,
-/* 624 */,
-/* 625 */
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */
 /*!***************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-transition/props.js ***!
   \***************************************************************************************************/
@@ -38123,7 +38551,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 626 */
+/* 656 */
 /*!********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-transition/transition.js ***!
   \********************************************************************************************************/
@@ -38140,7 +38568,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 28));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 30));
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 627));
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 657));
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {
   return new Promise(function (resolve) {
@@ -38232,7 +38660,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 627 */
+/* 657 */
 /*!**********************************************************************************************************!*\
   !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
   \**********************************************************************************************************/
@@ -38423,285 +38851,6 @@ var _default = {
   }
 };
 exports.default = _default;
-
-/***/ }),
-/* 628 */,
-/* 629 */,
-/* 630 */,
-/* 631 */,
-/* 632 */,
-/* 633 */,
-/* 634 */,
-/* 635 */,
-/* 636 */,
-/* 637 */,
-/* 638 */,
-/* 639 */,
-/* 640 */,
-/* 641 */,
-/* 642 */,
-/* 643 */,
-/* 644 */,
-/* 645 */,
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */,
-/* 651 */,
-/* 652 */,
-/* 653 */,
-/* 654 */,
-/* 655 */,
-/* 656 */,
-/* 657 */,
-/* 658 */,
-/* 659 */,
-/* 660 */,
-/* 661 */,
-/* 662 */,
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */,
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */,
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */
-/*!*****************************************************************************************************************!*\
-  !*** C:/Users/20210408/Desktop/xcx/up/user/uni_modules/uni-dateformat/components/uni-dateformat/date-format.js ***!
-  \*****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.formatDate = formatDate;
-exports.friendlyDate = friendlyDate;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-// yyyy-MM-dd hh:mm:ss.SSS 所有支持的类型
-function pad(str) {
-  var length = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  str += '';
-  while (str.length < length) {
-    str = '0' + str;
-  }
-  return str.slice(-length);
-}
-var parser = {
-  yyyy: function yyyy(dateObj) {
-    return pad(dateObj.year, 4);
-  },
-  yy: function yy(dateObj) {
-    return pad(dateObj.year);
-  },
-  MM: function MM(dateObj) {
-    return pad(dateObj.month);
-  },
-  M: function M(dateObj) {
-    return dateObj.month;
-  },
-  dd: function dd(dateObj) {
-    return pad(dateObj.day);
-  },
-  d: function d(dateObj) {
-    return dateObj.day;
-  },
-  hh: function hh(dateObj) {
-    return pad(dateObj.hour);
-  },
-  h: function h(dateObj) {
-    return dateObj.hour;
-  },
-  mm: function mm(dateObj) {
-    return pad(dateObj.minute);
-  },
-  m: function m(dateObj) {
-    return dateObj.minute;
-  },
-  ss: function ss(dateObj) {
-    return pad(dateObj.second);
-  },
-  s: function s(dateObj) {
-    return dateObj.second;
-  },
-  SSS: function SSS(dateObj) {
-    return pad(dateObj.millisecond, 3);
-  },
-  S: function S(dateObj) {
-    return dateObj.millisecond;
-  }
-};
-
-// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
-function getDate(time) {
-  if (time instanceof Date) {
-    return time;
-  }
-  switch ((0, _typeof2.default)(time)) {
-    case 'string':
-      {
-        // 2020-12-12T12:12:12.000Z、2020-12-12T12:12:12.000
-        if (time.indexOf('T') > -1) {
-          return new Date(time);
-        }
-        return new Date(time.replace(/-/g, '/'));
-      }
-    default:
-      return new Date(time);
-  }
-}
-function formatDate(date) {
-  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy/MM/dd hh:mm:ss';
-  if (!date && date !== 0) {
-    return '';
-  }
-  date = getDate(date);
-  var dateObj = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-    second: date.getSeconds(),
-    millisecond: date.getMilliseconds()
-  };
-  var tokenRegExp = /yyyy|yy|MM|M|dd|d|hh|h|mm|m|ss|s|SSS|SS|S/;
-  var flag = true;
-  var result = format;
-  while (flag) {
-    flag = false;
-    result = result.replace(tokenRegExp, function (matched) {
-      flag = true;
-      return parser[matched](dateObj);
-    });
-  }
-  return result;
-}
-function friendlyDate(time, _ref) {
-  var _ref$locale = _ref.locale,
-    locale = _ref$locale === void 0 ? 'zh' : _ref$locale,
-    _ref$threshold = _ref.threshold,
-    threshold = _ref$threshold === void 0 ? [60000, 3600000] : _ref$threshold,
-    _ref$format = _ref.format,
-    format = _ref$format === void 0 ? 'yyyy/MM/dd hh:mm:ss' : _ref$format;
-  if (time === '-') {
-    return time;
-  }
-  if (!time && time !== 0) {
-    return '';
-  }
-  var localeText = {
-    zh: {
-      year: '年',
-      month: '月',
-      day: '天',
-      hour: '小时',
-      minute: '分钟',
-      second: '秒',
-      ago: '前',
-      later: '后',
-      justNow: '刚刚',
-      soon: '马上',
-      template: '{num}{unit}{suffix}'
-    },
-    en: {
-      year: 'year',
-      month: 'month',
-      day: 'day',
-      hour: 'hour',
-      minute: 'minute',
-      second: 'second',
-      ago: 'ago',
-      later: 'later',
-      justNow: 'just now',
-      soon: 'soon',
-      template: '{num} {unit} {suffix}'
-    }
-  };
-  var text = localeText[locale] || localeText.zh;
-  var date = getDate(time);
-  var ms = date.getTime() - Date.now();
-  var absMs = Math.abs(ms);
-  if (absMs < threshold[0]) {
-    return ms < 0 ? text.justNow : text.soon;
-  }
-  if (absMs >= threshold[1]) {
-    return formatDate(date, format);
-  }
-  var num;
-  var unit;
-  var suffix = text.later;
-  if (ms < 0) {
-    suffix = text.ago;
-    ms = -ms;
-  }
-  var seconds = Math.floor(ms / 1000);
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
-  var days = Math.floor(hours / 24);
-  var months = Math.floor(days / 30);
-  var years = Math.floor(months / 12);
-  switch (true) {
-    case years > 0:
-      num = years;
-      unit = text.year;
-      break;
-    case months > 0:
-      num = months;
-      unit = text.month;
-      break;
-    case days > 0:
-      num = days;
-      unit = text.day;
-      break;
-    case hours > 0:
-      num = hours;
-      unit = text.hour;
-      break;
-    case minutes > 0:
-      num = minutes;
-      unit = text.minute;
-      break;
-    default:
-      num = seconds;
-      unit = text.second;
-      break;
-  }
-  if (locale === 'en') {
-    if (num === 1) {
-      num = 'a';
-    } else {
-      unit += 's';
-    }
-  }
-  return text.template.replace(/{\s*num\s*}/g, num + '').replace(/{\s*unit\s*}/g, unit).replace(/{\s*suffix\s*}/g, suffix);
-}
 
 /***/ })
 ]]);

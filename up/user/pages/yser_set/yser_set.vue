@@ -36,7 +36,7 @@
         <view class="list">
           <view class="group">
             <!-- 1 -->
-            <view class="item" @click="gomylist">
+            <view class="item" @click="Tshow">
               <view class="left">
                 <text class="iconfont icon-shouji1"></text>
                 <text class="text">我的手机</text>
@@ -44,6 +44,13 @@
               <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
             <!-- 2 -->
+            <view class="item" @click="Tshow">
+              <view class="left">
+                <text class="iconfont icon-gongzuo"></text>
+                <text class="text">我的工作</text>
+              </view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
+            </view>
           </view>
 
           <view class="group">
@@ -58,6 +65,13 @@
               <view class="left">
                 <text class="iconfont icon-qrcode"></text>
                 <text class="text">意见反馈</text>
+              </view>
+              <view class="right"><text class="iconfont icon-you"></text></view>
+            </view>
+            <view class="item" @click="Tshow">
+              <view class="left">
+                <text class="iconfont icon-rizhi"></text>
+                <text class="text">更新日志</text>
               </view>
               <view class="right"><text class="iconfont icon-you"></text></view>
             </view>
@@ -98,6 +112,16 @@
       }
     },
     methods: {
+      //未完成功能提示弹窗
+      Tshow() {
+        uni.showModal({
+          title: '提示',
+          content: '功能未完成',
+          showCancel: false,
+          complete: (res) => { //改箭头函数
+          }
+        });
+      },
       //点击反馈
       gofeedback() {
         uni.showModal({

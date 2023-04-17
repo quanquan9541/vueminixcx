@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index/index",
+    "pages/index/index",
     "pages/worklist/worklist",
     "pages/worklist/work",
     "pages/worklist/listw",
@@ -23,7 +23,8 @@
     "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd",
     "uni_modules/uni-id-pages/pages/register/register-admin",
     "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd",
-    "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify"
+    "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+    "pages/aboutme/aboutme"
   ],
   "subPackages": [],
   "window": {
@@ -42,7 +43,7 @@
     "spacing": "3rpx",
     "list": [
       {
-        "pagePath": "pages/index/index/index",
+        "pagePath": "pages/index/index",
         "iconPath": "static/iconPath/fun1.png",
         "selectedIconPath": "static/iconPath/fun2.png",
         "text": "功能"

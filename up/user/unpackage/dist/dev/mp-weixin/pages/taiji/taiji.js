@@ -144,8 +144,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _tools = __webpack_require__(/*! ../../js/tools.js */ 206);
-var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/uview-ui/libs/function/colorGradient.js */ 68));
-var _mixin = __webpack_require__(/*! ../../uni_modules/uview-ui/libs/mixin/mixin.js */ 47);
+var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/uview-ui/libs/function/colorGradient.js */ 67));
+var _mixin = __webpack_require__(/*! ../../uni_modules/uview-ui/libs/mixin/mixin.js */ 46);
 //
 //
 //
@@ -202,6 +202,7 @@ var _default = {
     };
   },
   onLoad: function onLoad() {
+    uni.$u.mpShare.title = '太极八卦图';
     console.log('启动');
     // uni.removeStorageSync('taijibagua')
     var setdata = uni.getStorageSync('taijibaguatu');
