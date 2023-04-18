@@ -74,10 +74,7 @@
       id = e.id
       // console.log(e);
       this.getdata(id)
-      // // 延时2秒钟显示数据
-      // uni.$u.sleep(2000).then(() => {
-      //   this.onloading = false
-      // })
+
     },
     methods: {
       //点击复制
@@ -99,17 +96,23 @@
       async getdata(id) {
         const list = await db.collection('tea-milk-list').where(`_id=='${id}'`).getTemp()
         const res = await db.collection(list, 'tea-milk-class').field(
-          'add_date,name,goods_desc,url,pic.url as picurl,category_id.name as class').get();
+          'add_date,name,goods_desc,url,pic.url as picurl,category_id.name as class').get({
+          getOne: true
+        });
         // console.log(res.result.data[0]);
-        this.data = res.result.data[0]; //赋值
+        this.data = res.result.data; //赋值
         // console.log(this.data);
         //设置标题
+        let title = res.result.data.class + '\xa0\xa0' +
+          res.result.data.name
+        let pic = res.result.data.picurl[0]
         uni.setNavigationBarTitle({
-          title: res.result.data[0].class + '\xa0\xa0' +
-            res.result.data[0].name
+          title: title
         });
         //设置显示
         this.onloading = false
+        uni.$u.mpShare.title = title;
+        uni.$u.mpShare.imageUrl = pic;
       },
       //点击看大图
       clickpic(e) {

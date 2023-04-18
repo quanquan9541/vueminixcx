@@ -15,7 +15,7 @@ export function getProvince() {
     if (historyProvince) {
       //时间判断
       if ((Date.now() - historyProvince.time) > 1000 * 60 * 60) {
-        console.log("缓存过期了");
+        // console.log("缓存过期了");
         getIp().then(res => {
           resolve(res)
         }).catch(err => {
@@ -23,7 +23,7 @@ export function getProvince() {
         })
       } else {
         resolve(historyProvince.province)
-        console.log("这是缓存", historyProvince.province)
+        // console.log("这是缓存", historyProvince.province)
       }
 
     } else {
@@ -46,7 +46,7 @@ function getIp() {
 
       url: "https://restapi.amap.com/v3/ip?key=f55ac7c6a06cce856428e551f0acf0fc",
       success: res => {
-        console.log("进行网络请求")
+        // console.log("进行网络请求")
         let str = ""
         if (typeof(res.data.province) == "string") {
           str = res.data.province

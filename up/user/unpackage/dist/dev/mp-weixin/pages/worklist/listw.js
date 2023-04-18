@@ -218,7 +218,7 @@ var _default = {
     },
     //跳转到详情页
     goworklist: function goworklist(e) {
-      console.log(e);
+      // console.log(e)
       uni.navigateTo({
         url: "/pages/worklist/worklist?id=" + e
       });
@@ -236,7 +236,7 @@ var _default = {
                 db = uniCloud.database();
                 _context.next = 4;
                 return db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(function (res) {
-                  console.log(res);
+                  // console.log(res)
                   var oldworkdatalist = _this.workdatalist;
                   var allworkdatalist = [].concat((0, _toConsumableArray2.default)(oldworkdatalist), (0, _toConsumableArray2.default)(res.result.data));
                   _this.workdatalist = allworkdatalist;

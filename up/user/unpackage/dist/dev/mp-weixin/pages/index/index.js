@@ -200,8 +200,11 @@ var _default = {
         text: "工作计算器",
         url: "/pages/worklist/listw"
       }],
-      piclist: ['https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/9ff27368-4f1c-4936-a439-8364ca89b889.jpg', 'https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/2bdbd32b-e31d-40e1-a875-ed176f85eb3a.jpg', "https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/2062d8e1-d53b-4613-8985-3a32a2a6c931.jpg"]
+      piclist: ["https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/9ff27368-4f1c-4936-a439-8364ca89b889.jpg", "https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/2bdbd32b-e31d-40e1-a875-ed176f85eb3a.jpg", "https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/2062d8e1-d53b-4613-8985-3a32a2a6c931.jpg"]
     };
+  },
+  onShow: function onShow() {
+    uni.$u.mpShare.title = "略懂工具箱";
   },
   methods: {
     /**跳转函数

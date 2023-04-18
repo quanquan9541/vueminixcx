@@ -1,6 +1,6 @@
 import App from './App'
 //分享引用小程序
-import share from '@/tools/shareplus.js'
+let share = require('@/uni_modules/uview-ui/libs/mixin/mpShare.js');
 Vue.mixin(share)
 // #ifndef VUE3
 import Vue from 'vue'

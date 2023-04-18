@@ -240,8 +240,6 @@ var _store = __webpack_require__(/*! @/uni_modules/uni-id-pages/common/store.js 
 //
 //
 //
-//
-//
 
 var uniIdCo = uniCloud.importObject("uni-id-co");
 var _default = {

@@ -18,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.30.3",
+    "libVersion": "2.31.0",
     "appid": "wx0672788ff87bbad6",
     "projectname": "tea-milk",
     "condition": {},

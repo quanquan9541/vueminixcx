@@ -1556,7 +1556,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8913,7 +8913,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8934,14 +8934,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9037,7 +9037,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"略懂工具箱","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -26747,13 +26747,17 @@ exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.dateFormat = dateFormat;
 exports.debounce = debounce;
+exports.getImgSrc = getImgSrc;
+exports.getProvince = getProvince;
+exports.giveAvatar = giveAvatar;
+exports.giveName = giveName;
 //防抖函数
 /**
  * @param {Object} fn 需要防抖的函数
@@ -26818,6 +26822,83 @@ function dateFormat(date) {
   }
   return format;
 }
+
+//获取富文本内的图片url地址
+function getImgSrc(richtext) {
+  var num = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3;
+  var imgList = [];
+  richtext.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/g, function (match, capture) {
+    imgList.push(capture);
+  });
+  imgList = imgList.slice(0, num);
+  return imgList;
+}
+
+//到处省市+判断
+function getProvince() {
+  return new Promise(function (resolve, reject) {
+    var historyProvince = uni.getStorageSync("historyProvince");
+    if (historyProvince) {
+      //时间判断
+      if (Date.now() - historyProvince.time > 1000 * 60 * 60) {
+        // console.log("缓存过期了");
+        getIp().then(function (res) {
+          resolve(res);
+        }).catch(function (err) {
+          reject(err);
+        });
+      } else {
+        resolve(historyProvince.province);
+        // console.log("这是缓存", historyProvince.province)
+      }
+    } else {
+      getIp().then(function (res) {
+        resolve(res);
+      }).catch(function (err) {
+        reject(err);
+      });
+    }
+  });
+}
+
+//网络请求 获取省市
+
+function getIp() {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: "https://restapi.amap.com/v3/ip?key=f55ac7c6a06cce856428e551f0acf0fc",
+      success: function success(res) {
+        // console.log("进行网络请求")
+        var str = "";
+        if (typeof res.data.province == "string") {
+          str = res.data.province;
+        } else {
+          str = '您的地址不在中国境内，无法查询';
+        }
+        var obj = {
+          province: str,
+          time: Date.now()
+        };
+        uni.setStorageSync("historyProvince", obj);
+        resolve(str); //当缓存没有数据
+      },
+
+      fail: function fail(err) {
+        reject(err);
+      }
+    });
+  });
+}
+///获取昵称
+function giveName(item) {
+  return item.user_id[0].nickname || item.user_id[0].username || item.user_id[0].mobile || "请设置昵称";
+}
+//获取头像
+function giveAvatar(item) {
+  var _item$user_id$0$avata, _item$user_id$, _item$user_id$$avatar;
+  return (_item$user_id$0$avata = (_item$user_id$ = item.user_id[0]) === null || _item$user_id$ === void 0 ? void 0 : (_item$user_id$$avatar = _item$user_id$.avatar_file) === null || _item$user_id$$avatar === void 0 ? void 0 : _item$user_id$$avatar.url) !== null && _item$user_id$0$avata !== void 0 ? _item$user_id$0$avata : '../../static/iconPath/user-default.png';
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 /* 207 */

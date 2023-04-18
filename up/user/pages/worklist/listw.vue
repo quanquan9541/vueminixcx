@@ -48,7 +48,7 @@
       },
       //跳转到详情页
       goworklist(e) {
-        console.log(e)
+        // console.log(e)
         uni.navigateTo({
           url: "/pages/worklist/worklist?id=" + e
         })
@@ -58,7 +58,7 @@
         let skip = this.workdatalist.length
         const db = uniCloud.database()
         await db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(res => {
-          console.log(res)
+          // console.log(res)
           let oldworkdatalist = this.workdatalist
           let allworkdatalist = [...oldworkdatalist, ...res.result.data]
           this.workdatalist = allworkdatalist

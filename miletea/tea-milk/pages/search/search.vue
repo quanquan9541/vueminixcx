@@ -72,6 +72,7 @@
       };
     },
     onLoad(e) {
+      uni.$u.mpShare.title = "奶茶搜索"
       // console.log(e);
       this.searchtype = e.type
     },

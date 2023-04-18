@@ -116,9 +116,6 @@ try {
     uniIdPagesAgreements: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements */ "uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements.vue */ 561))
     },
-    uniIdPagesFabLogin: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-id-pages/components/uni-id-pages-fab-login/uni-id-pages-fab-login */ "uni_modules/uni-id-pages/components/uni-id-pages-fab-login/uni-id-pages-fab-login").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-id-pages/components/uni-id-pages-fab-login/uni-id-pages-fab-login.vue */ 568))
-    },
   }
 } catch (e) {
   if (
@@ -226,6 +223,7 @@ var _loginPageMixin = _interopRequireDefault(__webpack_require__(/*! @/uni_modul
 //
 //
 //
+//
 
 var uniIdCo = uniCloud.importObject("uni-id-co", {
   errorOptions: {
@@ -242,7 +240,10 @@ var _default = {
       "needCaptcha": false,
       "focusUsername": false,
       "focusPassword": false,
-      "logo": "/static/logo.png"
+      "logo": "/static/logo.png",
+      "config": {
+        "isAdmin": false
+      }
     };
   },
   onShow: function onShow() {},

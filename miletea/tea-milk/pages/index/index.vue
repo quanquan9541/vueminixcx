@@ -79,6 +79,10 @@
         this.loading = false
       }, 1000)
     },
+    onShow() {
+      uni.$u.mpShare.title = "奶茶奇缘"
+      uni.$u.mpShare.imageUrl = "/static/logomt.png"
+    },
     onPullDownRefresh() {
       if (!interval(5000)) return uni.stopPullDownRefresh();
       this.classlist = []
