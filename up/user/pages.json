@@ -149,17 +149,39 @@
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "实名认证"
       }
+    }, {
+      "path": "pages/aboutme/aboutme",
+      "style": {
+        "navigationBarTitleText": "关于",
+        "enablePullDownRefresh": false
+      }
+
     }
-      ,{
-            "path" : "pages/aboutme/aboutme",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "关于",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+  ,{
+    "path": "pages/MuserPhoneValue/add",
+    "style": {
+        "navigationBarTitleText": "新增"
+    }
+}
+,{
+    "path": "pages/MuserPhoneValue/edit",
+    "style": {
+        "navigationBarTitleText": "编辑"
+    }
+}
+,{
+    "path": "pages/MuserPhoneValue/list",
+    "style": {
+        "navigationBarTitleText": "列表"
+    }
+}
+,{
+    "path": "pages/MuserPhoneValue/detail",
+    "style": {
+        "navigationBarTitleText": "详情"
+    }
+}
+],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -189,8 +211,8 @@
   },
   "uniIdRouter": {
     "loginPage": "uni_modules/uni-id-pages/pages/login/login-withpwd",
-    "needLogin": [
-      "uni_modules/uni-id-pages/pages/userinfo/userinfo"
+    "needLogin": ["uni_modules/uni-id-pages/pages/userinfo/userinfo",
+      "pages/worklist/work"
     ],
     "resToLogin": true
   }

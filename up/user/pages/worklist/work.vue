@@ -344,8 +344,10 @@
         }
       }
     },
-
-    onLoad() {
+    onLoad(e) {
+      console.log(e.id);
+    },
+    onShow() {
       uni.$u.mpShare.title = '工作计算器';
     },
     onReady() {
@@ -378,8 +380,8 @@
         this.periphery = periphery
         let humanity = Math.floor(((sex / compete) + 1) * abilitydata * 100) //人文
         this.humanity = humanity
-        console.log(abilitydata)
-        console.log(humanity)
+        // console.log(abilitydata)
+        // console.log(humanity)
         let workdata = Math.floor(((wages * periphery * (1 + humanity)) / (time * Qualifications * 35)))
         this.workdata = workdata
       },
@@ -405,7 +407,7 @@
             workdata: this.workdata
           })
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             // res 为数据库查询结果
             //获取id
             let id = res.result.id
@@ -422,25 +424,25 @@
 
 
           }).catch((err) => {
-            console.log(err.code); // 打印错误码
-            console.log(err.message); // 打印错误内容
+            // console.log(err.code); // 打印错误码
+            // console.log(err.message); // 打印错误内容
           })
       },
       //判断是否需要夜班
       changenight(e) {
-        console.log("上班时间:", e.detail.value);
+        // console.log("上班时间:", e.detail.value);
         this.night = e.detail.value
       },
       //判断作息时间
       changemorning(e) {
-        console.log("上班时间:", e.detail.value);
+        // console.log("上班时间:", e.detail.value);
         this.morning = e.detail.value
 
       },
 
       //修改评分
       changeability(e) {
-        console.log('rate发生改变:' + JSON.stringify(e))
+        // console.log('rate发生改变:' + JSON.stringify(e))
         this.abilitydata = JSON.stringify(e.value)
       },
       //环境选择
@@ -451,23 +453,23 @@
       },
       //单位选择
       changecompany(e) {
-        console.log("单位:", e);
+        // console.log("单位:", e);
         this.company = e
       },
       //职业选择
       changeoccupation(e) {
-        console.log("职业:", e);
+        // console.log("职业:", e);
         this.occupation = e
       },
       //学历选择
       changeeducation(e) {
-        console.log("学历:", e);
+        // console.log("学历:", e);
         this.education = e
       },
       //提交表单
       submit() {
         this.$refs.work.validate().then(res => {
-          console.log('表单数据信息：', res);
+          // console.log('表单数据信息：', res);
           this.work = res
           //数据计算
           this.calculation()
@@ -479,7 +481,7 @@
             mask: true
           });
         }).catch(err => {
-          console.log('表单错误信息：', err);
+          // console.log('表单错误信息：', err);
         })
 
 

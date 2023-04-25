@@ -1,6 +1,11 @@
 <template>
   <view class="worklist">
-    <!-- {{workdata}} -->
+    <view class="operate">
+      <view class="button" v-for="(item,index) in buttonlist" :key="index">
+        <!-- v-if="index==5 ? false :true" -->
+        <button :type="item.type" size="mini" @click="backnum(item.url,item.status)">{{item.text}}</button>
+      </view>
+    </view>
     <view class="dev">
       <uni-card title="工作得分" class="box">
         <uni-list>
@@ -12,9 +17,6 @@
           <uni-list-item title="环境分" :rightText="periphery" />
         </uni-list>
       </uni-card>
-      <u-button @click="backnum" type="primary" :plain="true" color='#aaaaff' :hairline="true" shape="circle"
-        text="排行榜">
-      </u-button>
     </view>
   </view>
 </template>
@@ -31,7 +33,24 @@
         time: "",
         Qualifications: "",
         humanity: "",
-        periphery: ""
+        periphery: "",
+        buttonlist: [{
+            text: "排行榜",
+            type: "primary",
+            url: "./listw"
+          },
+          {
+            text: "转图",
+            type: "default",
+            url: false
+          },
+          {
+            text: "编辑",
+            type: "warn",
+            url: "./work",
+            status: true
+          }
+        ]
       };
     },
     onLoad(e) {
@@ -40,8 +59,7 @@
         this.errfun()
         return
       }
-
-      console.log(e)
+      // console.log(e)
       this.id = e.id
       uni.showLoading({
         title: '加载中',
@@ -50,7 +68,7 @@
       this.getdata()
     },
     onShow() {
-
+      uni.$u.mpShare.title = '工作计算器';
     },
     methods: {
       //错误判断
@@ -65,22 +83,23 @@
           })
         }, 1000)
       },
-      //跳转回排行榜
-      backnum() {
-        uni.reLaunch({
-          url: '/pages/worklist/listw',
+      //跳转
+      backnum(e, p) {
+        if (!e) return
+        uni.navigateTo({
+          url: p ? e + "?id=" + this.id : e,
         })
       },
       //查询数据
       async getdata() {
         let id = this.id
-        console.log("拿下id", id)
+        // console.log("拿下id", id)
         const db = uniCloud.database();
         await db.collection("worklist").where(`_id == '${id}'`
           // {_id: id} 常规写法 上面为jql写法 
         ).get().then(res => {
           // res 为数据库查询结果
-          console.log("成功:", res)
+          // console.log("成功:", res)
           this.workdata1 = res.result.data
           let workdata1 = res.result.data
           this.workdata = workdata1[0].workdata.toString()
@@ -104,18 +123,34 @@
   .worklist {
     padding: 15rpx;
     margin: 10rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    .dev {
-      margin-bottom: 10rpx;
-      border-bottom: 1rpx #efefef solid;
+    .operate {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 650rpx;
 
-      .box {
-        .text {
-          font-size: 36rpx;
+      .button {
+        // border: 1px red solid;
+
+        button {
+          line-height: 60rpx;
+          width: 120rpx;
+          height: 60rpx;
+          font-size: 18rpx
         }
       }
     }
 
-
+    .dev {
+      margin-top: 100rpx;
+      margin-bottom: 10rpx;
+      width: 100%;
+    }
   }
 </style>

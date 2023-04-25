@@ -36,7 +36,7 @@
         <view class="list">
           <view class="group">
             <!-- 1 -->
-            <view class="item" @click="Tshow">
+            <view class="item" @click="gophone">
               <view class="left">
                 <text class="iconfont icon-shouji1"></text>
                 <text class="text">我的手机</text>
@@ -112,6 +112,12 @@
       }
     },
     methods: {
+      //前往手机信息表
+      gophone() {
+        const e = "/pages/MuserPhoneValue/add"
+
+        this.golisturl(e)
+      },
       //未完成功能提示弹窗
       Tshow() {
         uni.showModal({
@@ -151,6 +157,15 @@
             });
           }
         });
+      },
+      /**前往某个页面
+       * @param {Object} e 页面 url
+       */
+      golisturl(e) {
+        console.log("跳转");
+        uni.navigateTo({
+          url: e
+        })
       },
       //前往关于页面
       goabout() {

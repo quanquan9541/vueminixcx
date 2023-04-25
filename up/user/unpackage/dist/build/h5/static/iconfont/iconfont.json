@@ -1,0 +1,268 @@
+{
+  "id": "3771939",
+  "name": "后台管理",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4520330",
+      "name": "日志",
+      "font_class": "rizhi",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "13638695",
+      "name": "工作",
+      "font_class": "gongzuo",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "1309",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "564950",
+      "name": "you",
+      "font_class": "you",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "9668370",
+      "name": "tuichu",
+      "font_class": "tuichu1",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "4766912",
+      "name": "qrcode",
+      "font_class": "qrcode",
+      "unicode": "e7dd",
+      "unicode_decimal": 59357
+    },
+    {
+      "icon_id": "88072",
+      "name": "phone",
+      "font_class": "phone",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "712645",
+      "name": "phone",
+      "font_class": "phone1",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "1677605",
+      "name": "手机",
+      "font_class": "shouji1",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "4765736",
+      "name": "question-circle",
+      "font_class": "question-circle",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    },
+    {
+      "icon_id": "4765957",
+      "name": "edit-square",
+      "font_class": "edit-square",
+      "unicode": "e791",
+      "unicode_decimal": 59281
+    },
+    {
+      "icon_id": "4936972",
+      "name": "instagram",
+      "font_class": "instagram",
+      "unicode": "e87f",
+      "unicode_decimal": 59519
+    },
+    {
+      "icon_id": "5661136",
+      "name": "留言",
+      "font_class": "liuyan",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "19939475",
+      "name": "未知用户",
+      "font_class": "bianzu16",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "11951869",
+      "name": "功能开关",
+      "font_class": "gongnengkaiguan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "12459112",
+      "name": "功能",
+      "font_class": "gongneng",
+      "unicode": "e6c3",
+      "unicode_decimal": 59075
+    },
+    {
+      "icon_id": "7456681",
+      "name": "功能管理",
+      "font_class": "gongnengguanli",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "8847354",
+      "name": "常用功能",
+      "font_class": "changyonggongneng",
+      "unicode": "e7b5",
+      "unicode_decimal": 59317
+    },
+    {
+      "icon_id": "4890385",
+      "name": "图片",
+      "font_class": "shangchuantupian",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "5387967",
+      "name": "金币_o",
+      "font_class": "jinbi_o",
+      "unicode": "eba1",
+      "unicode_decimal": 60321
+    },
+    {
+      "icon_id": "20781683",
+      "name": "sp-重要设备-重要设备",
+      "font_class": "sp-zhongyaoshebei-zhongyaoshebei",
+      "unicode": "e9e6",
+      "unicode_decimal": 59878
+    },
+    {
+      "icon_id": "6932619",
+      "name": "奶茶2",
+      "font_class": "naicha1",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "9503794",
+      "name": "性价比",
+      "font_class": "xingjiabi",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "13083099",
+      "name": "品牌",
+      "font_class": "pinpai",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "25162868",
+      "name": "奶茶小吃",
+      "font_class": "naichaxiaochi",
+      "unicode": "fd19",
+      "unicode_decimal": 64793
+    },
+    {
+      "icon_id": "3456454",
+      "name": "品牌特卖",
+      "font_class": "pinpaitemai",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "5092023",
+      "name": "电池",
+      "font_class": "dianchi",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "10131698",
+      "name": "充电",
+      "font_class": "chongdian",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "13210923",
+      "name": "重量",
+      "font_class": "anzhuo-",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "15739173",
+      "name": "材质",
+      "font_class": "caizhi",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "658053",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "666888",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "12614678",
+      "name": "芯片",
+      "font_class": "xinpian",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "1247",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "646390",
+      "name": "砖石",
+      "font_class": "zhuanshi",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "5047158",
+      "name": "工具箱",
+      "font_class": "gongjuxiang",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "29957524",
+      "name": "房屋认证",
+      "font_class": "fangwurenzheng",
+      "unicode": "100d2",
+      "unicode_decimal": 65746
+    }
+  ]
+}

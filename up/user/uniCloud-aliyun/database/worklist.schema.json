@@ -5,18 +5,20 @@
   "permission": {
     "read": true,
     "create": true,
-    "update": true,
-    "delete": true
+    "update": "doc.user_id == auth.uid",
+    "delete": "doc.user_id == auth.uid"
   },
   "properties": {
     "_id": {
       "description": "ID，系统自动生成"
     },
-    "posttime": {
-      "bsonType": "timestamp",
-      "title": "创建时间",
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户id",
+      "title": "id",
+      "foreignKey": "uni-id-users._id",
       "forceDefaultValue": {
-        "$env": "now"
+        "$env": "uid"
       }
     },
     "wages": {
@@ -102,6 +104,22 @@
     "workdata": {
       "bsonType": "int",
       "title": "总数据"
+    },
+
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
     }
   }
 }

@@ -1,0 +1,167 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": true,
+    "delete": true
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户id",
+      "title": "id",
+      "foreignKey": "uni-id-users._id",
+      "forceDefaultValue": {
+        "$env": "uid"
+      }
+    },
+    "age": {
+      "bsonType": "int",
+      "title": "年龄",
+      "description": "请输您的年龄",
+      "minimum": 10,
+      "maximum": 999
+    },
+    "sex": {
+      "bsonType": "int",
+      "title": "性别",
+      "enum": [{
+        "text": "女",
+        "value": 0
+      }, {
+        "text": "男",
+        "value": 1
+      }]
+    },
+    //当前手机品牌
+    "phonebrand": {
+      "bsonType": "string",
+      "title": "品牌",
+      "description": "当前在用手机品牌",
+      "foreignKey": "Manufacturer_brand._id",
+      "enum": {
+        "collection": "Manufacturer_brand",
+        "field": "_id as value, name as text"
+      }
+    },
+    "ram": {
+      "bsonType": "int",
+      "title": "内存",
+      "description": "手机内存",
+      "enum": [4, 6, 8, 12, 16, 18, "其他"]
+    },
+    "rom": {
+      "bsonType": "int",
+      "title": "闪存",
+      "description": "手机闪存",
+      "enum": [32, 64, 128, 256, 512, 1024, "其他"]
+    },
+    "isbrand": {
+      "bsonType": "int",
+      "title": "品牌影响",
+      "description": "品牌对你选购影响大吗",
+      "enum": [{
+        "text": "无影响",
+        "value": 0
+      }, {
+        "text": "有影响",
+        "value": 1
+      }]
+    },
+    "moneymaxjiag": {
+      "bsonType": "int",
+      "title": "预算",
+      "description": "请输入手机预算",
+      "minimum": 100,
+      "maximum": 99999
+    },
+    "ismoney": {
+      "bsonType": "int",
+      "title": "金钱影响",
+      "description": "你觉得现在手机贵吗",
+      "enum": [{
+        "text": "贵",
+        "value": 0
+      }, {
+        "text": "不贵",
+        "value": 1
+      }]
+    },
+    "import": {
+      "bsonType": "array",
+      "title": "重要",
+      "enum": ["屏幕显示效果", "影像(拍照)", "充电速度", "续航/电池容量", "重量/尺寸", "性能"],
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "screenv": {
+      "bsonType": "int",
+      "title": "显示",
+      "description": "屏幕偏好分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    "camerav": {
+      "bsonType": "int",
+      "title": "影像",
+      "description": "影像屏幕分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    "fastchargev": {
+      "bsonType": "int",
+      "title": "快充",
+      "description": "快充偏好分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    "endurancev": {
+      "bsonType": "int",
+      "title": "续航",
+      "description": "续航偏好分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    "lightthinv": {
+      "bsonType": "int",
+      "title": "轻薄",
+      "description": "轻薄偏好分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    "performancev": {
+      "bsonType": "int",
+      "title": "性能",
+      "description": "性能偏好分",
+      "defaultValue": 1,
+      "minimum": 1,
+      "maximum": 99
+    },
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

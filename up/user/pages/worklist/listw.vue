@@ -22,14 +22,12 @@
         workdatalist: []
       };
     },
-    //启动
-    onLoad() {
-      uni.startPullDownRefresh(); //启动下拉刷新
+    onShow() {
+      setTimeout(function() {
+        uni.startPullDownRefresh();
+      }, 800);
+      uni.$u.mpShare.title = '工作计算器';
     },
-    // 加载时,不启动减少压力
-    // onShow() {
-    //   uni.startPullDownRefresh();
-    // },
     //下拉刷新 生命周期
     onPullDownRefresh() {
       this.workdatalist = []
@@ -54,11 +52,10 @@
         })
       },
       //拉取云端数据
-      async getwork() {
+      getwork() {
         let skip = this.workdatalist.length
         const db = uniCloud.database()
-        await db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(res => {
-          // console.log(res)
+        db.collection('worklist').skip(skip).limit(15).orderBy('workdata desc ,wages desc').get().then(res => {
           let oldworkdatalist = this.workdatalist
           let allworkdatalist = [...oldworkdatalist, ...res.result.data]
           this.workdatalist = allworkdatalist
