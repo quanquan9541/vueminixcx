@@ -37,10 +37,9 @@
         </uni-forms-item>
       </uni-section>
 
-      <uni-section title="请选择你认为最影响你选购的因素" type="line" sub-title="选择2项">
+      <uni-section title="请选择你认为最影响你选购的因素" type="line" sub-title="选择1项">
         <uni-forms-item name="import">
-          <uni-data-checkbox :min="2" :max="2" :multiple="true" v-model="formData.import"
-            :localdata="formOptions.import_localdata"></uni-data-checkbox>
+          <uni-data-checkbox v-model="formData.import" :localdata="formOptions.import_localdata"></uni-data-checkbox>
         </uni-forms-item>
       </uni-section>
       <uni-section title="请对以下6个维度进行打分" type="line" :sub-title="'总分100,当前累计'+sum+'分'" :subTitleColor="subTitleColor">
@@ -82,7 +81,10 @@
   import {
     validator
   } from '../../js_sdk/validator/MuserPhoneValue.js';
-
+  import {
+    store,
+    mutations
+  } from '@/uni_modules/uni-id-pages/common/store.js';
   const db = uniCloud.database();
   const dbCollectionName = 'MuserPhoneValue';
 
@@ -95,8 +97,6 @@
     }
     return result
   }
-
-
 
   export default {
     data() {
@@ -121,7 +121,8 @@
         formData,
         wer: "type==1 && status==true", //级联选择器条件
         subTitleColor: "#999", //标签栏字体颜色
-        disabled: true,
+        disabled: true, //按钮锁定
+        butext: "提交", // 按钮文字
         formOptions: {
           "sex_localdata": [{
               "text": "女",
@@ -239,10 +240,24 @@
         }
       }
     },
+    onLoad() {
+      // console.log('load', this.userInfo);
+      uni.showLoading({
+        title: '加载中',
+        mask: true
+      });
+      this.getuserPhoneValue(this.userInfo._id)
+    },
     onReady() {
       this.$refs.form.setRules(this.rules)
     },
     computed: {
+      userInfo() {
+        return store.userInfo;
+      },
+      hasLogin() {
+        return store.hasLogin;
+      },
       sum() {
         return this.formData.screenv + this.formData.camerav + this.formData.fastchargev +
           this.formData.endurancev +
@@ -251,11 +266,34 @@
       }
     },
     methods: {
+      //获取云端数据
+      async getuserPhoneValue(e) {
+        let data = await db.collection('MuserPhoneValue').where(`user_id=='${e}'`).get({
+          getCount: true,
+          getOne: true
+        })
+        setTimeout(() => {
+          uni.hideLoading();
+          this.changesubTitle();
+        }, 800);
+        // console.log('云数据', data);
+        if (!data.result.count) {
+          // this.formData = formData
+          // console.log('0', this.formData);
+        } else {
+          this.formData = data.result.data
+          // console.log("1");
+        }
+      },
       /**
        * @param {Object} e 滚动条数值
        */
       change(e) {
         // console.log(e);
+        this.changesubTitle()
+      },
+      //副标题操作
+      changesubTitle() {
         let log = this.valuesum()
         if (!log) {
           this.subTitleColor = "#FFB94C"
@@ -263,6 +301,7 @@
           return
         } else {
           // console.log(log);
+          this.disabled = true
           this.subTitleColor = log
         }
       },
@@ -293,11 +332,37 @@
        * 提交表单
        */
       submitForm(value) {
+        if (!this.formData._id) {
+          // 使用 clientDB 提交数据
+          return db.collection(dbCollectionName).add(value).then((res) => {
+            uni.showToast({
+              icon: 'none',
+              title: '新增成功'
+            })
+            this.getOpenerEventChannel().emit('refreshData')
+            setTimeout(() => uni.navigateBack(), 500)
+          }).catch((err) => {
+            uni.showModal({
+              content: err.message || '请求服务失败',
+              showCancel: false
+            })
+          })
+        } else {
+          this.submiteditForm(value)
+        }
+      },
+      /**
+       * 修改表单
+       */
+      submiteditForm(value) {
         // 使用 clientDB 提交数据
-        return db.collection(dbCollectionName).add(value).then((res) => {
+        return db.collection(dbCollectionName).doc(this.formData._id).update({
+          ...value,
+          last_date: Date.now()
+        }).then((res) => {
           uni.showToast({
             icon: 'none',
-            title: '新增成功'
+            title: '修改成功'
           })
           this.getOpenerEventChannel().emit('refreshData')
           setTimeout(() => uni.navigateBack(), 500)

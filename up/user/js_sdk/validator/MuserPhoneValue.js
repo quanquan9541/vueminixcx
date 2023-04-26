@@ -185,11 +185,7 @@ const validator = {
   "import": {
     "rules": [
       {
-        "format": "array"
-      },
-      {
-        "minLength": 2,
-        "maxLength": 2
+        "format": "string"
       },
       {
         "range": [
@@ -340,32 +336,14 @@ const enumConverter = {
     "0": "贵",
     "1": "不贵"
   },
-  "import_valuetotext": [
-    {
-      "value": "屏幕显示效果",
-      "text": "屏幕显示效果"
-    },
-    {
-      "value": "影像(拍照)",
-      "text": "影像(拍照)"
-    },
-    {
-      "value": "充电速度",
-      "text": "充电速度"
-    },
-    {
-      "value": "续航/电池容量",
-      "text": "续航/电池容量"
-    },
-    {
-      "value": "重量/尺寸",
-      "text": "重量/尺寸"
-    },
-    {
-      "value": "性能",
-      "text": "性能"
-    }
-  ]
+  "import_valuetotext": {
+    "屏幕显示效果": "屏幕显示效果",
+    "影像(拍照)": "影像(拍照)",
+    "充电速度": "充电速度",
+    "续航/电池容量": "续航/电池容量",
+    "重量/尺寸": "重量/尺寸",
+    "性能": "性能"
+  }
 }
 
 function filterToWhere(filter, command) {

@@ -94,11 +94,9 @@
       }]
     },
     "import": {
-      "bsonType": "array",
+      "bsonType": "string",
       "title": "重要",
-      "enum": ["屏幕显示效果", "影像(拍照)", "充电速度", "续航/电池容量", "重量/尺寸", "性能"],
-      "minLength": 2,
-      "maxLength": 2
+      "enum": ["屏幕显示效果", "影像(拍照)", "充电速度", "续航/电池容量", "重量/尺寸", "性能"]
     },
     "screenv": {
       "bsonType": "int",

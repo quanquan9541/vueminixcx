@@ -40,7 +40,7 @@
         </view>
         <view>
           <text>重要</text>
-          <uni-data-picker :localdata="options.import_valuetotext" :value="data.import" :multiple="false" :readonly="true" :arrow="false" split=","></uni-data-picker>
+          <text>{{options.import_valuetotext[data.import]}}</text>
         </view>
         <view>
           <text>显示</text>

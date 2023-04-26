@@ -115,7 +115,6 @@
       //前往手机信息表
       gophone() {
         const e = "/pages/MuserPhoneValue/add"
-
         this.golisturl(e)
       },
       //未完成功能提示弹窗
@@ -162,7 +161,7 @@
        * @param {Object} e 页面 url
        */
       golisturl(e) {
-        console.log("跳转");
+        // console.log("跳转");
         uni.navigateTo({
           url: e
         })

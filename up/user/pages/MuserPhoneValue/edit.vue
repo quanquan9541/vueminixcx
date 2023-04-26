@@ -26,7 +26,7 @@
         <uni-data-checkbox v-model="formData.ismoney" :localdata="formOptions.ismoney_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="import" label="重要">
-        <uni-data-checkbox :min="2" :max="2" :multiple="true" v-model="formData.import" :localdata="formOptions.import_localdata"></uni-data-checkbox>
+        <uni-data-checkbox v-model="formData.import" :localdata="formOptions.import_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="screenv" label="显示">
         <picker @change="pickerChange($event, 'screenv')" :range="formOptions.screenv_data" :value="formOptions.screenv_index">
@@ -96,7 +96,7 @@
         "isbrand": null,
         "moneymaxjiag": null,
         "ismoney": null,
-        "import": [],
+        "import": "",
         "screenv": 1,
         "camerav": 1,
         "fastchargev": 1,
