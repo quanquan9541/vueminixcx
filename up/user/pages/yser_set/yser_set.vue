@@ -10,7 +10,7 @@
               <image v-else src="../../static/iconPath/user-default.png" mode="aspectFill"></image>
             </view>
             <view class="text" v-if="hasLogin">
-              <view class="nickname">{{ userInfo.nickname || userInfo.username || userInfo.mobile }}</view>
+              <view class="nickname">{{ userInfo.nickname || userInfo.username || userInfo.mobile ||noname }}</view>
               <view class="year">
                 <uni-dateformat :date="userInfo.register_date"
                   :threshold="[3600, 99 * 365 * 24 * 60 * 60 * 1000]"></uni-dateformat>
@@ -36,7 +36,7 @@
         <view class="list">
           <view class="group">
             <!-- 1 -->
-            <view class="item" @click="gophone">
+            <view class="item" @click="Tshow">
               <view class="left">
                 <text class="iconfont icon-shouji1"></text>
                 <text class="text">我的手机</text>
@@ -109,6 +109,9 @@
       },
       hasLogin() {
         return store.hasLogin;
+      },
+      noname() {
+        return '请编辑用户名' + uni.$u.timeFormat(store.userInfo.register_date, 'mmdd');
       }
     },
     methods: {
@@ -174,6 +177,7 @@
       },
       //编辑个人资料
       toUserInfo() {
+        console.log('点击免密登录页面');
         uni.navigateTo({
           url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo'
         });

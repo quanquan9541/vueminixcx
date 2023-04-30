@@ -308,7 +308,8 @@
             let redirectUrl = location.protocol +
                 '//' +
                 location.host +
-                baseUrl.replace(/\/$/, '') +
+                (baseUrl ? '/': '') +
+                baseUrl.replace(/^\/|\/$/, '') +
                 (window.location.href.includes('#')?'/#':'') +
                 '/uni_modules/uni-id-pages/pages/login/login-withoutpwd?is_weixin_redirect=true&type=weixin'
 

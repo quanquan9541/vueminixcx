@@ -74,12 +74,14 @@
       "style": {
         "navigationBarTitleText": "个人资料"
       }
-    }, {
-      "path": "uni_modules/uni-id-pages/pages/userinfo/bind-mobile/bind-mobile",
-      "style": {
-        "navigationBarTitleText": "绑定手机号码"
-      }
-    }, {
+    },
+    /** {
+       "path": "uni_modules/uni-id-pages/pages/userinfo/bind-mobile/bind-mobile",
+       "style": {
+         "navigationBarTitleText": "绑定手机号码"
+       }
+     }, **/
+    {
       "path": "uni_modules/uni-id-pages/pages/userinfo/cropImage/cropImage",
       "style": {
         "navigationBarTitleText": ""
@@ -95,21 +97,23 @@
         "navigationBarTitleText": ""
       }
     }, {
-      "path": "uni_modules/uni-id-pages/pages/login/login-smscode",
-      "style": {
-        "navigationBarTitleText": "手机验证码登录"
-      }
-    }, {
       "path": "uni_modules/uni-id-pages/pages/register/register",
       "style": {
         "navigationBarTitleText": "注册"
+      }
+    },
+    /** {
+      "path": "uni_modules/uni-id-pages/pages/login/login-smscode",
+      "style": {
+        "navigationBarTitleText": "手机验证码登录"
       }
     }, {
       "path": "uni_modules/uni-id-pages/pages/register/register-by-email",
       "style": {
         "navigationBarTitleText": "邮箱验证码注册"
       }
-    }, {
+    },
+    {
       "path": "uni_modules/uni-id-pages/pages/retrieve/retrieve",
       "style": {
         "navigationBarTitleText": "重置密码"
@@ -119,7 +123,8 @@
       "style": {
         "navigationBarTitleText": "通过邮箱重置密码"
       }
-    }, {
+    },**/
+    {
       "path": "uni_modules/uni-id-pages/pages/common/webview/webview",
       "style": {
         "enablePullDownRefresh": false,
@@ -143,13 +148,15 @@
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "设置密码"
       }
-    }, {
-      "path": "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
-      "style": {
-        "enablePullDownRefresh": false,
-        "navigationBarTitleText": "实名认证"
-      }
-    }, {
+    },
+    /** {
+       "path": "uni_modules/uni-id-pages/pages/userinfo/realname-verify/realname-verify",
+       "style": {
+         "enablePullDownRefresh": false,
+         "navigationBarTitleText": "实名认证"
+       }
+     },**/
+    {
       "path": "pages/aboutme/aboutme",
       "style": {
         "navigationBarTitleText": "关于",
@@ -176,6 +183,13 @@
       "style": {
         "navigationBarTitleText": "详情"
       }
+    }, {
+      "path": "pages/mobblephone/mobblephone",
+      "style": {
+        "navigationBarTitleText": "手机推荐录",
+        "enablePullDownRefresh": true
+      }
+
     }
   ],
   "globalStyle": {
@@ -206,8 +220,16 @@
     }]
   },
   "uniIdRouter": {
+    // 条件编译
+    // #ifdef MP-WEIXIN
+    "loginPage": "uni_modules/uni-id-pages/pages/login/login-withoutpwd",
+    //#endif
+    // #ifndef MP-WEIXIN
     "loginPage": "uni_modules/uni-id-pages/pages/login/login-withpwd",
-    "needLogin": ["uni_modules/uni-id-pages/pages/userinfo/userinfo",
+    //#endif
+
+    "needLogin": [
+      "uni_modules/uni-id-pages/pages/userinfo/userinfo",
       "pages/worklist/work",
       "pages/MuserPhoneValue/add"
     ],

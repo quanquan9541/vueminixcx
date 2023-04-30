@@ -21,18 +21,23 @@
         list: [{
             text: "今日幸运茶",
             url: "/pages/teamilk/teamilk"
-          }, {
+          },
+          /**
+                   {
+                     text: "手机推荐录",
+                     url: "/pages/mobblephone/mobblephone"
+                   }, **/
+          {
             text: "每天测一卦",
             url: "/pages/taiji/taiji"
           }, {
             text: "销量查询器",
             url: "/pages/jdurl/jdurl"
           },
-
-          {
+          /**{
             text: "工作计算器",
             url: "/pages/worklist/listw"
-          }
+          }**/
         ],
         piclist: [
           "https://mp-d3b6883a-bc50-4d37-854d-dfb75a1d8a17.cdn.bspapp.com/cloudstorage/9ff27368-4f1c-4936-a439-8364ca89b889.jpg",

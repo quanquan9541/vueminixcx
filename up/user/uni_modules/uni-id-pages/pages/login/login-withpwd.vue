@@ -31,7 +31,8 @@
       <!-- <text class="link" @click="toRegister" v-if="!config.isAdmin">注册账号</text> -->
     </view>
     <!-- 悬浮登录方式组件 -->
-    <!-- <uni-id-pages-fab-login ref="uniFabLogin"></uni-id-pages-fab-login> -->
+    <!--  <uni-id-pages-fab-login ref="uniFabLogin"></uni-id-pages-fab-login> -->
+
   </view>
 </template>
 
@@ -52,7 +53,7 @@
         "needCaptcha": false,
         "focusUsername": false,
         "focusPassword": false,
-        "logo": "/static/logo.png",
+        "logo": "/static/logo-assets/logo.png",
         "config": {
           "isAdmin": false
         }
@@ -70,6 +71,7 @@
     },
     methods: {
       // 页面跳转，找回密码
+      /**
       toRetrievePwd() {
         let url = '/uni_modules/uni-id-pages/pages/retrieve/retrieve'
         //如果刚好用户名输入框的值为手机号码，就把它传到retrieve页面，根据该手机号找回密码
@@ -79,7 +81,7 @@
         uni.navigateTo({
           url
         })
-      },
+      },**/
       /**
        * 密码登录
        */

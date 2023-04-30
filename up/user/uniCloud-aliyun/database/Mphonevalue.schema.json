@@ -6,7 +6,7 @@
     "read": true,
     "create": true,
     "update": true,
-    "delete": true
+    "delete": false
   },
   "properties": {
     "_id": {
@@ -23,7 +23,7 @@
       "title": "性能"
     },
     "light_thin": {
-      "bsonType": "object",
+      "bsonType": "string",
       "title": "轻薄"
     },
     "phoneshow": {

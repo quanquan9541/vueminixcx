@@ -1,4 +1,4 @@
-// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+//用户权重表
 {
   "bsonType": "object",
   "required": [],
@@ -6,7 +6,7 @@
     "read": true,
     "create": true,
     "update": true,
-    "delete": true
+    "delete": "doc._id == auth.uid ||'mobile' in auth.role"
   },
   "properties": {
     "_id": {

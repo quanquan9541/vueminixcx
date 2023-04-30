@@ -7,9 +7,9 @@
   ],
   "permission": {
     "read": true,
-    "create": true,
-    "update": true,
-    "delete": true
+    "create": "'teadamin' in auth.role",
+    "update": "'teadamin' in auth.role",
+    "delete": "'teadamin' in auth.role"
   },
   "properties": {
     "_id": {

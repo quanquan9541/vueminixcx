@@ -30,8 +30,8 @@ export default {
   ],
   // 政策协议
   agreements: {
-    serviceUrl: 'https://xxx', // 用户服务协议链接
-    privacyUrl: 'https://xxx', // 隐私政策条款链接
+    serviceUrl: 'https://ldlz12.com/markdown-share-docs/2ceef4318ec642eeef2ed4fa70a284d7/', // 用户服务协议链接
+    privacyUrl: 'https://ldlz12.com/markdown-share-docs/b987a7ebc565d0443c3a0b5bbf81bf29/', // 隐私政策条款链接
     scope: [
       'register', 'login', 'realNameVerify'
     ]

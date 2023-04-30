@@ -19,6 +19,13 @@
                             "pages/index/index/index"
                         ]
                     }
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/mobblephone/mobblephone",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

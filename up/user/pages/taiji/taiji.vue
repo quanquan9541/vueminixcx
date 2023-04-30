@@ -56,8 +56,7 @@
       }
     },
     onLoad() {
-      uni.$u.mpShare.title = '太极八卦图';
-      console.log('启动');
+      // console.log('启动');
       // uni.removeStorageSync('taijibagua')
       let setdata = uni.getStorageSync('taijibaguatu')
       if (!setdata) {
@@ -66,6 +65,9 @@
         this.bools = false
         this.zip = setdata
       }
+    },
+    onShow() {
+      uni.$u.mpShare.title = '太极八卦图';
     },
     methods: {
       //设置缓存
@@ -87,7 +89,7 @@
         uni.setClipboardData({
           data: e,
           success: function(res) {
-            console.log('复制的信息：', e);
+            // console.log('复制的信息：', e);
             uni.showToast({
               title: '复制成功',
             });
