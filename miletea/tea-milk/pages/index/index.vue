@@ -72,6 +72,9 @@
     },
     onLoad() {
       // console.log('onload启动');
+
+    },
+    onReady() {
       //启动下拉刷新
       uni.startPullDownRefresh();
       this.noMore = false
@@ -100,6 +103,7 @@
       async getclass() {
         let res = await db.collection('tea-milk-class').where(`state==true`).field('_id as id,name as name ,sort')
           .orderBy('sort desc').get()
+        this.classlist = ""
         this.classlist = res.result.data
         // console.log(this.classlist);
         //停止下拉刷新
@@ -145,23 +149,14 @@
         // console.log(data);
         let newvalue = data.result.data
         let value = [...this.data, ...newvalue]
-        // console.log(value.length);
-        // console.log('count', data.result.count);
         // 判断步长相等
         if (value.length == data.result.count) {
           this.more = true
           this.status = "nomore"
           uni.hideLoading();
         }
-
-        this.data = value.map(
-          item => {
-            return {
-              ...item,
-              class: e.name
-            }
-          }
-        )
+        this.data = ""
+        this.data = value
         uni.hideLoading();
         this.loading = false
 

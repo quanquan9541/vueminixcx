@@ -59,7 +59,7 @@
       "bsonType": "string",
       "title": "补正价",
       "description": "价格补正值",
-      "defaultValue": 0
+      "defaultValue": "0"
     },
     "brith": {
       "bsonType": "timestamp",

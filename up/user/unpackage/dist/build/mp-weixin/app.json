@@ -1,9 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/worklist/worklist",
-    "pages/worklist/work",
-    "pages/worklist/listw",
     "pages/taiji/taiji",
     "pages/jdurl/jdurl",
     "pages/teamilk/teamilk",
@@ -18,12 +15,8 @@
     "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd",
     "uni_modules/uni-id-pages/pages/register/register-admin",
     "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd",
-    "pages/aboutme/aboutme",
-    "pages/MuserPhoneValue/add",
-    "pages/MuserPhoneValue/edit",
-    "pages/MuserPhoneValue/list",
-    "pages/MuserPhoneValue/detail",
-    "pages/mobblephone/mobblephone"
+    "pages/aboutme/aboutme"
+
   ],
   "subPackages": [],
   "window": {

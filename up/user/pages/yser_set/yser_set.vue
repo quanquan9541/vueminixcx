@@ -12,9 +12,8 @@
             <view class="text" v-if="hasLogin">
               <view class="nickname">{{ userInfo.nickname || userInfo.username || userInfo.mobile ||noname }}</view>
               <view class="year">
-                <uni-dateformat :date="userInfo.register_date"
-                  :threshold="[3600, 99 * 365 * 24 * 60 * 60 * 1000]"></uni-dateformat>
-                注册
+                <uni-dateformat :date="userInfo.register_date" format='yy/MM/dd'
+                  :threshold="[3600,3* 24 * 60 * 60 * 1000]"></uni-dateformat><text>注册</text>
               </view>
             </view>
             <view class="text" v-else>
@@ -36,7 +35,7 @@
         <view class="list">
           <view class="group">
             <!-- 1 -->
-            <view class="item" @click="Tshow">
+            <view class="item" @click="gophone">
               <view class="left">
                 <text class="iconfont icon-shouji1"></text>
                 <text class="text">我的手机</text>
@@ -270,6 +269,10 @@
               font-size: 26rpx;
               opacity: 0.6;
               padding-top: 5rpx;
+
+              text {
+                margin-left: 5rpx;
+              }
             }
           }
         }

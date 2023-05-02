@@ -19101,231 +19101,91 @@ var _default = {
   "pages": {
     "pages/index/index": {
       "navigationBarTitleText": "略懂工具箱",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
-        "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/worklist/worklist": {
       "navigationBarTitleText": "工作详细数据",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
-        "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
-        "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/worklist/work": {
       "navigationBarTitleText": "工作分析",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-data-checkbox": "/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox",
-        "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
-        "uni-rate": "/uni_modules/uni-rate/components/uni-rate/uni-rate"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/worklist/listw": {
       "navigationBarTitleText": "工作排行榜",
       "navigationStyle": "default",
-      "enablePullDownRefresh": true,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
-      }
+      "enablePullDownRefresh": true
     },
     "pages/taiji/taiji": {
       "navigationBarTitleText": "太极八卦图",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {}
+      "enablePullDownRefresh": false
     },
     "pages/jdurl/jdurl": {
       "navigationBarTitleText": "京东商品查询",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "u-empty": "/uni_modules/uview-ui/components/u-empty/u-empty",
-        "u-skeleton": "/uni_modules/uview-ui/components/u-skeleton/u-skeleton"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/teamilk/teamilk": {
       "navigationBarTitleText": "每天来一杯",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "u--image": "/uni_modules/uview-ui/components/u--image/u--image"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/yser_set/yser_set": {
       "navigationBarTitleText": "用户设置",
       "enablePullDownRefresh": false,
-      "navigationStyle": "custom",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-dateformat": "/uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat"
-      }
+      "navigationStyle": "custom"
     },
     "uni_modules/uni-id-pages/pages/userinfo/deactivate/deactivate": {
-      "navigationBarTitleText": "注销账号",
-      "usingComponents": {},
-      "usingAutoImportComponents": {}
+      "navigationBarTitleText": "注销账号"
     },
     "uni_modules/uni-id-pages/pages/userinfo/userinfo": {
-      "navigationBarTitleText": "个人资料",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-id-pages-avatar": "/uni_modules/uni-id-pages/components/uni-id-pages-avatar/uni-id-pages-avatar",
-        "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
-        "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item",
-        "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
-        "uni-popup-dialog": "/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog",
-        "uni-id-pages-bind-mobile": "/uni_modules/uni-id-pages/components/uni-id-pages-bind-mobile/uni-id-pages-bind-mobile"
-      }
+      "navigationBarTitleText": "个人资料"
     },
     "uni_modules/uni-id-pages/pages/userinfo/cropImage/cropImage": {
-      "navigationBarTitleText": "",
-      "usingComponents": {
-        "lime-clipper": "/uni_modules/uni-id-pages/pages/userinfo/cropImage/limeClipper/limeClipper"
-      },
-      "usingAutoImportComponents": {}
+      "navigationBarTitleText": ""
     },
     "uni_modules/uni-id-pages/pages/login/login-withoutpwd": {
-      "navigationBarTitleText": "",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-id-pages-agreements": "/uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-id-pages-fab-login": "/uni_modules/uni-id-pages/components/uni-id-pages-fab-login/uni-id-pages-fab-login"
-      }
+      "navigationBarTitleText": ""
     },
     "uni_modules/uni-id-pages/pages/login/login-withpwd": {
-      "navigationBarTitleText": "",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-captcha": "/uni_modules/uni-captcha/components/uni-captcha/uni-captcha",
-        "uni-id-pages-agreements": "/uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements"
-      }
+      "navigationBarTitleText": ""
     },
     "uni_modules/uni-id-pages/pages/register/register": {
-      "navigationBarTitleText": "注册",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-captcha": "/uni_modules/uni-captcha/components/uni-captcha/uni-captcha",
-        "uni-id-pages-agreements": "/uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements"
-      }
+      "navigationBarTitleText": "注册"
     },
     "uni_modules/uni-id-pages/pages/common/webview/webview": {
       "enablePullDownRefresh": false,
-      "navigationBarTitleText": "",
-      "usingComponents": {},
-      "usingAutoImportComponents": {}
+      "navigationBarTitleText": ""
     },
     "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd": {
       "enablePullDownRefresh": false,
-      "navigationBarTitleText": "修改密码",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput"
-      }
+      "navigationBarTitleText": "修改密码"
     },
     "uni_modules/uni-id-pages/pages/register/register-admin": {
       "enablePullDownRefresh": false,
-      "navigationBarTitleText": "注册管理员账号",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-captcha": "/uni_modules/uni-captcha/components/uni-captcha/uni-captcha",
-        "uni-id-pages-agreements": "/uni_modules/uni-id-pages/components/uni-id-pages-agreements/uni-id-pages-agreements"
-      }
+      "navigationBarTitleText": "注册管理员账号"
     },
     "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd": {
       "enablePullDownRefresh": false,
-      "navigationBarTitleText": "设置密码",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-id-pages-sms-form": "/uni_modules/uni-id-pages/components/uni-id-pages-sms-form/uni-id-pages-sms-form",
-        "uni-popup-captcha": "/uni_modules/uni-captcha/components/uni-popup-captcha/uni-popup-captcha"
-      }
+      "navigationBarTitleText": "设置密码"
     },
     "pages/aboutme/aboutme": {
       "navigationBarTitleText": "关于",
-      "enablePullDownRefresh": false,
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "u--image": "/uni_modules/uview-ui/components/u--image/u--image"
-      }
+      "enablePullDownRefresh": false
     },
     "pages/MuserPhoneValue/add": {
-      "navigationBarTitleText": "手机权重表",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-data-checkbox": "/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox",
-        "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker",
-        "u-slider": "/uni_modules/uview-ui/components/u-slider/u-slider"
-      }
+      "navigationBarTitleText": "手机权重表"
     },
     "pages/MuserPhoneValue/edit": {
-      "navigationBarTitleText": "编辑",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",
-        "uni-forms-item": "/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
-        "uni-easyinput": "/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
-        "uni-data-checkbox": "/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox",
-        "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker"
-      }
+      "navigationBarTitleText": "编辑"
     },
     "pages/MuserPhoneValue/list": {
-      "navigationBarTitleText": "列表",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "unicloud-db": "/node-modules/@dcloudio/uni-cli-shared/components/unicloud-db",
-        "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
-        "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item",
-        "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
-        "uni-fab": "/uni_modules/uni-fab/components/uni-fab/uni-fab"
-      },
-      "genericComponents": ["list-unicloud-db-default"]
+      "navigationBarTitleText": "列表"
     },
     "pages/MuserPhoneValue/detail": {
-      "navigationBarTitleText": "详情",
-      "usingComponents": {},
-      "usingAutoImportComponents": {
-        "unicloud-db": "/node-modules/@dcloudio/uni-cli-shared/components/unicloud-db",
-        "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
-      }
+      "navigationBarTitleText": "详情"
     },
     "pages/mobblephone/mobblephone": {
       "navigationBarTitleText": "手机推荐录",
-      "enablePullDownRefresh": true,
-      "usingComponents": {},
-      "usingAutoImportComponents": {}
+      "enablePullDownRefresh": true
     }
   },
   "globalStyle": {

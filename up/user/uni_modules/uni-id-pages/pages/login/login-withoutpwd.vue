@@ -7,7 +7,7 @@
     <!-- 顶部文字 -->
     <text class="title">请选择登录方式</text>
     <!-- 快捷登录框 当url带参数时有效 -->
-    <template v-if="['weixin','apple', 'weixinMobile'].includes(type)">
+    <template v-if="['weixinMobile','weixin','apple'].includes(type)">
       <text class="tip">将根据第三方账号服务平台的授权范围获取你的信息</text>
       <view class="quickLogin">
         <image v-if="type !== 'weixinMobile'" @click="quickLogin" :src="imgSrc" mode="widthFix" class="quickLoginBtn">
@@ -118,13 +118,10 @@
       },
       quickLogin(e) {
         let options = {}
-
         if (e.detail?.code) {
           options.phoneNumberCode = e.detail.code
         }
-
         if (this.type === 'weixinMobile' && !e.detail?.code) return
-
         this.$refs.uniFabLogin.login_before(this.type, true, options)
       },
       toSmsPage() {

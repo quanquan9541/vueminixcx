@@ -1,0 +1,7 @@
+{
+  "name": "MPhoneValueMax",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

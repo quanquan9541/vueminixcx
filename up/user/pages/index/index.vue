@@ -22,11 +22,10 @@
             text: "今日幸运茶",
             url: "/pages/teamilk/teamilk"
           },
-          /**
-                   {
-                     text: "手机推荐录",
-                     url: "/pages/mobblephone/mobblephone"
-                   }, **/
+          {
+            text: "手机推荐录",
+            url: "/pages/mobblephone/mobblephone"
+          },
           {
             text: "每天测一卦",
             url: "/pages/taiji/taiji"

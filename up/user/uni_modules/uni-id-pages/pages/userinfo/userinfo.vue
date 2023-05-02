@@ -7,16 +7,6 @@
     <uni-list>
       <uni-list-item class="item" @click="setNickname('')" title="昵称" :rightText="userInfo.nickname||'未设置'" link>
       </uni-list-item>
-      <!-- 	<uni-list-item class="item" @click="bindMobile" title="手机号" :rightText="userInfo.mobile||'未绑定'" link>
-			</uni-list-item> -->
-      <uni-list-item v-if="userInfo.email" class="item" title="电子邮箱" :rightText="userInfo.email">
-      </uni-list-item>
-      <!-- #ifdef APP -->
-      <!-- 如未开通实人认证服务，可以将实名认证入口注释 -->
-      <uni-list-item class="item" @click="realNameVerify" title="实名认证" :rightText="realNameStatus !== 2 ? '未认证': '已认证'"
-        link>
-      </uni-list-item>
-      <!-- #endif -->
       <uni-list-item v-if="hasPwd" class="item" @click="changePassword" title="修改密码" link>
       </uni-list-item>
     </uni-list>
@@ -58,27 +48,17 @@
     },
     data() {
       return {
-        univerifyStyle: {
-          authButton: {
-            "title": "本机号码一键绑定", // 授权按钮文案
-          },
-          otherLoginButton: {
-            "title": "其他号码绑定",
-          }
-        },
-        // userInfo: {
-        // 	mobile:'',
-        // 	nickname:''
-        // },
+        /**
+        userInfo: {
+          mobile: '',
+          nickname: ''
+        },**/
         hasPwd: false,
         showLoginManage: false, //通过页面传参隐藏登录&退出登录按钮
         setNicknameIng: false
       }
     },
-    async onShow() {
-      this.univerifyStyle.authButton.title = "本机号码一键绑定"
-      this.univerifyStyle.otherLoginButton.title = "其他号码绑定"
-    },
+    async onShow() {},
     async onLoad(e) {
       if (e.showLoginManage) {
         this.showLoginManage = true //通过页面传参隐藏登录&退出登录按钮
@@ -110,28 +90,6 @@
           }
         })
       },
-      bindMobile() {
-        // #ifdef APP-PLUS
-        uni.preLogin({
-          provider: 'univerify',
-          success: this.univerify(), //预登录成功
-          fail: (res) => { // 预登录失败
-            // 不显示一键登录选项（或置灰）
-            console.log(res)
-            this.bindMobileBySmsCode()
-          }
-        })
-        // #endif
-
-        // #ifdef MP-WEIXIN
-        this.$refs['bind-mobile-by-sms'].open()
-        // #endif
-
-        // #ifdef H5
-        //...去用验证码绑定
-        this.bindMobileBySmsCode()
-        // #endif
-      },
       univerify() {
         uni.login({
           "provider": 'univerify',
@@ -154,11 +112,6 @@
           }
         })
       },
-      bindMobileBySmsCode() {
-        uni.navigateTo({
-          url: './bind-mobile/bind-mobile'
-        })
-      },
       setNickname(nickname) {
         if (nickname) {
           mutations.updateUserInfo({
@@ -167,6 +120,7 @@
           this.setNicknameIng = false
           this.$refs.dialog.close()
         } else {
+          this.setNicknameIng = true
           this.$refs.dialog.open()
         }
       },

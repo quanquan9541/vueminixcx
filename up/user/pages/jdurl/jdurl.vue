@@ -34,8 +34,9 @@
   import crypto from 'node_modules/crypto-js/crypto-js.js';
   export default {
     data() {
-
       return {
+        app_secret: "", //京东的
+        app_key: "", //京东的
         state: false,
         show: false,
         jdvalue: '',
@@ -104,8 +105,7 @@
       },
       //请求京东转化链接
       urlchenge(e) {
-        let app_secret = "859a28687efe4f4eb0f88f5669e869f6";
-        let app_key = "8abdd6bc4b34757b9793f48aba4883d5";
+
         let timestamp = this.dateFormat(new Date());;
         let format = 'json';
         let v = '1.0';
@@ -125,7 +125,8 @@
           }
 
         }
-        let urldata = app_secret + '360buy_param_json' + JSON.stringify(buy_param_json) + 'app_key' + app_key +
+        let urldata = this.app_secret + '360buy_param_json' + JSON.stringify(buy_param_json) + 'app_key' + this
+          .app_key +
           'method' +
           method +
           'timestamp' + timestamp + 'v' + v + app_secret
@@ -155,8 +156,6 @@
       },
       //请求京东详情
       requst(jdsuld) {
-        let app_secret = "859a28687efe4f4eb0f88f5669e869f6";
-        let app_key = "8abdd6bc4b34757b9793f48aba4883d5";
         let timestamp = this.dateFormat(new Date());;
         let format = 'json';
         let v = '1.0';
@@ -171,7 +170,7 @@
           "start_date": null,
           'skuIds': skuIds
         }
-        let data = app_secret + '360buy_param_json' + JSON.stringify(buy_param_json) + 'app_key' + app_key +
+        let data = this.app_secret + '360buy_param_json' + JSON.stringify(buy_param_json) + 'app_key' + this.app_key +
           'method' +
           method +
           'timestamp' + timestamp + 'v' + v + app_secret

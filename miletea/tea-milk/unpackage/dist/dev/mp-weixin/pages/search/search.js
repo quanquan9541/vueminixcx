@@ -190,7 +190,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 29));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _getlist = __webpack_require__(/*! ../../tools/getlist.js */ 176);
 var _antiShake = __webpack_require__(/*! @/tools/antiShake.js */ 187);
 var _text = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/uview-ui/libs/config/props/text */ 160));

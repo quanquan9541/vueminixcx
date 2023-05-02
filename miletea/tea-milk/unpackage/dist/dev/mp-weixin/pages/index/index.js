@@ -195,14 +195,53 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 29));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _getlist = __webpack_require__(/*! ../../tools/getlist.js */ 176);
 var _tools = __webpack_require__(/*! ../../tools/tools.js */ 177);
 var _judge = __webpack_require__(/*! ../../tools/judge.js */ 178);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 var db = uniCloud.database();
 var _default = {
   data: function data() {
@@ -225,8 +264,10 @@ var _default = {
     };
   },
   onLoad: function onLoad() {
-    var _this = this;
     // console.log('onload启动');
+  },
+  onReady: function onReady() {
+    var _this = this;
     //启动下拉刷新
     uni.startPullDownRefresh();
     this.noMore = false;
@@ -264,6 +305,7 @@ var _default = {
                 return db.collection('tea-milk-class').where("state==true").field('_id as id,name as name ,sort').orderBy('sort desc').get();
               case 2:
                 res = _context.sent;
+                _this2.classlist = "";
                 _this2.classlist = res.result.data;
                 // console.log(this.classlist);
                 //停止下拉刷新
@@ -271,7 +313,7 @@ var _default = {
                 id = res.result.data[_this2.current];
                 _this2.getyuntea(id);
                 _this2.id = res.result.data[_this2.current];
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -324,19 +366,14 @@ var _default = {
                 data = _context2.sent;
                 // console.log(data);
                 newvalue = data.result.data;
-                value = [].concat((0, _toConsumableArray2.default)(_this3.data), (0, _toConsumableArray2.default)(newvalue)); // console.log(value.length);
-                // console.log('count', data.result.count);
-                // 判断步长相等
+                value = [].concat((0, _toConsumableArray2.default)(_this3.data), (0, _toConsumableArray2.default)(newvalue)); // 判断步长相等
                 if (value.length == data.result.count) {
                   _this3.more = true;
                   _this3.status = "nomore";
                   uni.hideLoading();
                 }
-                _this3.data = value.map(function (item) {
-                  return _objectSpread(_objectSpread({}, item), {}, {
-                    class: e.name
-                  });
-                });
+                _this3.data = "";
+                _this3.data = value;
                 uni.hideLoading();
                 _this3.loading = false;
                 if (value.length <= 4) {
@@ -344,7 +381,7 @@ var _default = {
                 } else {
                   _this3.noMore = true;
                 }
-              case 14:
+              case 15:
               case "end":
                 return _context2.stop();
             }
