@@ -3,14 +3,13 @@
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="phone_id" label="名称">
         <uni-data-picker v-model="formData.phone_id" collection="Manufacturer_brand" parent-field="parent_id.value"
-          placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange">
-        </uni-data-picker>
+          placeholder="请选择型号" self-field="_id" field="_id as value, name as text" @change="onchange"></uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="edit" label="关联">
         <uni-easyinput disabled placeholder="参数关联" v-model="formData.edit"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="ComeraType" label="类型" required>
-        <uni-data-checkbox v-model="formData.ComeraType"
+        <uni-data-checkbox :min="1" :multiple="true" v-model="formData.ComeraType"
           :localdata="formOptions.ComeraType_localdata"></uni-data-checkbox>
       </uni-forms-item>
       <uni-forms-item name="Comeraedit" label="详情" required>
@@ -43,7 +42,6 @@
     relevance,
     codeeditid
   } from '../../js/tools.js';
-
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mcamera';
@@ -65,7 +63,7 @@
       let formData = {
         "phone_id": "",
         "edit": "",
-        "ComeraType": "",
+        "ComeraType": [],
         "Comeraedit": "",
         "Comeravalue": null,
         "Comeraadd": 0,
@@ -76,35 +74,35 @@
         formOptions: {
           "ComeraType_localdata": [{
               "text": "前置",
-              "value": "前置"
+              "value": 0
             },
             {
               "text": "主摄",
-              "value": "主摄"
-            },
-            {
-              "text": "广角",
-              "value": "广角"
+              "value": 1
             },
             {
               "text": "长焦",
-              "value": "长焦"
+              "value": 2
+            },
+            {
+              "text": "广角",
+              "value": 3
             },
             {
               "text": "人像",
-              "value": "人像"
+              "value": 4
             },
             {
               "text": "微距",
-              "value": "微距"
+              "value": 5
             },
             {
               "text": "景深",
-              "value": "景深"
+              "value": 6
             },
             {
               "text": "其他",
-              "value": "其他"
+              "value": 7
             }
           ]
         },

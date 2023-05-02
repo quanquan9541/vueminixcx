@@ -26,41 +26,44 @@ const validator = {
         "required": true
       },
       {
-        "format": "string"
+        "format": "array"
+      },
+      {
+        "minLength": 1
       },
       {
         "range": [
           {
             "text": "前置",
-            "value": "前置"
+            "value": 0
           },
           {
             "text": "主摄",
-            "value": "主摄"
-          },
-          {
-            "text": "广角",
-            "value": "广角"
+            "value": 1
           },
           {
             "text": "长焦",
-            "value": "长焦"
+            "value": 2
+          },
+          {
+            "text": "广角",
+            "value": 3
           },
           {
             "text": "人像",
-            "value": "人像"
+            "value": 4
           },
           {
             "text": "微距",
-            "value": "微距"
+            "value": 5
           },
           {
             "text": "景深",
-            "value": "景深"
+            "value": 6
           },
           {
             "text": "其他",
-            "value": "其他"
+            "value": 7
           }
         ]
       }
@@ -115,16 +118,40 @@ const validator = {
 }
 
 const enumConverter = {
-  "ComeraType_valuetotext": {
-    "前置": "前置",
-    "主摄": "主摄",
-    "广角": "广角",
-    "长焦": "长焦",
-    "人像": "人像",
-    "微距": "微距",
-    "景深": "景深",
-    "其他": "其他"
-  }
+  "ComeraType_valuetotext": [
+    {
+      "text": "前置",
+      "value": 0
+    },
+    {
+      "text": "主摄",
+      "value": 1
+    },
+    {
+      "text": "长焦",
+      "value": 2
+    },
+    {
+      "text": "广角",
+      "value": 3
+    },
+    {
+      "text": "人像",
+      "value": 4
+    },
+    {
+      "text": "微距",
+      "value": 5
+    },
+    {
+      "text": "景深",
+      "value": 6
+    },
+    {
+      "text": "其他",
+      "value": 7
+    }
+  ]
 }
 
 function filterToWhere(filter, command) {

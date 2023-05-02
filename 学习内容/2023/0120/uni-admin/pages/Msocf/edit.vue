@@ -2,8 +2,8 @@
   <view class="uni-container">
     <uni-forms ref="form" :model="formData" validateTrigger="bind">
       <uni-forms-item name="parent_id" label="厂商">
-        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" v-model="formData.parent_id.value" collection="Msoc"
-          :where="where" field="_id as value, name as text" :step-searh="true" self-field="_id" @change="onchange">
+        <uni-data-picker placeholder="请选择厂商" popup-title="请选择厂商" collection="Msoc" :where="where"
+          v-model="formData.parent_id.value" field="_id as value, name as text" :step-searh="true" @change="onchange">
         </uni-data-picker>
       </uni-forms-item>
       <uni-forms-item name="name" label="品牌" required>

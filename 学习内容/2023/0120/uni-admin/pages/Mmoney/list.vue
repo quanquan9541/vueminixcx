@@ -74,7 +74,7 @@
   } from '../../js/tools.js';
   const db = uniCloud.database()
   // 表查询配置
-  const dbOrderBy = '' // 排序字段
+  const dbOrderBy = 'create_date desc' // 排序字段
   const dbSearchFields = [] // 模糊搜索字段，支持模糊搜索的字段列表。联表查询格式: 主表字段名.副表字段名，例如用户表关联角色表 role.role_name
   // 分页配置
   const pageSize = 20
@@ -88,8 +88,10 @@
   export default {
     data() {
       return {
-        collectionList: [db.collection('Mmoney').field('phone_id,edit,ram,rom,money,sort').getTemp(), db.collection(
-          'Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()],
+        collectionList: [db.collection('Mmoney').field('phone_id,edit,ram,rom,money,sort,create_date').getTemp(), db
+          .collection(
+            'Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()
+        ],
         query: '',
         where: '',
         orderby: dbOrderBy,

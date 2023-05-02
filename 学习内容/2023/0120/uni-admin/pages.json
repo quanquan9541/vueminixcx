@@ -317,6 +317,21 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/Mapp_secret/add",
+      "style": {
+        "navigationBarTitleText": "新增接口"
+      }
+    }, {
+      "path": "pages/Mapp_secret/edit",
+      "style": {
+        "navigationBarTitleText": "编辑接口"
+      }
+    }, {
+      "path": "pages/Mapp_secret/list",
+      "style": {
+        "navigationBarTitleText": "接口列表"
+      }
     }
   ],
   "subPackages": [{

@@ -1,0 +1,192 @@
+{
+  "screenMaterial_localdata": [{
+      "text": "OLED",
+      "value": "0.8"
+    },
+    {
+      "text": "LCD",
+      "value": "1"
+    }
+  ],
+  "screenSupplier_localdata": [{
+      "text": "三星",
+      "value": 0
+    },
+    {
+      "text": "华星光电",
+      "value": 1
+    },
+    {
+      "text": "京东方",
+      "value": 2
+    },
+    {
+      "text": "天马",
+      "value": 3
+    },
+    {
+      "text": "维信诺",
+      "value": 4
+    },
+    {
+      "text": "柔宇",
+      "value": 5
+    },
+    {
+      "text": "未知",
+      "value": 9
+    }
+  ],
+  "screenDimming_localdata": [{
+      "text": "DC调光",
+      "value": 1
+    },
+    {
+      "text": "类DC调光",
+      "value": 2
+    },
+    {
+      "text": "PWM调光",
+      "value": 3
+    }
+  ],
+  "screenAdd_localdata": [{
+      "text": "DCI-P3",
+      "value": 0
+    },
+    {
+      "text": "HDR10",
+      "value": 1
+    },
+    {
+      "text": "HDR10+",
+      "value": 2
+    }
+  ],
+  "ComeraType_localdata": [{
+      "text": "前置",
+      "value": 0
+    },
+    {
+      "text": "主摄",
+      "value": 1
+    },
+    {
+      "text": "长焦",
+      "value": 2
+    },
+    {
+      "text": "广角",
+      "value": 3
+    },
+    {
+      "text": "人像",
+      "value": 4
+    },
+    {
+      "text": "微距",
+      "value": 5
+    },
+    {
+      "text": "景深",
+      "value": 6
+    },
+    {
+      "text": "其他",
+      "value": 7
+    }
+  ],
+  "cheek_localdata": [{
+      "text": "塑料",
+      "value": 1
+    },
+    {
+      "text": "金属",
+      "value": 2
+    }
+  ],
+  "backCover_localdata": [{
+      "text": "塑料",
+      "value": 1
+    },
+    {
+      "text": "玻璃",
+      "value": 2
+    },
+    {
+      "text": "陶瓷",
+      "value": 3
+    },
+    {
+      "text": "素皮",
+      "value": 4
+    }
+  ],
+  "fingerprintIdentification_localdata": [{
+      "text": "短焦·光学·屏下指纹",
+      "value": 1
+    },
+    {
+      "text": "超薄·光学·屏下指纹",
+      "value": 2
+    },
+    {
+      "text": "超声波·屏下指纹",
+      "value": 3
+    },
+    {
+      "text": "侧边·实体指纹",
+      "value": 4
+    },
+    {
+      "text": "背部·实体指纹",
+      "value": 5
+    },
+    {
+      "text": "无指纹识别",
+      "value": 6
+    }
+  ],
+  "motor_localdata": [{
+      "text": "X轴·线性马达",
+      "value": 1
+    },
+    {
+      "text": "Z轴·线性马达",
+      "value": 2
+    },
+    {
+      "text": "转子马达",
+      "value": 3
+    }
+  ],
+  "AdditionalExperience_localdata": [{
+      "text": "双扬声器",
+      "value": 1
+    },
+    {
+      "text": "NFC",
+      "value": 2
+    },
+    {
+      "text": "WiFi6",
+      "value": 3
+    },
+    {
+      "text": "红外遥控",
+      "value": 4
+    },
+    {
+      "text": "VC液冷散热",
+      "value": 5
+    },
+    {
+      "text": "IP68防尘防水",
+      "value": 6
+    },
+    {
+      "text": "3.5mm耳机孔",
+      "value": 7
+    }
+  ]
+}

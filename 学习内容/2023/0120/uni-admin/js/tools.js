@@ -35,8 +35,10 @@ export function codeeditid(e) {
     return 'success'
   }
 }
-
-export async function phonevalue(e, id, fun = "add") {
+/**
+ * 
+ */
+export async function phonevalue(e, id, fun = 0) {
   let value = {}
   value.phone_id = e.title //手机关联
   // 获取soc 数据
@@ -46,11 +48,10 @@ export async function phonevalue(e, id, fun = "add") {
   value.phonefunction = String(phonefunction.result.data.socvalue)
   // console.log(typeof(value.phonefunction));
   //轻薄
-  let light_thin = {}
-  light_thin.weight = String(e.weight)
-  light_thin.measurement = Number(e.measurementHight) * Number(e.measurementWidth) * Number(e
+  let weight = e.weight
+  let measurement = Number(e.measurementHight) * Number(e.measurementWidth) * Number(e
     .measurementThickness)
-  value.light_thin = light_thin
+  value.light_thin = String(weight * measurement / 10000)
   //屏幕水平
   let phoneshow = ((Number(e.screenPPI) * Number(e.screenMaterial)) / 50 + (Number(e.screenRenovate) -
       60) / 60 +
@@ -66,7 +67,7 @@ export async function phonevalue(e, id, fun = "add") {
   value.phonecell = String(e.cell)
   //充电
   value.phonecharge = String(Number(e.WiredCharging) + (Number(e.WirelessCharging) / 4))
-  if (fun == "add") {
+  if (!fun) {
     //云数据上传
     db.collection('Mphonevalue').add({
       ...value,

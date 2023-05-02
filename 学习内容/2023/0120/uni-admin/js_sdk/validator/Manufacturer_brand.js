@@ -2,22 +2,9 @@
 
 
 const validator = {
-  "z_id": {
-    "rules": [{
-      "format": "object"
-    }],
-    "title": "厂商",
-    "label": "厂商"
-  },
-  "parent_id": {
-    "rules": [{
-      "format": "object"
-    }],
-    "title": "品牌",
-    "label": "品牌"
-  },
   "name": {
-    "rules": [{
+    "rules": [
+      {
         "required": true
       },
       {
@@ -28,7 +15,8 @@ const validator = {
     "label": "名称"
   },
   "pic": {
-    "rules": [{
+    "rules": [
+      {
         "format": "array"
       },
       {
@@ -40,61 +28,86 @@ const validator = {
     "label": "大图"
   },
   "url": {
-    "rules": [{
-      "format": "string"
-    }],
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
     "title": "链接",
     "label": "链接"
   },
   "jdurl": {
-    "rules": [{
-      "format": "string"
-    }],
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
     "title": "京东链接",
     "label": "京东链接"
   },
   "money": {
-    "rules": [{
-      "format": "int"
-    }],
+    "rules": [
+      {
+        "format": "int"
+      }
+    ],
     "title": "价格",
     "label": "价格"
   },
   "moneyCheck": {
-    "rules": [{
-      "format": "string"
-    }],
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
     "title": "补正价",
-    "defaultValue": 0,
+    "defaultValue": "0",
     "label": "补正价"
   },
   "brith": {
-    "rules": [{
-      "format": "timestamp"
-    }],
+    "rules": [
+      {
+        "format": "timestamp"
+      }
+    ],
     "title": "发售日期",
     "label": "发售日期"
   },
   "hot": {
-    "rules": [{
-      "format": "bool"
-    }],
+    "rules": [
+      {
+        "format": "bool"
+      }
+    ],
     "title": "热门",
     "defaultValue": false,
     "label": "热门"
   },
   "status": {
-    "rules": [{
-      "format": "bool"
-    }],
+    "rules": [
+      {
+        "format": "bool"
+      }
+    ],
     "title": "启用",
     "defaultValue": true,
     "label": "启用"
   },
+  "type": {
+    "rules": [
+      {
+        "format": "int"
+      }
+    ],
+    "title": "类型",
+    "label": "类型"
+  },
   "last_date": {
-    "rules": [{
-      "format": "timestamp"
-    }],
+    "rules": [
+      {
+        "format": "timestamp"
+      }
+    ],
     "defaultValue": {
       "$env": "now"
     }
@@ -106,10 +119,7 @@ const enumConverter = {}
 function filterToWhere(filter, command) {
   let where = {}
   for (let field in filter) {
-    let {
-      type,
-      value
-    } = filter[field]
+    let { type, value } = filter[field]
     switch (type) {
       case "search":
         if (typeof value === 'string' && value.length) {
@@ -151,8 +161,4 @@ function filterToWhere(filter, command) {
   return where
 }
 
-export {
-  validator,
-  enumConverter,
-  filterToWhere
-}
+export { validator, enumConverter, filterToWhere }

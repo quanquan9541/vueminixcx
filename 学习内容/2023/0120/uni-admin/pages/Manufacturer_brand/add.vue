@@ -27,7 +27,7 @@
         <uni-easyinput type="number" placeholder="请输入当前价格" v-model="formData.money"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="moneyCheck" Trim="both" label="补正" required>
-        <uni-easyinput type="number" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
+        <uni-easyinput type="text" placeholder="请输入价格补正" v-model="formData.moneyCheck"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="brith" label="发售日" required>
         <uni-datetime-picker type="date" :clear-icon="false" return-type="timestamp" placeholder="请选择发售日期"

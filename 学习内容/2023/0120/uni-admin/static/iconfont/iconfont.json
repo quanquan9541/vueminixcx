@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1916542",
+      "name": "API接口",
+      "font_class": "api",
+      "unicode": "e7de",
+      "unicode_decimal": 59358
+    },
+    {
+      "icon_id": "4520330",
+      "name": "日志",
+      "font_class": "rizhi",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "13638695",
+      "name": "工作",
+      "font_class": "gongzuo",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
       "icon_id": "1309",
       "name": "退出",
       "font_class": "tuichu",

@@ -1,0 +1,125 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": true,
+    "update": "doc.user_id == auth.uid ||'mobile' in auth.role",
+    "delete": "doc.user_id == auth.uid ||'mobile' in auth.role"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户id",
+      "title": "id",
+      "foreignKey": "uni-id-users._id",
+      "forceDefaultValue": {
+        "$env": "uid"
+      }
+    },
+    "wages": {
+      "bsonType": "int",
+      "title": "工资"
+
+    },
+    "weekday": {
+      "bsonType": "int",
+      "title": "月工作日"
+
+    },
+    "morning": {
+      "bsonType": "int",
+      "title": "上班时间"
+    },
+    "night": {
+      "bsonType": "int",
+      "title": "夜班"
+    },
+    "duration": {
+      "bsonType": "int",
+      "title": "日工作时"
+
+    },
+    "commute": {
+      "bsonType": "int",
+      "title": "通勤时间"
+
+    },
+    "loaf": {
+      "bsonType": "int",
+      "title": "摸鱼时长"
+
+    },
+    "education": {
+      "bsonType": "int",
+      "title": "学历"
+    },
+    "occupation": {
+      "bsonType": "int",
+      "title": "职业"
+    },
+    "company": {
+      "bsonType": "int",
+      "title": "工作单位"
+    },
+    "environment": {
+      "bsonType": "int",
+      "title": "工作环境"
+    },
+    "compete": {
+      "bsonType": "int",
+      "title": "同性人数"
+
+    },
+    "sex": {
+      "bsonType": "int",
+      "title": "优质异性"
+
+    },
+    "ability": {
+      "bsonType": "int",
+      "title": "同事水平"
+
+    },
+    "time": {
+      "bsonType": "int",
+      "title": "时间"
+    },
+    "Qualifications": {
+      "bsonType": "int",
+      "title": "资历"
+    },
+    "humanity": {
+      "bsonType": "int",
+      "title": "人文"
+    },
+    "periphery": {
+      "bsonType": "int",
+      "title": "工作环境"
+    },
+    "workdata": {
+      "bsonType": "int",
+      "title": "总数据"
+    },
+
+    //over
+    "last_date": {
+      "bsonType": "timestamp",
+      "description": "修改时间",
+      "defaultValue": {
+        "$env": "now"
+      }
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "创建时间",
+      "forceDefaultValue": {
+        "$env": "now"
+      }
+    }
+  }
+}

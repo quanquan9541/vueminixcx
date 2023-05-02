@@ -62,7 +62,7 @@
       </uni-forms-item>
       <uni-forms-item name="Camera" label="相机">
         <view v-for="item in formData.Camera" :key="_id">
-          <left-right :item="item"></left-right>
+          <left-right :item="item" :list="formOptions.ComeraType_localdata"></left-right>
         </view>
       </uni-forms-item>
       <uni-forms-item name="socfunction" label="芯片">
@@ -144,6 +144,7 @@
   const db = uniCloud.database();
   const dbCmd = db.command;
   const dbCollectionName = 'Mparameter';
+  import Fdata from '../../data/Fdata.json'
 
   function getValidator(fields) {
     let result = {}
@@ -207,153 +208,7 @@
       }
       return {
         formData,
-        formOptions: {
-          "screenMaterial_localdata": [{
-              "text": "OLED",
-              "value": "0.8"
-            },
-            {
-              "text": "LCD",
-              "value": "1"
-            }
-          ],
-          "screenSupplier_localdata": [{
-              "text": "三星",
-              "value": 0
-            },
-            {
-              "text": "华星光电",
-              "value": 1
-            },
-            {
-              "text": "京东方",
-              "value": 2
-            },
-            {
-              "text": "天马",
-              "value": 3
-            },
-            {
-              "text": "维信诺",
-              "value": 4
-            },
-            {
-              "text": "柔宇",
-              "value": 5
-            },
-            {
-              "text": "未知",
-              "value": 9
-            }
-          ],
-          "screenDimming_localdata": [{
-              "text": "DC调光",
-              "value": 1
-            },
-            {
-              "text": "类DC调光",
-              "value": 2
-            },
-            {
-              "text": "PWM调光",
-              "value": 3
-            }
-          ],
-          "screenAdd_localdata": [{
-              "text": "DCI-P3",
-              "value": 0
-            },
-            {
-              "text": "HDR10",
-              "value": 1
-            },
-            {
-              "text": "HDR10+",
-              "value": 2
-            }
-          ],
-          "cheek_localdata": [{
-              "text": "塑料",
-              "value": 1
-            },
-            {
-              "text": "金属",
-              "value": 2
-            }
-          ],
-          "backCover_localdata": [{
-              "text": "塑料",
-              "value": 1
-            },
-            {
-              "text": "玻璃",
-              "value": 2
-            },
-            {
-              "text": "陶瓷",
-              "value": 2
-            }
-          ],
-          "fingerprintIdentification_localdata": [{
-              "text": "短焦·光学·屏下指纹",
-              "value": 1
-            },
-            {
-              "text": "超薄·光学·屏下指纹",
-              "value": 2
-            },
-            {
-              "text": "侧边·实体指纹",
-              "value": 3
-            },
-            {
-              "text": "背部·实体指纹",
-              "value": 4
-            },
-            {
-              "text": "无指纹识别",
-              "value": 5
-            }
-          ],
-          "motor_localdata": [{
-              "text": "X轴·线性马达",
-              "value": 1
-            },
-            {
-              "text": "Z轴·线性马达",
-              "value": 2
-            },
-            {
-              "text": "转子马达",
-              "value": 3
-            }
-          ],
-          "AdditionalExperience_localdata": [{
-              "text": "双扬声器",
-              "value": 1
-            },
-            {
-              "text": "NFC",
-              "value": 2
-            },
-            {
-              "text": "WiFi6",
-              "value": 3
-            },
-            {
-              "text": "红外遥控",
-              "value": 4
-            },
-            {
-              "text": "VC液冷散热",
-              "value": 5
-            },
-            {
-              "text": "IP68防尘防水",
-              "value": 6
-            }
-          ]
-        },
+        formOptions: Fdata,
         rules: {
           ...getValidator(Object.keys(formData))
         }
@@ -391,8 +246,9 @@
       async getCamera(e) {
         let Cameradata = await db.collection('Mcamera').where(`phone_id=="${e}"`).field(
           "_id, ComeraType,Comeraedit, sort").orderBy("sort asc").get()
-        let Moneydata = await await db.collection('Mmoney').where(`phone_id=="${e}"`).field("_id,ram,rom,money,sort")
-          .orderBy("sort asc").get()
+        let Moneydata = await await db.collection('Mmoney').where(`phone_id=="${e}"`).field(
+            "_id,ram,rom,money,sort,create_date")
+          .orderBy("create_date desc,sort asc").get()
 
         this.formData.Camera = Cameradata.result.data
         this.formData.configurationParameter = Moneydata.result.data

@@ -43,7 +43,10 @@
             <uni-td
               align="center">{{item.phone_id && item.phone_id[0] && item.phone_id[0].parent_id.text+"&#160"+item.phone_id[0].text}}</uni-td>
             <uni-td align="center">{{codeeditid(item.edit)}}</uni-td>
-            <uni-td align="center">{{options.ComeraType_valuetotext[item.ComeraType]}}</uni-td>
+            <uni-td align="center">
+              <uni-data-picker :localdata="options.ComeraType_valuetotext" :value="item.ComeraType" :border="false"
+                :readonly="true" split=","></uni-data-picker>
+            </uni-td>
             <uni-td align="center">{{item.Comeraedit}}</uni-td>
             <uni-td align="center">{{item.Comeravalue}}</uni-td>
             <uni-td align="center">{{item.Comeraadd}}</uni-td>
@@ -77,7 +80,7 @@
   } from '../../js/tools.js';
   const db = uniCloud.database()
   // 表查询配置
-  const dbOrderBy = '' // 排序字段
+  const dbOrderBy = 'create_date desc' // 排序字段
   const dbSearchFields = [] // 模糊搜索字段，支持模糊搜索的字段列表。联表查询格式: 主表字段名.副表字段名，例如用户表关联角色表 role.role_name
   // 分页配置
   const pageSize = 20
@@ -92,8 +95,8 @@
     data() {
       return {
         collectionList: [db.collection('Mcamera').field(
-          'phone_id,edit,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort').getTemp(), db.collection(
-          'Manufacturer_brand').field('_id, parent_id,z_id, name as text').getTemp()],
+          'phone_id,edit,ComeraType,Comeraedit,Comeravalue,Comeraadd,sort,create_date').getTemp(), db.collection(
+          'Manufacturer_brand').field('_id,parent_id,z_id, name as text').getTemp()],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -105,35 +108,35 @@
           filterData: {
             "ComeraType_localdata": [{
                 "text": "前置",
-                "value": "前置"
+                "value": 0
               },
               {
                 "text": "主摄",
-                "value": "主摄"
-              },
-              {
-                "text": "广角",
-                "value": "广角"
+                "value": 1
               },
               {
                 "text": "长焦",
-                "value": "长焦"
+                "value": 2
+              },
+              {
+                "text": "广角",
+                "value": 3
               },
               {
                 "text": "人像",
-                "value": "人像"
+                "value": 4
               },
               {
                 "text": "微距",
-                "value": "微距"
+                "value": 5
               },
               {
                 "text": "景深",
-                "value": "景深"
+                "value": 6
               },
               {
                 "text": "其他",
-                "value": "其他"
+                "value": 7
               }
             ]
           },

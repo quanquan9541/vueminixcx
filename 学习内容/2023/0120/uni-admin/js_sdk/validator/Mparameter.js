@@ -400,7 +400,11 @@ const validator = {
           },
           {
             "text": "陶瓷",
-            "value": 2
+            "value": 3
+          },
+          {
+            "text": "素皮",
+            "value": 4
           }
         ]
       }
@@ -434,16 +438,20 @@ const validator = {
             "value": 2
           },
           {
-            "text": "侧边·实体指纹",
+            "text": "超声波·屏下指纹",
             "value": 3
           },
           {
-            "text": "背部·实体指纹",
+            "text": "侧边·实体指纹",
             "value": 4
           },
           {
-            "text": "无指纹识别",
+            "text": "背部·实体指纹",
             "value": 5
+          },
+          {
+            "text": "无指纹识别",
+            "value": 6
           }
         ]
       }
@@ -592,14 +600,17 @@ const enumConverter = {
   },
   "backCover_valuetotext": {
     "1": "塑料",
-    "2": "陶瓷"
+    "2": "玻璃",
+    "3": "陶瓷",
+    "4": "素皮"
   },
   "fingerprintIdentification_valuetotext": {
     "1": "短焦·光学·屏下指纹",
     "2": "超薄·光学·屏下指纹",
-    "3": "侧边·实体指纹",
-    "4": "背部·实体指纹",
-    "5": "无指纹识别"
+    "3": "超声波·屏下指纹",
+    "4": "侧边·实体指纹",
+    "5": "背部·实体指纹",
+    "6": "无指纹识别"
   },
   "motor_valuetotext": {
     "1": "X轴·线性马达",
